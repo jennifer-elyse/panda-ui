@@ -31,7 +31,7 @@ export default {
 		backgroundColor: '#fff7f6',
 		borderColor: '#772d4f',
 		buttonColor: '#772d4f',
-		buttonTextColor: '#4a1830',
+		buttonTextColor: '#fff',
 		cardColor: '#fff',
 		primaryGradient: ['#772d4f', '#4a1830'],
 		textColor: '#772d4f',
