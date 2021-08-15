@@ -1,0 +1,111 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { View } from 'react-native';
+
+import Button from './Button';
+
+
+
+const TabGroup = (props) => {
+	const {
+		options,
+		width,
+		selectedValue,
+		onValueChange,
+		style,
+		// props passed through to <Button>
+		disabled,
+		disabledColor='lightgrey',
+		size,
+		height,
+		color,
+		textColor
+	} = props;
+
+	const displayColor = disabled ? disabledColor : color;
+
+	const componentStyle = {
+		...style,
+		flexDirection: 'row',
+		width: width
+	};
+
+	const selectedStyle = {
+		borderBottomWidth: 1,
+		borderBottomColor: displayColor
+	};
+
+	const buttonLeftStyle = {
+		flexGrow: 1
+	};
+	const buttonNotLeftStyle = {
+		...buttonLeftStyle,
+		borderLeftWidth: 0
+	};
+
+	const buttonSelectedLeftStyle = {
+		...buttonLeftStyle,
+		...selectedStyle,
+		flexGrow: 1
+	};
+	const buttonSelectedNotLeftStyle = {
+		...buttonNotLeftStyle,
+		...selectedStyle
+	};
+
+	return (
+		<View style={componentStyle}>
+			{options.map((option, i) => {
+				const selected = option.value === selectedValue;
+				return (
+					<Button
+						icon={option.icon}
+						label={option.label}
+						solid={false}
+						allowInteraction={!selected}
+						width="0%"
+						size={size}
+						height={height}
+						disabled={disabled}
+						border={false}
+						color={color}
+						textColor={textColor}
+						style={i === 0
+							? selected ? buttonSelectedLeftStyle : buttonLeftStyle
+							: selected ? buttonSelectedNotLeftStyle : buttonNotLeftStyle}
+						onPress={() => onValueChange(option.value)}
+						key={option.value}
+					/>
+				);
+			})}
+		</View>
+	);
+};
+
+export default TabGroup;
+
+TabGroup.propTypes = {
+	options: PropTypes.arrayOf(PropTypes.shape({
+		value: PropTypes.any.isRequired,
+		label: PropTypes.string,
+		icon: PropTypes.string
+	})).isRequired,
+	width: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]).isRequired,
+	height: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
+	selectedColor: PropTypes.string,
+	disabledColor: PropTypes.string,
+	selectedValue: PropTypes.any.isRequired,
+	onValueChange: PropTypes.func.isRequired,
+	disabled: PropTypes.bool,
+	size: PropTypes.oneOf(['small', 'standard', 'large']),
+	color: PropTypes.string,
+	textColor: PropTypes.string,
+	style: PropTypes.object,
+	theme: PropTypes.string
+};
