@@ -13,16 +13,17 @@ const SortHeader = (props) => {
 		columns,
 		sortConfig,
 		onSortChange,
-		roundCorners = false,
+		borderRadius = 50,
 		noSort = false,
+		height,
 		// TODO: not yet implemented
 		// solid = false,
 		// center = false,
 		// ignoreFirstColumnInSort = true,
-		sortIndicatorColor = '#424242',
-		tintColor = '#213a63',
-		selectedColor = '#8cb1d7',
-		tintDarkColor = '#213a63',
+		sortIndicatorColor = '#4a1830',
+		tintColor = '#772d4f',
+		selectedColor = '#a34e76',
+		borderColor = '#772d4f',
 		textColor = '#fff',
 		TextComponent=Text
 	} = props;
@@ -39,7 +40,7 @@ const SortHeader = (props) => {
 		flexGrow: 1,
 		width: 0,
 		padding: 10,
-		maxHeight: 45,
+		height: height,
 		backgroundColor: tintColor,
 		justifyContent: 'center',
 		alignItems: 'center'
@@ -55,10 +56,24 @@ const SortHeader = (props) => {
 		backgroundColor: selectedColor
 	};
 
-	const textBorderStyle = {
+	const middleBorderStyle = {
 		borderRightWidth: 0.5,
 		borderStyle: 'solid',
-		borderColor: tintDarkColor
+		borderColor: borderColor
+	};
+
+	const leftBorderStyle = {
+		borderLeftWidth: 0.5,
+		borderLeftStyle: 'solid',
+		borderColor: borderColor,
+		borderTopLeftRadius: borderRadius
+	};
+
+	const rightBorderStyle = {
+		borderRightWidth: 0.5,
+		borderRightStyle: 'solid',
+		borderColor: borderColor,
+		borderTopRightRadius: borderRadius
 	};
 
 
@@ -92,13 +107,17 @@ const SortHeader = (props) => {
 	 *
 	 * @return {object} Object to apply to a `style` prop.
 	 */
-	function getViewStyle(active, showBorder, flexGrow) {
+	function getViewStyle(active, flexGrow, i, length) {
 		const baseStyle = active ? activeViewStyle : commonViewStyle;
-		const borderStyle =  showBorder ? textBorderStyle : undefined;
+		const leftBorderStyleObj =  i === 0  ? leftBorderStyle : undefined;
+		const rightBorderStyleObj =  i === length -1 ? rightBorderStyle : undefined;
+		const middleBorderStyleObj =  i > 0 && i < length - 1 ? middleBorderStyle : undefined;
 
 		return {
 			...baseStyle,
-			...borderStyle,
+			...leftBorderStyleObj,
+			...rightBorderStyleObj,
+			...middleBorderStyleObj,
 			flexGrow,
 			flexDirection: 'row',
 			alignItems: 'center'
@@ -119,13 +138,13 @@ const SortHeader = (props) => {
 		borderWidth: 0.5,
 		borderStyle: 'solid',
 		borderColor: tintColor,
-		borderTopLeftRadius: 5,
-		borderTopRightRadius: 5
+		borderTopLeftRadius: borderRadius,
+		borderTopRightRadius: borderRadius
 		// borderBottomRightRadius: 5,
 		// borderBottomLeftRadius: 5
 	};
 
-	const rootStyle = roundCorners ? rootStyleRounded : rootStyleUnrounded;
+	const rootStyle = borderRadius ? rootStyleRounded : rootStyleUnrounded;
 
 	return (
 		<View style={rootStyle}>
@@ -134,7 +153,7 @@ const SortHeader = (props) => {
 				isSorted = noSort ? false : isSorted;
 				return (
 					<TouchableOpacity
-						style={getViewStyle(isSorted, i < columns.length - 1, column.width)}
+						style={getViewStyle(isSorted, column.width, i, columns.length)}
 						key={column.key}
 						onPress={() => {
 							!noSort  &&
@@ -197,15 +216,19 @@ SortHeader.propTypes = {
 		direction: PropTypes.oneOf(['asc', 'desc']).isRequired
 	}),
 	onSortChange: PropTypes.func.isRequired,
-	roundCorners: PropTypes.bool,
+	borderRadius: PropTypes.number,
 	noSort: PropTypes.bool,
 	// solid: PropTypes.bool,
 	// center: PropTypes.bool,
 	// ignoreFirstColumnInSort: PropTypes.bool,
+	height: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
 	sortIndicatorColor: PropTypes.string,
 	tintColor: PropTypes.string,
 	selectedColor: PropTypes.string,
-	tintDarkColor: PropTypes.string,
+	borderColor: PropTypes.string,
 	textColor: PropTypes.string,
 	TextComponent: PropTypes.func
 };

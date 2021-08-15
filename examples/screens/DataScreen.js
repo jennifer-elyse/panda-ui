@@ -55,7 +55,6 @@ const DataScreen = () => {
 	const [loading, setLoading] 				= useState(false);
 	const [sortConfig, setSortConfig] 			= useState(defaultSortConfig);
 
-
 	// hooks
 	const sortedApiData 				= useSortedData(qualitiesData, sortConfig);
 
@@ -64,7 +63,6 @@ const DataScreen = () => {
 
 	// config
 	const rowHeight = 45;
-
 
 	useEffect(() => {
 		(async () => {
@@ -77,7 +75,6 @@ const DataScreen = () => {
 			setLoading(false);
 		})();
 	}, []);
-
 
 	const styles = StyleSheet.create({
 		container: {
@@ -103,6 +100,7 @@ const DataScreen = () => {
 			backgroundColor: Colors[theme].tintLightColor
 		}
 	});
+
 	const updateTheme = async () => {
 		setLoading(true);
 		if (character.id > 0) {
@@ -132,7 +130,6 @@ const DataScreen = () => {
 		[theme]
 	);
 
-
 	if (loading) {
 		return (
 			<Loading
@@ -141,7 +138,6 @@ const DataScreen = () => {
 			/>
 		);
 	}
-
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -172,14 +168,15 @@ const DataScreen = () => {
 			<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 15 }}>
 				<H1 textColor={Colors[theme].textColor}>Characteristics</H1>
 			</View>
-			<View style={{ height: 175, width: '95%', marginHorizontal: 10, marginBottom: 5 }}>
+			<View style={{ height: 200, width: '95%', marginHorizontal: 10, marginBottom: 5 }}>
 				<SortHeader
 					columns={columns}
 					sortConfig={sortConfig}
 					onSortChange={setSortConfig}
 					roundCorners={true}
 					center
-					borderRadius={50}
+					borderRadius={5}
+					height={40}
 					sortIndicatorColor={Colors[theme].tintDarkColor}
 					tintColor={Colors[theme].tintColor}
 					selectedColor={Colors[theme].tintLightColor}
