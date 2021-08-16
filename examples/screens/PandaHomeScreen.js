@@ -60,12 +60,12 @@ const PandaHomeScreen = () => {
 		}
 	});
 
-	const setCharacterQualities = async () => {
+	const updateTheme = async () => {
 		setLoading(true);
 		if (character.id > 0) {
 			const response = await getCharacterQualities(character.id);
 			setQualitiesData(response);
-			dispatch({ type: 'SET_THEME', payload: response.theme });
+			dispatch({ type: 'SET_THEME', payload: { theme: response.theme } });
 		} else {
 			dispatch({ type: 'SET_THEME', payload: 'default' });
 		}
@@ -96,7 +96,7 @@ const PandaHomeScreen = () => {
 							character={character}
 							setCharacter={setCharacter}
 							characterData={characterData}
-							onPress={setCharacterQualities}
+							onPress={updateTheme}
 						/>
 						<PandaDetail
 							qualitiesData={qualitiesData}
