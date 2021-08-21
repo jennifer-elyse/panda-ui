@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import Button from './Button';
 
@@ -14,6 +14,7 @@ const TabGroup = (props) => {
 		onValueChange,
 		style,
 		// props passed through to <Button>
+		buttonStyle,
 		disabled,
 		disabledColor='lightgrey',
 		size,
@@ -36,6 +37,7 @@ const TabGroup = (props) => {
 	};
 
 	const buttonLeftStyle = {
+		...buttonStyle,
 		flexGrow: 1
 	};
 	const buttonNotLeftStyle = {
@@ -53,31 +55,39 @@ const TabGroup = (props) => {
 		...selectedStyle
 	};
 
+
 	return (
-		<View style={componentStyle}>
-			{options.map((option, i) => {
-				const selected = option.value === selectedValue;
-				return (
-					<Button
-						icon={option.icon}
-						label={option.label}
-						solid={false}
-						allowInteraction={!selected}
-						width="0%"
-						size={size}
-						height={height}
-						disabled={disabled}
-						border={false}
-						color={color}
-						textColor={textColor}
-						style={i === 0
-							? selected ? buttonSelectedLeftStyle : buttonLeftStyle
-							: selected ? buttonSelectedNotLeftStyle : buttonNotLeftStyle}
-						onPress={() => onValueChange(option.value)}
-						key={option.value}
-					/>
-				);
-			})}
+		<View
+			style={componentStyle}
+		>
+			<ScrollView
+				horizontal={true}
+				contentContainerStyle={{ height: height - 0.79, padding: 0 }}
+			>
+				{options.map((option, i) => {
+					const selected = option.value === selectedValue;
+					return (
+						<Button
+							icon={option.icon}
+							label={option.label}
+							solid={false}
+							allowInteraction={!selected}
+							width="0%"
+							size={size}
+							height={height}
+							disabled={disabled}
+							border={false}
+							color={color}
+							textColor={textColor}
+							style={i === 0
+								? selected ? buttonSelectedLeftStyle : buttonLeftStyle
+								: selected ? buttonSelectedNotLeftStyle : buttonNotLeftStyle}
+							onPress={() => onValueChange(option.value)}
+							key={option.value}
+						/>
+					);
+				})}
+			</ScrollView>
 		</View>
 	);
 };

@@ -33,7 +33,7 @@ async function apiFetch(url, method, data) {
 	return parsedJson;
 }
 
-const delayData = (data, delay=2000) => new Promise(resolve => setTimeout(() => resolve(data), delay));
+const delayData = (data, delay=1000) => new Promise(resolve => setTimeout(() => resolve(data), delay));
 
 export async function getCharacters() {
 	return {
@@ -58,6 +58,10 @@ export async function getCharacters() {
 				{
 					id: '4',
 					animal: 'Trash Panda'
+				},
+				{
+					id: '5',
+					animal: 'Candy Panda'
 				}
 			]
 		}
@@ -113,6 +117,17 @@ export async function getCharacterQualities(characterId) {
 					peeves: 'Locks',
 					color: 'Midnight',
 					loves: 'Cardboard, Dumpsters, and Dog Doors',
+					svg: require('../assets/trashpanda.svg')
+				},
+				{
+					characterId: '5',
+					animal: 'Candy Panda',
+					name: 'Kumi',
+					theme: 'candyPanda',
+					faveFood: 'My-Ame ',
+					peeves: 'Party Poopers',
+					color: 'Hot Pink',
+					loves: 'Cuddles',
 					svg: require('../assets/trashpanda.svg')
 				}
 			]

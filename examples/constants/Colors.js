@@ -96,6 +96,20 @@ export default {
 		tintLightColor: '#30f2df',
 		...common
 	},
+	candyPanda: {
+		backCardColor: '#ff3155',
+		backgroundColor: '#fff',
+		borderColor: '#49f770',
+		buttonColor: '#2daefd',
+		buttonTextColor: '#fff',
+		cardColor: '#fff',
+		primaryGradient: ['#ff3155', '#ffaf42'],
+		textColor: '#000',
+		tintColor: '#ff3155',
+		tintDarkColor: '#ffaf42',
+		tintLightColor: '#ffed5e',
+		...common
+	},
 	defaultInverted:  {
 		backCardColor: '#fff',
 		backgroundColor: '#772d4f',
@@ -164,6 +178,20 @@ export default {
 		tintColor: '#00b8a7',
 		tintDarkColor: '#0b8a7d',
 		tintLightColor: '#30f2df',
+		...common
+	},
+	candyPandaInverted: {
+		backCardColor: '#ffaf42',
+		backgroundColor: '#ff3155',
+		borderColor: '#ff3155',
+		buttonColor: '#2daefd',
+		buttonTextColor: '#fff',
+		cardColor: '#fff',
+		primaryGradient: ['#ff3155', '#ffaf42'],
+		textColor: '#000',
+		tintColor: '#ffaf42',
+		tintDarkColor: '#ff3155',
+		tintLightColor: '#2daefd',
 		...common
 	}
 };

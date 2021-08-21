@@ -32,7 +32,7 @@ const PandaDetail = ({ qualitiesData }) => {
 				<View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start' }}>
 					<TouchableOpacity
 						onPress={() => {
-							navigateToHelp(qualitiesData);
+							// navigateToHelp(qualitiesData);
 						}}
 						style={{ flexDirection: 'column', marginLeft: 5, marginVertical: 5 }}
 					>

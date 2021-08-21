@@ -120,7 +120,7 @@ export default function SettingsScreen() {
 									height={50}
 									textColor={Colors[theme].buttonColor}
 									color={Colors[theme].borderColor}
-									options={[{ label: 'AKIRA', value: '1' }, { label: 'YUKI', value: '2' }, { label: 'KENZO', value: '3' }, { label: 'TSUKI', value: '4' }]}
+									options={[{ label: 'AKIRA', value: '1' }, { label: 'YUKI', value: '2' }, { label: 'KENZO', value: '3' }, { label: 'TSUKI', value: '4' }, { label: 'KUMI', value: '5' }]}
 								/>
 								<View style={{ width: '95%', height: 300, marginTop: 20, alignItems: 'center' }}>
 									<PandaDetail

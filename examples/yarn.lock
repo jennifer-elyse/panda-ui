@@ -5875,9 +5875,9 @@ react-native-iphone-x-helper@^1.3.0:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
 
-react-native-panda-ui@../react-native-panda-ui-0.0.111.tgz:
-  version "0.0.111"
-  resolved "../react-native-panda-ui-0.0.111.tgz#9da490621616dd69f49ab42ba07cb43e2b281476"
+react-native-panda-ui@../react-native-panda-ui-0.0.112.tgz:
+  version "0.0.112"
+  resolved "../react-native-panda-ui-0.0.112.tgz#e07ba25baad35386840627ef5d7a845bd55e177f"
   dependencies:
     "@expo/vector-icons" "^12.0.5"
     "@fortawesome/fontawesome-pro" "^5.14.0"
@@ -5897,9 +5897,9 @@ react-native-panda-ui@../react-native-panda-ui-0.0.111.tgz:
     react-native-remote-svg "2.0.6"
     react-native-vector-icons "8.1.0"
 
-react-native-panda-ui@../react-native-panda-ui-0.0.112.tgz:
-  version "0.0.112"
-  resolved "../react-native-panda-ui-0.0.112.tgz#e07ba25baad35386840627ef5d7a845bd55e177f"
+react-native-panda-ui@../react-native-panda-ui-0.0.113.tgz:
+  version "0.0.113"
+  resolved "../react-native-panda-ui-0.0.113.tgz#3cf8520c7b5685fe4ce6d6b3b62c4902f06d6bdf"
   dependencies:
     "@expo/vector-icons" "^12.0.5"
     "@fortawesome/fontawesome-pro" "^5.14.0"
