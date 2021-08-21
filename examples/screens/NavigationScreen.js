@@ -12,10 +12,8 @@ import { StatusBar } from 'expo-status-bar';
 
 // Panda Imports
 import {
-	Button,
 	Card,
-	TabGroup,
-	ScanTextInput
+	TabGroup
 } from 'react-native-panda-ui';
 
 // Local Imports
@@ -27,6 +25,7 @@ import Colors from '../constants/Colors';
 import Loading from '../components/Loading';
 import PandaDetail from '../components/PandaDetail';
 import ThemeSelect from '../components/ThemeSelect';
+import window from '../constants/Layout';
 import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
 
 
@@ -98,7 +97,7 @@ export default function SettingsScreen() {
 							onPress={updateTheme}
 						/>
 					</View>
-					<View style={{ height: 800, width: '104%', marginTop: 20 }}>
+					<View style={{ width: '104%', marginTop: 20 }}>
 						<Card
 							elevation={5}
 							borderTopLeftRadius={50}
@@ -106,7 +105,7 @@ export default function SettingsScreen() {
 							borderBottomLeftRadius={0}
 							borderBottomRightRadius={0}
 							backgroundColor={Colors[theme].cardColor}
-							style={{ alignItems: 'center', height: '100%' }}
+							style={{ alignItems: 'center' }}
 						>
 							<React.Fragment>
 								<TabGroup
@@ -114,9 +113,10 @@ export default function SettingsScreen() {
 										setTab(value);
 										setCharacterQualities(value);
 									}}
+									style={{ flex: 1 }}
 									size="small"
 									selectedValue={tab}
-									width="100%"
+									width="90%"
 									height={50}
 									textColor={Colors[theme].buttonColor}
 									color={Colors[theme].borderColor}

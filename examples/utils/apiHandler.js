@@ -128,7 +128,7 @@ export async function getCharacterQualities(characterId) {
 					peeves: 'Party Poopers',
 					color: 'Hot Pink',
 					loves: 'Cuddles',
-					svg: require('../assets/trashpanda.svg')
+					svg: require('../assets/candypanda.svg')
 				}
 			]
 

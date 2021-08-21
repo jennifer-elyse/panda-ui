@@ -52,7 +52,8 @@ const TabGroup = (props) => {
 	};
 	const buttonSelectedNotLeftStyle = {
 		...buttonNotLeftStyle,
-		...selectedStyle
+		...selectedStyle,
+		flexGrow: 1
 	};
 
 
@@ -62,7 +63,7 @@ const TabGroup = (props) => {
 		>
 			<ScrollView
 				horizontal={true}
-				contentContainerStyle={{ height: height - 0.79, padding: 0 }}
+				contentContainerStyle={{ flexGrow: 1, height: height, padding: 0, alignItems: 'space-between' }}
 			>
 				{options.map((option, i) => {
 					const selected = option.value === selectedValue;
