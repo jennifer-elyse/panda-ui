@@ -3,7 +3,7 @@ import React from 'react';
 import {
 	View
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -26,13 +26,21 @@ import OptInScreen from '../screens/OptInScreen';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const mainTheme = {
+	...DefaultTheme,
+	colors: {
+		...DefaultTheme.colors,
+		background: 'transparent'
+	}
+};
+
 function HomeStack() {
 	return (
 		<Stack.Navigator
 			screenOptions={{
 				headerShown: false
 			}}>
-			<Stack.Screen name="Home" 	component={PandaHomeScreen} />
+			<Stack.Screen name="HomeScreen" component={PandaHomeScreen} />
 			{/*<Stack.Screen name="Data" 	component={DataScreen} />*/}
 			<Stack.Screen name="Help" 	component={HelpScreen} />
 		</Stack.Navigator>
@@ -67,7 +75,7 @@ const AppNavigator = () => {
 					tabBarIcon: ({ focused, color, size }) => {
 						let iconName;
 						// console.log('route.name', route.name);
-						if (route.name === 'HomeStack') {
+						if (route.name === 'Home') {
 							iconName = focused
 								? 'home-heart'
 								: 'home';
@@ -90,7 +98,7 @@ const AppNavigator = () => {
 				})}
 			>
 				<Tab.Screen
-					name="HomeStack"
+					name="Home"
 					component={HomeStack}
 				/>
 				<Tab.Screen name="Choices" 		component={ChoiceScreen} />

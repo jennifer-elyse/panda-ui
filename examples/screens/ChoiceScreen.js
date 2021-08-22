@@ -28,7 +28,7 @@ import {
 	invertedSelector
 } from '../contexts/ThemeContext';
 import Colors from '../constants/Colors';
-import Loading from '../components/Loading';
+import LoadingIndicator from '../components/LoadingIndicator';
 import { H1 } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
 import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
@@ -115,7 +115,7 @@ export default function SettingsScreen() {
 
 	if (loading) {
 		return (
-			<Loading
+			<LoadingIndicator
 				activityIndicatorColor={Colors[theme].tintColor}
 				backgroundColor={Colors[theme].backgroundColor}
 			/>

@@ -22,7 +22,7 @@ import {
 	themeSelector
 } from '../contexts/ThemeContext';
 import Colors from '../constants/Colors';
-import Loading from '../components/Loading';
+import LoadingIndicator from '../components/LoadingIndicator';
 import PandaDetail from '../components/PandaDetail';
 import ThemeSelect from '../components/ThemeSelect';
 import window from '../constants/Layout';
@@ -76,15 +76,6 @@ export default function SettingsScreen() {
 	}, []);
 
 
-	if (loading) {
-		return (
-			<Loading
-				activityIndicatorColor={Colors[theme].tintColor}
-				backgroundColor={Colors[theme].backgroundColor}
-			/>
-		);
-	}
-
 	return (
 		<SafeAreaView style={styles.container}>
 			<ScrollView>
@@ -97,7 +88,7 @@ export default function SettingsScreen() {
 							onPress={updateTheme}
 						/>
 					</View>
-					<View style={{ width: '104%', marginTop: 20 }}>
+					<View style={{ width: '104%', marginTop: 30, height: '70%' }}>
 						<Card
 							elevation={5}
 							borderTopLeftRadius={50}
@@ -105,7 +96,8 @@ export default function SettingsScreen() {
 							borderBottomLeftRadius={0}
 							borderBottomRightRadius={0}
 							backgroundColor={Colors[theme].cardColor}
-							style={{ alignItems: 'center' }}
+							height={300}
+							style={{ alignItems: 'center', height: 500 }}
 						>
 							<React.Fragment>
 								<TabGroup
@@ -113,7 +105,7 @@ export default function SettingsScreen() {
 										setTab(value);
 										setCharacterQualities(value);
 									}}
-									style={{ flex: 1 }}
+									style={{ flex: 1, height: 50 }}
 									size="small"
 									selectedValue={tab}
 									width="90%"
@@ -122,11 +114,19 @@ export default function SettingsScreen() {
 									color={Colors[theme].borderColor}
 									options={[{ label: 'AKIRA', value: '1' }, { label: 'YUKI', value: '2' }, { label: 'KENZO', value: '3' }, { label: 'TSUKI', value: '4' }, { label: 'KUMI', value: '5' }]}
 								/>
-								<View style={{ width: '95%', height: 300, marginTop: 20, alignItems: 'center' }}>
-									<PandaDetail
-										qualitiesData={qualitiesData}
-									/>
-								</View>
+								{
+									loading ?
+										(
+											<LoadingIndicator
+												activityIndicatorColor={Colors[theme].tintColor}
+												backgroundColor={Colors[theme].cardColor}
+											/>
+										) : (
+											<PandaDetail
+												qualitiesData={qualitiesData}
+											/>
+										)
+								}
 							</React.Fragment>
 						</Card>
 					</View>

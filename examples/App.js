@@ -3,7 +3,7 @@ import { View, Platform, LogBox } from 'react-native';
 import { ErrorBoundary } from 'react-error-boundary';
 
 // import { Asset } from 'expo-asset';
-import AppLoading from 'expo-app-loading';
+import AppLoadingIndicator from 'expo-app-loading';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import Constants from 'expo-constants';
@@ -38,7 +38,7 @@ export default function AppWrap() {
 }
 
 function App() {
-	const [isLoadingComplete, setLoadingComplete] = useState(false);
+	const [isLoadingIndicatorComplete, setLoadingComplete] = useState(false);
 	const [userSession] = useThemeContext();
 
 	const theme = themeSelector(userSession);
@@ -64,12 +64,12 @@ function App() {
 	configureFontAwesomePro();
 
 
-	if (!isLoadingComplete) {
+	if (!isLoadingIndicatorComplete) {
 		return (
-			<AppLoading
+			<AppLoadingIndicator
 				startAsync={loadResourcesAsync}
-				onError={handleLoadingError}
-				onFinish={() => handleFinishLoading(setLoadingComplete)}
+				onError={handleLoadingIndicatorError}
+				onFinish={() => handleFinishLoadingIndicator(setLoadingComplete)}
 			/>
 		);
 	}
@@ -108,12 +108,12 @@ async function loadResourcesAsync() {
 	return true;
 }
 
-function handleLoadingError(error) {
+function handleLoadingIndicatorError(error) {
 	// In this case, you might want to report the error to your error reporting
 	// service, for example Sentry
 	console.warn(error);
 }
 
-function handleFinishLoading(setLoadingComplete) {
+function handleFinishLoadingIndicator(setLoadingComplete) {
 	setLoadingComplete(true);
 }

@@ -28,6 +28,7 @@ const TabGroup = (props) => {
 	const componentStyle = {
 		...style,
 		flexDirection: 'row',
+		paddingHorizontal: 2.5,
 		width: width
 	};
 
@@ -38,6 +39,7 @@ const TabGroup = (props) => {
 
 	const buttonLeftStyle = {
 		...buttonStyle,
+		paddingHorizontal: 2.5,
 		flexGrow: 1
 	};
 	const buttonNotLeftStyle = {
@@ -73,7 +75,6 @@ const TabGroup = (props) => {
 							label={option.label}
 							solid={false}
 							allowInteraction={!selected}
-							width="0%"
 							size={size}
 							height={height}
 							disabled={disabled}

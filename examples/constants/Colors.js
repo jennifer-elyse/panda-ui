@@ -99,7 +99,7 @@ export default {
 	candyPanda: {
 		backCardColor: '#ff3155',
 		backgroundColor: '#fff',
-		borderColor: '#49f770',
+		borderColor: '#9540b7',
 		buttonColor: '#2daefd',
 		buttonTextColor: '#fff',
 		cardColor: '#fff',

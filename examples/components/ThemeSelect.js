@@ -32,7 +32,7 @@ const ThemeSelect = ({ character, setCharacter, characterData, onPress }) => {
 					backgroundColor={Colors[theme].cardColor}
 					style={{ alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%', padding: 10 }}
 				>
-					<View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
 						<View style={{ borderWidth: 1, borderColor: Colors[theme].borderColor, borderRadius: 30, width: 165, marginRight: 8 }}>
 							<StyledSelect
 								onValueChange={(itemValue, itemIndex) => {

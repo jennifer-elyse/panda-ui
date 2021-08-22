@@ -24,11 +24,11 @@ const PandaDetail = ({ qualitiesData }) => {
 	};
 
 	return (
-		<React.Fragment>
-			<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 30 }}>
+		<View style={{ width: '95%', height: 380, alignItems: 'center', marginVertical: 30 }}>
+			<View style={{ flexDirection: 'row', marginHorizontal: 20 }}>
 				<H1 textColor={Colors[theme].tintDarkColor} style={{ textAlign: 'left' }}>{qualitiesData.name}</H1>
 			</View>
-			<View style={{ flexDirection: 'column', flexShrink: 1, flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
+			<View style={{ flexDirection: 'column', justifyContent: 'center' }}>
 				<View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start' }}>
 					<TouchableOpacity
 						onPress={() => {
@@ -73,7 +73,7 @@ const PandaDetail = ({ qualitiesData }) => {
 							</View>
 						}
 						{qualitiesData.loves &&
-							<View style={{ width: '80%', flexDirection: 'row' }}>
+							<View style={{ width: '80%', flexDirection: 'row', marginBottom: 30 }}>
 								<H3 textColor={Colors[theme].textColor} style={{ marginRight: 5 }}>Loves:</H3>
 								<Body2 textColor={Colors[theme].textColor}>{qualitiesData.loves}</Body2>
 							</View>
@@ -81,7 +81,7 @@ const PandaDetail = ({ qualitiesData }) => {
 					</TouchableOpacity>
 				</View>
 			</View>
-		</React.Fragment>
+		</View>
 	);
 };
 

@@ -20,7 +20,7 @@ import {
 	themeSelector
 } from '../contexts/ThemeContext';
 import Colors from '../constants/Colors';
-import Loading from '../components/Loading';
+import LoadingIndicator from '../components/LoadingIndicator';
 import PandaDetail from '../components/PandaDetail';
 import { Body3 } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
@@ -74,7 +74,7 @@ const PandaHomeScreen = () => {
 
 	if (loading) {
 		return (
-			<Loading
+			<LoadingIndicator
 				activityIndicatorColor={Colors[theme].tintColor}
 				backgroundColor={Colors[theme].backgroundColor}
 			/>
