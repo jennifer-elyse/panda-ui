@@ -106,8 +106,8 @@ export default {
 		primaryGradient: ['#ff3155', '#ffaf42'],
 		textColor: '#000',
 		tintColor: '#ff3155',
-		tintDarkColor: '#ffaf42',
-		tintLightColor: '#ffed5e',
+		tintDarkColor: '#ff532e',
+		tintLightColor: '#2daefd',
 		...common
 	},
 	defaultInverted:  {
