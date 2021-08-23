@@ -68,7 +68,7 @@ const AppNavigator = () => {
 				screenOptions={({ route }) => ({
 					headerShown: false,
 					tabBarActiveTintColor: Colors[theme].buttonTextColor,
-					tabBarInactiveTintColor: 'lightgrey',
+					tabBarInactiveTintColor: Colors[theme].buttonTextColor,
 					tabBarActiveBackgroundColor: Colors[theme].tintColor,
 					tabBarInactiveBackgroundColor: Colors[theme].tintDarkColor,
 					// eslint-disable-next-line react/display-name

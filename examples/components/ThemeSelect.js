@@ -30,10 +30,10 @@ const ThemeSelect = ({ character, setCharacter, characterData, onPress }) => {
 					elevation={8}
 					borderRadius={40}
 					backgroundColor={Colors[theme].cardColor}
-					style={{ alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%', padding: 10 }}
+					style={{ alignItems: 'space-between', justifyContent: 'center', height: '100%', width: '100%', padding: 10 }}
 				>
-					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-						<View style={{ borderWidth: 1, borderColor: Colors[theme].borderColor, borderRadius: 30, width: 165, marginRight: 8 }}>
+					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+						<View style={{ borderWidth: 1, borderColor: Colors[theme].borderColor, borderRadius: 30, marginRight: 8, width: '60%' }}>
 							<StyledSelect
 								onValueChange={(itemValue, itemIndex) => {
 									setCharacter({ id: itemValue, animal: characterData[itemIndex -1]?.animal });
@@ -49,7 +49,6 @@ const ThemeSelect = ({ character, setCharacter, characterData, onPress }) => {
 								}
 								selectedValue={character?.id}
 								value={character.id || 0}
-								width={160}
 								validationErrorColor={'#9c1717'}
 								textColor={Colors[theme].borderColor}
 								placeholderColor={Colors[theme].borderColor}
@@ -57,7 +56,7 @@ const ThemeSelect = ({ character, setCharacter, characterData, onPress }) => {
 						</View>
 						<View style={{ justifyContent: 'center', alignItems: 'center' }}>
 							<Button
-								label="Themes"
+								label="APPLY"
 								onPress={async () => onPress()}
 								style={{ padding: 5 }}
 								width={110}

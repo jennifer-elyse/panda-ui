@@ -89,7 +89,7 @@ const DataScreen = () => {
 			height: 45,
 			alignItems: 'center',
 			justifyContent: 'center',
-			backgroundColor: Colors[theme].cardColor,
+			backgroundColor: Colors[theme].cardColor
 		},
 		highlightedRow: {
 			flex: 1,
@@ -168,7 +168,7 @@ const DataScreen = () => {
 			<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 15 }}>
 				<H1 textColor={Colors[theme].textColor}>Characteristics</H1>
 			</View>
-			<View style={{ height: 200, width: '95%', marginHorizontal: 10, marginBottom: 5 }}>
+			<View style={{ height: '40%', width: '95%', marginHorizontal: 10, marginBottom: 5 }}>
 				<SortHeader
 					columns={columns}
 					sortConfig={sortConfig}
@@ -177,7 +177,7 @@ const DataScreen = () => {
 					center
 					borderRadius={5}
 					height={40}
-					sortIndicatorColor={Colors[theme].tintDarkColor}
+					sortIndicatorColor={Colors[theme].buttonTextColor}
 					tintColor={Colors[theme].tintColor}
 					selectedColor={Colors[theme].tintLightColor}
 					tintDarkColor={Colors[theme].tintDarkColor}
@@ -214,6 +214,7 @@ const DataScreen = () => {
 						</TouchableHighlight>
 					)}
 					keyExtractor={(item, index) => String(index)}
+					height={'100%'}
 				/>
 			</View>
 		</SafeAreaView>

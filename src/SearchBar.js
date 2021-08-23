@@ -147,7 +147,7 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 				<View style={showButton ? styles.displayButtonStyle : styles.hiddenStyle}>
 					<Button
 						onPress={() => handleSubmit()}
-						label="GO"
+						label="SEARCH"
 						style={{ paddingHorizontal: 10 }}
 						solid={false}
 						borderWidth={1}

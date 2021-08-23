@@ -85,7 +85,7 @@ const PandaHomeScreen = () => {
 		<SafeAreaView style={styles.container}>
 			<ScrollView>
 				<View style={{ alignItems: 'center', justifyContent: 'center' }}>
-					<View style={{ flex: 1, margin: 10, marginTop: 8, alignItems: 'center', justifyContent: 'center' }}>
+					<View style={{ flex: 1, margin: 10, alignItems: 'center', justifyContent: 'center' }}>
 						<View style={{ width: '95%', alignItems: 'center', justifyContent: 'center' }}>
 							<Image
 								source={require('../assets/panda-ui-logo.png')}
@@ -98,9 +98,11 @@ const PandaHomeScreen = () => {
 							characterData={characterData}
 							onPress={updateTheme}
 						/>
-						<PandaDetail
-							qualitiesData={qualitiesData}
-						/>
+						<View style={{ flex: 1, marginTop: 30, alignItems: 'center', justifyContent: 'center' }}>
+							<PandaDetail
+								qualitiesData={qualitiesData}
+							/>
+						</View>
 					</View>
 				</View>
 			</ScrollView>

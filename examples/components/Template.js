@@ -23,7 +23,7 @@ const Template = (props) => {
 	return (
 		<View style={styles.container}>
 			<StyledText>
-				Hello C&S
+				Hello Panda!
 			</StyledText>
 		</View>
 	);

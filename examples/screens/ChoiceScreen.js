@@ -187,18 +187,18 @@ export default function SettingsScreen() {
 							/>
 						</Card>
 					</Card>
-					<View style={{ height: 170, width: '85%', marginTop: 20, marginBottom: 35 }}>
+					<View style={{ height: 150, width: '85%', marginTop: 20, marginBottom: 35 }}>
 						<Card
 							elevation={5}
 							borderRadius={50}
 							backgroundColor={Colors[theme].backCardColor}
-							style={{ alignItems: 'center', justifyContent: 'center' }}
+							style={{ padding: 10 }}
 						>
 							<Card
 								elevation={8}
 								borderRadius={40}
 								backgroundColor={Colors[theme].cardColor}
-								style={{ alignItems: 'center', justifyContent: 'center', height: '85%', width: '95%' }}
+								style={{ alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}
 							>
 								<View style={{ height: 100, width: '100%', justifyContent: 'center', alignItems: 'center' }}>
 									<CounterInput

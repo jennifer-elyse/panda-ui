@@ -105,7 +105,7 @@ export default {
 		cardColor: '#fff',
 		primaryGradient: ['#ff3155', '#ffaf42'],
 		textColor: '#000',
-		tintColor: '#ff3155',
+		tintColor: '#c20e4a',
 		tintDarkColor: '#ff532e',
 		tintLightColor: '#2daefd',
 		...common

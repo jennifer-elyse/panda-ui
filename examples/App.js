@@ -82,7 +82,7 @@ function App() {
 				end={[1, 10]}
 				style={{
 					width: '100%',
-					height: Platform.OS !== 'ios' ? Constants.statusBarHeight + 10 : 20
+					height: Constants.statusBarHeight
 				}}
 			>
 				<StatusBar
