@@ -47,14 +47,13 @@ const defaultSortConfig = {
 };
 
 const DataScreen = () => {
-	const [userSession, dispatch] = useThemeContext();
+	const [userSession] = useThemeContext();
 	const theme = themeSelector(userSession);
 	// state hooks
 	// useState utilizes the current state and a function that updates it
 	const [highlightedIndex, setHighlightedIndex] = useState(null);
 	const [characterData, setCharacterData] 	= useState([]);
 	const [qualitiesData, setQualitiesData] 	= useState([]);
-	const [character, setCharacter]				= useState({ id: '0', animal: '' });
 	const [loading, setLoading] 				= useState(false);
 	const [sortConfig, setSortConfig] 			= useState(defaultSortConfig);
 
@@ -108,17 +107,6 @@ const DataScreen = () => {
 		}
 	});
 
-	const updateTheme = async () => {
-		setLoading(true);
-		if (character.id > 0) {
-			const response = await getCharacterQualities(character.id);
-			dispatch({ type: 'SET_THEME', payload: { theme: response.theme } });
-		} else {
-			dispatch({ type: 'SET_THEME', payload: { theme: 'default' } });
-		}
-		setLoading(false);
-	};
-
 	useEffect(() => {
 		if (highlightedIndex !== null) {
 			listRef.current.scrollToOffset({ offset: rowHeight * highlightedIndex, animated: true });
@@ -149,10 +137,8 @@ const DataScreen = () => {
 	return (
 		<SafeAreaView style={styles.container}>
 			<ThemeSelect
-				character={character}
-				setCharacter={setCharacter}
 				characterData={characterData}
-				onPress={updateTheme}
+				setLoading={setLoading}
 			/>
 			<Card borderRadius={50} style={{ elevation: 5, width: '95%', alignItems: 'center', padding: 10, justifyContent: 'center', backgroundColor: Colors[theme].backCardColor, marginTop: 30, marginBottom: 15 }} >
 				<Card borderRadius={40} style={{ elevation: 8, padding: 10, width: '100%', alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].cardColor }} >

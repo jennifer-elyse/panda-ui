@@ -25,8 +25,7 @@ const StyledSelect = (props) => {
 		rest,
 		separatorColor,
 		validationErrorColor='#9c1717',
-		backgroundColor='#fff',
-		textColor='#424242'
+		backgroundColor='#fff'
 	} = props;
 
 	const RNPickerWrapper = {
@@ -111,7 +110,10 @@ export default StyledSelect;
 StyledSelect.propTypes = {
 	items: PropTypes.array,
 	label: PropTypes.string,
-	value: PropTypes.string,
+	value: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
 	meta: PropTypes.any,
 	onValueChange: PropTypes.func.isRequired,
 	enabled: PropTypes.bool,
@@ -127,6 +129,5 @@ StyledSelect.propTypes = {
 	rest: PropTypes.any,
 	separatorColor: PropTypes.string,
 	validationErrorColor: PropTypes.string,
-	textColor: PropTypes.string,
 	backgroundColor: PropTypes.string.isRequired
 };

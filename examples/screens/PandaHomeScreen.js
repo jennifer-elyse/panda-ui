@@ -24,17 +24,16 @@ import LoadingIndicator from '../components/LoadingIndicator';
 import PandaDetail from '../components/PandaDetail';
 import { Body3 } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
-import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
+import { getCharacters } from '../utils/apiHandler';
 
 const PandaHomeScreen = () => {
 
-	const [userSession, dispatch] = useThemeContext();
+	const [userSession] = useThemeContext();
 	const theme = themeSelector(userSession);
 	// state hooks
 	// useState utilizes the current state and a function that updates it
 	const [characterData, setCharacterData] 	= useState([]);
 	const [qualitiesData, setQualitiesData] 	= useState([]);
-	const [character, setCharacter]				= useState({ id: '0', animal: '' });
 	const [loading, setLoading] 				= useState(false);
 
 	useEffect(() => {
@@ -60,18 +59,6 @@ const PandaHomeScreen = () => {
 		}
 	});
 
-	const updateTheme = async () => {
-		setLoading(true);
-		if (character.id > 0) {
-			const response = await getCharacterQualities(character.id);
-			setQualitiesData(response);
-			dispatch({ type: 'SET_THEME', payload: { theme: response.theme } });
-		} else {
-			dispatch({ type: 'SET_THEME', payload: 'default' });
-		}
-		setLoading(false);
-	};
-
 	if (loading) {
 		return (
 			<LoadingIndicator
@@ -93,10 +80,9 @@ const PandaHomeScreen = () => {
 							/>
 						</View>
 						<ThemeSelect
-							character={character}
-							setCharacter={setCharacter}
 							characterData={characterData}
-							onPress={updateTheme}
+							setLoading={setLoading}
+							setQualitiesData={setQualitiesData}
 						/>
 						<View style={{ flex: 1, marginTop: 30, alignItems: 'center', justifyContent: 'center' }}>
 							<PandaDetail

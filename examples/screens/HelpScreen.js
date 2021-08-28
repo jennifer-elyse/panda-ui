@@ -47,12 +47,6 @@ export default function HelpScreen() {
 						style={{ alignItems: 'center', height: '85%', width: '95%' }}
 					>
 						<View style={{ height: 100, width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-							<Feedback
-								rating={rating}
-								setRating={setRating}
-								title={'How happy are you with Panda UI?'}
-								theme="panda"
-							/>
 						</View>
 					</Card>
 				</Card>

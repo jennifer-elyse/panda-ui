@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 
 // Panda Imports
@@ -13,10 +13,24 @@ import {
 	useThemeContext,
 	themeSelector
 } from '../contexts/ThemeContext';
+import { getCharacterQualities } from '../utils/apiHandler';
 
-const ThemeSelect = ({ character, setCharacter, characterData, onPress }) => {
-	const [userSession] = useThemeContext();
+const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
+	const [userSession, dispatch] = useThemeContext();
 	const theme = themeSelector(userSession);
+	const [character, setCharacter]	= useState({ id: '0', animal: '' });
+
+	const updateTheme = async () => {
+		setLoading(true);
+		if (character.id > 0) {
+			const response = await getCharacterQualities(character.id);
+			setQualitiesData && setQualitiesData(response);
+			dispatch({ type: 'SET_THEME', payload: { theme: response.theme } });
+		} else {
+			dispatch({ type: 'SET_THEME', payload: 'default' });
+		}
+		setLoading(false);
+	};
 
 	return (
 		<View style={{ height: 80, width: '95%', marginTop: 10 }}>
@@ -57,7 +71,7 @@ const ThemeSelect = ({ character, setCharacter, characterData, onPress }) => {
 						<View style={{ justifyContent: 'center', alignItems: 'center' }}>
 							<Button
 								label="APPLY"
-								onPress={async () => onPress()}
+								onPress={async () => updateTheme()}
 								style={{ padding: 5 }}
 								width={110}
 								height={42}

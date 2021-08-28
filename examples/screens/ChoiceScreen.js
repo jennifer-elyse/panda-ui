@@ -79,18 +79,6 @@ export default function SettingsScreen() {
 
 	const [characterCount, setCharacterCount] 	= useState(0);
 	const [characterData, setCharacterData] 	= useState([]);
-	const [character, setCharacter]				= useState({ id: '0', animal: '' });
-
-	const updateTheme = async () => {
-		setLoading(true);
-		if (character.id > 0) {
-			const response = await getCharacterQualities(character.id);
-			dispatch({ type: 'SET_THEME', payload: { theme: response.theme } });
-		} else {
-			dispatch({ type: 'SET_THEME', payload: { theme: 'default' } });
-		}
-		setLoading(false);
-	};
 
 	const styles = StyleSheet.create({
 		container: {
@@ -127,11 +115,10 @@ export default function SettingsScreen() {
 			<ScrollView>
 				<View style={{ alignItems: 'center', justifyContent: 'center' }}>
 					<View style={{ flex: 1, margin: 10, marginTop: 8, alignItems: 'center', justifyContent: 'center' }}>
+
 						<ThemeSelect
-							character={character}
-							setCharacter={setCharacter}
 							characterData={characterData}
-							onPress={updateTheme}
+							setLoading={setLoading}
 						/>
 					</View>
 					<Card borderRadius={50} style={{ elevation: 5, width: '90%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].backCardColor }} >

@@ -31,25 +31,13 @@ import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
 
 
 export default function SettingsScreen() {
-	const [userSession, dispatch] = useThemeContext();
+	const [userSession] = useThemeContext();
 	const theme = themeSelector(userSession);
 	const [loading, setLoading] 				= useState(false);
 
 	const [characterData, setCharacterData] 	= useState([]);
 	const [qualitiesData, setQualitiesData] 	= useState([]);
-	const [character, setCharacter]				= useState({ id: '0', animal: '' });
 	const [tab, setTab] 						= useState('1');
-
-	const updateTheme = async () => {
-		setLoading(true);
-		if (character.id > 0) {
-			const response = await getCharacterQualities(character.id);
-			dispatch({ type: 'SET_THEME', payload: { theme: response.theme } });
-		} else {
-			dispatch({ type: 'SET_THEME', payload: { theme: 'default' } });
-		}
-		setLoading(false);
-	};
 
 	const setCharacterQualities = async (value) => {
 		setLoading(true);
@@ -83,10 +71,8 @@ export default function SettingsScreen() {
 				<View style={{ alignItems: 'center' }}>
 					<View style={{ margin: 10, marginTop: 8, alignItems: 'center', height: '20%' } }>
 						<ThemeSelect
-							character={character}
-							setCharacter={setCharacter}
 							characterData={characterData}
-							onPress={updateTheme}
+							setLoading={setLoading}
 						/>
 					</View>
 					<View style={{ width: '104%', height: window.height ? window.height : 650, marginTop: -20 }}>
