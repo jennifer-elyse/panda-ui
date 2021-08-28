@@ -51,7 +51,7 @@ const ThemeSelect = ({ character, setCharacter, characterData, onPress }) => {
 								value={character.id || 0}
 								validationErrorColor={'#9c1717'}
 								textColor={Colors[theme].borderColor}
-								placeholderColor={Colors[theme].borderColor}
+								backgroundColor={Colors[theme].backgroundColor}
 							/>
 						</View>
 						<View style={{ justifyContent: 'center', alignItems: 'center' }}>

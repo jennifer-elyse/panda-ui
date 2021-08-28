@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 import RNPickerSelect from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import chroma from 'chroma-js';
 
 import StyledText from '../components/StyledText';
 
@@ -24,8 +25,8 @@ const StyledSelect = (props) => {
 		rest,
 		separatorColor,
 		validationErrorColor='#9c1717',
-		textColor='#424242',
-		placeholderColor='grey'
+		backgroundColor='#fff',
+		textColor='#424242'
 	} = props;
 
 	const RNPickerWrapper = {
@@ -42,9 +43,37 @@ const StyledSelect = (props) => {
 		borderBottomColor: validationErrorColor
 	};
 
+	const placeholderColor =
+		chroma.contrast(backgroundColor, '#fff') > 5
+			? '#fff' : '#000';
+
+	const pickerSelectStyles = StyleSheet.create({
+		inputIOS: {
+			paddingHorizontal: 5,
+			maxWidth: 250,
+			height: 20,
+			marginLeft: 10,
+			marginBottom: 10,
+			color: placeholderColor,
+			paddingRight: 15 // to ensure the text is never behind the icon
+		},
+		inputAndroid: {
+			paddingHorizontal: 10,
+			maxWidth: 250,
+			height: 20,
+			// marginLeft: -10,
+			marginBottom: 12,
+			color: placeholderColor,
+			paddingRight: 15, // to ensure the text is never behind the icon
+			transform: [
+				{ scaleX: 0.8 },
+				{ scaleY: 0.8 }]
+		}
+	});
+
 	return (
 		<View style={ meta && meta.error && meta.touched ? RNPickerWrapperFailedValidation : RNPickerWrapper }>
-			<StyledText style={{ color: textColor, fontSize: 12, marginBottom: -5, marginLeft: 3 }}>{label}</StyledText>
+			<StyledText style={{ color: placeholderColor, fontSize: 12, marginBottom: -5, marginLeft: 3 }}>{label}</StyledText>
 			<RNPickerSelect
 				{...input}
 				{...rest}
@@ -77,32 +106,6 @@ const StyledSelect = (props) => {
 		</View>
 	);
 };
-
-const pickerSelectStyles = StyleSheet.create({
-	inputIOS: {
-		paddingHorizontal: 5,
-		maxWidth: 250,
-		height: 20,
-		marginLeft: 10,
-		marginBottom: 10,
-		paddingRight: 15 // to ensure the text is never behind the icon
-	},
-	inputAndroid: {
-		paddingHorizontal: 10,
-		marginLeft: -10,
-		marginBottom: 10,
-		paddingVertical: 8,
-		borderWidth: 0.5,
-		maxWidth: 250,
-		minWidth: 50,
-		height: 20,
-		color: '#000',
-		paddingRight: 15, // to ensure the text is never behind the icon
-		transform: [
-			{ scaleX: 0.8 },
-			{ scaleY: 0.8 }]
-	}
-});
 export default StyledSelect;
 
 StyledSelect.propTypes = {
@@ -125,5 +128,5 @@ StyledSelect.propTypes = {
 	separatorColor: PropTypes.string,
 	validationErrorColor: PropTypes.string,
 	textColor: PropTypes.string,
-	placeholderColor: PropTypes.string
+	backgroundColor: PropTypes.string.isRequired
 };
