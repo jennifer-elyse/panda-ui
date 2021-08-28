@@ -11,23 +11,24 @@ import StyledSelect from '../components/StyledSelect';
 import Colors from '../constants/Colors';
 import {
 	useThemeContext,
-	themeSelector
+	themeSelector,
+	baseThemeSelector
 } from '../contexts/ThemeContext';
 import { getCharacterQualities } from '../utils/apiHandler';
 
 const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 	const [userSession, dispatch] = useThemeContext();
 	const theme = themeSelector(userSession);
-	const [character, setCharacter]	= useState({ id: '0', animal: '' });
+	const baseTheme = baseThemeSelector(userSession);
+	const [character, setCharacter]	= useState({ id: '0', animal: '', theme: 'default' });
 
 	const updateTheme = async () => {
 		setLoading(true);
+		dispatch({ type: 'SET_THEME', payload: { theme: character.theme } });
+
 		if (character.id > 0) {
 			const response = await getCharacterQualities(character.id);
-			setQualitiesData && setQualitiesData(response);
-			dispatch({ type: 'SET_THEME', payload: { theme: response.theme } });
-		} else {
-			dispatch({ type: 'SET_THEME', payload: 'default' });
+			setQualitiesData(response);
 		}
 		setLoading(false);
 	};
@@ -50,19 +51,19 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 						<View style={{ borderWidth: 1, borderColor: Colors[theme].borderColor, borderRadius: 30, marginRight: 8, width: '60%' }}>
 							<StyledSelect
 								onValueChange={(itemValue, itemIndex) => {
-									setCharacter({ id: itemValue, animal: characterData[itemIndex -1]?.animal });
+									setCharacter({ id: itemValue, animal: characterData[itemIndex -1]?.animal, theme: characterData[itemIndex -1]?.theme });
 								}}
 								items={
 									characterData && characterData.map((c, i) => {
 										return {
 											label: c.animal,
-											value: c.id,
+											value: c.theme,
 											key: c.id
 										};
 									})
 								}
-								selectedValue={character?.id}
-								value={character.id || 0}
+								selectedValue={baseTheme}
+								value={baseTheme}
 								validationErrorColor={'#9c1717'}
 								textColor={Colors[theme].borderColor}
 								backgroundColor={Colors[theme].backgroundColor}

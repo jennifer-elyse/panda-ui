@@ -39,7 +39,7 @@ export default function SettingsScreen() {
 	const [qualitiesData, setQualitiesData] 	= useState([]);
 	const [tab, setTab] 						= useState('1');
 
-	const setCharacterQualities = async (value) => {
+	const handleCharacterQualities = async (value) => {
 		setLoading(true);
 		const response = await getCharacterQualities(value);
 		setQualitiesData(response);
@@ -59,7 +59,7 @@ export default function SettingsScreen() {
 			setLoading(true);
 			let response = await getCharacters();
 			setCharacterData(response.data.characters);
-			setCharacterQualities(tab);
+			handleCharacterQualities(tab);
 			setLoading(false);
 		})();
 	}, []);
@@ -90,7 +90,7 @@ export default function SettingsScreen() {
 								<TabGroup
 									onValueChange={ async (value) => {
 										setTab(value);
-										setCharacterQualities(value);
+										handleCharacterQualities(value);
 									}}
 									style={{ height: 50, marginBottom: 10 }}
 									size="small"

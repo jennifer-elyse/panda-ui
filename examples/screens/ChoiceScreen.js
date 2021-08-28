@@ -31,7 +31,7 @@ import Colors from '../constants/Colors';
 import LoadingIndicator from '../components/LoadingIndicator';
 import { H1 } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
-import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
+import { getCharacters } from '../utils/apiHandler';
 
 const colorOptions =
 	[{
@@ -71,7 +71,6 @@ const lovesOptions =
 export default function SettingsScreen() {
 	const [userSession, dispatch] = useThemeContext();
 	const theme = themeSelector(userSession);
-	const baseTheme = baseThemeSelector(userSession);
 	const inverted = invertedSelector(userSession);
 	const [selectedColor, setSelectedColor] 	= useState('');
 	const [selectedLoves, setSelectedLoves] 	= useState([]);

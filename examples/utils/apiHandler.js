@@ -41,26 +41,32 @@ export async function getCharacters() {
 			characters: [
 				{
 					id: '0',
+					theme: 'default',
 					animal: 'default'
 				},
 				{
 					id: '1',
+					theme: 'panda',
 					animal: 'Panda'
 				},
 				{
 					id: '2',
+					theme: 'redPanda',
 					animal: 'Red Panda'
 				},
 				{
 					id: '3',
+					theme: 'uglyPanda',
 					animal: 'Ugly Panda'
 				},
 				{
 					id: '4',
+					theme: 'trashPanda',
 					animal: 'Trash Panda'
 				},
 				{
 					id: '5',
+					theme: 'candyPanda',
 					animal: 'Candy Panda'
 				}
 			]
