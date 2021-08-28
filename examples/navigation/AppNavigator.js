@@ -1,13 +1,11 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {
-	View
-} from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import ProIcon from 'react-native-fontawesome-pro';
+import chroma from 'chroma-js';
 
 import Colors from '../constants/Colors';
 import {
@@ -50,6 +48,12 @@ function HomeStack() {
 const AppNavigator = () => {
 	const [userSession] = useThemeContext();
 	const theme = themeSelector(userSession);
+	const inactiveTintColor =
+		chroma.contrast(Colors[theme].tintDarkColor, '#fff') > 5
+			? '#fff' : '#000';
+	const activeTintColor =
+		chroma.contrast(Colors[theme].tintColor, '#fff') > 5
+			? '#fff' : '#000';
 
 	// if (generateSplashMode) {
 	// 	return <SplashGeneratorScreen />;
@@ -60,20 +64,21 @@ const AppNavigator = () => {
 			<Tab.Navigator
 				tabBarOptions={{
 					headerShown: false,
-					activeTintColor: Colors[theme].buttonTextColor,
-					inactiveTintColor: 'lightgrey',
+					activeTintColor: activeTintColor,
+					inactiveTintColor,
 					activeBackgroundColor: Colors[theme].tintColor,
 					inactiveBackgroundColor: Colors[theme].tintDarkColor
 				}}
 				screenOptions={({ route }) => ({
 					headerShown: false,
-					tabBarActiveTintColor: Colors[theme].buttonTextColor,
-					tabBarInactiveTintColor: Colors[theme].buttonTextColor,
+					tabBarActiveTintColor: activeTintColor,
+					tabBarInactiveTintColor: inactiveTintColor,
 					tabBarActiveBackgroundColor: Colors[theme].tintColor,
 					tabBarInactiveBackgroundColor: Colors[theme].tintDarkColor,
 					// eslint-disable-next-line react/display-name
 					tabBarIcon: ({ focused, color, size }) => {
 						let iconName;
+						let styleColor = focused ? activeTintColor : inactiveTintColor;
 						// console.log('route.name', route.name);
 						if (route.name === 'Home') {
 							iconName = focused
@@ -93,7 +98,7 @@ const AppNavigator = () => {
 							style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginHorizontal: 10 }}
 							name={iconName}
 							size={18}
-							color={Colors[theme].buttonTextColor} />);
+							color={styleColor} />);
 					}
 				})}
 			>
