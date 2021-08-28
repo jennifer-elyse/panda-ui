@@ -59,9 +59,9 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 										};
 									})
 								}
+								value={character.theme}
 								selectedValue={baseTheme}
-								value={baseTheme}
-								validationErrorColor={'#9c1717'}
+								validationErrorColor={Colors[theme].validationError}
 								textColor={Colors[theme].borderColor}
 								backgroundColor={Colors[theme].backgroundColor}
 							/>
