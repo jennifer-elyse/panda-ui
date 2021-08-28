@@ -159,7 +159,7 @@ export default function SettingsScreen() {
 					<Card borderRadius={50} style={{ elevation: 5, width: 230, padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].backCardColor }} >
 						<Card borderRadius={40} style={{ elevation: 5, width: '100%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].cardColor }} >
 							<RadioGroup
-								containerStyle={{ width: '100%', paddingVertical: Platform.OS !== 'ios' ? 20 : 15, paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12, borderWidth: 1, borderStyle: 'solid', borderColor: Colors[theme].tintColor, borderRadius: 30 }}
+								containerStyle={{ width: '100%', paddingVertical: Platform.OS !== 'ios' ? 20 : 15, paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12, borderWidth: 1, borderStyle: 'solid', borderColor: Colors[theme].borderColor, borderRadius: 30 }}
 								options={colorOptions}
 								value={selectedColor}
 								onChange={setSelectedColor}
@@ -176,7 +176,7 @@ export default function SettingsScreen() {
 					<Card borderRadius={50} style={{ elevation: 5, width: 290, height: 300, padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].backCardColor }} >
 						<Card borderRadius={40} style={{ elevation: 5, width: '100%', height: '100%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].cardColor }} >
 							<CheckBoxGroup
-								containerStyle={{ width: '100%', height: '100%', paddingVertical: Platform.OS !== 'ios' ? 20 : 15, paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12, borderWidth: 1, borderStyle: 'solid', borderColor: Colors[theme].tintColor, borderRadius: 30 }}
+								containerStyle={{ width: '100%', height: '100%', paddingVertical: Platform.OS !== 'ios' ? 20 : 15, paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12, borderWidth: 1, borderStyle: 'solid', borderColor: Colors[theme].borderColor, borderRadius: 30 }}
 								options={lovesOptions}
 								value={selectedLoves}
 								onChange={setSelectedLoves}

@@ -96,12 +96,8 @@ const Button =  (props) => {
 					{!!icon &&
 						<FontAwesome5 name={icon} size={size === 'small' ? 13 : size === 'standard' ? 15 : 21} color={contentColor} />
 					}
-					{!!svg &&
-						<ErrorBoundary
-							fallbackRender={({ error, resetErrorBoundary }) => (
-								<Text>{error.message}</Text>
-							)}
-						>
+					{svg && Platform.OS === 'ios' ?
+						(
 							<Image
 								showWebviewLoader={false}
 								style={{
@@ -115,16 +111,29 @@ const Button =  (props) => {
 								source={svg}
 								resizeMode="contain"
 							/>
-						</ErrorBoundary>
+						)
+						: svg && Platform.OS !== 'ios' ?
+							(
+								<Image
+									showWebviewLoader={false}
+									style={{
+										height: '85%',
+										width: '85%',
+										resizeMode: 'contain'
+									}}
+									source={svg}
+									resizeMode="contain"
+								/>
+							) : (undefined)
 					}
-					{!!label &&
-						<ErrorBoundary
-							fallbackRender={({ error, resetErrorBoundary }) => (
-								<Text>{error.message}</Text>
-							)}
-						>
+					{label && Platform.OS === 'ios' ?
+						(
 							<TextComponent style={buttonLabelStyle}>{label}</TextComponent>
-						</ErrorBoundary>
+						)
+						: label && Platform.OS !== 'ios' ?
+							(
+								<TextComponent style={[buttonLabelStyle/* , { marginLeft: -15 } */]}>{label}</TextComponent>
+							) : (undefined)
 					}
 				</React.Fragment>
 			</View>

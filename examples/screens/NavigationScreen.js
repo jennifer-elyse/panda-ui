@@ -4,7 +4,8 @@ import {
 	View,
 	SafeAreaView,
 	StyleSheet,
-	ScrollView
+	ScrollView,
+	Text
 } from 'react-native';
 
 // Expo imports
@@ -88,7 +89,7 @@ export default function SettingsScreen() {
 							onPress={updateTheme}
 						/>
 					</View>
-					<View style={{ width: '104%', height: '100%' }}>
+					<View style={{ width: '104%', height: window.height ? window.height : 650, marginTop: -20 }}>
 						<Card
 							elevation={5}
 							borderTopLeftRadius={50}
@@ -99,6 +100,7 @@ export default function SettingsScreen() {
 							style={{ flex: 1, alignItems: 'center' }}
 						>
 							<React.Fragment>
+								<Text>{window.height}</Text>
 								<TabGroup
 									onValueChange={ async (value) => {
 										setTab(value);
