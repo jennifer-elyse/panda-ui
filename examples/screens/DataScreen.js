@@ -11,6 +11,9 @@ import {
 // Expo imports
 import { StatusBar } from 'expo-status-bar';
 
+
+import chroma from 'chroma-js';
+
 // Panda Imports
 import {
 	Card,
@@ -63,6 +66,10 @@ const DataScreen = () => {
 
 	// config
 	const rowHeight = 45;
+	const highlightedColor = Colors[theme].tintLightColor;
+	const highlightedTextColor =
+		chroma.contrast(highlightedColor, '#fff') > 5
+			? '#fff' : '#000';
 
 	useEffect(() => {
 		(async () => {
@@ -97,7 +104,7 @@ const DataScreen = () => {
 			height: 45,
 			alignItems: 'center',
 			justifyContent: 'center',
-			backgroundColor: Colors[theme].tintLightColor
+			backgroundColor: highlightedColor
 		}
 	});
 
@@ -201,13 +208,13 @@ const DataScreen = () => {
 								style={{ flex: 1, flexDirection: 'row', height: 45, alignItems: 'center', justifyContent: 'center' }}
 								// onPress={() => { navigateToComponents(); }}
 							>
-								<Body2 textColor={highlightedIndex === index ? Colors[theme].tintDarkColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[0].width, textAlign: 'center' }}>
+								<Body2 textColor={highlightedIndex === index ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[0].width, textAlign: 'center' }}>
 									{item.animal}
 								</Body2>
-								<Body2 textColor={highlightedIndex === index ? Colors[theme].tintDarkColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[1].width, textAlign: 'center' }}>
+								<Body2 textColor={highlightedIndex === index ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[1].width, textAlign: 'center' }}>
 									{item.name}
 								</Body2>
-								<Body2 textColor={highlightedIndex === index ? Colors[theme].tintDarkColor: Colors[theme].textColor} style={{ width: 0, flexGrow: columns[2].width, textAlign: 'center' }}>
+								<Body2 textColor={highlightedIndex === index ? highlightedTextColor: Colors[theme].textColor} style={{ width: 0, flexGrow: columns[2].width, textAlign: 'center' }}>
 									{item.color}
 								</Body2>
 							</View>
