@@ -13,7 +13,7 @@ import Image from 'react-native-remote-svg';
 
 import warning from './utils/warning';
 
-const Button =  (props) => {
+const Button = (props) => {
 	const {
 		onPress,
 		icon,
@@ -117,9 +117,12 @@ const Button =  (props) => {
 								<Image
 									showWebviewLoader={false}
 									style={{
-										height: '85%',
-										width: '85%',
-										resizeMode: 'contain'
+										height: 40,
+										width: 50,
+										resizeMode: 'contain',
+										transform: [
+											{ scaleX: Platform.OS !== 'ios' ? (size === 'small' ? 0.6 : 0.8) : 1 },
+											{ scaleY: Platform.OS !== 'ios' ? (size === 'small' ? 0.6 : 0.8) : 1 }]
 									}}
 									source={svg}
 									resizeMode="contain"

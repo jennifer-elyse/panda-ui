@@ -2496,6 +2496,11 @@ chroma-js@^2.1.2:
   dependencies:
     cross-env "^6.0.3"
 
+chroma@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/chroma/-/chroma-0.0.1.tgz#a59132defa72113b9312fa98d2587c67d309f989"
+  integrity sha1-pZEy3vpyETuTEvqY0lh8Z9MJ+Yk=
+
 ci-info@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
@@ -5889,9 +5894,9 @@ react-native-iphone-x-helper@^1.3.0:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
 
-react-native-panda-ui@../react-native-panda-ui-0.0.135.tgz:
-  version "0.0.135"
-  resolved "../react-native-panda-ui-0.0.135.tgz#7f8b16a65bc38d18f0391b4eb2309062fb188919"
+react-native-panda-ui@../react-native-panda-ui-0.0.140.tgz:
+  version "0.0.140"
+  resolved "../react-native-panda-ui-0.0.140.tgz#3e0a6588ce50137e330bc37ad5a1aa1f39106236"
   dependencies:
     "@expo/vector-icons" "^12.0.5"
     "@fortawesome/fontawesome-pro" "^5.14.0"
@@ -5904,6 +5909,7 @@ react-native-panda-ui@../react-native-panda-ui-0.0.135.tgz:
     "@fortawesome/pro-regular-svg-icons" "^5.15.2"
     "@fortawesome/pro-solid-svg-icons" "^5.15.2"
     "@fortawesome/react-native-fontawesome" "^0.2.6"
+    chroma "^0.0.1"
     react-error-boundary "^3.1.3"
     react-native-elements "3.4.2"
     react-native-fontawesome-pro "^2.1.0"
@@ -5911,9 +5917,9 @@ react-native-panda-ui@../react-native-panda-ui-0.0.135.tgz:
     react-native-remote-svg "2.0.6"
     react-native-vector-icons "8.1.0"
 
-react-native-panda-ui@../react-native-panda-ui-0.0.136.tgz:
-  version "0.0.136"
-  resolved "../react-native-panda-ui-0.0.136.tgz#0172e9c0e8e13082a93a2c69dae7fe078bf13b7e"
+react-native-panda-ui@../react-native-panda-ui-0.0.141.tgz:
+  version "0.0.141"
+  resolved "../react-native-panda-ui-0.0.141.tgz#9a08e077e7ee7b2c5b2fa99b1b8e8005c007c8e0"
   dependencies:
     "@expo/vector-icons" "^12.0.5"
     "@fortawesome/fontawesome-pro" "^5.14.0"
@@ -5926,6 +5932,7 @@ react-native-panda-ui@../react-native-panda-ui-0.0.136.tgz:
     "@fortawesome/pro-regular-svg-icons" "^5.15.2"
     "@fortawesome/pro-solid-svg-icons" "^5.15.2"
     "@fortawesome/react-native-fontawesome" "^0.2.6"
+    chroma "^0.0.1"
     react-error-boundary "^3.1.3"
     react-native-elements "3.4.2"
     react-native-fontawesome-pro "^2.1.0"

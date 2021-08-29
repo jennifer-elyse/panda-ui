@@ -15,6 +15,7 @@ import { StatusBar } from 'expo-status-bar';
 import {
 	Card,
 	CheckBoxGroup,
+	Chip,
 	CounterInput,
 	RadioGroup,
 	ToggleButton
@@ -24,7 +25,6 @@ import {
 import {
 	useThemeContext,
 	themeSelector,
-	baseThemeSelector,
 	invertedSelector
 } from '../contexts/ThemeContext';
 import Colors from '../constants/Colors';
@@ -192,8 +192,39 @@ export default function SettingsScreen() {
 										onChange={handleCountChange}
 										cardColor={Colors[theme].cardColor}
 										backCardColor={Colors[theme].backCardColor}
-										buttonTextColor={Colors[theme].tintColor}
+										buttonTextColor={Colors[theme].textColor}
 										textColor={Colors[theme].textColor}
+									/>
+								</View>
+							</Card>
+						</Card>
+					</View>
+					<View style={{ height: 150, width: '85%', marginTop: 20, marginBottom: 35 }}>
+						<Card
+							elevation={5}
+							borderRadius={50}
+							backgroundColor={Colors[theme].backCardColor}
+							style={{ padding: 10 }}
+						>
+							<Card
+								elevation={8}
+								borderRadius={40}
+								backgroundColor={Colors[theme].cardColor}
+								style={{ alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}
+							>
+								<View style={{ height: 100, width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+									<Chip
+										value="Kumi"
+										svg={require('../assets/candypanda.svg')}
+										backgroundColor={Colors[theme].backgroundColor}
+										deleteIconColor={Colors[theme].buttonColor}
+										buttonTextColor={Colors[theme].buttonTextColor}
+										chipColor={Colors[theme].buttonColor}
+										borderColor={Colors[theme].borderColor}
+										textStyle={{ fontWeight: 'bold' }}
+										onPressDelete={() => {
+
+										}}
 									/>
 								</View>
 							</Card>
