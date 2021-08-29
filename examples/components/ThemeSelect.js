@@ -48,7 +48,6 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 						<View style={{ borderWidth: 1, borderColor: Colors[theme].borderColor, borderRadius: 30, marginRight: 8, width: '60%' }}>
 							<StyledSelect
 								onValueChange={(itemValue, itemIndex) => {
-									console.log(itemValue);
 									setCharacter({ id: characterData[itemIndex -1]?.id, animal: characterData[itemIndex -1]?.animal, theme: itemValue });
 								}}
 								items={
