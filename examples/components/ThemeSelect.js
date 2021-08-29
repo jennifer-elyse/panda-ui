@@ -25,7 +25,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 	const updateTheme = async () => {
 		setLoading(true);
 		dispatch({ type: 'SET_THEME', payload: { theme: character.theme } });
-		const response = await getCharacterQualities(character.id);
+		const response = character.id  > 0 && await getCharacterQualities(character.id);
 		setQualitiesData && setQualitiesData(response);
 		setLoading(false);
 	};
@@ -48,6 +48,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 						<View style={{ borderWidth: 1, borderColor: Colors[theme].borderColor, borderRadius: 30, marginRight: 8, width: '60%' }}>
 							<StyledSelect
 								onValueChange={(itemValue, itemIndex) => {
+									console.log(itemValue);
 									setCharacter({ id: characterData[itemIndex -1]?.id, animal: characterData[itemIndex -1]?.animal, theme: itemValue });
 								}}
 								items={
@@ -59,8 +60,8 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 										};
 									})
 								}
-								value={character.theme}
 								selectedValue={baseTheme}
+								value={character.theme}
 								validationErrorColor={Colors[theme].validationError}
 								textColor={Colors[theme].borderColor}
 								backgroundColor={Colors[theme].backgroundColor}

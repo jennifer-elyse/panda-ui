@@ -59,15 +59,6 @@ const PandaHomeScreen = () => {
 		}
 	});
 
-	if (loading) {
-		return (
-			<LoadingIndicator
-				activityIndicatorColor={Colors[theme].tintColor}
-				backgroundColor={Colors[theme].backgroundColor}
-			/>
-		);
-	}
-
 	return (
 		<SafeAreaView style={styles.container}>
 			<ScrollView>
@@ -84,10 +75,21 @@ const PandaHomeScreen = () => {
 							setLoading={setLoading}
 							setQualitiesData={setQualitiesData}
 						/>
-						<View style={{ flex: 1, marginTop: 30, alignItems: 'center', justifyContent: 'center' }}>
-							<PandaDetail
-								qualitiesData={qualitiesData}
-							/>
+						<View style={{ flex: 1, marginTop: 50 }}>
+							{
+								loading ?
+									(
+										<LoadingIndicator
+											activityIndicatorColor={Colors[theme].tintColor}
+											backgroundColor={Colors[theme].cardColor}
+											height={250}
+										/>
+									) : (
+										<PandaDetail
+											qualitiesData={qualitiesData}
+										/>
+									)
+							}
 						</View>
 					</View>
 				</View>

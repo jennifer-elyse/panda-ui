@@ -9,7 +9,7 @@ import {
 } from 'react-native-panda-ui';
 
 
-const Chip = () => {
+const Chip = (props) => {
 	const styles = StyleSheet.create({
 		container: {
 			flexDirection: 'row',
@@ -18,7 +18,7 @@ const Chip = () => {
 		}
 	});
 
-	const props = {
+	const {
 		value,
 		setValue,
 		borderColor,
@@ -31,17 +31,16 @@ const Chip = () => {
 		onPressDelete,
 		disabled,
 		disabledColor
-	};
+	} = props;
 
 	return (
 		<View style={styles.container}>
 			<View style={{ flexDirection: 'row' }}>
 				<Button
 					icon={option.icon}
-					label={option.label}
 					svg={option.svg}
-					solid={selected}
-					allowInteraction={!selected}
+					solid={false}
+					allowInteraction={false}
 					width="0%"
 					size={size}
 					height={height}
