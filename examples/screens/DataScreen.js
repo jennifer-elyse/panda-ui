@@ -101,6 +101,8 @@ const DataScreen = () => {
 			flex: 1,
 			flexDirection: 'row',
 			height: 45,
+			marginVertical: 5,
+			marginHorizontal: 2.5,
 			alignItems: 'center',
 			justifyContent: 'center',
 			backgroundColor: highlightedColor

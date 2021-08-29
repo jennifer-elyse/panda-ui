@@ -11,9 +11,7 @@ import Button from './Button';
 
 const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 	borderColor='#772d4f', borderRadius=50, borderWidth=1, buttonColor='#772d4f',
-	buttonTextColor='#772d4f', containerStyle, pickerBorderColor='#772d4f',
-	pickerText='#772d4f'
-	 }) => {
+	buttonTextColor='#772d4f', containerStyle, pickerText='#772d4f'}) => {
 
 	const [searchType, setSearchType] = useState('');
 	const [showSearchValues, setShowSearchValues] = useState(false);
@@ -72,12 +70,8 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 			paddingRight: 30 // to ensure the text is never behind the icon
 		},
 		inputAndroid: {
-			paddingHorizontal: 10,
-			paddingVertical: 8,
-			borderWidth: 0.5,
-			borderColor: pickerBorderColor,
-			borderRadius: borderRadius,
 			color: pickerText,
+			backgroundColor: backgroundColor,
 			paddingRight: 30 // to ensure the text is never behind the icon
 		}
 	});
@@ -106,6 +100,7 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 							value: '',
 							fontWeight: 'bold'
 						}}
+						useNativeAndroidPickerStyle={false}
 						onValueChange={(itemValue, itemIndex) => {
 							setSearchType(itemValue);
 							setShowSearchValues(true);
@@ -129,6 +124,7 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 							value: '',
 							color: pickerText
 						}}
+						useNativeAndroidPickerStyle={false}
 						onValueChange={(itemValue, itemIndex) => {
 							setShowButton(true);
 							setValue(itemValue);
@@ -171,6 +167,7 @@ SearchBar.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
 	backgroundColor: PropTypes.string,
 	pickerText: PropTypes.string,
+	buttonColor: PropTypes.string,
 	buttonTextColor: PropTypes.string,
 	borderColor: PropTypes.string,
 	borderWidth: PropTypes.number,

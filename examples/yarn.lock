@@ -5889,9 +5889,31 @@ react-native-iphone-x-helper@^1.3.0:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
 
-react-native-panda-ui@../react-native-panda-ui-0.0.132.tgz:
-  version "0.0.132"
-  resolved "../react-native-panda-ui-0.0.132.tgz#475ec3943b9f24c5f37059c52a7192a03e3ca207"
+react-native-panda-ui@../react-native-panda-ui-0.0.134.tgz:
+  version "0.0.134"
+  resolved "../react-native-panda-ui-0.0.134.tgz#eb423374c1e01291581aa26968eccc86f0b84ddf"
+  dependencies:
+    "@expo/vector-icons" "^12.0.5"
+    "@fortawesome/fontawesome-pro" "^5.14.0"
+    "@fortawesome/fontawesome-svg-core" "^1.2.34"
+    "@fortawesome/free-brands-svg-icons" "^5.15.2"
+    "@fortawesome/free-regular-svg-icons" "^5.15.2"
+    "@fortawesome/free-solid-svg-icons" "^5.15.2"
+    "@fortawesome/pro-duotone-svg-icons" "^5.15.2"
+    "@fortawesome/pro-light-svg-icons" "^5.15.2"
+    "@fortawesome/pro-regular-svg-icons" "^5.15.2"
+    "@fortawesome/pro-solid-svg-icons" "^5.15.2"
+    "@fortawesome/react-native-fontawesome" "^0.2.6"
+    react-error-boundary "^3.1.3"
+    react-native-elements "3.4.2"
+    react-native-fontawesome-pro "^2.1.0"
+    react-native-picker-select "8.0.4"
+    react-native-remote-svg "2.0.6"
+    react-native-vector-icons "8.1.0"
+
+react-native-panda-ui@../react-native-panda-ui-0.0.135.tgz:
+  version "0.0.135"
+  resolved "../react-native-panda-ui-0.0.135.tgz#7f8b16a65bc38d18f0391b4eb2309062fb188919"
   dependencies:
     "@expo/vector-icons" "^12.0.5"
     "@fortawesome/fontawesome-pro" "^5.14.0"
