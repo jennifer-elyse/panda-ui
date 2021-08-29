@@ -31,7 +31,7 @@ import Colors from '../constants/Colors';
 import LoadingIndicator from '../components/LoadingIndicator';
 import { H1 } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
-import { getCharacters } from '../utils/apiHandler';
+import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
 
 const colorOptions =
 	[{
@@ -78,6 +78,7 @@ export default function SettingsScreen() {
 
 	const [characterCount, setCharacterCount] 	= useState(0);
 	const [characterData, setCharacterData] 	= useState([]);
+	const [qualitiesDate, setQualitiesData] 	= useState([]);
 
 	const styles = StyleSheet.create({
 		container: {
@@ -92,6 +93,8 @@ export default function SettingsScreen() {
 			setLoading(true);
 			let response = await getCharacters();
 			setCharacterData(response.data.characters);
+			response = await getCharacterQualities();
+			setQualitiesData(response.data.qualities);
 			setLoading(false);
 		})();
 	}, []);
@@ -199,7 +202,7 @@ export default function SettingsScreen() {
 							</Card>
 						</Card>
 					</View>
-					<View style={{ height: 150, width: '85%', marginTop: 20, marginBottom: 35 }}>
+					<View style={{ height: 250, width: '85%', marginTop: 20, marginBottom: 35 }}>
 						<Card
 							elevation={5}
 							borderRadius={50}
@@ -212,20 +215,28 @@ export default function SettingsScreen() {
 								backgroundColor={Colors[theme].cardColor}
 								style={{ alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}
 							>
-								<View style={{ height: 100, width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-									<Chip
-										value="Kumi"
-										svg={require('../assets/candypanda.svg')}
-										backgroundColor={Colors[theme].backgroundColor}
-										deleteIconColor={Colors[theme].buttonColor}
-										buttonTextColor={Colors[theme].buttonTextColor}
-										chipColor={Colors[theme].buttonColor}
-										borderColor={Colors[theme].borderColor}
-										textStyle={{ fontWeight: 'bold' }}
-										onPressDelete={() => {
+								<View style={{ flexDirection: 'row', margin: 20, padding: 10, flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+									{qualitiesDate.map((item, i) => {
+										return (
+											<View
+												key={i}
+												style={{ flexDirection: 'row', flexWrap: 'wrap', paddingTop: 10 }}
+											>
+												<Chip
+													value={item.name}
+													svg={item.svg}
+													backgroundColor={Colors[theme].backgroundColor}
+													deleteIconColor={Colors[theme].buttonColor}
+													buttonTextColor={Colors[theme].buttonTextColor}
+													chipColor={Colors[theme].buttonColor}
+													borderColor={Colors[theme].borderColor}
+													textStyle={{ fontWeight: 'bold' }}
+													onPressDelete={() => {
 
-										}}
-									/>
+													}}
+												/>
+											</View>);
+									})}
 								</View>
 							</Card>
 						</Card>
