@@ -31,7 +31,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 	};
 
 	return (
-		<View style={{ height: 80, width: '95%', marginTop: 10 }}>
+		<View style={{ height: 80, width: '95%', marginVertical: 30 }}>
 			<Card
 				elevation={5}
 				borderRadius={50}

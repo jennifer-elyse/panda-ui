@@ -50,7 +50,8 @@ export default function SettingsScreen() {
 		container: {
 			flex: 1,
 			marginTop: StatusBar.height,
-			backgroundColor: Colors[theme].backgroundColor
+			backgroundColor: Colors[theme].backgroundColor,
+			alignItems: 'center'
 		}
 	});
 
@@ -67,61 +68,57 @@ export default function SettingsScreen() {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<ScrollView>
-				<View style={{ alignItems: 'center' }}>
-					<View style={{ margin: 10, marginTop: 8, alignItems: 'center', height: '20%' } }>
-						<ThemeSelect
-							characterData={characterData}
-							setLoading={setLoading}
-						/>
-					</View>
-					<View style={{ width: '104%', height: window.height ? window.height : 650, marginTop: -20 }}>
-						<Card
-							elevation={5}
-							borderTopLeftRadius={50}
-							borderTopRightRadius={50}
-							borderBottomLeftRadius={0}
-							borderBottomRightRadius={0}
-							backgroundColor={Colors[theme].cardColor}
-							style={{ flex: 1, alignItems: 'center' }}
-						>
-							<React.Fragment>
-								<Text>{window.height}</Text>
-								<TabGroup
-									onValueChange={ async (value) => {
-										setTab(value);
-										handleCharacterQualities(value);
-									}}
-									style={{ height: 50, marginBottom: 10 }}
-									size="small"
-									selectedValue={tab}
-									width="90%"
-									height={50}
-									textColor={Colors[theme].buttonColor}
-									color={Colors[theme].borderColor}
-									options={[{ label: 'AKIRA', value: '1' }, { label: 'YUKI', value: '2' }, { label: 'KENZO', value: '3' }, { label: 'TSUKI', value: '4' }, { label: 'KUMI', value: '5' }]}
-								/>
-								<View style={{ flex: 1, marginTop: 50 }}>
-									{
-										loading ?
-											(
-												<LoadingIndicator
-													activityIndicatorColor={Colors[theme].tintColor}
-													backgroundColor={Colors[theme].cardColor}
-													height={250}
-												/>
-											) : (
-												<PandaDetail
-													qualitiesData={qualitiesData}
-												/>
-											)
-									}
-								</View>
-							</React.Fragment>
-						</Card>
-					</View>
+			<ThemeSelect
+				characterData={characterData}
+				setLoading={setLoading}
+			/>
+			<View style={{ width: '100%', alignItems: 'center', marginTop: 50 }}>
+				<View style={{ width: '104%', height: window.height ? window.height : 650 }}>
+					<Card
+						elevation={5}
+						borderTopLeftRadius={50}
+						borderTopRightRadius={50}
+						borderBottomLeftRadius={0}
+						borderBottomRightRadius={0}
+						backgroundColor={Colors[theme].cardColor}
+						style={{ flex: 1, alignItems: 'center' }}
+					>
+						<React.Fragment>
+							<Text>{window.height}</Text>
+							<TabGroup
+								onValueChange={ async (value) => {
+									setTab(value);
+									handleCharacterQualities(value);
+								}}
+								style={{ height: 50, marginBottom: 10 }}
+								size="small"
+								selectedValue={tab}
+								width="90%"
+								height={50}
+								textColor={Colors[theme].buttonColor}
+								color={Colors[theme].borderColor}
+								options={[{ label: 'AKIRA', value: '1' }, { label: 'YUKI', value: '2' }, { label: 'KENZO', value: '3' }, { label: 'TSUKI', value: '4' }, { label: 'KUMI', value: '5' }]}
+							/>
+							<View style={{ flex: 1, marginTop: 50 }}>
+								{
+									loading ?
+										(
+											<LoadingIndicator
+												activityIndicatorColor={Colors[theme].tintColor}
+												backgroundColor={Colors[theme].cardColor}
+												height={250}
+											/>
+										) : (
+											<PandaDetail
+												qualitiesData={qualitiesData}
+											/>
+										)
+								}
+							</View>
+						</React.Fragment>
+					</Card>
 				</View>
-			</ScrollView>
+			</View>
 		</SafeAreaView>
 	);
 }

@@ -61,37 +61,33 @@ const PandaHomeScreen = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
+			<View style={{ flex: 1, marginHorizontal: 10, marginTop: 30, alignItems: 'center' }}>
+				<Image
+					source={require('../assets/panda-ui-logo.png')}
+					style={{ height: 150, resizeMode: 'contain' }}
+				/>
+				<ThemeSelect
+					characterData={characterData}
+					setLoading={setLoading}
+					setQualitiesData={setQualitiesData}
+				/>
+			</View>
 			<ScrollView>
-				<View style={{ alignItems: 'center', justifyContent: 'center' }}>
-					<View style={{ flex: 1, margin: 10, alignItems: 'center', justifyContent: 'center' }}>
-						<View style={{ width: '95%', alignItems: 'center', justifyContent: 'center' }}>
-							<Image
-								source={require('../assets/panda-ui-logo.png')}
-								style={{ height: 150, resizeMode: 'contain' }}
-							/>
-						</View>
-						<ThemeSelect
-							characterData={characterData}
-							setLoading={setLoading}
-							setQualitiesData={setQualitiesData}
-						/>
-						<View style={{ flex: 1, marginTop: 50 }}>
-							{
-								loading ?
-									(
-										<LoadingIndicator
-											activityIndicatorColor={Colors[theme].tintColor}
-											backgroundColor={Colors[theme].cardColor}
-											height={250}
-										/>
-									) : (
-										<PandaDetail
-											qualitiesData={qualitiesData}
-										/>
-									)
-							}
-						</View>
-					</View>
+				<View style={{ flex: 1, marginTop: 50 }}>
+					{
+						loading ?
+							(
+								<LoadingIndicator
+									activityIndicatorColor={Colors[theme].tintColor}
+									backgroundColor={Colors[theme].cardColor}
+									height={250}
+								/>
+							) : (
+								<PandaDetail
+									qualitiesData={qualitiesData}
+								/>
+							)
+					}
 				</View>
 			</ScrollView>
 			<Body3 style={{ textAlign: 'right' }} textColor={Colors[theme].textColor}>{`v${Constants.manifest.version}`}</Body3>

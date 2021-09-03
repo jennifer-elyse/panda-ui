@@ -84,7 +84,8 @@ export default function SettingsScreen() {
 		container: {
 			flex: 1,
 			marginTop: StatusBar.height,
-			backgroundColor: Colors[theme].backgroundColor
+			backgroundColor: Colors[theme].backgroundColor,
+			alignItems: 'center'
 		}
 	});
 
@@ -114,16 +115,13 @@ export default function SettingsScreen() {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<ScrollView>
-				<View style={{ alignItems: 'center', justifyContent: 'center' }}>
-					<View style={{ flex: 1, margin: 10, marginTop: 8, alignItems: 'center', justifyContent: 'center' }}>
-
-						<ThemeSelect
-							characterData={characterData}
-							setLoading={setLoading}
-						/>
-					</View>
-					<Card borderRadius={50} style={{ elevation: 5, width: '90%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].backCardColor }} >
+			<ThemeSelect
+				characterData={characterData}
+				setLoading={setLoading}
+			/>
+			<ScrollView style={{ width: '100%' }}>
+				<View style={{ alignItems: 'center' }}>
+					<Card borderRadius={50} style={{ elevation: 5, marginTop: 30, width: '90%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].backCardColor }} >
 						<Card borderRadius={40} style={{ elevation: 5, width: '100%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].cardColor }} >
 							<View style={{ width: '100%', alignItems: 'center', justifyContent: 'center' }}>
 								<ToggleButton
