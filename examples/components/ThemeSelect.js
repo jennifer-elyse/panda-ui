@@ -3,11 +3,11 @@ import { View } from 'react-native';
 
 // Panda Imports
 import {
-	Button,
-	Card
+	Button
 } from 'react-native-panda-ui';
 
 import StyledSelect from '../components/StyledSelect';
+import DoubleCard from '../components/DoubleCard';
 import Colors from '../constants/Colors';
 import {
 	useThemeContext,
@@ -32,58 +32,51 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 
 	return (
 		<View style={{ height: 80, width: '95%', marginVertical: 30 }}>
-			<Card
+			<DoubleCard
 				elevation={5}
 				borderRadius={50}
-				backgroundColor={Colors[theme].backCardColor}
-				style={{ alignItems: 'center', justifyContent: 'center', padding: 10 }}
+				backCardColor={Colors[theme].backCardColor}
+				cardColor={Colors[theme].cardColor}
 			>
-				<Card
-					elevation={8}
-					borderRadius={40}
-					backgroundColor={Colors[theme].cardColor}
-					style={{ alignItems: 'space-between', justifyContent: 'center', height: '100%', width: '100%', padding: 10 }}
-				>
-					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-						<View style={{ borderWidth: 1, borderColor: Colors[theme].borderColor, borderRadius: 30, marginRight: 8, width: '60%' }}>
-							<StyledSelect
-								onValueChange={(itemValue, itemIndex) => {
-									setCharacter({ id: characterData[itemIndex -1]?.id, animal: characterData[itemIndex -1]?.animal, theme: itemValue });
-								}}
-								items={
-									characterData && characterData.map((c, i) => {
-										return {
-											label: c.animal,
-											value: c.theme,
-											key: c.id
-										};
-									})
-								}
-								selectedValue={baseTheme}
-								value={character.theme}
-								validationErrorColor={Colors[theme].validationError}
-								textColor={Colors[theme].borderColor}
-								backgroundColor={Colors[theme].backgroundColor}
-							/>
-						</View>
-						<View style={{ justifyContent: 'center', alignItems: 'center' }}>
-							<Button
-								label="APPLY"
-								onPress={async () => updateTheme()}
-								style={{ padding: 5 }}
-								width={110}
-								height={42}
-								borderRadius={35}
-								textColor={Colors[theme].buttonTextColor}
-								color={Colors[theme].buttonColor}
-								solid={true}
-								border={true}
-								borderWidth={1}
-							/>
-						</View>
+				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+					<View style={{ borderWidth: 1, borderColor: Colors[theme].borderColor, borderRadius: 30, marginRight: 8, width: '60%' }}>
+						<StyledSelect
+							onValueChange={(itemValue, itemIndex) => {
+								setCharacter({ id: characterData[itemIndex -1]?.id, animal: characterData[itemIndex -1]?.animal, theme: itemValue });
+							}}
+							items={
+								characterData && characterData.map((c, i) => {
+									return {
+										label: c.animal,
+										value: c.theme,
+										key: c.id
+									};
+								})
+							}
+							selectedValue={baseTheme}
+							value={character.theme}
+							validationErrorColor={Colors[theme].validationError}
+							textColor={Colors[theme].borderColor}
+							backgroundColor={Colors[theme].cardColor}
+						/>
 					</View>
-				</Card>
-			</Card>
+					<View style={{ justifyContent: 'center', alignItems: 'center' }}>
+						<Button
+							label="APPLY"
+							onPress={async () => updateTheme()}
+							style={{ padding: 5 }}
+							width={110}
+							height={42}
+							borderRadius={35}
+							textColor={Colors[theme].buttonTextColor}
+							color={Colors[theme].buttonColor}
+							solid={true}
+							border={true}
+							borderWidth={1}
+						/>
+					</View>
+				</View>
+			</DoubleCard>
 		</View>
 	);
 };
