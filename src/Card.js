@@ -6,6 +6,8 @@ import {
 	TouchableOpacity
 } from 'react-native';
 
+import { LinearGradient } from 'expo-linear-gradient';
+
 const Card = (props) => {
 	const {
 		borderRadius=0,
@@ -17,29 +19,47 @@ const Card = (props) => {
 		height,
 		elevation=2,
 		onPress,
-		backgroundColor='#efefef',
+		backgroundColor='transparent',
+		cardGradient,
 		style,
 		// enableBlur,
 		children
 	} = props;
 
-	const componentStyle = [
-		{
-			borderRadius,
-			borderTopLeftRadius,
-			borderTopRightRadius,
-			borderBottomLeftRadius,
-			borderBottomRightRadius,
-			elevation,
-			width: width,
-			height: height,
-			overflow: 'visible',
-			backgroundColor: backgroundColor,
-			// backgroundColor: enableBlur ? `rgba(${backgroundColor}, 0.85)` : backgroundColor,
-			...style
-		},
-		styles.containerShadow
-	];
+	const containerStyle = {
+		borderRadius,
+		borderTopLeftRadius,
+		borderTopRightRadius,
+		borderBottomLeftRadius,
+		borderBottomRightRadius,
+		elevation,
+		width: width,
+		height: height,
+		overflow: cardGradient ?  'hidden' : 'visible',
+		backgroundColor: backgroundColor,
+		shadowColor: '#333',
+		shadowOpacity: 0.25,
+		shadowRadius: 12,
+		shadowOffset: { height: 5, width: 0 }
+		// backgroundColor: enableBlur ? `rgba(${backgroundColor}, 0.85)` : backgroundColor,
+	};
+
+	const componentStyle = {
+		borderRadius,
+		borderTopLeftRadius,
+		borderTopRightRadius,
+		borderBottomLeftRadius,
+		borderBottomRightRadius,
+		elevation,
+		width: width,
+		height: height,
+		overflow: 'visible',
+		shadowColor: '#333',
+		shadowOpacity: 0.25,
+		shadowRadius: 12,
+		shadowOffset: { height: 5, width: 0 },
+		...style
+	};
 
 	// const convertHexToRgba = () => {
 
@@ -48,34 +68,66 @@ const Card = (props) => {
 	return (
 		onPress ?
 			(
-				<TouchableOpacity
-					{...props}
-					onPress={() => onPress()}
-					style={componentStyle}
-				>
-					{children}
-				</TouchableOpacity>
+				cardGradient ?
+					(<TouchableOpacity
+						{...props}
+						onPress={() => onPress()}
+						style={containerStyle}
+					>
+						<LinearGradient
+							colors={cardGradient}
+							start={[0, 0]}
+							end={[1, 10]}
+							width="100%"
+							height="100%"
+							style={componentStyle}
+						>
+							{children}
+						</LinearGradient>
+					</TouchableOpacity>
+					)
+					:
+					(<TouchableOpacity
+						{...props}
+						onPress={() => onPress()}
+						style={componentStyle}
+					>
+						{children}
+					</TouchableOpacity>
+					)
 			)
 			:
 			(
-				<View
-					{...props}
-					style={componentStyle}
-				>
-					{children}
-				</View>
+				cardGradient ?
+					(
+						<View
+							{...props}
+							style={containerStyle}
+						>
+							<LinearGradient
+								colors={cardGradient}
+								start={[0, 0]}
+								end={[1, 10]}
+								width="100%"
+								height="100%"
+								style={componentStyle}
+							>
+								{children}
+							</LinearGradient>
+						</View>
+					)
+					:
+					(
+						<View
+							{...props}
+							style={componentStyle}
+						>
+							{children}
+						</View>
+					)
 			)
 	);
 };
-
-const styles = StyleSheet.create({
-	containerShadow: {
-		shadowColor: '#333',
-		shadowOpacity: 0.25,
-		shadowRadius: 12,
-		shadowOffset: { height: 5, width: 0 }
-	}
-});
 
 Card.propTypes = {
 	onPress: PropTypes.func,

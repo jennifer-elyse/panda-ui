@@ -3408,7 +3408,7 @@ expo-keep-awake@~9.2.0:
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-9.2.0.tgz#9cbdcc8264c943ef29a58326236cd34267e98f43"
   integrity sha512-R5jAx5j3MqrhKFB307FBpaHtYSYeVIFX/rVforBF5inKonYjXRWVhjGoBjolF4geAryNamC3NKhMfxyaaB0W6Q==
 
-expo-linear-gradient@~9.2.0:
+expo-linear-gradient@^9.2.0, expo-linear-gradient@~9.2.0:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-9.2.0.tgz#5ae16fcb8f141b1c51dc36bd4493dfd6566a9511"
   integrity sha512-LnW2u9OT6GeyC6T8qEGjFYfNSk4KIBAwU0aRSjM4Y8hckWqhtKngGDz46DqGmJBzvZMSKuZZvj5xKn794r54ag==
@@ -5894,9 +5894,9 @@ react-native-iphone-x-helper@^1.3.0:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
 
-react-native-panda-ui@../react-native-panda-ui-0.0.140.tgz:
-  version "0.0.140"
-  resolved "../react-native-panda-ui-0.0.140.tgz#3e0a6588ce50137e330bc37ad5a1aa1f39106236"
+react-native-panda-ui@../react-native-panda-ui-0.0.154.tgz:
+  version "0.0.154"
+  resolved "../react-native-panda-ui-0.0.154.tgz#f5de667a499df8113f46602fd63b6b07ffb9c814"
   dependencies:
     "@expo/vector-icons" "^12.0.5"
     "@fortawesome/fontawesome-pro" "^5.14.0"
@@ -5910,6 +5910,7 @@ react-native-panda-ui@../react-native-panda-ui-0.0.140.tgz:
     "@fortawesome/pro-solid-svg-icons" "^5.15.2"
     "@fortawesome/react-native-fontawesome" "^0.2.6"
     chroma "^0.0.1"
+    expo-linear-gradient "^9.2.0"
     react-error-boundary "^3.1.3"
     react-native-elements "3.4.2"
     react-native-fontawesome-pro "^2.1.0"
@@ -5917,9 +5918,9 @@ react-native-panda-ui@../react-native-panda-ui-0.0.140.tgz:
     react-native-remote-svg "2.0.6"
     react-native-vector-icons "8.1.0"
 
-react-native-panda-ui@../react-native-panda-ui-0.0.141.tgz:
-  version "0.0.141"
-  resolved "../react-native-panda-ui-0.0.141.tgz#9a08e077e7ee7b2c5b2fa99b1b8e8005c007c8e0"
+react-native-panda-ui@../react-native-panda-ui-0.0.155.tgz:
+  version "0.0.155"
+  resolved "../react-native-panda-ui-0.0.155.tgz#344e7ebead471d4485cdc735dae75309f51a1d98"
   dependencies:
     "@expo/vector-icons" "^12.0.5"
     "@fortawesome/fontawesome-pro" "^5.14.0"
@@ -5933,6 +5934,7 @@ react-native-panda-ui@../react-native-panda-ui-0.0.141.tgz:
     "@fortawesome/pro-solid-svg-icons" "^5.15.2"
     "@fortawesome/react-native-fontawesome" "^0.2.6"
     chroma "^0.0.1"
+    expo-linear-gradient "^9.2.0"
     react-error-boundary "^3.1.3"
     react-native-elements "3.4.2"
     react-native-fontawesome-pro "^2.1.0"

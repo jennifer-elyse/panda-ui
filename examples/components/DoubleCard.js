@@ -14,14 +14,14 @@ const DoubleCard = (props) => {
 		borderTopRightRadius=borderRadius,
 		borderBottomLeftRadius=borderRadius,
 		borderBottomRightRadius=borderRadius,
-		width,
-		height,
+		width='100%',
+		height='100%',
 		backCardElevation=5,
 		cardElevation=8,
 		onPress,
 		style,
 		backCardColor,
-		backcardGradient,
+		backCardGradient,
 		cardColor,
 		cardGradient,
 		padding=10,
@@ -34,17 +34,19 @@ const DoubleCard = (props) => {
 			elevation={backCardElevation}
 			borderRadius={borderRadius}
 			backgroundColor={backCardColor}
-			style={{ padding, overflow: 'visible' }}
+			style={{ padding }}
 			width={width}
 			height={height}
+			cardGradient={backCardGradient}
 		>
 			<Card
 				elevation={cardElevation}
 				borderRadius={borderRadius - padding}
 				backgroundColor={cardColor}
 				{...props}
-				style={{ ...style, overflow: 'visible', padding }}
+				style={{ ...style, padding }}
 				onPress={onPress}
+				cardGradient={cardGradient}
 			>
 				{children}
 			</Card>

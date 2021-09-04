@@ -33,9 +33,11 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 	return (
 		<View style={{ height: 80, width: '95%', marginVertical: 30 }}>
 			<DoubleCard
-				elevation={5}
+				backCardElevation={5}
+				cardElevation={8}
 				borderRadius={50}
 				backCardColor={Colors[theme].backCardColor}
+				// backCardGradient={Colors[theme].primaryGradient}
 				cardColor={Colors[theme].cardColor}
 			>
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
