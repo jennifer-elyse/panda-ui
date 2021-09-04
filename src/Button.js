@@ -6,8 +6,8 @@ import {
 	Text,
 	Platform
 } from 'react-native';
-import { ErrorBoundary } from 'react-error-boundary';
 
+import { LinearGradient } from 'expo-linear-gradient';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Image from 'react-native-remote-svg';
 
@@ -23,7 +23,8 @@ const Button = (props) => {
 		width='auto',
 		size='standard',
 		solid=true,
-		color='#772d4f',
+		color,
+		gradient,
 		style,
 		fontSize,
 		allowInteraction=true,
@@ -92,55 +93,101 @@ const Button = (props) => {
 				buttonStyleBorder
 				:
 				dropShadow ? buttonStyleDropShadow : buttonStyle }>
-				<React.Fragment>
-					{!!icon &&
-						<FontAwesome5 name={icon} size={size === 'small' ? 13 : size === 'standard' ? 15 : 21} color={contentColor} />
-					}
-					{svg && Platform.OS === 'ios' ?
-						(
-							<Image
-								showWebviewLoader={false}
-								style={{
-									height: Platform.OS === 'ios' ? 120 : 40,
-									width: Platform.OS === 'ios' ? 250 : 50,
-									resizeMode: 'contain',
-									transform: [
-										{ scaleX: Platform.OS === 'ios' ? (size === 'small' ? 0.4 : 0.6) : 1 },
-										{ scaleY: Platform.OS === 'ios' ? (size === 'small' ? 0.4 : 0.6) : 1 }]
-								}}
-								source={svg}
-								resizeMode="contain"
-							/>
-						)
-						: svg && Platform.OS !== 'ios' ?
-							(
-								<Image
-									showWebviewLoader={false}
-									style={{
-										height: 40,
-										width: 50,
-										resizeMode: 'contain',
-										transform: [
-											{ scaleX: Platform.OS !== 'ios' ? (size === 'small' ? 0.6 : 0.8) : 1 },
-											{ scaleY: Platform.OS !== 'ios' ? (size === 'small' ? 0.6 : 0.8) : 1 }]
-									}}
-									source={svg}
-									resizeMode="contain"
-								/>
-							) : (undefined)
-					}
-					{label && Platform.OS === 'ios' ?
-						(
-							<TextComponent style={buttonLabelStyle}>{label}</TextComponent>
-						)
-						: label && Platform.OS !== 'ios' ?
-							(
-								<TextComponent style={[buttonLabelStyle/* , { marginLeft: -15 } */]}>{label}</TextComponent>
-							) : (undefined)
-					}
-				</React.Fragment>
+				<ButtonContent
+					icon={icon}
+					svg={svg}
+					label={label}
+					disabled={disabled}
+					size={size}
+					solid={solid}
+					color={color}
+					fontSize={fontSize}
+					disabledColor={disabledColor}
+					textColor={textColor}
+					TextComponent={TextComponent}
+				/>
 			</View>
 		</Component>
+	);
+};
+
+
+const ButtonContent = (props) => {
+	const {
+		icon,
+		svg,
+		label,
+		disabled,
+		size='standard',
+		solid=true,
+		color,
+		fontSize,
+		disabledColor='lightgrey',
+		textColor='#fff',
+		TextComponent=Text
+	} = props;
+
+	warning(icon || label || svg, 'Must provide "icon", "label", or "svg" to <Button>.');
+
+	const displayColor = disabled ? disabledColor : color;
+	const contentColor = solid ? textColor : displayColor;
+
+	const buttonLabelStyle = {
+		color: contentColor,
+		fontSize: fontSize || (size === 'small' ? 14 : size === 'standard' ? 16 : 20),
+		fontWeight: 'bold',
+		paddingLeft: icon || svg ? 8 : 0,
+		textAlign: 'center'
+	};
+
+	return (
+		<React.Fragment>
+			{!!icon &&
+				<FontAwesome5 name={icon} size={size === 'small' ? 13 : size === 'standard' ? 15 : 21} color={contentColor} />
+			}
+			{svg && Platform.OS === 'ios' ?
+				(
+					<Image
+						showWebviewLoader={false}
+						style={{
+							height: Platform.OS === 'ios' ? 120 : 40,
+							width: Platform.OS === 'ios' ? 250 : 50,
+							resizeMode: 'contain',
+							transform: [
+								{ scaleX: Platform.OS === 'ios' ? (size === 'small' ? 0.4 : 0.6) : 1 },
+								{ scaleY: Platform.OS === 'ios' ? (size === 'small' ? 0.4 : 0.6) : 1 }]
+						}}
+						source={svg}
+						resizeMode="contain"
+					/>
+				)
+				: svg && Platform.OS !== 'ios' ?
+					(
+						<Image
+							showWebviewLoader={false}
+							style={{
+								height: 40,
+								width: 50,
+								resizeMode: 'contain',
+								transform: [
+									{ scaleX: Platform.OS !== 'ios' ? (size === 'small' ? 0.6 : 0.8) : 1 },
+									{ scaleY: Platform.OS !== 'ios' ? (size === 'small' ? 0.6 : 0.8) : 1 }]
+							}}
+							source={svg}
+							resizeMode="contain"
+						/>
+					) : (undefined)
+			}
+			{label && Platform.OS === 'ios' ?
+				(
+					<TextComponent style={buttonLabelStyle}>{label}</TextComponent>
+				)
+				: label && Platform.OS !== 'ios' ?
+					(
+						<TextComponent style={[buttonLabelStyle/* , { marginLeft: -15 } */]}>{label}</TextComponent>
+					) : (undefined)
+			}
+		</React.Fragment>
 	);
 };
 
