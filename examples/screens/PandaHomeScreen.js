@@ -72,8 +72,10 @@ const PandaHomeScreen = () => {
 					setQualitiesData={setQualitiesData}
 				/>
 			</View>
+			<View style={{ flex: 1, marginHorizontal: 10, marginTop: 300, alignItems: 'center' }} />
+
 			<ScrollView>
-				<View style={{ flex: 1, marginTop: 50 }}>
+				<View>
 					{
 						loading ?
 							(

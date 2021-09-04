@@ -103,7 +103,7 @@ export default {
 		buttonColor: '#2daefd',
 		buttonTextColor: '#fff',
 		cardColor: '#fff',
-		primaryGradient: ['#ff3155', '#ffaf42'],
+		primaryGradient: ['#ff3155', '#ff532e'],
 		textColor: '#000',
 		tintColor: '#c20e4a',
 		tintDarkColor: '#ff532e',

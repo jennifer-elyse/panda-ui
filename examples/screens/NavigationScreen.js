@@ -72,8 +72,8 @@ export default function SettingsScreen() {
 				characterData={characterData}
 				setLoading={setLoading}
 			/>
-			<View style={{ width: '100%', alignItems: 'center', marginTop: 50 }}>
-				<View style={{ width: '104%', height: window.height ? window.height : 650 }}>
+			<View style={{ width: '100%', alignItems: 'center', marginTop: 20 }}>
+				<View style={{ width: '104%', height: window.height ? window.height : 800 }}>
 					<Card
 						elevation={5}
 						borderTopLeftRadius={50}
@@ -83,8 +83,7 @@ export default function SettingsScreen() {
 						backgroundColor={Colors[theme].cardColor}
 						style={{ flex: 1, alignItems: 'center' }}
 					>
-						<React.Fragment>
-							<Text>{window.height}</Text>
+						<View style={{ flex: 1, alignItems: 'center' }}>
 							<TabGroup
 								onValueChange={ async (value) => {
 									setTab(value);
@@ -99,23 +98,26 @@ export default function SettingsScreen() {
 								color={Colors[theme].borderColor}
 								options={[{ label: 'AKIRA', value: '1' }, { label: 'YUKI', value: '2' }, { label: 'KENZO', value: '3' }, { label: 'TSUKI', value: '4' }, { label: 'KUMI', value: '5' }]}
 							/>
-							<View style={{ flex: 1, marginTop: 50 }}>
-								{
-									loading ?
-										(
-											<LoadingIndicator
-												activityIndicatorColor={Colors[theme].tintColor}
-												backgroundColor={Colors[theme].cardColor}
-												height={250}
-											/>
-										) : (
-											<PandaDetail
-												qualitiesData={qualitiesData}
-											/>
-										)
-								}
-							</View>
-						</React.Fragment>
+							<ScrollView style={{ flex: 1, width: '100%', marginTop: 25 }}>
+								<View style={{ flex: 1, width: '100%' }}>
+									{
+										loading ?
+											(
+												<LoadingIndicator
+													activityIndicatorColor={Colors[theme].tintColor}
+													backgroundColor={Colors[theme].cardColor}
+													height={250}
+												/>
+											) : (
+												<PandaDetail
+													qualitiesData={qualitiesData}
+												/>
+											)
+									}
+								</View>
+							</ScrollView>
+							<Text>{window.height}</Text>
+						</View>
 					</Card>
 				</View>
 			</View>
