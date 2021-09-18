@@ -10,10 +10,6 @@ import {
 const DoubleCard = (props) => {
 	const {
 		borderRadius=50,
-		borderTopLeftRadius=borderRadius,
-		borderTopRightRadius=borderRadius,
-		borderBottomLeftRadius=borderRadius,
-		borderBottomRightRadius=borderRadius,
 		width='100%',
 		height='100%',
 		backCardElevation=5,
@@ -37,7 +33,7 @@ const DoubleCard = (props) => {
 			style={{ padding }}
 			width={width}
 			height={height}
-			cardGradient={backCardGradient}
+			cardGradient={backCardGradient && backCardGradient.length > 1 ? backCardGradient : []}
 		>
 			<Card
 				elevation={cardElevation}
@@ -46,7 +42,7 @@ const DoubleCard = (props) => {
 				{...props}
 				style={{ ...style, padding }}
 				onPress={onPress}
-				cardGradient={cardGradient}
+				cardGradient={cardGradient && cardGradient.length > 1 ? cardGradient : []}
 			>
 				{children}
 			</Card>

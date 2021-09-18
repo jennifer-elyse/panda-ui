@@ -34,7 +34,7 @@ const Card = (props) => {
 		elevation,
 		width: width,
 		height: height,
-		overflow: cardGradient ?  'hidden' : 'visible',
+		overflow: cardGradient && cardGradient.length > 1 ?  'hidden' : 'visible',
 		backgroundColor: backgroundColor,
 		shadowColor: '#333',
 		shadowOpacity: 0.25,
@@ -67,7 +67,7 @@ const Card = (props) => {
 	return (
 		onPress ?
 			(
-				cardGradient ?
+				cardGradient && cardGradient.length > 1 ?
 					(<TouchableOpacity
 						{...props}
 						onPress={() => onPress()}
@@ -97,7 +97,7 @@ const Card = (props) => {
 			)
 			:
 			(
-				cardGradient ?
+				cardGradient && cardGradient.length > 1 ?
 					(
 						<View
 							{...props}

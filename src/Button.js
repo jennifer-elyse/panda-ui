@@ -42,7 +42,7 @@ const Button = (props) => {
 
 	warning(icon || label || svg, 'Must provide "icon", "label", or "svg" to <Button>.');
 
-	const displayColor = disabled ? disabledColor : gradient ? 'transparent' : color;
+	const displayColor = disabled ? disabledColor : gradient.length > 1 ? 'transparent' : color;
 	const backgroundColor = solid ? displayColor : 'transparent';
 
 	const buttonStyle = {
@@ -81,7 +81,7 @@ const Button = (props) => {
 
 	return (
 		<Component onPress={(disabled || !allowInteraction) ? undefined : () => onPress()} style={buttonStyle }>
-			{gradient ?
+			{gradient.length > 1 ?
 				Platform.OS === 'ios' ?
 					(
 						<View style={borderWidth > 0 && !gradient ?
