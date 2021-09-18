@@ -79,7 +79,7 @@ function App() {
 			<LinearGradient
 				colors={Colors[theme].primaryGradient}
 				start={[0, 0]}
-				end={[1, 10]}
+				end={[1, 1]}
 				style={{
 					width: '100%',
 					height: Constants.statusBarHeight

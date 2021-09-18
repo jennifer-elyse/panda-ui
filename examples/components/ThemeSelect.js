@@ -37,7 +37,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 				cardElevation={8}
 				borderRadius={50}
 				backCardColor={Colors[theme].backCardColor}
-				// backCardGradient={Colors[theme].primaryGradient}
+				backCardGradient={Colors[theme].primaryGradient}
 				cardColor={Colors[theme].cardColor}
 			>
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
@@ -75,6 +75,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 							solid={true}
 							border={true}
 							borderWidth={1}
+							gradient={Colors[theme].primaryGradient}
 						/>
 					</View>
 				</View>

@@ -76,7 +76,7 @@ const Card = (props) => {
 						<LinearGradient
 							colors={cardGradient}
 							start={[0, 0]}
-							end={[1, 10]}
+							end={[1, 1]}
 							width="100%"
 							height="100%"
 							style={componentStyle}
@@ -106,7 +106,7 @@ const Card = (props) => {
 							<LinearGradient
 								colors={cardGradient}
 								start={[0, 0]}
-								end={[1, 10]}
+								end={[1, 1]}
 								width="100%"
 								height="100%"
 								style={componentStyle}

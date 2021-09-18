@@ -35,14 +35,14 @@ const Button = (props) => {
 		column=false,
 		borderColor,
 		disabledColor='lightgrey',
+		disabledGradient,
 		textColor='#fff',
 		TextComponent=Text
 	} = props;
 
 	warning(icon || label || svg, 'Must provide "icon", "label", or "svg" to <Button>.');
 
-	const displayColor = disabled ? disabledColor : color;
-	const contentColor = solid ? textColor : displayColor;
+	const displayColor = disabled ? disabledColor : gradient ? 'transparent' : color;
 	const backgroundColor = solid ? displayColor : 'transparent';
 
 	const buttonStyle = {
@@ -55,14 +55,6 @@ const Button = (props) => {
 		backgroundColor: backgroundColor,
 		borderRadius: borderRadius,
 		overflow: 'hidden'
-	};
-
-	const buttonLabelStyle = {
-		color: contentColor,
-		fontSize: fontSize || (size === 'small' ? 14 : size === 'standard' ? 16 : 20),
-		fontWeight: 'bold',
-		paddingLeft: icon || svg ? 8 : 0,
-		textAlign: 'center'
 	};
 
 	const buttonStyleBorder = {
@@ -89,24 +81,93 @@ const Button = (props) => {
 
 	return (
 		<Component onPress={(disabled || !allowInteraction) ? undefined : () => onPress()} style={buttonStyle }>
-			<View style={borderWidth > 0 ?
-				buttonStyleBorder
+			{gradient ?
+				Platform.OS === 'ios' ?
+					(
+						<View style={borderWidth > 0 && !gradient ?
+							buttonStyleBorder
+							:
+							dropShadow ? buttonStyleDropShadow : buttonStyle }>
+							<LinearGradient
+								colors={disabled ? disabledGradient : gradient}
+								start={[0, 0]}
+								end={[1, 1]}
+								width="100%"
+								height="100%"
+							>
+								<View style={borderWidth > 0 && !gradient ?
+									buttonStyleBorder
+									:
+									dropShadow ? buttonStyleDropShadow : buttonStyle }>
+
+									<ButtonContent
+										icon={icon}
+										svg={svg}
+										label={label}
+										disabled={disabled}
+										size={size}
+										solid={solid}
+										color={color}
+										fontSize={fontSize}
+										disabledColor={disabledColor}
+										textColor={textColor}
+										TextComponent={TextComponent}
+									/>
+								</View>
+							</LinearGradient>
+						</View>)
+
+					:
+					(<LinearGradient
+						colors={disabled ? disabledGradient : gradient}
+						start={[0, 0]}
+						end={[1, 1]}
+						width="100%"
+						height="100%"
+						style={borderWidth > 0 ?
+							buttonStyleBorder
+							:
+							dropShadow ? buttonStyleDropShadow : buttonStyle}
+					>
+						<View style={borderWidth > 0 && !gradient ?
+							buttonStyleBorder
+							:
+							dropShadow ? buttonStyleDropShadow : buttonStyle }>
+							<ButtonContent
+								icon={icon}
+								svg={svg}
+								label={label}
+								disabled={disabled}
+								size={size}
+								solid={solid}
+								color={color}
+								fontSize={fontSize}
+								disabledColor={disabledColor}
+								textColor={textColor}
+								TextComponent={TextComponent}
+							/>
+						</View>
+					</LinearGradient>)
 				:
-				dropShadow ? buttonStyleDropShadow : buttonStyle }>
-				<ButtonContent
-					icon={icon}
-					svg={svg}
-					label={label}
-					disabled={disabled}
-					size={size}
-					solid={solid}
-					color={color}
-					fontSize={fontSize}
-					disabledColor={disabledColor}
-					textColor={textColor}
-					TextComponent={TextComponent}
-				/>
-			</View>
+				(<View style={borderWidth > 0 ?
+					buttonStyleBorder
+					:
+					dropShadow ? buttonStyleDropShadow : buttonStyle }>
+					<ButtonContent
+						icon={icon}
+						svg={svg}
+						label={label}
+						disabled={disabled}
+						size={size}
+						solid={solid}
+						color={color}
+						fontSize={fontSize}
+						disabledColor={disabledColor}
+						textColor={textColor}
+						TextComponent={TextComponent}
+					/>
+				</View>)
+			}
 		</Component>
 	);
 };
@@ -218,7 +279,9 @@ Button.propTypes = {
 	dropShadow: PropTypes.bool,
 	column: PropTypes.bool,
 	borderColor: PropTypes.string,
-	TextComponent: PropTypes.func
+	TextComponent: PropTypes.func,
+	gradient: PropTypes.array,
+	disabledGradient: PropTypes.array
 };
 
 export default Button;
