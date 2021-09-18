@@ -71,6 +71,7 @@ const Chip = (props) => {
 				borderRadius={chipBorderRadius}
 				borderColor={borderColor}
 				borderWidth={1}
+				gradient={[]}
 			/>
 			<Body3 textColor={chipTextColor} style={styles.text}>
 				{value}
@@ -89,6 +90,7 @@ const Chip = (props) => {
 					color={disabled ? disabledColor : deleteIconColor}
 					onPress={() => onPressDelete()}
 					borderRadius={buttonBorderRadius}
+					gradient={[]}
 				/>
 			}
 		</View>

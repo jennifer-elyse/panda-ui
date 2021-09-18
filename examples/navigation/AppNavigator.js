@@ -2,10 +2,11 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 
 import ProIcon from 'react-native-fontawesome-pro';
 import chroma from 'chroma-js';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import Colors from '../constants/Colors';
 import {
@@ -65,16 +66,31 @@ const AppNavigator = () => {
 				tabBarOptions={{
 					headerShown: false,
 					activeTintColor: activeTintColor,
-					inactiveTintColor,
-					activeBackgroundColor: Colors[theme].tintColor,
-					inactiveBackgroundColor: Colors[theme].tintDarkColor
+					inactiveTintColor
+					// activeBackgroundColor: Colors[theme].tintColor,
+					// inactiveBackgroundColor: Colors[theme].tintDarkColor
+				}}
+				tabBar={(props) => {
+					return (
+						<LinearGradient
+							colors={Colors[theme].primaryGradient}
+							start={[0, 0]}
+							end={[1, 1]}
+							width="100%"
+						>
+							<BottomTabBar
+								{...props}
+								style={{ backgroundColor: 'transparent' }}
+							/>
+						</LinearGradient>
+					);
 				}}
 				screenOptions={({ route }) => ({
 					headerShown: false,
 					tabBarActiveTintColor: activeTintColor,
 					tabBarInactiveTintColor: inactiveTintColor,
-					tabBarActiveBackgroundColor: Colors[theme].tintColor,
-					tabBarInactiveBackgroundColor: Colors[theme].tintDarkColor,
+					// tabBarActiveBackgroundColor: Colors[theme].tintColor,
+					// tabBarInactiveBackgroundColor: Colors[theme].tintDarkColor,
 					// eslint-disable-next-line react/display-name
 					tabBarIcon: ({ focused, color, size }) => {
 						let iconName;

@@ -83,6 +83,7 @@ const ToggleButton = (props) => {
 						}
 						onPress={() => onValueChange(option.value)}
 						key={option.value}
+						gradient={[]}
 					/>
 				);
 			})}
