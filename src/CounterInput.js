@@ -42,12 +42,28 @@ const CounterInput = ({ value, onChange, renderLabel,
 							elevation={8}
 							height={40}
 							width={40}
-							style={{ alignItems: 'center', marginTop: 5 }}
+							style={{ alignItems: 'center', justifyItems: 'center' }}
 							borderRadius={50}
 							onPress={decrement}
 						>
-							<View style={{ alignSelf: 'center',  alignItems: 'center', justifyItems: 'center', marginTop: 9 }}>
-								<ProIcon name="minus" size={21} color={buttonTextColor} />
+							<View
+								style={{
+									backgroundColor: cardColor,
+									height: 40,
+									width: 40,
+									overflow: 'hidden',
+									borderRadius: 50,
+									alignSelf: 'center',
+									alignItems: 'center',
+									justifyItems: 'center',
+									marginTop: 4.5 }}
+							>
+								<ProIcon
+									name="minus"
+									size={21}
+									color={buttonTextColor}
+									style={{ alignSelf: 'center', marginTop: 9 }}
+								/>
 							</View>
 						</Card>
 					</Card>
@@ -59,10 +75,27 @@ const CounterInput = ({ value, onChange, renderLabel,
 						width={40}
 						style={{ alignItems: 'center', justifyItems: 'center' }}
 						borderRadius={50}
-						onPress={increment}
+						onPress={decrement}
 					>
-						<View style={{ alignSelf: 'center',  alignItems: 'center', justifyItems: 'center', marginTop: 9 }}>
-							<ProIcon name="plus" size={21} color={buttonTextColor} />
+						<View
+							style={{
+								backgroundColor: cardColor,
+								height: 40,
+								width: 40,
+								overflow: 'hidden',
+								borderRadius: 50,
+								alignSelf: 'center',
+								alignItems: 'center',
+								justifyItems: 'center',
+								marginTop: 4.5 }}
+						>
+
+							<ProIcon
+								name="minus"
+								size={21}
+								color={buttonTextColor}
+								style={{ alignSelf: 'center', marginTop: 9 }}
+							/>
 						</View>
 					</Card>
 				)
@@ -75,7 +108,7 @@ const CounterInput = ({ value, onChange, renderLabel,
 						elevation={5}
 						height={50}
 						width={50}
-						style={{ alignItems: 'center' }}
+						style={{ alignItems: 'center', justifyItems: 'center' }}
 						borderRadius={50}
 					>
 						<Card
@@ -84,12 +117,28 @@ const CounterInput = ({ value, onChange, renderLabel,
 							elevation={8}
 							height={40}
 							width={40}
-							style={{ alignItems: 'center', marginTop: 5 }}
+							style={{ alignItems: 'center', justifyItems: 'center' }}
 							borderRadius={50}
 							onPress={increment}
 						>
-							<View style={{ alignSelf: 'center',  alignItems: 'center', justifyItems: 'center', marginTop: 9 }}>
-								<ProIcon name="plus" size={21} color={buttonTextColor} />
+							<View
+								style={{
+									backgroundColor: cardColor,
+									height: 40,
+									width: 40,
+									overflow: 'hidden',
+									borderRadius: 50,
+									alignSelf: 'center',
+									alignItems: 'center',
+									justifyItems: 'center',
+									marginTop: 4.5 }}
+							>
+								<ProIcon
+									name="plus"
+									size={21}
+									color={buttonTextColor}
+									style={{ alignSelf: 'center', marginTop: 9 }}
+								/>
 							</View>
 						</Card>
 					</Card>
@@ -103,8 +152,24 @@ const CounterInput = ({ value, onChange, renderLabel,
 						borderRadius={50}
 						onPress={increment}
 					>
-						<View style={{ alignSelf: 'center',  alignItems: 'center', justifyItems: 'center', marginTop: 9 }}>
-							<ProIcon name="plus" size={21} color={buttonTextColor} />
+						<View
+							style={{
+								backgroundColor: cardColor,
+								height: 40,
+								width: 40,
+								overflow: 'hidden',
+								borderRadius: 50,
+								alignSelf: 'center',
+								alignItems: 'center',
+								justifyItems: 'center',
+								marginTop: 4.5 }}
+						>
+							<ProIcon
+								name="plus"
+								size={21}
+								color={buttonTextColor}
+								style={{ alignSelf: 'center', marginTop: 9 }}
+							/>
 						</View>
 					</Card>
 				)

@@ -86,6 +86,7 @@ const TabGroup = (props) => {
 								: selected ? buttonSelectedNotLeftStyle : buttonNotLeftStyle}
 							onPress={() => onValueChange(option.value)}
 							key={option.value}
+							gradient={[]}
 						/>
 					);
 				})}

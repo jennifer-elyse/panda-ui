@@ -11,7 +11,8 @@ import Button from './Button';
 
 const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 	borderColor='#772d4f', borderRadius=50, borderWidth=1, buttonColor='#772d4f',
-	buttonTextColor='#772d4f', containerStyle, pickerText='#772d4f'}) => {
+	buttonTextColor='#772d4f', containerStyle, pickerText='#772d4f',
+	gradient=[] }) => {
 
 	const [searchType, setSearchType] = useState('');
 	const [showSearchValues, setShowSearchValues] = useState(false);
@@ -150,6 +151,7 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 						color={buttonColor}
 						textColor={buttonTextColor}
 						borderRadius={borderRadius}
+						gradient={gradient}
 					/>
 				</View>
 			</View>
@@ -172,7 +174,8 @@ SearchBar.propTypes = {
 	borderColor: PropTypes.string,
 	borderWidth: PropTypes.number,
 	borderRadius: PropTypes.number,
-	containerStyle: PropTypes.object
+	containerStyle: PropTypes.object,
+	gradient: PropTypes.array
 };
 
 export default SearchBar;
