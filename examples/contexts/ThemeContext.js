@@ -5,7 +5,8 @@ const ThemeContext = React.createContext();
 
 const initialState = {
 	theme: 'default',
-	inverted: false
+	inverted: false,
+	gradient: false
 };
 
 const reducer = (state, action) => {
@@ -32,7 +33,7 @@ export const ThemeContextProvider = ({ children }) => {
 		[userSession]
 	);
 
-	// Syncronizes session state to `cdsWarehouseConnectApi` module so it can access the
+	// Syncronizes session state to `apiHandler` module so it can access the
 	// state from outside of the react tree. It's the only module that should need this
 	// syncronization.
 	// Why we're using `useLayoutEffect` instead of `useEffect`: Some child components
@@ -66,7 +67,11 @@ export const useThemeContext = () => {
 
 export const baseThemeSelector = state => state.theme;
 export const invertedSelector = state => state.inverted;
-export const themeSelector = state => state.inverted ? `${state.theme}Inverted` : state.theme;
+export const gradientSelector = state => state.gradient;
+export const themeSelector = state => state.inverted && state.gradient
+	? `${state.theme}InvertedGradient` : state.inverted
+		? `${state.theme}Inverted` : state.gradient
+			? `${state.theme}Gradient` : state.theme;
 
 
 // Using the state (with a custom selector) directly.

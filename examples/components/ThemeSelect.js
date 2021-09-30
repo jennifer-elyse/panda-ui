@@ -20,6 +20,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 	const [userSession, dispatch] = useThemeContext();
 	const theme = themeSelector(userSession);
 	const baseTheme = baseThemeSelector(userSession);
+	console.log('theme', theme);
 	const [character, setCharacter]	= useState({ id: '0', animal: '', theme: 'default' });
 
 	const updateTheme = async () => {
@@ -37,7 +38,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 				cardElevation={8}
 				borderRadius={50}
 				backCardColor={Colors[theme].backCardColor}
-				backCardGradient={Colors[theme].primaryGradient}
+				backCardGradient={Colors[theme].backCardGradient}
 				cardColor={Colors[theme].cardColor}
 			>
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
@@ -75,7 +76,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 							solid={true}
 							border={true}
 							borderWidth={1}
-							gradient={Colors[theme].primaryGradient}
+							gradient={Colors[theme].backCardGradient ? Colors[theme].backCardGradient : []}
 						/>
 					</View>
 				</View>

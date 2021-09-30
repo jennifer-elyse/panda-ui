@@ -25,7 +25,8 @@ import {
 import {
 	useThemeContext,
 	themeSelector,
-	invertedSelector
+	invertedSelector,
+	gradientSelector
 } from '../contexts/ThemeContext';
 import Colors from '../constants/Colors';
 import LoadingIndicator from '../components/LoadingIndicator';
@@ -72,6 +73,7 @@ export default function SettingsScreen() {
 	const [userSession, dispatch] = useThemeContext();
 	const theme = themeSelector(userSession);
 	const inverted = invertedSelector(userSession);
+	const gradient = gradientSelector(userSession);
 	const [selectedColor, setSelectedColor] 	= useState('');
 	const [selectedLoves, setSelectedLoves] 	= useState([]);
 	const [loading, setLoading] 				= useState(false);
@@ -136,6 +138,25 @@ export default function SettingsScreen() {
 									color={Colors[theme].buttonColor}
 									textColor={Colors[theme].buttonTextColor}
 									options={[{ label: 'Heads', value: false, svg: require('../assets/trashpanda.svg') }, { label: 'Tails', value: true, svg: require('../assets/trashcan.svg') }]}
+								/>
+							</View>
+						</Card>
+					</Card>
+					<Card borderRadius={50} style={{ elevation: 5, marginTop: 30, width: '90%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].backCardColor }} >
+						<Card borderRadius={40} style={{ elevation: 5, width: '100%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].cardColor }} >
+							<View style={{ width: '100%', alignItems: 'center', justifyContent: 'center' }}>
+								<ToggleButton
+									onValueChange={(value) => {
+										dispatch({ type: 'SET_THEME', payload: { gradient: value } });
+									}}
+									size="standard"
+									selectedValue={gradient}
+									height={50}
+									border={1}
+									borderRadius={30}
+									color={Colors[theme].buttonColor}
+									textColor={Colors[theme].buttonTextColor}
+									options={[{ label: 'No Gradient', value: false }, { label: 'Gradient', value: true }]}
 								/>
 							</View>
 						</Card>

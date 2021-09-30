@@ -64,67 +64,49 @@ const Card = (props) => {
 
 	// }
 
+	const hasGradient = cardGradient && cardGradient.length > 1;
+
+	const contents = hasGradient ? (
+		<LinearGradient
+			colors={cardGradient}
+			start={[0, 0]}
+			end={[1, 1]}
+			width="100%"
+			height="100%"
+			style={componentStyle}
+		>
+			{children}
+		</LinearGradient>
+	) : (
+		children
+	);
+
+	// key={String(hasGradient) causes the parent to unmount and remount
+	// which is necessary because there appears to be an issue with  the
+	// React reconciler swapping out the LinearGradient component with
+	// other elements. This has to be an issue with the LinearGradient
+	// component, maybe this will be fixed in the future and the "magic"
+	// key prop can be removed
+
 	return (
-		onPress ?
-			(
-				cardGradient && cardGradient.length > 1 ?
-					(<TouchableOpacity
-						{...props}
-						onPress={() => onPress()}
-						style={containerStyle}
-					>
-						<LinearGradient
-							colors={cardGradient}
-							start={[0, 0]}
-							end={[1, 1]}
-							width="100%"
-							height="100%"
-							style={componentStyle}
-						>
-							{children}
-						</LinearGradient>
-					</TouchableOpacity>
-					)
-					:
-					(<TouchableOpacity
-						{...props}
-						onPress={() => onPress()}
-						style={componentStyle}
-					>
-						{children}
-					</TouchableOpacity>
-					)
-			)
-			:
-			(
-				cardGradient && cardGradient.length > 1 ?
-					(
-						<View
-							{...props}
-							style={containerStyle}
-						>
-							<LinearGradient
-								colors={cardGradient}
-								start={[0, 0]}
-								end={[1, 1]}
-								width="100%"
-								height="100%"
-								style={componentStyle}
-							>
-								{children}
-							</LinearGradient>
-						</View>
-					)
-					:
-					(
-						<View
-							{...props}
-							style={componentStyle}
-						>
-							{children}
-						</View>
-					)
-			)
+		onPress ? (
+			<TouchableOpacity
+				{...props}
+				onPress={() => onPress()}
+				style={hasGradient ? containerStyle : componentStyle}
+				key={String(hasGradient)}
+			>
+				{contents}
+			</TouchableOpacity>
+		) : (
+			<View
+				{...props}
+				style={hasGradient ? containerStyle : componentStyle}
+				key={String(hasGradient)}
+			>
+				{contents}
+			</View>
+		)
 	);
 };
 
