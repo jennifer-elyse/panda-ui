@@ -109,7 +109,7 @@ export default function SettingsScreen() {
 	if (loading) {
 		return (
 			<LoadingIndicator
-				activityIndicatorColor={Colors[theme].tintColor}
+				activityIndicatorColor={Colors[theme].activityIndicatorColor}
 				backgroundColor={Colors[theme].backgroundColor}
 			/>
 		);
@@ -136,7 +136,8 @@ export default function SettingsScreen() {
 									border={1}
 									borderRadius={30}
 									color={Colors[theme].buttonColor}
-									textColor={Colors[theme].buttonTextColor}
+									activeTextColor={Colors[theme].buttonTextColor}
+									inactiveTextColor={Colors[theme].buttonColor}
 									options={[{ label: 'Heads', value: false, svg: require('../assets/trashpanda.svg') }, { label: 'Tails', value: true, svg: require('../assets/trashcan.svg') }]}
 								/>
 							</View>
@@ -155,7 +156,8 @@ export default function SettingsScreen() {
 									border={1}
 									borderRadius={30}
 									color={Colors[theme].buttonColor}
-									textColor={Colors[theme].buttonTextColor}
+									activeTextColor={Colors[theme].buttonTextColor}
+									inactiveTextColor={Colors[theme].buttonColor}
 									options={[{ label: 'No Gradient', value: false }, { label: 'Gradient', value: true }]}
 								/>
 							</View>

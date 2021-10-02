@@ -9,6 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Constants from 'expo-constants';
 
 import { configureFontAwesomePro } from 'react-native-fontawesome-pro';
+import chroma from 'chroma-js';
 
 import Colors from './constants/Colors';
 import { ToastContextProvider } from './contexts/ToastContext';
@@ -63,6 +64,12 @@ function App() {
 
 	configureFontAwesomePro();
 
+	const hasGradient = Colors[theme].statusBarGradient && Colors[theme].statusBarGradient.length > 1;
+	const statusBarStyle = hasGradient ? chroma.contrast(Colors[theme].statusBarGradient[0], '#fff') > 5
+			? 'light' : 'dark' :
+		chroma.contrast(Colors[theme].statusBarColor, '#fff') > 5
+			? 'light' : 'dark';
+
 
 	if (!isLoadingIndicatorComplete) {
 		return (
@@ -76,21 +83,33 @@ function App() {
 
 	return (
 		<View style={container}>
-			<LinearGradient
-				colors={Colors[theme].primaryGradient}
-				start={[0, 0]}
-				end={[1, 1]}
-				style={{
-					width: '100%',
-					height: Constants.statusBarHeight
-				}}
-			>
-				<StatusBar
-					translucent={true}
-					backgroundColor={'transparent'}
-					style="light"
-				/>
-			</LinearGradient>
+			{ hasGradient ?
+				(
+					<LinearGradient
+						colors={Colors[theme].statusBarGradient}
+						start={[0, 0]}
+						end={[1, 1]}
+						style={{
+							width: '100%',
+							height: Constants.statusBarHeight
+						}}
+					>
+						<StatusBar
+							translucent={true}
+							backgroundColor={'transparent'}
+							style={statusBarStyle}
+						/>
+					</LinearGradient>
+				) : (
+					<View style={{ height: Platform.OS === 'ios' ? 40 : 0, backgroundColor: Colors[theme].statusBarColor }}>
+						<StatusBar
+							translucent={false}
+							backgroundColor={Colors[theme].statusBarColor}
+							style={statusBarStyle}
+						/>
+					</View>
+				)
+			}
 			<ToastContextProvider>
 				<AppNavigator />
 			</ToastContextProvider>

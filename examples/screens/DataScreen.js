@@ -65,7 +65,7 @@ const DataScreen = () => {
 
 	// config
 	const rowHeight = 45;
-	const highlightedColor = Colors[theme].tintLightColor;
+	const highlightedColor = Colors[theme].highlightColor;
 	const highlightedTextColor =
 		chroma.contrast(highlightedColor, '#fff') > 5
 			? '#fff' : '#000';
@@ -130,7 +130,7 @@ const DataScreen = () => {
 	if (loading) {
 		return (
 			<LoadingIndicator
-				activityIndicatorColor={Colors[theme].tintColor}
+				activityIndicatorColor={Colors[theme].activityIndicatorColor}
 				backgroundColor={Colors[theme].backgroundColor}
 			/>
 		);
@@ -154,7 +154,7 @@ const DataScreen = () => {
 						onSubmit={findCharacterRecord}
 						backgroundColor={Colors[theme].cardColor}
 						borderColor={Colors[theme].borderColor}
-						buttonColor={Colors[theme].tintColor}
+						buttonColor={Colors[theme].buttonColor}
 						pickerBorderColor={Colors[theme].borderColor}
 						pickerText={Colors[theme].borderColor}
 					/>
@@ -174,8 +174,7 @@ const DataScreen = () => {
 					height={40}
 					sortIndicatorColor={Colors[theme].buttonTextColor}
 					tintColor={Colors[theme].tintColor}
-					selectedColor={Colors[theme].tintLightColor}
-					tintDarkColor={Colors[theme].tintDarkColor}
+					selectedColor={Colors[theme].tabBarActiveColor}
 					textColor={Colors[theme].buttonTextColor}
 				/>
 				<FlatList

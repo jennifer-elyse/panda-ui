@@ -57,10 +57,10 @@ const AppNavigator = () => {
 	const theme = themeSelector(userSession);
 	const gradient = gradientSelector(userSession);
 	const inactiveTintColor =
-		chroma.contrast(Colors[theme].tintDarkColor, '#fff') > 5
+		chroma.contrast(Colors[theme].tabBarInactiveColor, '#fff') > 5
 			? '#fff' : '#000';
 	const activeTintColor =
-		chroma.contrast(Colors[theme].tintColor, '#fff') > 5
+		chroma.contrast(Colors[theme].tabBarActiveColor, '#fff') > 5
 			? '#fff' : '#000';
 
 	// if (generateSplashMode) {
@@ -74,37 +74,34 @@ const AppNavigator = () => {
 					headerShown: false,
 					activeTintColor,
 					inactiveTintColor,
-					activeBackgroundColor: Colors[theme].tintColor,
-					inactiveBackgroundColor: Colors[theme].tintDarkColor
+					activeBackgroundColor: Colors[theme].tabBarActiveColor,
+					inactiveBackgroundColor: Colors[theme].tabBarInactiveColor
 				}}
 				tabBar={(props) => {
-					return gradient ?
-						(
-							<LinearGradient
-								colors={Colors[theme].primaryGradient}
-								start={[0, 0]}
-								end={[1, 1]}
-							>
-								<MyTabBar
-									{...props}
-									style={{ backgroundColor: 'transparent', overflow: 'hidden' }}
-								/>
-							</LinearGradient>
-						)
-						:
-						(
-							<BottomTabBar
+					return gradient ? (
+						<LinearGradient
+							colors={Colors[theme].tabBarGradient}
+							start={[0, 0]}
+							end={[1, 1]}
+						>
+							<MyTabBar
 								{...props}
 								style={{ backgroundColor: 'transparent', overflow: 'hidden' }}
 							/>
-						);
+						</LinearGradient>
+					) : (
+						<BottomTabBar
+							{...props}
+							style={{ backgroundColor: 'transparent', overflow: 'hidden' }}
+						/>
+					);
 				}}
 				screenOptions={({ route }) => ({
 					headerShown: false,
 					tabBarActiveTintColor: activeTintColor,
 					tabBarInactiveTintColor: inactiveTintColor,
-					tabBarActiveBackgroundColor: Colors[theme].tintColor,
-					tabBarInactiveBackgroundColor: Colors[theme].tintDarkColor,
+					tabBarActiveBackgroundColor: Colors[theme].tabBarActiveColor,
+					tabBarInactiveBackgroundColor: Colors[theme].tabBarInactiveColor,
 					// eslint-disable-next-line react/display-name
 					tabBarIcon: ({ focused, color, size }) => {
 						let iconName;

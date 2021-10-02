@@ -190,11 +190,11 @@ const ButtonContent = (props) => {
 
 	warning(icon || label || svg, 'Must provide "icon", "label", or "svg" to <Button>.');
 
-	const displayColor = disabled ? disabledColor : color;
-	const contentColor = solid ? textColor : displayColor;
+	const displayColor = disabled ? disabledColor : textColor;
+	// const contentColor = solid ? textColor : displayColor;
 
 	const buttonLabelStyle = {
-		color: contentColor,
+		color: displayColor,
 		fontSize: fontSize || (size === 'small' ? 14 : size === 'standard' ? 16 : 20),
 		fontWeight: 'bold',
 		paddingLeft: icon || svg ? 8 : 0,
@@ -204,7 +204,7 @@ const ButtonContent = (props) => {
 	return (
 		<React.Fragment>
 			{!!icon &&
-				<FontAwesome5 name={icon} size={size === 'small' ? 13 : size === 'standard' ? 15 : 21} color={contentColor} />
+				<FontAwesome5 name={icon} size={size === 'small' ? 13 : size === 'standard' ? 15 : 21} color={displayColor} />
 			}
 			{svg && Platform.OS === 'ios' ?
 				(

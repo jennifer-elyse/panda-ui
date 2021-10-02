@@ -20,7 +20,6 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 	const [userSession, dispatch] = useThemeContext();
 	const theme = themeSelector(userSession);
 	const baseTheme = baseThemeSelector(userSession);
-	console.log('theme', theme);
 	const [character, setCharacter]	= useState({ id: '0', animal: '', theme: 'default' });
 
 	const updateTheme = async () => {
@@ -76,7 +75,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 							solid={true}
 							border={true}
 							borderWidth={1}
-							gradient={Colors[theme].backCardGradient ? Colors[theme].backCardGradient : []}
+							gradient={Colors[theme].buttonGradient ? Colors[theme].buttonGradient : []}
 						/>
 					</View>
 				</View>

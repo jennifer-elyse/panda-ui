@@ -18,7 +18,8 @@ const ToggleButton = (props) => {
 		size,
 		height,
 		color,
-		textColor,
+		activeTextColor,
+		inactiveTextColor,
 		borderRadius=0,
 		border=0,
 		gradient=[]
@@ -77,7 +78,7 @@ const ToggleButton = (props) => {
 						disabled={disabled}
 						border={false}
 						color={color}
-						textColor={textColor}
+						textColor={!selected ? inactiveTextColor : activeTextColor}
 						style={i === 0
 							? buttonLeftStyle
 							: i === options.length - 1 ? buttonRightStyle : buttonMiddleStyle
@@ -111,7 +112,8 @@ ToggleButton.propTypes = {
 	disabled: PropTypes.bool,
 	size: PropTypes.oneOf(['small', 'standard', 'large']),
 	color: PropTypes.string,
-	textColor: PropTypes.string,
+	inactiveTextColor: PropTypes.string,
+	activeTextColor: PropTypes.string,
 	style: PropTypes.object,
 	borderRadius: PropTypes.number,
 	border: PropTypes.number,

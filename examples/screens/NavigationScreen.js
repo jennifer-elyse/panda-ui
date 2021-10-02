@@ -104,7 +104,7 @@ export default function SettingsScreen() {
 										loading ?
 											(
 												<LoadingIndicator
-													activityIndicatorColor={Colors[theme].tintColor}
+													activityIndicatorColor={Colors[theme].activityIndicatorColor}
 													backgroundColor={Colors[theme].cardColor}
 													height={250}
 												/>
