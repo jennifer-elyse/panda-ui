@@ -17,6 +17,7 @@ import CheckBox from './CheckBox';
 import CheckBoxGroup from './CheckBoxGroup';
 import Chip from './Chip';
 import CounterInput from './CounterInput';
+import DoubleCard from './DoubleCard';
 import Feedback from './Feedback';
 import RadioGroup from './RadioGroup';
 import ScanTextInput from './ScanTextInput';
@@ -43,6 +44,7 @@ export {
 	CheckBoxGroup,
 	Chip,
 	CounterInput,
+	DoubleCard,
 	Feedback,
 	RadioGroup,
 	ScanTextInput,

@@ -17,6 +17,7 @@ import {
 	CheckBoxGroup,
 	Chip,
 	CounterInput,
+	DoubleCard,
 	RadioGroup,
 	ToggleButton
 } from 'react-native-panda-ui';
@@ -123,8 +124,16 @@ export default function SettingsScreen() {
 			/>
 			<ScrollView style={{ width: '100%' }}>
 				<View style={{ alignItems: 'center' }}>
-					<Card borderRadius={50} style={{ elevation: 5, marginTop: 30, width: '90%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].backCardColor }} >
-						<Card borderRadius={40} style={{ elevation: 5, width: '100%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].cardColor }} >
+					<View style={{ width: '90%', marginTop: 30 }}>
+						<DoubleCard
+							backCardElevation={5}
+							cardElevation={8}
+							borderRadius={50}
+							padding={10}
+							backCardColor={Colors[theme].backCardColor}
+							backCardGradient={Colors[theme].backCardGradient}
+							cardColor={Colors[theme].cardColor}
+						>
 							<View style={{ width: '100%', alignItems: 'center', justifyContent: 'center' }}>
 								<ToggleButton
 									onValueChange={(value) => {
@@ -141,10 +150,18 @@ export default function SettingsScreen() {
 									options={[{ label: 'Heads', value: false, svg: require('../assets/trashpanda.svg') }, { label: 'Tails', value: true, svg: require('../assets/trashcan.svg') }]}
 								/>
 							</View>
-						</Card>
-					</Card>
-					<Card borderRadius={50} style={{ elevation: 5, marginTop: 30, width: '90%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].backCardColor }} >
-						<Card borderRadius={40} style={{ elevation: 5, width: '100%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].cardColor }} >
+						</DoubleCard>
+					</View>
+					<View style={{ width: '90%', marginTop: 30 }}>
+						<DoubleCard
+							backCardElevation={5}
+							cardElevation={8}
+							borderRadius={50}
+							padding={10}
+							backCardColor={Colors[theme].backCardColor}
+							backCardGradient={Colors[theme].backCardGradient}
+							cardColor={Colors[theme].cardColor}
+						>
 							<View style={{ width: '100%', alignItems: 'center', justifyContent: 'center' }}>
 								<ToggleButton
 									onValueChange={(value) => {
@@ -161,13 +178,21 @@ export default function SettingsScreen() {
 									options={[{ label: 'No Gradient', value: false }, { label: 'Gradient', value: true }]}
 								/>
 							</View>
-						</Card>
-					</Card>
+						</DoubleCard>
+					</View>
 					<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 15 }}>
 						<H1 textColor={Colors[theme].textColor}>Which is Tsuki's color?</H1>
 					</View>
-					<Card borderRadius={50} style={{ elevation: 5, width: 230, padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].backCardColor }} >
-						<Card borderRadius={40} style={{ elevation: 5, width: '100%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].cardColor }} >
+					<View style={{ width: 250, height: 350, padding: 10, alignItems: 'center', justifyContent: 'center' }}>
+						<DoubleCard
+							backCardElevation={5}
+							cardElevation={8}
+							borderRadius={50}
+							padding={10}
+							backCardColor={Colors[theme].backCardColor}
+							backCardGradient={Colors[theme].backCardGradient}
+							cardColor={Colors[theme].cardColor}
+						>
 							<RadioGroup
 								containerStyle={{ width: '100%', paddingVertical: Platform.OS !== 'ios' ? 20 : 15, paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12, borderWidth: 1, borderStyle: 'solid', borderColor: Colors[theme].borderColor, borderRadius: 30 }}
 								options={colorOptions}
@@ -178,13 +203,22 @@ export default function SettingsScreen() {
 								checkedColor={Colors[theme].buttonTextColor}
 								checkBoxContainerStyle={{ borderRadius: 30 }}
 							/>
-						</Card>
-					</Card>
+						</DoubleCard>
+					</View>
 					<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 15 }}>
 						<H1 textColor={Colors[theme].textColor}>Which are Kenzo's loves?</H1>
 					</View>
-					<Card borderRadius={50} style={{ elevation: 5, width: 290, height: 300, padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].backCardColor }} >
-						<Card borderRadius={40} style={{ elevation: 5, width: '100%', height: '100%', padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].cardColor }} >
+
+					<View style={{ width: 320, height: 350, padding: 10, alignItems: 'center', justifyContent: 'center' }}>
+						<DoubleCard
+							backCardElevation={5}
+							cardElevation={8}
+							borderRadius={50}
+							padding={10}
+							backCardColor={Colors[theme].backCardColor}
+							backCardGradient={Colors[theme].backCardGradient}
+							cardColor={Colors[theme].cardColor}
+						>
 							<CheckBoxGroup
 								containerStyle={{ width: '100%', height: '100%', paddingVertical: Platform.OS !== 'ios' ? 20 : 15, paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12, borderWidth: 1, borderStyle: 'solid', borderColor: Colors[theme].borderColor, borderRadius: 30 }}
 								options={lovesOptions}
@@ -195,72 +229,62 @@ export default function SettingsScreen() {
 								checkedColor={Colors[theme].buttonTextColor}
 								checkBoxContainerStyle={{ borderRadius: 30 }}
 							/>
-						</Card>
-					</Card>
+						</DoubleCard>
+					</View>
 					<View style={{ height: 150, width: '85%', marginTop: 20, marginBottom: 35 }}>
-						<Card
-							elevation={5}
+						<DoubleCard
+							backCardElevation={5}
+							cardElevation={8}
 							borderRadius={50}
-							backgroundColor={Colors[theme].backCardColor}
-							style={{ padding: 10 }}
+							backCardColor={Colors[theme].backCardColor}
+							backCardGradient={Colors[theme].backCardGradient}
+							cardColor={Colors[theme].cardColor}
 						>
-							<Card
-								elevation={8}
-								borderRadius={40}
-								backgroundColor={Colors[theme].cardColor}
-								style={{ alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}
-							>
-								<View style={{ height: 100, width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-									<CounterInput
-										value={characterCount}
-										onChange={handleCountChange}
-										cardColor={Colors[theme].cardColor}
-										backCardColor={Colors[theme].backCardColor}
-										buttonTextColor={Colors[theme].textColor}
-										textColor={Colors[theme].textColor}
-									/>
-								</View>
-							</Card>
-						</Card>
+							<View style={{ alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+								<CounterInput
+									value={characterCount}
+									onChange={handleCountChange}
+									cardColor={Colors[theme].cardColor}
+									backCardColor={Colors[theme].backCardColor}
+									buttonTextColor={Colors[theme].textColor}
+									textColor={Colors[theme].textColor}
+								/>
+							</View>
+						</DoubleCard>
 					</View>
 					<View style={{ height: 250, width: '85%', marginTop: 20, marginBottom: 35 }}>
-						<Card
-							elevation={5}
+						<DoubleCard
+							backCardElevation={5}
+							cardElevation={8}
 							borderRadius={50}
-							backgroundColor={Colors[theme].backCardColor}
-							style={{ padding: 10 }}
+							backCardColor={Colors[theme].backCardColor}
+							backCardGradient={Colors[theme].backCardGradient}
+							cardColor={Colors[theme].cardColor}
 						>
-							<Card
-								elevation={8}
-								borderRadius={40}
-								backgroundColor={Colors[theme].cardColor}
-								style={{ alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}
-							>
-								<View style={{ flexDirection: 'row', margin: 20, padding: 10, flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-									{qualitiesDate.map((item, i) => {
-										return (
-											<View
-												key={i}
-												style={{ flexDirection: 'row', flexWrap: 'wrap', paddingTop: 10 }}
-											>
-												<Chip
-													value={item.name}
-													svg={item.svg}
-													backgroundColor={Colors[theme].backgroundColor}
-													deleteIconColor={Colors[theme].buttonColor}
-													buttonTextColor={Colors[theme].buttonTextColor}
-													chipColor={Colors[theme].buttonColor}
-													borderColor={Colors[theme].borderColor}
-													textStyle={{ fontWeight: 'bold' }}
-													onPressDelete={() => {
+							<View style={{ height: '100%', width: '100%', flexDirection: 'row', margin: 'auto', padding: 10, flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+								{qualitiesDate.map((item, i) => {
+									return (
+										<View
+											key={i}
+											style={{ flexDirection: 'row', flexWrap: 'wrap', paddingTop: 10 }}
+										>
+											<Chip
+												value={item.name}
+												svg={item.svg}
+												backgroundColor={Colors[theme].backgroundColor}
+												deleteIconColor={Colors[theme].buttonColor}
+												buttonTextColor={Colors[theme].buttonTextColor}
+												chipColor={Colors[theme].buttonColor}
+												borderColor={Colors[theme].borderColor}
+												textStyle={{ fontWeight: 'bold' }}
+												onPressDelete={() => {
 
-													}}
-												/>
-											</View>);
-									})}
-								</View>
-							</Card>
-						</Card>
+												}}
+											/>
+										</View>);
+								})}
+							</View>
+						</DoubleCard>
 					</View>
 				</View>
 			</ScrollView>

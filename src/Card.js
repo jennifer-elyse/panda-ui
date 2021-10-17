@@ -126,6 +126,7 @@ Card.propTypes = {
 		PropTypes.number
 	]),
 	backgroundColor: PropTypes.string,
+	cardGradient: PropTypes.array,
 	elevation: PropTypes.number,
 	style: PropTypes.object,
 	children: PropTypes.element.isRequired

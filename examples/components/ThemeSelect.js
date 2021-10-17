@@ -3,11 +3,11 @@ import { View } from 'react-native';
 
 // Panda Imports
 import {
-	Button
+	Button,
+	DoubleCard
 } from 'react-native-panda-ui';
 
 import StyledSelect from '../components/StyledSelect';
-import DoubleCard from '../components/DoubleCard';
 import Colors from '../constants/Colors';
 import {
 	useThemeContext,
@@ -31,7 +31,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 	};
 
 	return (
-		<View style={{ height: 80, width: '95%', marginVertical: 30 }}>
+		<View style={{ height: 100, width: '95%', marginVertical: 30 }}>
 			<DoubleCard
 				backCardElevation={5}
 				cardElevation={8}

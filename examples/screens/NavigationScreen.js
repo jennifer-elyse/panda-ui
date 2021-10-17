@@ -98,6 +98,7 @@ export default function SettingsScreen() {
 								color={Colors[theme].borderColor}
 								options={[{ label: 'AKIRA', value: '1' }, { label: 'YUKI', value: '2' }, { label: 'KENZO', value: '3' }, { label: 'TSUKI', value: '4' }, { label: 'KUMI', value: '5' }]}
 							/>
+							<Text>{window.height}</Text>
 							<ScrollView style={{ flex: 1, width: '100%', marginTop: 25 }}>
 								<View style={{ flex: 1, width: '100%' }}>
 									{
@@ -116,7 +117,6 @@ export default function SettingsScreen() {
 									}
 								</View>
 							</ScrollView>
-							<Text>{window.height}</Text>
 						</View>
 					</Card>
 				</View>

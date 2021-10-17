@@ -1,15 +1,16 @@
 import React from 'react';
+import {
+	View
+} from 'react-native';
 
 // Panda Imports
-import {
-	Card
-} from 'react-native-panda-ui';
+import Card from './Card';
 
 const DoubleCard = (props) => {
 	const {
 		borderRadius=50,
 		width='100%',
-		height='100%',
+		height='auto',
 		backCardElevation=5,
 		cardElevation=8,
 		onPress,
@@ -28,7 +29,7 @@ const DoubleCard = (props) => {
 			elevation={backCardElevation}
 			borderRadius={borderRadius}
 			backgroundColor={backCardColor}
-			style={{ padding }}
+			style={{ padding: padding, alignItems: 'center', justifyContent: 'center' }}
 			width={width}
 			height={height}
 			cardGradient={backCardGradient && backCardGradient.length > 1 ? backCardGradient : []}
@@ -37,12 +38,17 @@ const DoubleCard = (props) => {
 				elevation={cardElevation}
 				borderRadius={borderRadius - padding}
 				backgroundColor={cardColor}
-				{...props}
-				style={{ ...style, padding }}
+				style={{ padding: padding }}
+				width="100%"
+				height="auto"
 				onPress={onPress}
 				cardGradient={cardGradient && cardGradient.length > 1 ? cardGradient : []}
 			>
-				{children}
+				<View
+					style={{ ...style }}
+				>
+					{children}
+				</View>
 			</Card>
 		</Card>
 	);

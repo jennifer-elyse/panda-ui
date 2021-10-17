@@ -35,7 +35,7 @@
     "react-native-elements": "^3.4.2",
     "react-native-fontawesome-pro": "^2.1.0",
     "react-native-gesture-handler": "~1.10.2",
-    "react-native-panda-ui": "../react-native-panda-ui-0.0.202.tgz",
+    "react-native-panda-ui": "../react-native-panda-ui-0.1.4.tgz",
     "react-native-picker-select": "^8.0.4",
     "react-native-reanimated": "~2.2.0",
     "react-native-remote-svg": "^2.0.6",

@@ -17,6 +17,7 @@ import chroma from 'chroma-js';
 // Panda Imports
 import {
 	Card,
+	DoubleCard,
 	SearchBar,
 	SortHeader,
 	useSortedData
@@ -142,8 +143,16 @@ const DataScreen = () => {
 				characterData={characterData}
 				setLoading={setLoading}
 			/>
-			<Card borderRadius={50} style={{ elevation: 5, width: '95%', alignItems: 'center', padding: 10, justifyContent: 'center', backgroundColor: Colors[theme].backCardColor, marginTop: 30, marginBottom: 15 }} >
-				<Card borderRadius={40} style={{ elevation: 8, padding: 10, width: '100%', alignItems: 'center', justifyContent: 'center', backgroundColor: Colors[theme].cardColor }} >
+			<View style={{ width: '95%', marginTop: 30, marginBottom: 15 }}>
+				<DoubleCard
+					backCardElevation={5}
+					cardElevation={8}
+					borderRadius={50}
+					padding={10}
+					backCardColor={Colors[theme].backCardColor}
+					backCardGradient={Colors[theme].backCardGradient}
+					cardColor={Colors[theme].cardColor}
+				>
 					<SearchBar
 						columns={[
 							{ label: 'Animal', value: 'animal', key: 1 },
@@ -158,8 +167,8 @@ const DataScreen = () => {
 						pickerBorderColor={Colors[theme].borderColor}
 						pickerText={Colors[theme].borderColor}
 					/>
-				</Card>
-			</Card>
+				</DoubleCard>
+			</View>
 			<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 15 }}>
 				<H1 textColor={Colors[theme].textColor}>Characteristics</H1>
 			</View>
