@@ -107,37 +107,37 @@ export default {
 		numberOfCards: 2,
 		padding: 10
 	},
-	defaultGradientInverted: {
+	defaultInvertedGradient: {
 		borderRadius: 50,
 		borderWidth: 0,
 		numberOfCards: 2,
 		padding: 10
 	},
-	pandaGradientInverted: {
+	pandaInvertedGradient: {
 		borderRadius: 50,
 		borderWidth: 0,
 		numberOfCards: 2,
 		padding: 10
 	},
-	redPandaGradientInverted: {
+	redPandaInvertedGradient: {
 		borderRadius: 50,
 		borderWidth: 0,
 		numberOfCards: 2,
 		padding: 10
 	},
-	uglyPandaGradientInverted: {
+	uglyPandaInvertedGradient: {
 		borderRadius: 50,
 		borderWidth: 0,
 		numberOfCards: 2,
 		padding: 10
 	},
-	trashPandaGradientInverted: {
+	trashPandaInvertedGradient: {
 		borderRadius: 50,
 		borderWidth: 0,
 		numberOfCards: 2,
 		padding: 10
 	},
-	candyPandaGradientInverted: {
+	candyPandaInvertedGradient: {
 		borderRadius: 50,
 		borderWidth: 0,
 		numberOfCards: 2,
