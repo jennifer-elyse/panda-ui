@@ -143,7 +143,7 @@ export default function SettingsScreen() {
 									size="standard"
 									selectedValue={inverted}
 									height={50}
-									border={1}
+									border={Styles[theme].accentBorderWidth}
 									borderRadius={Styles[theme].borderRadius}
 									color={Colors[theme].buttonColor}
 									activeTextColor={Colors[theme].buttonTextColor}
@@ -171,7 +171,7 @@ export default function SettingsScreen() {
 									size="standard"
 									selectedValue={gradient}
 									height={50}
-									border={1}
+									border={Styles[theme].accentBorderWidth}
 									borderRadius={Styles[theme].borderRadius}
 									color={Colors[theme].buttonColor}
 									activeTextColor={Colors[theme].buttonTextColor}
@@ -184,7 +184,12 @@ export default function SettingsScreen() {
 					<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 15 }}>
 						<H1 textColor={Colors[theme].textColor}>Which is Tsuki's color?</H1>
 					</View>
-					<View style={{ width: 250, height: 350, padding: 10, alignItems: 'center', justifyContent: 'center' }}>
+					<View style={{
+						width: 250,
+						height: 350,
+						padding: 10,
+						alignItems: 'center',
+						justifyContent: 'center' }}>
 						<DoubleCard
 							backCardElevation={5}
 							cardElevation={8}
@@ -195,7 +200,15 @@ export default function SettingsScreen() {
 							cardColor={Colors[theme].cardColor}
 						>
 							<RadioGroup
-								containerStyle={{ width: '100%', paddingVertical: Platform.OS !== 'ios' ? 20 : 15, paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12, borderWidth: 1, borderStyle: 'solid', borderColor: Colors[theme].borderColor, borderRadius: Styles[theme].borderRadius - (Styles[theme].padding * 2) }}
+								containerStyle={{
+									width: '100%',
+									paddingVertical: Platform.OS !== 'ios' ? 20 : 15,
+									paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12,
+									borderWidth: Styles[theme].accentBorderWidth,
+									borderStyle: 'solid',
+									borderColor: Colors[theme].borderColor,
+									borderRadius: Styles[theme].borderRadius - (Styles[theme].padding * 2)
+								}}
 								options={colorOptions}
 								value={selectedColor}
 								onChange={setSelectedColor}
@@ -221,7 +234,16 @@ export default function SettingsScreen() {
 							cardColor={Colors[theme].cardColor}
 						>
 							<CheckBoxGroup
-								containerStyle={{ width: '100%', height: '100%', paddingVertical: Platform.OS !== 'ios' ? 20 : 15, paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12, borderWidth: 1, borderStyle: 'solid', borderColor: Colors[theme].borderColor, borderRadius: Styles[theme].borderRadius - (Styles[theme].padding * 2) }}
+								containerStyle={{
+									width: '100%',
+									height: '100%',
+									paddingVertical: Platform.OS !== 'ios' ? 20 : 15,
+									paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12,
+									borderWidth: Styles[theme].accentBorderWidth,
+									borderStyle: 'solid',
+									borderColor: Colors[theme].borderColor,
+									borderRadius: Styles[theme].borderRadius - (Styles[theme].padding * 2)
+								}}
 								options={lovesOptions}
 								value={selectedLoves}
 								onChange={setSelectedLoves}
