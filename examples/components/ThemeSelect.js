@@ -9,6 +9,7 @@ import {
 
 import StyledSelect from '../components/StyledSelect';
 import Colors from '../constants/Colors';
+import Styles from '../constants/Styles';
 import {
 	useThemeContext,
 	themeSelector,
@@ -35,13 +36,13 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 			<DoubleCard
 				backCardElevation={5}
 				cardElevation={8}
-				borderRadius={50}
+				borderRadius={Styles[theme].borderRadius}
 				backCardColor={Colors[theme].backCardColor}
 				backCardGradient={Colors[theme].backCardGradient}
 				cardColor={Colors[theme].cardColor}
 			>
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-					<View style={{ borderWidth: 1, borderColor: Colors[theme].borderColor, borderRadius: 30, marginRight: 8, width: '60%' }}>
+					<View style={{ borderWidth: 1, borderColor: Colors[theme].borderColor, borderRadius: Styles[theme].borderRadius - (Styles[theme].padding * 2), marginRight: 8, width: '60%' }}>
 						<StyledSelect
 							onValueChange={(itemValue, itemIndex) => {
 								setCharacter({ id: characterData[itemIndex -1]?.id, animal: characterData[itemIndex -1]?.animal, theme: itemValue });
@@ -69,7 +70,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 							style={{ padding: 5 }}
 							width={110}
 							height={42}
-							borderRadius={35}
+							borderRadius={Styles[theme].borderRadius}
 							textColor={Colors[theme].buttonTextColor}
 							color={Colors[theme].buttonColor}
 							solid={true}

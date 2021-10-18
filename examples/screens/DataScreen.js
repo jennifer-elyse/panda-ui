@@ -29,6 +29,7 @@ import {
 	themeSelector
 } from '../contexts/ThemeContext';
 import Colors from '../constants/Colors';
+import Styles from '../constants/Styles';
 import FlatListItemSeparator from '../components/FlatListItemSeparator';
 import LoadingIndicator from '../components/LoadingIndicator';
 import { H1, Body2 } from '../components/StyledText';
@@ -147,8 +148,8 @@ const DataScreen = () => {
 				<DoubleCard
 					backCardElevation={5}
 					cardElevation={8}
-					borderRadius={50}
-					padding={10}
+					borderRadius={Styles[theme].borderRadius}
+					padding={Styles[theme].padding}
 					backCardColor={Colors[theme].backCardColor}
 					backCardGradient={Colors[theme].backCardGradient}
 					cardColor={Colors[theme].cardColor}
@@ -179,7 +180,7 @@ const DataScreen = () => {
 					onSortChange={setSortConfig}
 					roundCorners={true}
 					center
-					borderRadius={5}
+					borderRadius={Styles[theme].borderRadius/10}
 					height={40}
 					sortIndicatorColor={Colors[theme].buttonTextColor}
 					tintColor={Colors[theme].tintColor}

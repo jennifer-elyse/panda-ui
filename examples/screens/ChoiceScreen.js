@@ -30,6 +30,7 @@ import {
 	gradientSelector
 } from '../contexts/ThemeContext';
 import Colors from '../constants/Colors';
+import Styles from '../constants/Styles';
 import LoadingIndicator from '../components/LoadingIndicator';
 import { H1 } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
@@ -128,8 +129,8 @@ export default function SettingsScreen() {
 						<DoubleCard
 							backCardElevation={5}
 							cardElevation={8}
-							borderRadius={50}
-							padding={10}
+							borderRadius={Styles[theme].borderRadius}
+							padding={Styles[theme].padding}
 							backCardColor={Colors[theme].backCardColor}
 							backCardGradient={Colors[theme].backCardGradient}
 							cardColor={Colors[theme].cardColor}
@@ -143,7 +144,7 @@ export default function SettingsScreen() {
 									selectedValue={inverted}
 									height={50}
 									border={1}
-									borderRadius={30}
+									borderRadius={Styles[theme].borderRadius}
 									color={Colors[theme].buttonColor}
 									activeTextColor={Colors[theme].buttonTextColor}
 									inactiveTextColor={Colors[theme].buttonColor}
@@ -156,8 +157,8 @@ export default function SettingsScreen() {
 						<DoubleCard
 							backCardElevation={5}
 							cardElevation={8}
-							borderRadius={50}
-							padding={10}
+							borderRadius={Styles[theme].borderRadius}
+							padding={Styles[theme].padding}
 							backCardColor={Colors[theme].backCardColor}
 							backCardGradient={Colors[theme].backCardGradient}
 							cardColor={Colors[theme].cardColor}
@@ -171,7 +172,7 @@ export default function SettingsScreen() {
 									selectedValue={gradient}
 									height={50}
 									border={1}
-									borderRadius={30}
+									borderRadius={Styles[theme].borderRadius}
 									color={Colors[theme].buttonColor}
 									activeTextColor={Colors[theme].buttonTextColor}
 									inactiveTextColor={Colors[theme].buttonColor}
@@ -187,21 +188,21 @@ export default function SettingsScreen() {
 						<DoubleCard
 							backCardElevation={5}
 							cardElevation={8}
-							borderRadius={50}
-							padding={10}
+							borderRadius={Styles[theme].borderRadius}
+							padding={Styles[theme].padding}
 							backCardColor={Colors[theme].backCardColor}
 							backCardGradient={Colors[theme].backCardGradient}
 							cardColor={Colors[theme].cardColor}
 						>
 							<RadioGroup
-								containerStyle={{ width: '100%', paddingVertical: Platform.OS !== 'ios' ? 20 : 15, paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12, borderWidth: 1, borderStyle: 'solid', borderColor: Colors[theme].borderColor, borderRadius: 30 }}
+								containerStyle={{ width: '100%', paddingVertical: Platform.OS !== 'ios' ? 20 : 15, paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12, borderWidth: 1, borderStyle: 'solid', borderColor: Colors[theme].borderColor, borderRadius: Styles[theme].borderRadius - (Styles[theme].padding * 2) }}
 								options={colorOptions}
 								value={selectedColor}
 								onChange={setSelectedColor}
 								backgroundColor={Colors[theme].buttonColor}
 								textColor={Colors[theme].buttonTextColor}
 								checkedColor={Colors[theme].buttonTextColor}
-								checkBoxContainerStyle={{ borderRadius: 30 }}
+								checkBoxContainerStyle={{ borderRadius: Styles[theme].borderRadius }}
 							/>
 						</DoubleCard>
 					</View>
@@ -209,25 +210,25 @@ export default function SettingsScreen() {
 						<H1 textColor={Colors[theme].textColor}>Which are Kenzo's loves?</H1>
 					</View>
 
-					<View style={{ width: 320, height: 350, padding: 10, alignItems: 'center', justifyContent: 'center' }}>
+					<View style={{ width: 320, height: 310, padding: 10, alignItems: 'center', justifyContent: 'center' }}>
 						<DoubleCard
 							backCardElevation={5}
 							cardElevation={8}
-							borderRadius={50}
-							padding={10}
+							borderRadius={Styles[theme].borderRadius}
+							padding={Styles[theme].padding}
 							backCardColor={Colors[theme].backCardColor}
 							backCardGradient={Colors[theme].backCardGradient}
 							cardColor={Colors[theme].cardColor}
 						>
 							<CheckBoxGroup
-								containerStyle={{ width: '100%', height: '100%', paddingVertical: Platform.OS !== 'ios' ? 20 : 15, paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12, borderWidth: 1, borderStyle: 'solid', borderColor: Colors[theme].borderColor, borderRadius: 30 }}
+								containerStyle={{ width: '100%', height: '100%', paddingVertical: Platform.OS !== 'ios' ? 20 : 15, paddingHorizontal: Platform.OS !== 'ios' ? 15 : 12, borderWidth: 1, borderStyle: 'solid', borderColor: Colors[theme].borderColor, borderRadius: Styles[theme].borderRadius - (Styles[theme].padding * 2) }}
 								options={lovesOptions}
 								value={selectedLoves}
 								onChange={setSelectedLoves}
 								backgroundColor={Colors[theme].buttonColor}
 								textColor={Colors[theme].buttonTextColor}
 								checkedColor={Colors[theme].buttonTextColor}
-								checkBoxContainerStyle={{ borderRadius: 30 }}
+								checkBoxContainerStyle={{ borderRadius: Styles[theme].borderRadius }}
 							/>
 						</DoubleCard>
 					</View>
@@ -235,7 +236,7 @@ export default function SettingsScreen() {
 						<DoubleCard
 							backCardElevation={5}
 							cardElevation={8}
-							borderRadius={50}
+							borderRadius={Styles[theme].borderRadius}
 							backCardColor={Colors[theme].backCardColor}
 							backCardGradient={Colors[theme].backCardGradient}
 							cardColor={Colors[theme].cardColor}
@@ -256,7 +257,7 @@ export default function SettingsScreen() {
 						<DoubleCard
 							backCardElevation={5}
 							cardElevation={8}
-							borderRadius={50}
+							borderRadius={Styles[theme].borderRadius}
 							backCardColor={Colors[theme].backCardColor}
 							backCardGradient={Colors[theme].backCardGradient}
 							cardColor={Colors[theme].cardColor}
