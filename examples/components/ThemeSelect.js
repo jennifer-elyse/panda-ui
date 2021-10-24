@@ -27,7 +27,8 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 		setLoading(true);
 		dispatch({ type: 'SET_THEME', payload: { theme: character.theme } });
 		const response = character.id  > 0 && await getCharacterQualities(character.id);
-		setQualitiesData && setQualitiesData(response);
+		console.log(response);
+		// setQualitiesData && setQualitiesData(response);
 		setLoading(false);
 	};
 
@@ -42,7 +43,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 				cardColor={Colors[theme].cardColor}
 			>
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-					<View style={{ borderWidth: 1, borderColor: Colors[theme].borderColor, borderRadius: Styles[theme].borderRadius - (Styles[theme].padding * 2), marginRight: 8, width: '60%' }}>
+					<View style={{ borderWidth: Styles[theme].accentBorderWidth, borderColor: Colors[theme].borderColor, borderRadius: Styles[theme].borderRadius - (Styles[theme].padding * 2), marginRight: 8, width: '60%' }}>
 						<StyledSelect
 							onValueChange={(itemValue, itemIndex) => {
 								setCharacter({ id: characterData[itemIndex -1]?.id, animal: characterData[itemIndex -1]?.animal, theme: itemValue });
@@ -75,7 +76,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 							color={Colors[theme].buttonColor}
 							solid={true}
 							border={true}
-							borderWidth={1}
+							borderWidth={Styles[theme].buttonBorderWidth}
 							gradient={Colors[theme].buttonGradient ? Colors[theme].buttonGradient : []}
 						/>
 					</View>
