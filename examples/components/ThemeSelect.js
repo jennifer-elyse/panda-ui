@@ -43,7 +43,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 				cardColor={Colors[theme].cardColor}
 			>
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-					<View style={{ borderWidth: Styles[theme].accentBorderWidth, borderColor: Colors[theme].borderColor, borderRadius: Styles[theme].borderRadius - (Styles[theme].padding * 2), marginRight: 8, width: '60%' }}>
+					<View style={{ borderWidth: Styles[theme].accentBorderWidth, borderColor: Colors[theme].borderColor, borderRadius: Styles[theme].borderRadius, marginRight: 8, width: '60%' }}>
 						<StyledSelect
 							onValueChange={(itemValue, itemIndex) => {
 								setCharacter({ id: characterData[itemIndex -1]?.id, animal: characterData[itemIndex -1]?.animal, theme: itemValue });

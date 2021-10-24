@@ -161,6 +161,7 @@ const DataScreen = () => {
 							{ label: 'Color', value: 'color', key: 3 }
 						]}
 						data={sortedApiData}
+						borderRadius={Styles[theme].borderRadius}
 						onSubmit={findCharacterRecord}
 						backgroundColor={Colors[theme].cardColor}
 						borderColor={Colors[theme].borderColor}

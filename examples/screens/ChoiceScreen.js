@@ -215,7 +215,7 @@ export default function SettingsScreen() {
 								backgroundColor={Colors[theme].buttonColor}
 								textColor={Colors[theme].buttonTextColor}
 								checkedColor={Colors[theme].buttonTextColor}
-								checkBoxContainerStyle={{ borderRadius: Styles[theme].borderRadius }}
+								checkBoxBackgroundBorderRadius={Styles[theme].borderRadius}
 							/>
 						</DoubleCard>
 					</View>
@@ -250,7 +250,7 @@ export default function SettingsScreen() {
 								backgroundColor={Colors[theme].buttonColor}
 								textColor={Colors[theme].buttonTextColor}
 								checkedColor={Colors[theme].buttonTextColor}
-								checkBoxContainerStyle={{ borderRadius: Styles[theme].borderRadius }}
+								checkBoxBackgroundBorderRadius={Styles[theme].borderRadius}
 							/>
 						</DoubleCard>
 					</View>
@@ -259,6 +259,7 @@ export default function SettingsScreen() {
 							backCardElevation={5}
 							cardElevation={8}
 							borderRadius={Styles[theme].borderRadius}
+							padding={Styles[theme].padding}
 							backCardColor={Colors[theme].backCardColor}
 							backCardGradient={Colors[theme].backCardGradient}
 							cardColor={Colors[theme].cardColor}
@@ -280,6 +281,7 @@ export default function SettingsScreen() {
 							backCardElevation={5}
 							cardElevation={8}
 							borderRadius={Styles[theme].borderRadius}
+							padding={Styles[theme].padding}
 							backCardColor={Colors[theme].backCardColor}
 							backCardGradient={Colors[theme].backCardGradient}
 							cardColor={Colors[theme].cardColor}
@@ -303,6 +305,7 @@ export default function SettingsScreen() {
 												onPressDelete={() => {
 
 												}}
+												containerBorderRadius={Styles[theme].borderRadius}
 											/>
 										</View>);
 								})}

@@ -1,9 +1,9 @@
 export default {
 	default:  {
 		accentBorderWidth: 1,
-		borderRadius: 50,
-		buttonBorderWidth: 0,
-		numberOfCards: 2,
+		borderRadius: 5,
+		buttonBorderWidth: 1,
+		numberOfCards: 1,
 		padding: 10
 	},
 	panda:  {
