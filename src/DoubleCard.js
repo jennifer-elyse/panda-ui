@@ -2,6 +2,7 @@ import React from 'react';
 import {
 	View
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 // Panda Imports
 import Card from './Card';
@@ -52,6 +53,28 @@ const DoubleCard = (props) => {
 			</Card>
 		</Card>
 	);
+};
+
+Card.propTypes = {
+	onPress: PropTypes.func,
+	borderRadius: PropTypes.number,
+	width: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
+	height: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
+	cardColor: PropTypes.string,
+	backCardColor: PropTypes.string,
+	backCardGradient: PropTypes.array,
+	padding: PropTypes.number,
+	cardElevation: PropTypes.number,
+	cardGradient: PropTypes.array,
+	backCardElevation: PropTypes.number,
+	style: PropTypes.object,
+	children: PropTypes.element.isRequired
 };
 
 export default DoubleCard;
