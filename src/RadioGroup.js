@@ -6,9 +6,20 @@ import invariant from './utils/invariant';
 // Import sibling common components directly to avoid circular dependencies.
 import CheckBox from './CheckBox';
 
-const RadioGroup = ({ options, value, onChange, disabled, style,
-	backgroundColor, disabledColor, textColor, checkedColor,
-	checkBoxContainerStyle, containerStyle, checkBoxBackgroundBorderRadius }) => {
+const RadioGroup = (props) => {
+	const {
+		options,
+		value,
+		onChange,
+		disabled,
+		backgroundColor,
+		disabledColor,
+		textColor,
+		checkedColor,
+		checkBoxContainerStyle,
+		containerStyle,
+		checkBoxBackgroundBorderRadius
+	} = props;
 
 	invariant(Array.isArray(options), `RadioGroup expected an array for the 'options' prop, but instead got type "${typeof options}"`);
 
@@ -50,7 +61,6 @@ RadioGroup.propTypes = {
 	value: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 	disabled: PropTypes.bool,
-	style: PropTypes.object,
 	backgroundColor: PropTypes.string,
 	disabledColor: PropTypes.string,
 	textColor: PropTypes.string,
