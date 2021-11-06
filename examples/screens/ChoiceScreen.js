@@ -13,7 +13,6 @@ import { StatusBar } from 'expo-status-bar';
 
 // Panda Imports
 import {
-	Card,
 	CheckBoxGroup,
 	Chip,
 	CounterInput,
@@ -270,8 +269,69 @@ export default function SettingsScreen() {
 									onChange={handleCountChange}
 									cardColor={Colors[theme].cardColor}
 									backCardColor={Colors[theme].backCardColor}
-									buttonTextColor={Colors[theme].textColor}
-									textColor={Colors[theme].textColor}
+									incrementBackgroundColor={Colors[theme].incrementBackgroundColor}
+									decrementBackgroundColor={Colors[theme].decrementBackgroundColor}
+									incrementTextColor={Colors[theme].textColor}
+									decrementTextColor={Colors[theme].textColor}
+									counterColor={Colors[theme].textColor}
+									variationNumberOfCards={2}
+									borderRadius={Styles[theme].borderRadius}
+									backCardGradient={Colors[theme].backCardGradient}
+									size="large"
+								/>
+							</View>
+						</DoubleCard>
+					</View>
+					<View style={{ height: 150, width: '85%', marginTop: 20, marginBottom: 35 }}>
+						<DoubleCard
+							backCardElevation={5}
+							cardElevation={8}
+							borderRadius={Styles[theme].borderRadius}
+							padding={Styles[theme].padding}
+							backCardColor={Colors[theme].backCardColor}
+							backCardGradient={Colors[theme].backCardGradient}
+							cardColor={Colors[theme].cardColor}
+						>
+							<View style={{ alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+								<CounterInput
+									value={characterCount}
+									onChange={handleCountChange}
+									cardColor={Colors[theme].cardColor}
+									backCardColor={Colors[theme].backCardColor}
+									incrementTextColor={Colors[theme].textColor}
+									decrementTextColor={Colors[theme].textColor}
+									counterColor={Colors[theme].textColor}
+									variationNumberOfCards={2}
+									borderRadius={Styles[theme].borderRadius}
+									backCardGradient={Colors[theme].backCardGradient}
+									size="standard"
+								/>
+							</View>
+						</DoubleCard>
+					</View>
+					<View style={{ height: 150, width: '85%', marginTop: 20, marginBottom: 35 }}>
+						<DoubleCard
+							backCardElevation={5}
+							cardElevation={8}
+							borderRadius={Styles[theme].borderRadius}
+							padding={Styles[theme].padding}
+							backCardColor={Colors[theme].backCardColor}
+							backCardGradient={Colors[theme].backCardGradient}
+							cardColor={Colors[theme].cardColor}
+						>
+							<View style={{ alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+								<CounterInput
+									value={characterCount}
+									onChange={handleCountChange}
+									cardColor={Colors[theme].cardColor}
+									backCardColor={Colors[theme].backCardColor}
+									incrementTextColor={Colors[theme].textColor}
+									decrementTextColor={Colors[theme].textColor}
+									counterColor={Colors[theme].textColor}
+									variationNumberOfCards={1}
+									borderRadius={Styles[theme].borderRadius}
+									backCardGradient={Colors[theme].backCardGradient}
+									size="small"
 								/>
 							</View>
 						</DoubleCard>

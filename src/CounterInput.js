@@ -5,170 +5,192 @@ import ProIcon from 'react-native-vector-icons/FontAwesome5';
 
 import Card from './Card';
 
-const CounterInput = ({ value, onChange, renderLabel,
-	buttonTextColor='#000', textColor='#000', containerStyle,
-	backCardColor, cardColor='#fff'
-}) => {
+const CounterInput = (props) => {
+	const {
+		value,
+		onChange,
+		renderLabel,
+		counterColor='#000',
+		containerStyle,
+		backCardColor,
+		backCardGradient,
+		incrementBackgroundColor='#fff',
+		decrementBackgroundColor='#fff',
+		incrementTextColor='#000',
+		decrementTextColor='#000',
+		variationNumberOfCards=1,
+		cardPadding=10,
+		size='standard',
+		borderRadius=50
+	} = props;
 
 	const increment = () => onChange(value + 1);
 	const decrement = () => onChange(value - 1);
+
 	const labelStyle = {
-		color: textColor,
-		paddingHorizontal: 65,
-		fontSize: 56
+		color: counterColor,
+		// paddingHorizontal: size === 'large' ? 55 : size === 'standard' ? 45 : 35,
+		fontSize: size === 'large' ? 56 : size === 'standard' ? 46 : 36,
+		width: '100%',
+		textAlign: 'center'
 	};
 	const container  = {
 		flexDirection: 'row',
 		alignItems: 'center',
-		padding: 5,
+		padding: cardPadding / 2,
 		...containerStyle
 	};
 
 	return (
 		<View style={container}>
-			{ backCardColor ?
+			{ variationNumberOfCards === 2 ?
 				(
 					<Card
 						backgroundColor={backCardColor}
 						elevation={5}
-						height={50}
-						width={50}
-						style={{ alignItems: 'center' }}
-						borderRadius={50}
+						height={size === 'large' ? 50 : size === 'standard' ? 40 : 35}
+						width={size === 'large' ? 50 : size === 'standard' ? 40 : 35}
+						style={{ alignItems: 'center', justifyContent: 'center' }}
+						borderRadius={borderRadius}
+						gradient={backCardGradient && backCardGradient.length > 1 ? backCardGradient : []}
 					>
 						<Card
-							solid={false}
-							backgroundColor={cardColor}
+							backgroundColor={incrementBackgroundColor}
 							elevation={8}
-							height={40}
-							width={40}
-							style={{ alignItems: 'center', justifyItems: 'center' }}
-							borderRadius={50}
+							height={size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding}
+							width={size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding}
+							style={{ alignItems: 'center', justifyContent: 'center', marginBottom: cardPadding / 2 }}
+							borderRadius={borderRadius}
 							onPress={decrement}
 						>
 							<View
 								style={{
-									backgroundColor: cardColor,
-									height: 40,
-									width: 40,
+									backgroundColor: decrementBackgroundColor,
+									height: size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding,
+									width: size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding,
 									overflow: 'hidden',
-									borderRadius: 50,
+									borderRadius: borderRadius,
 									alignSelf: 'center',
 									alignItems: 'center',
-									justifyItems: 'center',
-									marginTop: 4.5 }}
+									justifyContent: 'center',
+									marginTop: size === 'large' ? 4.5 : size === 'standard' ? 3.5 : 2.5 }}
 							>
 								<ProIcon
+									size={size === 'large' ? 21 : size === 'standard' ? 16 : 11}
 									name="minus"
-									size={21}
-									color={buttonTextColor}
-									style={{ alignSelf: 'center', marginTop: 9 }}
+									color={decrementTextColor}
 								/>
 							</View>
 						</Card>
 					</Card>
 				) : (
 					<Card
-						backgroundColor={cardColor}
+						backgroundColor={backCardColor}
 						elevation={5}
-						height={40}
-						width={40}
-						style={{ alignItems: 'center', justifyItems: 'center' }}
-						borderRadius={50}
+						height={size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding}
+						width={size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding}
+						style={{ alignItems: 'center', justifyContent: 'center' }}
+						borderRadius={borderRadius}
 						onPress={decrement}
 					>
 						<View
 							style={{
-								backgroundColor: cardColor,
-								height: 40,
-								width: 40,
+								backgroundColor: decrementBackgroundColor,
+								height: size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding,
+								width:  size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding,
 								overflow: 'hidden',
-								borderRadius: 50,
+								borderRadius: borderRadius,
 								alignSelf: 'center',
 								alignItems: 'center',
-								justifyItems: 'center',
-								marginTop: 4.5 }}
+								justifyContent: 'center' }}
 						>
 
 							<ProIcon
+								size={size === 'large' ? 21 : size === 'standard' ? 16 : 11}
 								name="minus"
-								size={21}
-								color={buttonTextColor}
-								style={{ alignSelf: 'center', marginTop: 9 }}
+								color={decrementTextColor}
 							/>
 						</View>
 					</Card>
 				)
 			}
-			<Text style={labelStyle}>{renderLabel ? renderLabel(value) : value}</Text>
-			{ backCardColor ?
+			<View
+				style={{
+					alignItems: 'center',
+					justifyContent: 'center',
+					width: size === 'large' ? 120 : size === 'standard' ? 100 : 70,
+					margin: 'auto',
+					textAlign: 'center'
+				}}
+			>
+				<Text style={labelStyle}>{renderLabel ? renderLabel(value) : value}</Text>
+			</View>
+			{ variationNumberOfCards === 2 ?
 				(
 					<Card
 						backgroundColor={backCardColor}
+						gradient={backCardGradient && backCardGradient.length > 1 ? backCardGradient : []}
 						elevation={5}
-						height={50}
-						width={50}
-						style={{ alignItems: 'center', justifyItems: 'center' }}
-						borderRadius={50}
+						height={size === 'large' ? 50 : size === 'standard' ? 40 : 35}
+						width={size === 'large' ? 50 : size === 'standard' ? 40 : 35}
+						style={{ alignItems: 'center', justifyContent: 'center' }}
+						borderRadius={borderRadius}
 					>
 						<Card
 							solid={false}
-							backgroundColor={cardColor}
+							backgroundColor={incrementBackgroundColor}
 							elevation={8}
-							height={40}
-							width={40}
-							style={{ alignItems: 'center', justifyItems: 'center' }}
-							borderRadius={50}
+							height={size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding}
+							width={size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding}
+							style={{ alignItems: 'center', justifyContent: 'center', marginBottom: cardPadding / 2 }}
+							borderRadius={borderRadius}
 							onPress={increment}
 						>
 							<View
 								style={{
-									backgroundColor: cardColor,
-									height: 40,
-									width: 40,
+									backgroundColor: incrementBackgroundColor,
+									height: size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding,
+									width: size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding,
 									overflow: 'hidden',
-									borderRadius: 50,
+									borderRadius: borderRadius,
 									alignSelf: 'center',
 									alignItems: 'center',
-									justifyItems: 'center',
-									marginTop: 4.5 }}
+									justifyContent: 'center',
+									marginTop: size === 'large' ? 4.5 : size === 'standard' ? 3.5 : 2.5 }}
 							>
 								<ProIcon
+									size={size === 'large' ? 21 : size === 'standard' ? 16 : 11}
 									name="plus"
-									size={21}
-									color={buttonTextColor}
-									style={{ alignSelf: 'center', marginTop: 9 }}
+									color={incrementTextColor}
 								/>
 							</View>
 						</Card>
 					</Card>
 				) : (
 					<Card
-						backgroundColor={cardColor}
+						backgroundColor={backCardColor}
 						elevation={5}
-						height={40}
-						width={40}
-						style={{ alignItems: 'center', justifyItems: 'center' }}
-						borderRadius={50}
+						height={size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding}
+						width={size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding}
+						style={{ alignItems: 'center', justifyContent: 'center' }}
+						borderRadius={borderRadius}
 						onPress={increment}
 					>
 						<View
 							style={{
-								backgroundColor: cardColor,
-								height: 40,
-								width: 40,
+								backgroundColor: incrementBackgroundColor,
+								height: size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding,
+								width: size === 'large' ? 50 - cardPadding : size === 'standard' ? 40 - cardPadding : 35 - cardPadding,
 								overflow: 'hidden',
-								borderRadius: 50,
+								borderRadius: borderRadius,
 								alignSelf: 'center',
 								alignItems: 'center',
-								justifyItems: 'center',
-								marginTop: 4.5 }}
+								justifyContent: 'center' }}
 						>
 							<ProIcon
+								size={size === 'large' ? 21 : size === 'standard' ? 16 : 11}
 								name="plus"
-								size={21}
-								color={buttonTextColor}
-								style={{ alignSelf: 'center', marginTop: 9 }}
+								color={incrementTextColor}
 							/>
 						</View>
 					</Card>
@@ -182,11 +204,19 @@ CounterInput.propTypes = {
 	value: PropTypes.number.isRequired,
 	onChange: PropTypes.func.isRequired,
 	renderLabel: PropTypes.func,
-	buttonTextColor: PropTypes.string,
+	counterColor: PropTypes.string,
 	textColor: PropTypes.string,
 	backCardColor: PropTypes.string,
-	cardColor: PropTypes.string,
-	containerStyle: PropTypes.object
+	backCardGradient: PropTypes.array,
+	incrementBackgroundColor: PropTypes.string,
+	decrementBackgroundColor: PropTypes.string,
+	incrementTextColor: PropTypes.string,
+	decrementTextColor: PropTypes.string,
+	containerStyle: PropTypes.object,
+	variationNumberOfCards: PropTypes.number,
+	cardPadding: PropTypes.number,
+	size: PropTypes.oneOf(['small', 'standard', 'large']),
+	borderRadius: PropTypes.number
 };
 
 export default CounterInput;

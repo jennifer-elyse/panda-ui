@@ -1,27 +1,27 @@
 const disabledColor = 'lightgrey';
 const errorBackgroundColor = '#f9e6e6';
-const errorFontColor = '#db0012';
+const errorTextColor = '#db0012';
 const highlightColor = '#e6f3f7';
 const infoBackgroundColor = '#e2eafe';
-const infoFontColor = '#123ff3';
+const infoTextColor = '#123ff3';
 const successBackgroundColor = '#e5f2e8';
-const successFontColor = '#268438';
+const successTextColor = '#268438';
 const validationError = '#9c1717';
 const warningBackgroundColor = '#fcf8e8';
-const warningFontColor = '#e5b838';
+const warningTextColor = '#e5b838';
 
 const common = {
 	disabledColor,
 	errorBackgroundColor,
-	errorFontColor,
+	errorTextColor,
 	highlightColor,
 	infoBackgroundColor,
-	infoFontColor,
+	infoTextColor,
 	successBackgroundColor,
-	successFontColor,
+	successTextColor,
 	validationError,
 	warningBackgroundColor,
-	warningFontColor
+	warningTextColor
 };
 
 
@@ -34,7 +34,9 @@ export default {
 		buttonColor: '#772d4f',
 		buttonTextColor: '#fff',
 		cardColor: '#fff',
+		decrementBackgroundColor: errorTextColor,
 		highlightColor: '#772d4f',
+		incrementBackgroundColor: successTextColor,
 		statusBarColor: '#4a1830',
 		textColor: '#772d4f',
 		tintColor: '#772d4f',
