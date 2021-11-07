@@ -50,7 +50,7 @@ export default {
 	},
 	defaultInverted:  {
 		accentBorderWidth: 1,
-		borderRadius: 50,
+		borderRadius: 5,
 		buttonBorderWidth: 0,
 		numberOfCards: 2,
 		padding: 10
@@ -99,7 +99,7 @@ export default {
 	},
 	defaultGradient: {
 		accentBorderWidth: 1,
-		borderRadius: 50,
+		borderRadius: 5,
 		buttonBorderWidth: 0,
 		numberOfCards: 2,
 		padding: 10
@@ -148,7 +148,7 @@ export default {
 	},
 	defaultInvertedGradient: {
 		accentBorderWidth: 1,
-		borderRadius: 50,
+		borderRadius: 5,
 		buttonBorderWidth: 0,
 		numberOfCards: 2,
 		padding: 10

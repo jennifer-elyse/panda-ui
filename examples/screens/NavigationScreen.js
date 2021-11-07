@@ -30,7 +30,7 @@ import window from '../constants/Layout';
 import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
 
 
-export default function SettingsScreen() {
+export default function NavigationScreen() {
 	const [userSession] = useThemeContext();
 	const theme = themeSelector(userSession);
 	const [loading, setLoading] 				= useState(false);

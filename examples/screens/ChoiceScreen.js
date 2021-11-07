@@ -8,6 +8,8 @@ import {
 	Platform
 } from 'react-native';
 
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
 // Expo imports
 import { StatusBar } from 'expo-status-bar';
 
@@ -20,6 +22,7 @@ import {
 	RadioGroup,
 	ToggleButton
 } from 'react-native-panda-ui';
+import { ButtonText } from '../components/StyledText';
 
 // Local Imports
 import {
@@ -70,7 +73,7 @@ const lovesOptions =
 	}];
 
 
-export default function SettingsScreen() {
+export default function ChoiceScreen() {
 	const [userSession, dispatch] = useThemeContext();
 	const theme = themeSelector(userSession);
 	const inverted = invertedSelector(userSession);
@@ -104,7 +107,7 @@ export default function SettingsScreen() {
 	}, []);
 
 	function handleCountChange(newCount) {
-		setCharacterCount(newCount ? newCount : 1);
+		setCharacterCount(newCount ? newCount : 0);
 	}
 
 	if (loading) {
@@ -147,6 +150,7 @@ export default function SettingsScreen() {
 									color={Colors[theme].buttonColor}
 									activeTextColor={Colors[theme].buttonTextColor}
 									inactiveTextColor={Colors[theme].buttonColor}
+									TextComponent={<ButtonText buttonTextColor={Colors[theme].buttonTextColor} />}
 									options={[{ label: 'Heads', value: false, svg: require('../assets/trashpanda.svg') }, { label: 'Tails', value: true, svg: require('../assets/trashcan.svg') }]}
 								/>
 							</View>
@@ -366,6 +370,7 @@ export default function SettingsScreen() {
 
 												}}
 												containerBorderRadius={Styles[theme].borderRadius}
+												DeleteButtonIconComponent={<FontAwesome5 name="times" size={15} color={Colors[theme].buttonTextColor} />}
 											/>
 										</View>);
 								})}

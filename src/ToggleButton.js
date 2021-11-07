@@ -22,7 +22,8 @@ const ToggleButton = (props) => {
 		inactiveTextColor,
 		borderRadius=0,
 		border=0,
-		gradient=[]
+		gradient,
+		TextComponent
 	} = props;
 
 	const displayColor = disabled ? disabledColor : color;
@@ -70,7 +71,7 @@ const ToggleButton = (props) => {
 						icon={option.icon}
 						label={option.label}
 						svg={option.svg}
-						solid={selected}
+						transparent={!selected}
 						allowInteraction={!selected}
 						width="0%"
 						size={size}
@@ -86,6 +87,7 @@ const ToggleButton = (props) => {
 						onPress={() => onValueChange(option.value)}
 						key={option.value}
 						gradient={gradient}
+						TextComponent={TextComponent}
 					/>
 				);
 			})}
@@ -117,5 +119,6 @@ ToggleButton.propTypes = {
 	style: PropTypes.object,
 	borderRadius: PropTypes.number,
 	border: PropTypes.number,
-	gradient: PropTypes.array
+	gradient: PropTypes.array,
+	TextComponent: PropTypes.object
 };

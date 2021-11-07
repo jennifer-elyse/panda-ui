@@ -8,6 +8,7 @@ import { Body3 } from './StyledText';
 import Button from './Button';
 
 
+
 const Chip = (props) => {
 	const {
 		allowInteraction=true,
@@ -24,13 +25,15 @@ const Chip = (props) => {
 		disabled=false,
 		disabledColor='lightgrey',
 		height,
-		icon,
 		onPress,
 		onPressDelete,
 		size='small',
 		svg,
 		textStyle,
-		value
+		value,
+		TextComponent,
+		AvatarIconComponent,
+		DeleteButtonIconComponent
 	} = props;
 
 	const styles = StyleSheet.create({
@@ -56,12 +59,12 @@ const Chip = (props) => {
 		<View style={styles.container}
 			key={value}>
 			<Button
-				icon={icon}
+				IconComponent={AvatarIconComponent}
 				svg={svg}
 				style={{ padding: 15, marginRight: 5, marginLeft: 5 }}
 				height={ height > 0 ? height - 10 : size === 'small' ? 20 : size === 'standard' ? 25 : 35 }
 				width={ height > 0 ? height - 10 : size === 'small' ? 20 : size === 'standard' ? 25 : 35 }
-				solid={false}
+				transparent={true}
 				allowInteraction={false}
 				size={size}
 				disabled={disabled}
@@ -71,26 +74,25 @@ const Chip = (props) => {
 				borderRadius={chipBorderRadius}
 				borderColor={borderColor}
 				borderWidth={1}
-				gradient={[]}
 			/>
 			<Body3 textColor={chipTextColor} style={styles.text}>
 				{value}
 			</Body3>
 			{ allowInteraction &&
 				<Button
-					icon="times"
+					IconComponent={DeleteButtonIconComponent}
 					style={{ marginLeft: 10 }}
 					height={ height > 0 ? height - 10 : size === 'small' ? 20 : size === 'standard' ? 25 : 35 }
 					width={ height > 0 ? height - 10 : size === 'small' ? 20 : size === 'standard' ? 25 : 35 }
-					solid={true}
 					allowInteraction={allowInteraction}
 					size={size}
 					disabled={disabled}
+					transparent={false}
 					border={false}
-					color={disabled ? disabledColor : deleteIconColor}
+					textColor={disabled ? disabledColor : '#fff'}
+					color={deleteIconColor}
 					onPress={() => onPressDelete()}
 					borderRadius={buttonBorderRadius}
-					gradient={[]}
 				/>
 			}
 		</View>
@@ -113,13 +115,15 @@ Chip.propTypes = {
 	height: PropTypes.number,
 	onPress: PropTypes.func,
 	onPressDelete: PropTypes.func,
-	icon: PropTypes.string,
 	size: PropTypes.string,
 	svg: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.number
 	]),
 	textStyle: PropTypes.object,
+	TextComponent: PropTypes.object,
+	AvatarIconComponent: PropTypes.object,
+	DeleteButtonIconComponent: PropTypes.object,
 	value: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.number

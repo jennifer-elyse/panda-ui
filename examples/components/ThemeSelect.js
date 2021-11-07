@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
 // Panda Imports
 import {
 	Button,
@@ -8,6 +10,7 @@ import {
 } from 'react-native-panda-ui';
 
 import StyledSelect from '../components/StyledSelect';
+import { ButtonText } from '../components/StyledText';
 import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import {
@@ -74,7 +77,9 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 					</View>
 					<View style={{ justifyContent: 'center', alignItems: 'center' }}>
 						<Button
-							label="APPLY"
+							// label="APPLY"
+							//IconComponent={<FontAwesome5 name="search" size={15} color={Colors[theme].buttonTextColor} />}
+							TextComponent={<ButtonText buttonTextColor={Colors[theme].buttonTextColor}>APPLY</ButtonText>}
 							onPress={() => updateTheme()}
 							style={{ padding: 5 }}
 							width={110}
@@ -85,7 +90,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 							solid={true}
 							border={true}
 							borderWidth={Styles[theme].buttonBorderWidth}
-							gradient={Colors[theme].buttonGradient ? Colors[theme].buttonGradient : []}
+							gradient={Colors[theme].buttonGradient}
 						/>
 					</View>
 				</View>

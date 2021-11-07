@@ -73,7 +73,7 @@ const TabGroup = (props) => {
 						<Button
 							icon={option.icon}
 							label={option.label}
-							solid={false}
+							transparent={true}
 							allowInteraction={!selected}
 							size={size}
 							height={height}
@@ -120,5 +120,6 @@ TabGroup.propTypes = {
 	color: PropTypes.string,
 	textColor: PropTypes.string,
 	style: PropTypes.object,
+	buttonStyle: PropTypes.object,
 	theme: PropTypes.string
 };
