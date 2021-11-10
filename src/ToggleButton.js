@@ -23,7 +23,7 @@ const ToggleButton = (props) => {
 		borderRadius=0,
 		border=0,
 		gradient,
-		TextComponent
+		textElement
 	} = props;
 
 	const displayColor = disabled ? disabledColor : color;
@@ -87,7 +87,7 @@ const ToggleButton = (props) => {
 						onPress={() => onValueChange(option.value)}
 						key={option.value}
 						gradient={gradient}
-						TextComponent={TextComponent}
+						textElement={textElement}
 					/>
 				);
 			})}
@@ -120,5 +120,5 @@ ToggleButton.propTypes = {
 	borderRadius: PropTypes.number,
 	border: PropTypes.number,
 	gradient: PropTypes.array,
-	TextComponent: PropTypes.object
+	textElement: PropTypes.object
 };

@@ -31,9 +31,9 @@ const Chip = (props) => {
 		svg,
 		textStyle,
 		value,
-		TextComponent,
-		AvatarIconComponent,
-		DeleteButtonIconComponent
+		textElement,
+		AvatarIconElement,
+		DeleteButtonIconElement
 	} = props;
 
 	const styles = StyleSheet.create({
@@ -59,7 +59,7 @@ const Chip = (props) => {
 		<View style={styles.container}
 			key={value}>
 			<Button
-				IconComponent={AvatarIconComponent}
+				iconElement={AvatarIconElement}
 				svg={svg}
 				style={{ padding: 15, marginRight: 5, marginLeft: 5 }}
 				height={ height > 0 ? height - 10 : size === 'small' ? 20 : size === 'standard' ? 25 : 35 }
@@ -80,7 +80,7 @@ const Chip = (props) => {
 			</Body3>
 			{ allowInteraction &&
 				<Button
-					IconComponent={DeleteButtonIconComponent}
+					iconElement={DeleteButtonIconElement}
 					style={{ marginLeft: 10 }}
 					height={ height > 0 ? height - 10 : size === 'small' ? 20 : size === 'standard' ? 25 : 35 }
 					width={ height > 0 ? height - 10 : size === 'small' ? 20 : size === 'standard' ? 25 : 35 }
@@ -121,9 +121,9 @@ Chip.propTypes = {
 		PropTypes.number
 	]),
 	textStyle: PropTypes.object,
-	TextComponent: PropTypes.object,
-	AvatarIconComponent: PropTypes.object,
-	DeleteButtonIconComponent: PropTypes.object,
+	textElement: PropTypes.object,
+	AvatarIconElement: PropTypes.object,
+	DeleteButtonIconElement: PropTypes.object,
 	value: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.number

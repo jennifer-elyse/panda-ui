@@ -6255,9 +6255,9 @@ react-native-iphone-x-helper@^1.3.0:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
 
-react-native-panda-ui@../react-native-panda-ui-0.1.21.tgz:
-  version "0.1.21"
-  resolved "../react-native-panda-ui-0.1.21.tgz#b7cbaa2d45ace04c91b73988e1f87b4324bddc93"
+react-native-panda-ui@../react-native-panda-ui-0.1.23.tgz:
+  version "0.1.23"
+  resolved "../react-native-panda-ui-0.1.23.tgz#83fb8214f80cb220242729ffd9b287d36eb36cf5"
   dependencies:
     "@expo/vector-icons" "^12.0.5"
     "@fortawesome/fontawesome-pro" "^5.14.0"
@@ -6270,6 +6270,7 @@ react-native-panda-ui@../react-native-panda-ui-0.1.21.tgz:
     "@fortawesome/pro-regular-svg-icons" "^5.15.2"
     "@fortawesome/pro-solid-svg-icons" "^5.15.2"
     "@fortawesome/react-native-fontawesome" "^0.2.6"
+    "@unimodules/core" "^7.1.2"
     chroma "^0.0.1"
     expo-linear-gradient "^10.0.3"
     react-error-boundary "^3.1.3"
@@ -6279,9 +6280,9 @@ react-native-panda-ui@../react-native-panda-ui-0.1.21.tgz:
     react-native-remote-svg "2.0.6"
     react-native-vector-icons "8.1.0"
 
-react-native-panda-ui@../react-native-panda-ui-0.1.22.tgz:
-  version "0.1.22"
-  resolved "../react-native-panda-ui-0.1.22.tgz#0c64e570270c240dac9cdab1d36c6e707abb529d"
+react-native-panda-ui@../react-native-panda-ui-0.1.24.tgz:
+  version "0.1.24"
+  resolved "../react-native-panda-ui-0.1.24.tgz#f2bab55ec11d856e5f3c1586378699fcc01a2ce9"
   dependencies:
     "@expo/vector-icons" "^12.0.5"
     "@fortawesome/fontawesome-pro" "^5.14.0"

@@ -36,11 +36,11 @@ const Button = (props) => {
 		disabledColor='lightgrey',
 		disabledGradient,
 		textColor='#fff',
-		TextComponent,
-		IconComponent
+		textElement,
+		iconElement
 	} = props;
 
-	warning(IconComponent || TextComponent || label || svg, 'Must provide "IconComponent", "TextComponent", "label", or "svg" to <Button>.');
+	warning(iconElement || textElement || label || svg, 'Must provide "iconElement", "textElement", "label", or "svg" to <Button>.');
 
 	const displayColor = disabled ? disabledColor : gradient && gradient.length > 1 ? 'transparent' : color;
 	const backgroundColor = transparent ?  'transparent' : displayColor;
@@ -109,8 +109,8 @@ const Button = (props) => {
 										fontSize={fontSize}
 										disabledColor={disabledColor}
 										textColor={textColor}
-										TextComponent={TextComponent}
-										IconComponent={IconComponent}
+										textElement={textElement}
+										iconElement={iconElement}
 									/>
 								</View>
 							</LinearGradient>
@@ -141,8 +141,8 @@ const Button = (props) => {
 								fontSize={fontSize}
 								disabledColor={disabledColor}
 								textColor={textColor}
-								TextComponent={TextComponent}
-								IconComponent={IconComponent}
+								textElement={textElement}
+								iconElement={iconElement}
 							/>
 						</View>
 					</LinearGradient>)
@@ -160,8 +160,8 @@ const Button = (props) => {
 						fontSize={fontSize}
 						disabledColor={disabledColor}
 						textColor={textColor}
-						TextComponent={TextComponent}
-						IconComponent={IconComponent}
+						textElement={textElement}
+						iconElement={iconElement}
 					/>
 				</View>)
 			}
@@ -178,8 +178,8 @@ const ButtonContent = (props) => {
 		fontSize,
 		disabledColor='lightgrey',
 		textColor='#fff',
-		TextComponent,
-		IconComponent
+		textElement,
+		iconElement
 	} = props;
 
 	const displayColor = disabled ? disabledColor : textColor;
@@ -193,7 +193,7 @@ const ButtonContent = (props) => {
 
 	return (
 		<View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-			{IconComponent}
+			{iconElement}
 			{svg &&
 				(
 					<Image
@@ -211,13 +211,13 @@ const ButtonContent = (props) => {
 					/>
 				)
 			}
-			{label && !TextComponent && Platform.OS === 'ios' ?
+			{label && !textElement && Platform.OS === 'ios' ?
 				(
 					<View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10 }}>
 						<Text style={buttonLabelStyle}>{label}</Text>
 					</View>
 				)
-				: label && !TextComponent && Platform.OS !== 'ios' ?
+				: label && !textElement && Platform.OS !== 'ios' ?
 					(
 						<View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10 }}>
 							<Text style={buttonLabelStyle}>{label}</Text>
@@ -226,16 +226,16 @@ const ButtonContent = (props) => {
 					:
 					(undefined)
 			}
-			{TextComponent && Platform.OS === 'ios' ?
+			{textElement && Platform.OS === 'ios' ?
 				(
 					<View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10 }}>
-						{TextComponent}
+						{textElement}
 					</View>
 				)
-				: TextComponent && Platform.OS !== 'ios' ?
+				: textElement && Platform.OS !== 'ios' ?
 					(
 						<View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10 }}>
-							{TextComponent}
+							{textElement}
 						</View>
 					)
 					:
@@ -271,8 +271,8 @@ Button.propTypes = {
 	dropShadow: PropTypes.bool,
 	column: PropTypes.bool,
 	borderColor: PropTypes.string,
-	TextComponent: PropTypes.object,
-	IconComponent: PropTypes.object,
+	textElement: PropTypes.object,
+	iconElement: PropTypes.object,
 	gradient: PropTypes.array,
 	disabledGradient: PropTypes.array
 };

@@ -150,7 +150,7 @@ export default function ChoiceScreen() {
 									color={Colors[theme].buttonColor}
 									activeTextColor={Colors[theme].buttonTextColor}
 									inactiveTextColor={Colors[theme].buttonColor}
-									TextComponent={<ButtonText buttonTextColor={Colors[theme].buttonTextColor} />}
+									textElement={<ButtonText buttonTextColor={Colors[theme].buttonTextColor} />}
 									options={[{ label: 'Heads', value: false, svg: require('../assets/trashpanda.svg') }, { label: 'Tails', value: true, svg: require('../assets/trashcan.svg') }]}
 								/>
 							</View>
@@ -370,7 +370,7 @@ export default function ChoiceScreen() {
 
 												}}
 												containerBorderRadius={Styles[theme].borderRadius}
-												DeleteButtonIconComponent={<FontAwesome5 name="times" size={15} color={Colors[theme].buttonTextColor} />}
+												DeleteButtonIconElement={<FontAwesome5 name="times" size={15} color={Colors[theme].buttonTextColor} />}
 											/>
 										</View>);
 								})}
