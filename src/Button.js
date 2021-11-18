@@ -8,21 +8,20 @@ import {
 } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Image from 'react-native-remote-svg';
 
 import warning from './utils/warning';
 
+
 const Button = (props) => {
 	const {
 		onPress,
-		icon,
 		svg,
 		label,
 		disabled,
 		width='auto',
 		size='standard',
-		solid=true,
+		transparent=false,
 		color,
 		gradient,
 		style,
@@ -37,13 +36,14 @@ const Button = (props) => {
 		disabledColor='lightgrey',
 		disabledGradient,
 		textColor='#fff',
-		TextComponent=Text
+		textElement,
+		iconElement
 	} = props;
 
-	warning(icon || label || svg, 'Must provide "icon", "label", or "svg" to <Button>.');
+	warning(iconElement || textElement || label || svg, 'Must provide "iconElement", "textElement", "label", or "svg" to <Button>.');
 
-	const displayColor = disabled ? disabledColor : gradient.length > 1 ? 'transparent' : color;
-	const backgroundColor = solid ? displayColor : 'transparent';
+	const displayColor = disabled ? disabledColor : gradient && gradient.length > 1 ? 'transparent' : color;
+	const backgroundColor = transparent ?  'transparent' : displayColor;
 
 	const buttonStyle = {
 		...style,
@@ -81,7 +81,7 @@ const Button = (props) => {
 
 	return (
 		<Component onPress={(disabled || !allowInteraction) ? undefined : () => onPress()} style={buttonStyle }>
-			{gradient.length > 1 ?
+			{gradient && gradient.length > 1 ?
 				Platform.OS === 'ios' ?
 					(
 						<View style={borderWidth > 0 && !gradient ?
@@ -101,17 +101,16 @@ const Button = (props) => {
 									dropShadow ? buttonStyleDropShadow : buttonStyle }>
 
 									<ButtonContent
-										icon={icon}
 										svg={svg}
 										label={label}
 										disabled={disabled}
 										size={size}
-										solid={solid}
 										color={color}
 										fontSize={fontSize}
 										disabledColor={disabledColor}
 										textColor={textColor}
-										TextComponent={TextComponent}
+										textElement={textElement}
+										iconElement={iconElement}
 									/>
 								</View>
 							</LinearGradient>
@@ -134,17 +133,16 @@ const Button = (props) => {
 							:
 							dropShadow ? buttonStyleDropShadow : buttonStyle }>
 							<ButtonContent
-								icon={icon}
 								svg={svg}
 								label={label}
 								disabled={disabled}
 								size={size}
-								solid={solid}
 								color={color}
 								fontSize={fontSize}
 								disabledColor={disabledColor}
 								textColor={textColor}
-								TextComponent={TextComponent}
+								textElement={textElement}
+								iconElement={iconElement}
 							/>
 						</View>
 					</LinearGradient>)
@@ -154,17 +152,16 @@ const Button = (props) => {
 					:
 					dropShadow ? buttonStyleDropShadow : buttonStyle }>
 					<ButtonContent
-						icon={icon}
 						svg={svg}
 						label={label}
 						disabled={disabled}
 						size={size}
-						solid={solid}
 						color={color}
 						fontSize={fontSize}
 						disabledColor={disabledColor}
 						textColor={textColor}
-						TextComponent={TextComponent}
+						textElement={textElement}
+						iconElement={iconElement}
 					/>
 				</View>)
 			}
@@ -172,41 +169,32 @@ const Button = (props) => {
 	);
 };
 
-
 const ButtonContent = (props) => {
 	const {
-		icon,
 		svg,
 		label,
 		disabled,
 		size='standard',
-		solid=true,
-		color,
 		fontSize,
 		disabledColor='lightgrey',
 		textColor='#fff',
-		TextComponent=Text
+		textElement,
+		iconElement
 	} = props;
 
-	warning(icon || label || svg, 'Must provide "icon", "label", or "svg" to <Button>.');
-
 	const displayColor = disabled ? disabledColor : textColor;
-	// const contentColor = solid ? textColor : displayColor;
 
 	const buttonLabelStyle = {
 		color: displayColor,
 		fontSize: fontSize || (size === 'small' ? 14 : size === 'standard' ? 16 : 20),
 		fontWeight: 'bold',
-		paddingLeft: icon || svg ? 8 : 0,
 		textAlign: 'center'
 	};
 
 	return (
-		<React.Fragment>
-			{!!icon &&
-				<FontAwesome5 name={icon} size={size === 'small' ? 13 : size === 'standard' ? 15 : 21} color={displayColor} />
-			}
-			{svg && Platform.OS === 'ios' ?
+		<View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+			{iconElement}
+			{svg &&
 				(
 					<Image
 						showWebviewLoader={false}
@@ -215,46 +203,50 @@ const ButtonContent = (props) => {
 							width: Platform.OS === 'ios' ? 250 : 50,
 							resizeMode: 'contain',
 							transform: [
-								{ scaleX: Platform.OS === 'ios' ? (size === 'small' ? 0.4 : 0.6) : 1 },
-								{ scaleY: Platform.OS === 'ios' ? (size === 'small' ? 0.4 : 0.6) : 1 }]
+								{ scaleX: Platform.OS === 'ios' ? (size === 'small' ? 0.3 : 0.6) : 1 },
+								{ scaleY: Platform.OS === 'ios' ? (size === 'small' ? 0.3 : 0.6) : 1 }]
 						}}
 						source={svg}
 						resizeMode="contain"
 					/>
 				)
-				: svg && Platform.OS !== 'ios' ?
-					(
-						<Image
-							showWebviewLoader={false}
-							style={{
-								height: 40,
-								width: 50,
-								resizeMode: 'contain',
-								transform: [
-									{ scaleX: Platform.OS !== 'ios' ? (size === 'small' ? 0.6 : 0.8) : 1 },
-									{ scaleY: Platform.OS !== 'ios' ? (size === 'small' ? 0.6 : 0.8) : 1 }]
-							}}
-							source={svg}
-							resizeMode="contain"
-						/>
-					) : (undefined)
 			}
-			{label && Platform.OS === 'ios' ?
+			{label && !textElement && Platform.OS === 'ios' ?
 				(
-					<TextComponent style={buttonLabelStyle}>{label}</TextComponent>
+					<View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10 }}>
+						<Text style={buttonLabelStyle}>{label}</Text>
+					</View>
 				)
-				: label && Platform.OS !== 'ios' ?
+				: label && !textElement && Platform.OS !== 'ios' ?
 					(
-						<TextComponent style={[buttonLabelStyle/* , { marginLeft: -15 } */]}>{label}</TextComponent>
-					) : (undefined)
+						<View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10 }}>
+							<Text style={buttonLabelStyle}>{label}</Text>
+						</View>
+					)
+					:
+					(undefined)
 			}
-		</React.Fragment>
+			{textElement && Platform.OS === 'ios' ?
+				(
+					<View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10 }}>
+						{textElement}
+					</View>
+				)
+				: textElement && Platform.OS !== 'ios' ?
+					(
+						<View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10 }}>
+							{textElement}
+						</View>
+					)
+					:
+					(undefined)
+			}
+		</View>
 	);
 };
 
 Button.propTypes = {
 	onPress: PropTypes.func.isRequired,
-	icon: PropTypes.string,
 	label: PropTypes.string,
 	svg: PropTypes.oneOfType([
 		PropTypes.string,
@@ -266,7 +258,7 @@ Button.propTypes = {
 		PropTypes.number
 	]),
 	size: PropTypes.oneOf(['small', 'standard', 'large']),
-	solid: PropTypes.bool,
+	transparent: PropTypes.bool,
 	color: PropTypes.string,
 	disabledColor: PropTypes.string,
 	style: PropTypes.object,
@@ -279,7 +271,8 @@ Button.propTypes = {
 	dropShadow: PropTypes.bool,
 	column: PropTypes.bool,
 	borderColor: PropTypes.string,
-	TextComponent: PropTypes.func,
+	textElement: PropTypes.object,
+	iconElement: PropTypes.object,
 	gradient: PropTypes.array,
 	disabledGradient: PropTypes.array
 };

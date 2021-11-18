@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
+
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 // Panda Imports
 import {
@@ -8,6 +10,7 @@ import {
 } from 'react-native-panda-ui';
 
 import StyledSelect from '../components/StyledSelect';
+import { ButtonText } from '../components/StyledText';
 import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import {
@@ -21,16 +24,24 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 	const [userSession, dispatch] = useThemeContext();
 	const theme = themeSelector(userSession);
 	const baseTheme = baseThemeSelector(userSession);
-	const [character, setCharacter]	= useState({ id: '0', animal: '', theme: 'default' });
+	const [character, setCharacter]	= useState({ id: '0', animal: '', theme: theme });
 
 	const updateTheme = async () => {
 		setLoading(true);
 		dispatch({ type: 'SET_THEME', payload: { theme: character.theme } });
 		const response = character.id  > 0 && await getCharacterQualities(character.id);
-		console.log(response);
-		// setQualitiesData && setQualitiesData(response);
+		// console.log(response);
+		setQualitiesData && setQualitiesData(response);
 		setLoading(false);
 	};
+
+	useEffect(() => {
+		// updater function form
+		setCharacter((previousCharacter) => ({
+			...previousCharacter,
+			theme
+		}));
+	}, [theme]);
 
 	return (
 		<View style={{ height: 100, width: '95%', marginVertical: 30 }}>
@@ -43,7 +54,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 				cardColor={Colors[theme].cardColor}
 			>
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-					<View style={{ borderWidth: Styles[theme].accentBorderWidth, borderColor: Colors[theme].borderColor, borderRadius: Styles[theme].borderRadius - (Styles[theme].padding * 2), marginRight: 8, width: '60%' }}>
+					<View style={{ borderWidth: Styles[theme].accentBorderWidth, borderColor: Colors[theme].borderColor, borderRadius: Styles[theme].borderRadius, marginRight: 8, width: '60%' }}>
 						<StyledSelect
 							onValueChange={(itemValue, itemIndex) => {
 								setCharacter({ id: characterData[itemIndex -1]?.id, animal: characterData[itemIndex -1]?.animal, theme: itemValue });
@@ -66,8 +77,10 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 					</View>
 					<View style={{ justifyContent: 'center', alignItems: 'center' }}>
 						<Button
-							label="APPLY"
-							onPress={async () => updateTheme()}
+							// label="APPLY"
+							//iconElement={<FontAwesome5 name="search" size={15} color={Colors[theme].buttonTextColor} />}
+							textElement={<ButtonText buttonTextColor={Colors[theme].buttonTextColor}>APPLY</ButtonText>}
+							onPress={() => updateTheme()}
 							style={{ padding: 5 }}
 							width={110}
 							height={42}
@@ -77,7 +90,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 							solid={true}
 							border={true}
 							borderWidth={Styles[theme].buttonBorderWidth}
-							gradient={Colors[theme].buttonGradient ? Colors[theme].buttonGradient : []}
+							gradient={Colors[theme].buttonGradient}
 						/>
 					</View>
 				</View>

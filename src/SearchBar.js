@@ -5,14 +5,16 @@ import {
 	Platform,
 	StyleSheet
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
 import RNPickerSelect from 'react-native-picker-select';
 
 import Button from './Button';
 
 const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 	borderColor='#772d4f', borderRadius=50, borderWidth=1, buttonColor='#772d4f',
-	buttonTextColor='#772d4f', containerStyle, pickerText='#772d4f',
-	gradient=[] }) => {
+	buttonTextColor='#772d4f', containerStyle, pickerTextColor='#772d4f',
+	gradient, caretSize=12, caretColor=backgroundColor }) => {
 
 	const [searchType, setSearchType] = useState('');
 	const [showSearchValues, setShowSearchValues] = useState(false);
@@ -66,12 +68,12 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 
 	const pickerSelectStyles = StyleSheet.create({
 		inputIOS: {
-			color: pickerText,
+			color: pickerTextColor,
 			backgroundColor: backgroundColor,
 			paddingRight: 30 // to ensure the text is never behind the icon
 		},
 		inputAndroid: {
-			color: pickerText,
+			color: pickerTextColor,
 			backgroundColor: backgroundColor,
 			paddingRight: 30 // to ensure the text is never behind the icon
 		}
@@ -97,7 +99,7 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 					<RNPickerSelect
 						placeholder={{
 							label: 'Search by...',
-							color: pickerText,
+							color: pickerTextColor,
 							value: '',
 							fontWeight: 'bold'
 						}}
@@ -111,10 +113,15 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 						style={{
 							...pickerSelectStyles,
 							placeholder: {
-								color: pickerText,
+								color: pickerTextColor,
 								fontSize: 14,
 								fontWeight: 'bold'
 							}
+						}}
+						Icon = {() => {
+							return (
+								<Ionicons name="md-checkmark-circle" size={caretSize}  color={caretColor} />
+							);
 						}}
 					/>
 				</View>
@@ -123,7 +130,7 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 						placeholder={{
 							label: 'Select value...',
 							value: '',
-							color: pickerText
+							color: pickerTextColor
 						}}
 						useNativeAndroidPickerStyle={false}
 						onValueChange={(itemValue, itemIndex) => {
@@ -134,10 +141,15 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 						style={{
 							...pickerSelectStyles,
 							placeholder: {
-								color: pickerText,
+								color: pickerTextColor,
 								fontSize: 14,
 								fontWeight: 'bold'
 							}
+						}}
+						Icon = {() => {
+							return (
+								<Ionicons name="md-checkmark-circle" size={caretSize}  color={caretColor} />
+							);
 						}}
 					/>
 				</View>
@@ -146,7 +158,7 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 						onPress={() => handleSubmit()}
 						label="SEARCH"
 						style={{ paddingHorizontal: 10 }}
-						solid={false}
+						transparent={true}
 						borderWidth={1}
 						color={buttonColor}
 						textColor={buttonTextColor}
@@ -168,12 +180,14 @@ SearchBar.propTypes = {
 	data: PropTypes.array,
 	onSubmit: PropTypes.func.isRequired,
 	backgroundColor: PropTypes.string,
-	pickerText: PropTypes.string,
+	pickerTextColor: PropTypes.string,
 	buttonColor: PropTypes.string,
 	buttonTextColor: PropTypes.string,
 	borderColor: PropTypes.string,
 	borderWidth: PropTypes.number,
 	borderRadius: PropTypes.number,
+	caretSize: PropTypes.number,
+	caretColor: PropTypes.string,
 	containerStyle: PropTypes.object,
 	gradient: PropTypes.array
 };

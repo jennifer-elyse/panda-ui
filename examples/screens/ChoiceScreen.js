@@ -8,12 +8,13 @@ import {
 	Platform
 } from 'react-native';
 
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
 // Expo imports
 import { StatusBar } from 'expo-status-bar';
 
 // Panda Imports
 import {
-	Card,
 	CheckBoxGroup,
 	Chip,
 	CounterInput,
@@ -21,6 +22,7 @@ import {
 	RadioGroup,
 	ToggleButton
 } from 'react-native-panda-ui';
+import { ButtonText } from '../components/StyledText';
 
 // Local Imports
 import {
@@ -71,7 +73,7 @@ const lovesOptions =
 	}];
 
 
-export default function SettingsScreen() {
+export default function ChoiceScreen() {
 	const [userSession, dispatch] = useThemeContext();
 	const theme = themeSelector(userSession);
 	const inverted = invertedSelector(userSession);
@@ -105,7 +107,7 @@ export default function SettingsScreen() {
 	}, []);
 
 	function handleCountChange(newCount) {
-		setCharacterCount(newCount ? newCount : 1);
+		setCharacterCount(newCount ? newCount : 0);
 	}
 
 	if (loading) {
@@ -148,6 +150,7 @@ export default function SettingsScreen() {
 									color={Colors[theme].buttonColor}
 									activeTextColor={Colors[theme].buttonTextColor}
 									inactiveTextColor={Colors[theme].buttonColor}
+									textElement={<ButtonText buttonTextColor={Colors[theme].buttonTextColor} />}
 									options={[{ label: 'Heads', value: false, svg: require('../assets/trashpanda.svg') }, { label: 'Tails', value: true, svg: require('../assets/trashcan.svg') }]}
 								/>
 							</View>
@@ -215,7 +218,7 @@ export default function SettingsScreen() {
 								backgroundColor={Colors[theme].buttonColor}
 								textColor={Colors[theme].buttonTextColor}
 								checkedColor={Colors[theme].buttonTextColor}
-								checkBoxContainerStyle={{ borderRadius: Styles[theme].borderRadius }}
+								checkBoxBackgroundBorderRadius={Styles[theme].borderRadius}
 							/>
 						</DoubleCard>
 					</View>
@@ -250,7 +253,7 @@ export default function SettingsScreen() {
 								backgroundColor={Colors[theme].buttonColor}
 								textColor={Colors[theme].buttonTextColor}
 								checkedColor={Colors[theme].buttonTextColor}
-								checkBoxContainerStyle={{ borderRadius: Styles[theme].borderRadius }}
+								checkBoxBackgroundBorderRadius={Styles[theme].borderRadius}
 							/>
 						</DoubleCard>
 					</View>
@@ -259,6 +262,7 @@ export default function SettingsScreen() {
 							backCardElevation={5}
 							cardElevation={8}
 							borderRadius={Styles[theme].borderRadius}
+							padding={Styles[theme].padding}
 							backCardColor={Colors[theme].backCardColor}
 							backCardGradient={Colors[theme].backCardGradient}
 							cardColor={Colors[theme].cardColor}
@@ -269,8 +273,69 @@ export default function SettingsScreen() {
 									onChange={handleCountChange}
 									cardColor={Colors[theme].cardColor}
 									backCardColor={Colors[theme].backCardColor}
-									buttonTextColor={Colors[theme].textColor}
-									textColor={Colors[theme].textColor}
+									incrementBackgroundColor={Colors[theme].incrementBackgroundColor}
+									decrementBackgroundColor={Colors[theme].decrementBackgroundColor}
+									incrementTextColor={Colors[theme].textColor}
+									decrementTextColor={Colors[theme].textColor}
+									counterColor={Colors[theme].textColor}
+									variationNumberOfCards={2}
+									borderRadius={Styles[theme].borderRadius}
+									backCardGradient={Colors[theme].backCardGradient}
+									size="large"
+								/>
+							</View>
+						</DoubleCard>
+					</View>
+					<View style={{ height: 150, width: '85%', marginTop: 20, marginBottom: 35 }}>
+						<DoubleCard
+							backCardElevation={5}
+							cardElevation={8}
+							borderRadius={Styles[theme].borderRadius}
+							padding={Styles[theme].padding}
+							backCardColor={Colors[theme].backCardColor}
+							backCardGradient={Colors[theme].backCardGradient}
+							cardColor={Colors[theme].cardColor}
+						>
+							<View style={{ alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+								<CounterInput
+									value={characterCount}
+									onChange={handleCountChange}
+									cardColor={Colors[theme].cardColor}
+									backCardColor={Colors[theme].backCardColor}
+									incrementTextColor={Colors[theme].textColor}
+									decrementTextColor={Colors[theme].textColor}
+									counterColor={Colors[theme].textColor}
+									variationNumberOfCards={2}
+									borderRadius={Styles[theme].borderRadius}
+									backCardGradient={Colors[theme].backCardGradient}
+									size="standard"
+								/>
+							</View>
+						</DoubleCard>
+					</View>
+					<View style={{ height: 150, width: '85%', marginTop: 20, marginBottom: 35 }}>
+						<DoubleCard
+							backCardElevation={5}
+							cardElevation={8}
+							borderRadius={Styles[theme].borderRadius}
+							padding={Styles[theme].padding}
+							backCardColor={Colors[theme].backCardColor}
+							backCardGradient={Colors[theme].backCardGradient}
+							cardColor={Colors[theme].cardColor}
+						>
+							<View style={{ alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+								<CounterInput
+									value={characterCount}
+									onChange={handleCountChange}
+									cardColor={Colors[theme].cardColor}
+									backCardColor={Colors[theme].backCardColor}
+									incrementTextColor={Colors[theme].textColor}
+									decrementTextColor={Colors[theme].textColor}
+									counterColor={Colors[theme].textColor}
+									variationNumberOfCards={1}
+									borderRadius={Styles[theme].borderRadius}
+									backCardGradient={Colors[theme].backCardGradient}
+									size="small"
 								/>
 							</View>
 						</DoubleCard>
@@ -280,6 +345,7 @@ export default function SettingsScreen() {
 							backCardElevation={5}
 							cardElevation={8}
 							borderRadius={Styles[theme].borderRadius}
+							padding={Styles[theme].padding}
 							backCardColor={Colors[theme].backCardColor}
 							backCardGradient={Colors[theme].backCardGradient}
 							cardColor={Colors[theme].cardColor}
@@ -303,6 +369,8 @@ export default function SettingsScreen() {
 												onPressDelete={() => {
 
 												}}
+												containerBorderRadius={Styles[theme].borderRadius}
+												DeleteButtonIconElement={<FontAwesome5 name="times" size={15} color={Colors[theme].buttonTextColor} />}
 											/>
 										</View>);
 								})}
