@@ -234,4 +234,3 @@ SortHeader.propTypes = {
 };
 
 export default SortHeader;
-
