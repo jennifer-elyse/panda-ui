@@ -6,35 +6,45 @@ import invariant from './utils/invariant';
 // Import sibling common components directly to avoid circular dependencies.
 import CheckBox from './CheckBox';
 
-const CheckBoxGroup = ({ options, value, onChange, disabled, style,
-	backgroundColor, disabledColor, textColor, checkedColor,
-	checkBoxContainerStyle, containerStyle, checkBoxBackgroundBorderRadius }) => {
+const CheckBoxGroup = (props) => {
+	const {
+		options,
+		value=[],
+		onChange,
+		disabled,
+		backgroundColor,
+		disabledColor,
+		textColor,
+		checkedColor,
+		checkBoxContainerStyle,
+		containerStyle,
+		checkBoxBackgroundBorderRadius
+	} = props;
 
 	invariant(Array.isArray(options), `CheckBoxGroup expected an array for the 'options' prop, but instead got type "${typeof options}"`);
 
-	let disableRest = false;
-	value = value || [];
+	// let disableRest = false;
 
 	return (
 		<View style={containerStyle}>
 			{options.map((option) => {
 				const checked = value.includes(option.value);
-				const mutuallyExclusive = option.mutuallyExclusive === 'Y' ? true : false;
-				disableRest = disableRest || (checked && mutuallyExclusive);
+				{/* const mutuallyExclusive = option.mutuallyExclusive === 'Y' ? true : false; */}
+				{/* disableRest = disableRest || (checked && mutuallyExclusive); */}
 				return (
 					<CheckBox
 						key={option.value}
 						title={option.label}
 						containerStyle={checkBoxContainerStyle, { minHeight: 45 }}
 						onPress={() => {
-							if ((!mutuallyExclusive && disableRest) || checked) {
+							if (/* (!mutuallyExclusive && disableRest) || */ checked) {
 								onChange(value.filter(v => v !== option.value));
 							} else {
 								onChange([...value, option.value]);
 							}
 						}}
-						disabled={disableRest}
-						checked={(mutuallyExclusive || !disableRest) && checked}
+						disabled={disabled}
+						checked={/* (mutuallyExclusive || !disableRest) &&  */ checked}
 						backgroundColor={backgroundColor}
 						disabledColor={disabledColor}
 						textColor={textColor}
@@ -55,7 +65,6 @@ CheckBoxGroup.propTypes = {
 	value: PropTypes.arrayOf(PropTypes.any),
 	onChange: PropTypes.func.isRequired,
 	disabled: PropTypes.bool,
-	style: PropTypes.object,
 	backgroundColor: PropTypes.string,
 	disabledColor: PropTypes.string,
 	textColor: PropTypes.string,

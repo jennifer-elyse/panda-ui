@@ -66,7 +66,7 @@ function App() {
 
 	const hasGradient = Colors[theme].statusBarGradient && Colors[theme].statusBarGradient.length > 1;
 	const statusBarStyle = hasGradient ? chroma.contrast(Colors[theme].statusBarGradient[0], '#fff') > 5
-			? 'light' : 'dark' :
+		? 'light' : 'dark' :
 		chroma.contrast(Colors[theme].statusBarColor, '#fff') > 5
 			? 'light' : 'dark';
 

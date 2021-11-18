@@ -11,12 +11,10 @@ import {
 // Expo imports
 import { StatusBar } from 'expo-status-bar';
 
-
 import chroma from 'chroma-js';
 
 // Panda Imports
 import {
-	Card,
 	DoubleCard,
 	SearchBar,
 	SortHeader,
@@ -53,7 +51,7 @@ const DataScreen = () => {
 	const theme = themeSelector(userSession);
 	// state hooks
 	// useState utilizes the current state and a function that updates it
-	const [highlightedIndex, setHighlightedIndex] = useState(null);
+	const [highlightedCharacterId, setHighlightedCharacterId] = useState(null);
 	const [characterData, setCharacterData] 	= useState([]);
 	const [qualitiesData, setQualitiesData] 	= useState([]);
 	const [loading, setLoading] 				= useState(false);
@@ -112,16 +110,18 @@ const DataScreen = () => {
 	});
 
 	useEffect(() => {
-		if (highlightedIndex !== null) {
-			listRef.current.scrollToOffset({ offset: rowHeight * highlightedIndex, animated: true });
+		if (highlightedCharacterId !== null) {
+			listRef.current.scrollToOffset({ offset: rowHeight * highlightedCharacterId, animated: true });
 		}
-	}, [highlightedIndex]);
+	}, [highlightedCharacterId]);
 
 	async function findCharacterRecord(value, searchType) {
-		const itemIndex = sortedApiData.findIndex((item) => {
+		const character = sortedApiData.find((item) => {
 			return String(item[searchType]) === value;
 		});
-		setHighlightedIndex(itemIndex > -1 ? itemIndex : null);
+		setHighlightedCharacterId(character.characterId);
+		// for index, use sortedApiData.findIndex and setHighlightedIndex(itemIndex > -1 ? itemIndex : null);
+
 	}
 
 	const Separator = useCallback(
@@ -161,12 +161,13 @@ const DataScreen = () => {
 							{ label: 'Color', value: 'color', key: 3 }
 						]}
 						data={sortedApiData}
+						borderRadius={Styles[theme].borderRadius}
 						onSubmit={findCharacterRecord}
 						backgroundColor={Colors[theme].cardColor}
 						borderColor={Colors[theme].borderColor}
 						buttonColor={Colors[theme].buttonColor}
 						pickerBorderColor={Colors[theme].borderColor}
-						pickerText={Colors[theme].borderColor}
+						pickerTextColor={Colors[theme].borderColor}
 					/>
 				</DoubleCard>
 			</View>
@@ -200,18 +201,18 @@ const DataScreen = () => {
 					ref={listRef}
 					data={sortedApiData}
 					renderItem={({ item, index, separators }) => (
-						<TouchableHighlight style={highlightedIndex === index ? styles.highlightedRow : styles.row}>
+						<TouchableHighlight style={highlightedCharacterId === item.characterId ? styles.highlightedRow : styles.row}>
 							<View
 								style={{ flex: 1, flexDirection: 'row', height: 45, alignItems: 'center', justifyContent: 'center' }}
 								// onPress={() => { navigateToComponents(); }}
 							>
-								<Body2 textColor={highlightedIndex === index ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[0].width, textAlign: 'center' }}>
+								<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[0].width, textAlign: 'center' }}>
 									{item.animal}
 								</Body2>
-								<Body2 textColor={highlightedIndex === index ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[1].width, textAlign: 'center' }}>
+								<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[1].width, textAlign: 'center' }}>
 									{item.name}
 								</Body2>
-								<Body2 textColor={highlightedIndex === index ? highlightedTextColor: Colors[theme].textColor} style={{ width: 0, flexGrow: columns[2].width, textAlign: 'center' }}>
+								<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor: Colors[theme].textColor} style={{ width: 0, flexGrow: columns[2].width, textAlign: 'center' }}>
 									{item.color}
 								</Body2>
 							</View>

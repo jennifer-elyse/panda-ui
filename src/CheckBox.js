@@ -42,7 +42,7 @@ const CheckBox = (props) => {
 
 CheckBox.propTypes = {
 	containerStyle: PropTypes.object,
-	textStyle: PropTypes.string,
+	textStyle: PropTypes.object,
 	disabled: PropTypes.bool,
 	backgroundColor: PropTypes.string,
 	disabledColor: PropTypes.string,
