@@ -4,7 +4,7 @@ export default {
 		borderRadius: 5,
 		buttonBorderWidth: 1,
 		numberOfCards: 1,
-		padding: 10
+		padding: 5
 	},
 	panda:  {
 		accentBorderWidth: 1,

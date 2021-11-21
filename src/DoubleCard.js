@@ -37,7 +37,7 @@ const DoubleCard = (props) => {
 		>
 			<Card
 				elevation={cardElevation}
-				borderRadius={borderRadius - padding}
+				borderRadius={Math.max(0, borderRadius - padding)}
 				backgroundColor={cardColor}
 				style={{ padding: padding }}
 				width="100%"

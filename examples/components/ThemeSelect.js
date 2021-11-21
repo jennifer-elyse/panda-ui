@@ -52,6 +52,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 				backCardColor={Colors[theme].backCardColor}
 				backCardGradient={Colors[theme].backCardGradient}
 				cardColor={Colors[theme].cardColor}
+				padding={Styles[theme].padding}
 			>
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
 					<View style={{ borderWidth: Styles[theme].accentBorderWidth, borderColor: Colors[theme].borderColor, borderRadius: Styles[theme].borderRadius, marginRight: 8, width: '60%' }}>
