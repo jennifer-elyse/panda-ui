@@ -25,7 +25,10 @@ const SortHeader = (props) => {
 		selectedColor = '#a34e76',
 		borderColor = '#772d4f',
 		textColor = '#fff',
-		TextComponent=Text
+		textActiveColor = '#fff',
+		TextComponent=Text,
+		cellContainerStyle,
+		headerContainerStyle
 	} = props;
 
 	const commonTextStyle = {
@@ -48,7 +51,7 @@ const SortHeader = (props) => {
 
 	const activeTextStyle = {
 		...commonTextStyle,
-		color: textColor
+		color: textActiveColor || textColor
 	};
 
 	const activeViewStyle = {
@@ -120,7 +123,8 @@ const SortHeader = (props) => {
 			...middleBorderStyleObj,
 			flexGrow,
 			flexDirection: 'row',
-			alignItems: 'center'
+			alignItems: 'center',
+			...cellContainerStyle
 		};
 	}
 
@@ -147,7 +151,7 @@ const SortHeader = (props) => {
 	const rootStyle = borderRadius ? rootStyleRounded : rootStyleUnrounded;
 
 	return (
-		<View style={rootStyle}>
+		<View style={[rootStyle, headerContainerStyle]}>
 			{columns.map((column, i) => {
 				let isSorted = sortConfig.key === column.key;
 				isSorted = noSort ? false : isSorted;
@@ -230,7 +234,9 @@ SortHeader.propTypes = {
 	selectedColor: PropTypes.string,
 	borderColor: PropTypes.string,
 	textColor: PropTypes.string,
-	TextComponent: PropTypes.object
+	TextComponent: PropTypes.object,
+	cellContainerStyle: PropTypes.object,
+	headerContainerStyle: PropTypes.object
 };
 
 export default SortHeader;
