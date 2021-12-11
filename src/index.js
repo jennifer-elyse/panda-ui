@@ -12,6 +12,7 @@
 // import Button from 'react-native-apanda-ui/Button';
 // import CheckBox from 'react-native-apanda-ui/CheckBox';
 import Button from './Button';
+import ButtonGroup from './ButtonGroup';
 import Card from './Card';
 import CheckBox from './CheckBox';
 import CheckBoxGroup from './CheckBoxGroup';
@@ -23,6 +24,7 @@ import RadioGroup from './RadioGroup';
 import ScanTextInput from './ScanTextInput';
 import SearchBar from './SearchBar';
 import SortHeader from './SortHeader';
+import * as StyledText from './StyledText';
 import TabGroup from './TabGroup';
 import ToggleButton from './ToggleButton';
 
@@ -39,6 +41,7 @@ import useToggle from './hooks/useToggle';
 
 export {
 	Button,
+	ButtonGroup,
 	Card,
 	CheckBox,
 	CheckBoxGroup,
@@ -52,6 +55,7 @@ export {
 	SortHeader,
 	TabGroup,
 	ToggleButton,
+	StyledText,
 	invariant,
 	warning,
 	useCurrentTime,
