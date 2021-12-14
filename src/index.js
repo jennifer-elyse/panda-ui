@@ -27,6 +27,7 @@ import SortHeader from './SortHeader';
 import * as StyledText from './StyledText';
 import TabGroup from './TabGroup';
 import ToggleButton from './ToggleButton';
+import Drawer from './Drawer';
 
 // utils
 import invariant from './utils/invariant';
@@ -37,7 +38,6 @@ import useCurrentTime from './hooks/useCurrentTime';
 import useDebugRender from './hooks/useDebugRender';
 import useSortedData from './hooks/useSortedData';
 import useToggle from './hooks/useToggle';
-
 
 export {
 	Button,
@@ -61,5 +61,6 @@ export {
 	useCurrentTime,
 	useDebugRender,
 	useSortedData,
-	useToggle
+	useToggle,
+	Drawer
 };
