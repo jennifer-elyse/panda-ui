@@ -11,6 +11,7 @@ function ButtonGroup(props) {
 		selectedIndex,
 		selectIndex,
 		labelColor,
+		labelColorSelected,
 		labelSize
 	} = props;
 
@@ -29,6 +30,8 @@ function ButtonGroup(props) {
 				};
 			}
 
+			const textColor = index === selectedIndex ? labelColorSelected : labelColor;
+
 			return (
 				<TouchableOpacity
 					key={labelValue.value}
@@ -43,7 +46,7 @@ function ButtonGroup(props) {
 				>
 					<Text style={{
 						fontSize: labelSize || 14,
-						color: labelColor || 'black'
+						color: textColor || 'black'
 					}}>{labelValue.label}</Text>
 				</TouchableOpacity>
 			);
