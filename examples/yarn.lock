@@ -4913,11 +4913,6 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-localized-strings@^0.2.0:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/localized-strings/-/localized-strings-0.2.4.tgz#9d61c06b60cc7b5edf7c46e6c7f2d1ecb84aeb2c"
-  integrity sha512-TKDhqFPkIIN/if2FSvVVZTaM/GP9TzfgdQ2uY65mr32xgFu5nqkKXprXbzy5rfx32DF5LDvS/y1UqYF/mAscYA==
-
 locate-path@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-3.0.0.tgz#dbec3b3ab759758071b58fe59fc41871af21400e"
@@ -6174,13 +6169,6 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-localization@^1.0.17:
-  version "1.0.17"
-  resolved "https://registry.yarnpkg.com/react-localization/-/react-localization-1.0.17.tgz#f12f78c8c5e16dea5015cd44b1871c2dee09e99d"
-  integrity sha512-UowuLAvnEPXJgzxjDX/9hKdKYvtUgC6hQ5PV0CnT5f/77tItIUru5tTwgrDY2UL5oUK3JRMgz42tqnAU2W5eoA==
-  dependencies:
-    localized-strings "^0.2.0"
-
 react-native-codegen@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.0.6.tgz#b3173faa879cf71bfade8d030f9c4698388f6909"
@@ -6233,9 +6221,6 @@ react-native-iphone-x-helper@^1.3.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
-
-react-native-panda-ui@../:
-  version "0.1.36"
 
 react-native-picker-select@^8.0.4:
   version "8.0.4"
