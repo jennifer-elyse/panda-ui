@@ -1,57 +1,70 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, LayoutAnimation, UIManager, Platform } from 'react-native';
+import { View, StyleSheet, LayoutAnimation, UIManager, Platform, Dimensions } from 'react-native';
+import PropTypes from 'prop-types';
 import Button from './Button';
+
+// get screen height
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
 	UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-export const Drawer = (props) => {
-	const { children, DrawerContent } = props;
-  const [menuToggle, setMenuToggle] = useState(false);
+function DrawerComponent(props) {
+	const { children, SideBar, buttonBackgroundColor, buttonColor, buttonLabel, buttonPosition } = props;
+	const [menuToggle, setMenuToggle] = useState(false);
 
-  const accentTextColor = 'salmon';
-  const color = 'black';
-
-  const toggleMenu = () => {
+	const toggleMenu = () => {
 		LayoutAnimation.configureNext(
 			LayoutAnimation.create(200, LayoutAnimation.Types.linear, LayoutAnimation.Properties.opacity)
 		);
 		setMenuToggle(prev => !prev);
 	};
 
-  return (
+	const renderButton = () => {
+		return (
+			<View style={[styles.buttonContainer, { top: buttonPosition || SCREEN_HEIGHT / 3 }]}>
+				<Button
+					label={buttonLabel || '>'}
+					onPress={toggleMenu}
+					textColor={buttonBackgroundColor || 'salmon'}
+					color={buttonColor || 'black'}
+				/>
+			</View>
+		);
+	};
+
+	return (
 		<View style={styles.container}>
-			{menuToggle && <View style={styles.sideMenu}>{DrawerContent}</View>}
+			{menuToggle && <SideBar visible={menuToggle} />}
 			<View>
 				{children}
-				<View style={styles.innerContainer}>
-					<Button
-						label=">"
-						onPress={toggleMenu}
-						accentTextColor={accentTextColor}
-						color={color}
-					/>
-				</View>
+				{renderButton()}
 			</View>
 		</View>
 	);
-};
+}
 
 const styles = StyleSheet.create({
 	container: {
-    flexDirection: 'row'
-  },
-	innerContainer: {
-    position: 'absolute',
-    top: 300,
-    left: 0
-  },
-	sideMenu: {
-		width: 300,
-		height: '100%',
-		backgroundColor: 'salmon'
+		flexDirection: 'row'
+	},
+	buttonContainer: {
+		position: 'absolute',
+		left: 0
 	}
 });
 
-export default Drawer;
+DrawerComponent.propTypes = {
+	children: PropTypes.element.isRequired,
+	SideBar: PropTypes.oneOfType([
+		PropTypes.element,
+		PropTypes.func
+	]).isRequired,
+	buttonBackgroundColor: PropTypes.string,
+	buttonColor: PropTypes.string,
+	buttonLabel: PropTypes.string,
+	buttonPosition: PropTypes.number,
+};
+
+export default DrawerComponent;

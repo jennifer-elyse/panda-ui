@@ -19,6 +19,7 @@ import CheckBoxGroup from './CheckBoxGroup';
 import Chip from './Chip';
 import CounterInput from './CounterInput';
 import DoubleCard from './DoubleCard';
+import Drawer from './Drawer';
 import Feedback from './Feedback';
 import RadioGroup from './RadioGroup';
 import ScanTextInput from './ScanTextInput';
@@ -27,7 +28,6 @@ import SortHeader from './SortHeader';
 import * as StyledText from './StyledText';
 import TabGroup from './TabGroup';
 import ToggleButton from './ToggleButton';
-import Drawer from './Drawer';
 
 // utils
 import invariant from './utils/invariant';

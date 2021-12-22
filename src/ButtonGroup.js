@@ -1,8 +1,19 @@
 import React from 'react';
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
 
 function ButtonGroup(props) {
-	const { buttonGroupSelectedBackgroundColor, buttonGroupSeparatorColor, buttonGroupBackgroundColor, buttonLabels, selectedIndex, selectIndex } = props;
+	const {
+		buttonGroupSelectedBackgroundColor,
+		buttonGroupSeparatorColor,
+		buttonGroupBackgroundColor,
+		buttonLabels,
+		selectedIndex,
+		selectIndex,
+		labelColor,
+		labelSize
+	} = props;
+
 	const lastIndex = buttonLabels.length - 1;
 
 	const renderButtons = () => {
@@ -14,7 +25,7 @@ function ButtonGroup(props) {
 			if (lastIndex !== index && (index < selectedIndex - 1 || index > selectedIndex)) {
 				buttonSeparator = {
 					borderRightWidth: 1,
-					borderRightColor: buttonGroupSeparatorColor
+					borderRightColor: buttonGroupSeparatorColor || 'grey'
 				};
 			}
 
@@ -26,15 +37,22 @@ function ButtonGroup(props) {
 						buttonSeparator,
 						(index === 0 || selectedIndex === index) && styles.buttonRadiusLeft,
 						(lastIndex === index || selectedIndex === index) && styles.buttonRadiusRight,
-						selectedIndex === index && { height: 26, backgroundColor: buttonGroupSelectedBackgroundColor }
+						selectedIndex === index && { height: 26, backgroundColor: buttonGroupSelectedBackgroundColor || 'pink' }
 					]}
-					onPress={() => selectIndex(index)}
+					onPress={() => onSelect(index)}
 				>
-					<Text style={styles.buttonText}>{labelValue.label}</Text>
+					<Text style={{
+						fontSize: labelSize || 14,
+						color: labelColor || 'black'
+					}}>{labelValue.label}</Text>
 				</TouchableOpacity>
 			);
 		});
 	};
+
+	const onSelect = index => {
+		selectIndex(index);
+	}
 
 	return (
 		<View
@@ -42,7 +60,7 @@ function ButtonGroup(props) {
 				styles.container,
 				styles.buttonRadiusLeft,
 				styles.buttonRadiusRight,
-				{ backgroundColor: buttonGroupBackgroundColor }
+				{ backgroundColor: buttonGroupBackgroundColor || 'salmon' }
 			]}
 		>
 			{renderButtons()}
@@ -71,5 +89,16 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 7
   }
 });
+
+ButtonGroup.propTypes = {
+	selectIndex: PropTypes.func,
+	selectedIndex: PropTypes.number,
+	buttonBackgroundColor: PropTypes.string,
+	buttonGroupBackgroundColor: PropTypes.string,
+	buttonGroupSelectedBackgroundColor: PropTypes.string,
+	buttonLabels: PropTypes.array,
+	labelColor: PropTypes.string,
+	labelSize: PropTypes.number,
+};
 
 export default ButtonGroup;
