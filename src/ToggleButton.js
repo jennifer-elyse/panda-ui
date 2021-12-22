@@ -4,8 +4,6 @@ import { View } from 'react-native';
 
 import Button from './Button';
 
-
-
 const ToggleButton = (props) => {
 	const {
 		options,
