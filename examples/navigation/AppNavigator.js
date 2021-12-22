@@ -21,6 +21,7 @@ import {
 } from '../contexts/ThemeContext';
 import PandaHomeScreen from '../screens/PandaHomeScreen';
 import DataScreen from '../screens/DataScreen';
+import PendingScreen from '../screens/PendingScreen';
 import ChoiceScreen from '../screens/ChoiceScreen';
 import NavigationScreen from '../screens/NavigationScreen';
 import HelpScreen from '../screens/HelpScreen';
@@ -135,6 +136,7 @@ const AppNavigator = () => {
 				/>
 				<Tab.Screen name="Choices" 		component={ChoiceScreen} />
 				<Tab.Screen name="Data" 		component={DataScreen} />
+				<Tab.Screen name="Pending" component={PendingScreen} />
 				<Tab.Screen name="Navigation" 	component={NavigationScreen} />
 			</Tab.Navigator>
 		</NavigationContainer>
