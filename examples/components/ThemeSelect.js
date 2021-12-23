@@ -7,10 +7,10 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {
 	Button,
 	DoubleCard,
-	StyledText
+	StyledText,
+	StyledSelect
 } from 'react-native-panda-ui';
 
-import StyledSelect from '../components/StyledSelect';
 import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import {

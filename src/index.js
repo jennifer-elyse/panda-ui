@@ -26,6 +26,7 @@ import ScanTextInput from './ScanTextInput';
 import SearchBar from './SearchBar';
 import SortHeader from './SortHeader';
 import * as StyledText from './StyledText';
+import StyledSelect from './StyledSelect';
 import TabGroup from './TabGroup';
 import ToggleButton from './ToggleButton';
 
@@ -56,6 +57,7 @@ export {
 	TabGroup,
 	ToggleButton,
 	StyledText,
+	StyledSelect,
 	invariant,
 	warning,
 	useCurrentTime,
