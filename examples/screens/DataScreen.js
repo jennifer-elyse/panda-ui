@@ -18,7 +18,8 @@ import {
 	DoubleCard,
 	SearchBar,
 	SortHeader,
-	useSortedData
+	useSortedData,
+	StyledText
 } from 'react-native-panda-ui';
 
 // Local Imports
@@ -30,7 +31,6 @@ import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import FlatListItemSeparator from '../components/FlatListItemSeparator';
 import LoadingIndicator from '../components/LoadingIndicator';
-import { H1, Body2 } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
 import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
 
@@ -172,7 +172,7 @@ const DataScreen = () => {
 				</DoubleCard>
 			</View>
 			<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 15 }}>
-				<H1 textColor={Colors[theme].textColor}>Characteristics</H1>
+				<StyledText.H1 textColor={Colors[theme].textColor}>Characteristics</StyledText.H1>
 			</View>
 			<View style={{ height: '40%', width: '95%', marginHorizontal: 10, marginBottom: 5 }}>
 				<SortHeader
@@ -206,15 +206,15 @@ const DataScreen = () => {
 								style={{ flex: 1, flexDirection: 'row', height: 45, alignItems: 'center', justifyContent: 'center' }}
 								// onPress={() => { navigateToComponents(); }}
 							>
-								<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[0].width, textAlign: 'center' }}>
+								<StyledText.Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[0].width, textAlign: 'center' }}>
 									{item.animal}
-								</Body2>
-								<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[1].width, textAlign: 'center' }}>
+								</StyledText.Body2>
+								<StyledText.Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[1].width, textAlign: 'center' }}>
 									{item.name}
-								</Body2>
-								<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor: Colors[theme].textColor} style={{ width: 0, flexGrow: columns[2].width, textAlign: 'center' }}>
+								</StyledText.Body2>
+								<StyledText.Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor: Colors[theme].textColor} style={{ width: 0, flexGrow: columns[2].width, textAlign: 'center' }}>
 									{item.color}
-								</Body2>
+								</StyledText.Body2>
 							</View>
 						</TouchableHighlight>
 					)}

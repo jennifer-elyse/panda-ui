@@ -11,7 +11,7 @@ import { StatusBar } from 'expo-status-bar';
 // Panda Imports
 import {
 	Card,
-	Feedback
+	StyledText
 } from 'react-native-panda-ui';
 
 import {
@@ -19,7 +19,6 @@ import {
 	themeSelector
 } from '../contexts/ThemeContext';
 import Colors from '../constants/Colors';
-import { H1 } from '../components/StyledText';
 
 
 export default function HelpScreen() {
@@ -31,7 +30,7 @@ export default function HelpScreen() {
 	return (
 		<SafeAreaView style={{ flex: 1, marginTop: StatusBar.height, justifyContent: 'center', alignItems: 'center', backgroundColor: Colors[theme].backgroundColor }}>
 			<View style={[styles.header, { paddingTop: 6 }]}>
-				<H1 textColor={Colors[theme].tintColor}>Panda UI</H1>
+				<StyledText.H1 textColor={Colors[theme].tintColor}>Panda UI</StyledText.H1>
 			</View>
 			<View style={{ height: 170, width: '90%', marginTop: 20 }}>
 				<Card

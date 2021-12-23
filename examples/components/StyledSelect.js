@@ -8,8 +8,7 @@ import PropTypes from 'prop-types';
 import RNPickerSelect from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import chroma from 'chroma-js';
-
-import StyledText from '../components/StyledText';
+import { StyledText } from 'react-native-panda-ui';
 
 const StyledSelect = (props) => {
 	const {
@@ -72,7 +71,7 @@ const StyledSelect = (props) => {
 
 	return (
 		<View style={ meta && meta.error && meta.touched ? RNPickerWrapperFailedValidation : RNPickerWrapper }>
-			<StyledText style={{ color: placeholderColor, fontSize: 12, marginBottom: -5, marginLeft: 3 }}>{label}</StyledText>
+			<StyledText.default style={{ color: placeholderColor, fontSize: 12, marginBottom: -5, marginLeft: 3 }}>{label}</StyledText.default>
 			<RNPickerSelect
 				{...input}
 				{...rest}

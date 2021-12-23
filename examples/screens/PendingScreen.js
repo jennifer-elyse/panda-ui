@@ -12,7 +12,8 @@ import { StatusBar } from 'expo-status-bar';
 // Panda Imports
 import {
 	Drawer,
-	ButtonGroup
+	ButtonGroup,
+	StyledText
 } from 'react-native-panda-ui';
 
 // Local Imports
@@ -21,7 +22,6 @@ import {
 	themeSelector
 } from '../contexts/ThemeContext';
 import Colors from '../constants/Colors';
-import { H1, Body2 } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
 import { getCharacters } from '../utils/apiHandler';
 
@@ -37,8 +37,8 @@ const SIDE_BAR = () => {
 			width: 300,
 			backgroundColor: 'pink'
 		}}>
-			<H1>Side Bar</H1>
-			<Body2>Sidebar options</Body2>
+			<StyledText.H1>Side Bar</StyledText.H1>
+			<StyledText.Body2>Sidebar options</StyledText.Body2>
 		</View>
 	);
 };

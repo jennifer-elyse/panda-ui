@@ -6,11 +6,11 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 // Panda Imports
 import {
 	Button,
-	DoubleCard
+	DoubleCard,
+	StyledText
 } from 'react-native-panda-ui';
 
 import StyledSelect from '../components/StyledSelect';
-import { ButtonText } from '../components/StyledText';
 import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import {
@@ -80,7 +80,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 						<Button
 							// label="APPLY"
 							//iconElement={<FontAwesome5 name="search" size={15} color={Colors[theme].buttonTextColor} />}
-							textElement={<ButtonText buttonTextColor={Colors[theme].buttonTextColor}>APPLY</ButtonText>}
+							textElement={<StyledText.ButtonText buttonTextColor={Colors[theme].buttonTextColor}>APPLY</StyledText.ButtonText>}
 							onPress={() => updateTheme()}
 							style={{ padding: 5 }}
 							width={110}

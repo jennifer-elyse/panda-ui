@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
-import StyledText from '../components/StyledText';
+import { StyledText } from 'react-native-panda-ui';
 import Colors from '../constants/Colors';
 import {
 	useThemeContext,
@@ -24,7 +23,7 @@ const Template = (props) => {
 		<View style={styles.container}>
 			<StyledText>
 				Hello Panda!
-			</StyledText>
+			</StyledText.default>
 		</View>
 	);
 };

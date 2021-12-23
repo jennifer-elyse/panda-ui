@@ -16,13 +16,15 @@ import Image from 'react-native-remote-svg';
 
 // Local Imports
 import {
+	StyledText
+} from 'react-native-panda-ui';
+import {
 	useThemeContext,
 	themeSelector
 } from '../contexts/ThemeContext';
 import Colors from '../constants/Colors';
 import LoadingIndicator from '../components/LoadingIndicator';
 import PandaDetail from '../components/PandaDetail';
-import { Body3 } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
 import { getCharacters } from '../utils/apiHandler';
 
@@ -92,7 +94,7 @@ const PandaHomeScreen = () => {
 					}
 				</View>
 			</ScrollView>
-			<Body3 style={{ textAlign: 'right' }} textColor={Colors[theme].textColor}>{`v${Constants.manifest.version}`}</Body3>
+			<StyledText.Body3 style={{ textAlign: 'right' }} textColor={Colors[theme].textColor}>{`v${Constants.manifest.version}`}</StyledText.Body3>
 		</SafeAreaView>
 	);
 };

@@ -5,7 +5,7 @@ import {
 import Toast from 'react-native-easy-toast';
 import Image from 'react-native-remote-svg';
 
-import StyledText from '../components/StyledText';
+import { StyledText } from 'react-native-panda-ui';
 import Colors from '../constants/Colors';
 import { useThemeContext, themeSelector } from '../contexts/ThemeContext';
 
@@ -52,8 +52,8 @@ export const ToastContextProvider = ({ children }) => {
 								</svg>` }}
 							style={{ height: 15, width: 15, marginRight: 5 }}
 						/>
-						<StyledText style={{ color: '#000' }}>Success </StyledText>
-						<StyledText style={{ color: 'grey' }}>{content}</StyledText>
+						<StyledText.default style={{ color: '#000' }}>Success </StyledText.default>
+						<StyledText.default style={{ color: 'grey' }}>{content}</StyledText.default>
 					</View>
 				</View>, duration, callback);
 		},
@@ -71,8 +71,8 @@ export const ToastContextProvider = ({ children }) => {
 								</svg>` }}
 							style={{ height: 15, width: 15, marginRight: 5 }}
 						/>
-						<StyledText style={{ color: '#000' }}>Success </StyledText>
-						<StyledText style={{ color: 'grey' }}>{content}</StyledText>
+						<StyledText.default style={{ color: '#000' }}>Success </StyledText.default>
+						<StyledText.default style={{ color: 'grey' }}>{content}</StyledText.default>
 					</View>
 				</View>, delay);
 		},
@@ -90,8 +90,8 @@ export const ToastContextProvider = ({ children }) => {
 								</svg>` }}
 							style={{ height: 15, width: 15, marginRight: 5 }}
 						/>
-						<StyledText style={{ color: '#000' }}>Information </StyledText>
-						<StyledText style={{ color: 'grey' }}>{content}</StyledText>
+						<StyledText.default style={{ color: '#000' }}>Information </StyledText.default>
+						<StyledText.default style={{ color: 'grey' }}>{content}</StyledText.default>
 					</View>
 				</View>, duration, callback);
 		},
@@ -109,8 +109,8 @@ export const ToastContextProvider = ({ children }) => {
 								</svg>` }}
 							style={{ height: 15, width: 15, marginRight: 5 }}
 						/>
-						<StyledText style={{ color: '#000' }}>Information </StyledText>
-						<StyledText style={{ color: 'grey' }}>{content}</StyledText>
+						<StyledText.default style={{ color: '#000' }}>Information </StyledText.default>
+						<StyledText.default style={{ color: 'grey' }}>{content}</StyledText.default>
 					</View>
 				</View>, delay);
 		},
@@ -128,8 +128,8 @@ export const ToastContextProvider = ({ children }) => {
 								</svg>` }}
 							style={{ height: 15, width: 15, marginRight: 5 }}
 						/>
-						<StyledText style={{ color: '#000' }}>Warning </StyledText>
-						<StyledText style={{ color: 'grey' }}>{content}</StyledText>
+						<StyledText.default style={{ color: '#000' }}>Warning </StyledText.default>
+						<StyledText.default style={{ color: 'grey' }}>{content}</StyledText.default>
 					</View>
 				</View>, duration, callback);
 		},
@@ -147,8 +147,8 @@ export const ToastContextProvider = ({ children }) => {
 								</svg>` }}
 							style={{ height: 15, width: 15, marginRight: 5 }}
 						/>
-						<StyledText style={{ color: '#000' }}>Warning </StyledText>
-						<StyledText style={{ color: 'grey' }}>{content}</StyledText>
+						<StyledText.default style={{ color: '#000' }}>Warning </StyledText.default>
+						<StyledText.default style={{ color: 'grey' }}>{content}</StyledText.default>
 					</View>
 				</View>, delay);
 		},
@@ -166,8 +166,8 @@ export const ToastContextProvider = ({ children }) => {
 								</svg>` }}
 							style={{ height: 15, width: 15, marginRight: 5 }}
 						/>
-						<StyledText style={{ color: '#000' }}>Error </StyledText>
-						<StyledText style={{ color: 'grey' }}>{content}</StyledText>
+						<StyledText.default style={{ color: '#000' }}>Error </StyledText.default>
+						<StyledText.default style={{ color: 'grey' }}>{content}</StyledText.default>
 					</View>
 				</View>, duration, callback);
 		},
@@ -185,8 +185,8 @@ export const ToastContextProvider = ({ children }) => {
 								</svg>` }}
 							style={{ height: 15, width: 15, marginRight: 5 }}
 						/>
-						<StyledText style={{ color: '#000' }}>Error </StyledText>
-						<StyledText style={{ color: 'grey' }}>{content}</StyledText>
+						<StyledText.default style={{ color: '#000' }}>Error </StyledText.default>
+						<StyledText.default style={{ color: 'grey' }}>{content}</StyledText.default>
 					</View>
 				</View>, delay);
 		}

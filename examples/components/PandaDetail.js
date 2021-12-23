@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import Image from 'react-native-remote-svg';
 
-import { H1, H3, Body2 } from '../components/StyledText';
+import { StyledText } from 'react-native-panda-ui';
 import Colors from '../constants/Colors';
 import {
 	useThemeContext,
@@ -26,7 +26,7 @@ const PandaDetail = ({ qualitiesData }) => {
 	return (
 		<View style={{ width: '100%', alignItems: 'center' }}>
 			<View style={{ flexDirection: 'row', marginHorizontal: 20 }}>
-				<H1 textColor={Colors[theme].textColor} style={{ textAlign: 'left' }}>{qualitiesData.name}</H1>
+				<StyledText.H1 textColor={Colors[theme].textColor} style={{ textAlign: 'left' }}>{qualitiesData.name}</StyledText.H1>
 			</View>
 			<View style={{ flexDirection: 'column', justifyContent: 'center' }}>
 				<View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start' }}>
@@ -50,32 +50,32 @@ const PandaDetail = ({ qualitiesData }) => {
 						}
 						{qualitiesData.animal &&
 							<View style={{ width: '80%', flexDirection: 'row' }}>
-								<H3 textColor={Colors[theme].textColor} style={{ marginRight: 5 }}>Animal:</H3>
-								<Body2 textColor={Colors[theme].textColor}>{qualitiesData.animal}</Body2>
+								<StyledText.H3 textColor={Colors[theme].textColor} style={{ marginRight: 5 }}>Animal:</StyledText.H3>
+								<StyledText.Body2 textColor={Colors[theme].textColor}>{qualitiesData.animal}</StyledText.Body2>
 							</View>
 						}
 						{qualitiesData.color &&
 							<View style={{ width: '80%', flexDirection: 'row' }}>
-								<H3 textColor={Colors[theme].textColor} style={{ marginRight: 5 }}>Color:</H3>
-								<Body2 textColor={Colors[theme].textColor}>{qualitiesData.color}</Body2>
+								<StyledText.H3 textColor={Colors[theme].textColor} style={{ marginRight: 5 }}>Color:</StyledText.H3>
+								<StyledText.Body2 textColor={Colors[theme].textColor}>{qualitiesData.color}</StyledText.Body2>
 							</View>
 						}
 						{qualitiesData.faveFood &&
 							<View style={{ width: '80%', flexDirection: 'row' }}>
-								<H3 textColor={Colors[theme].textColor} style={{ marginRight: 5 }}>Fave Food:</H3>
-								<Body2 textColor={Colors[theme].textColor}>{qualitiesData.faveFood}</Body2>
+								<StyledText.H3 textColor={Colors[theme].textColor} style={{ marginRight: 5 }}>Fave Food:</StyledText.H3>
+								<StyledText.Body2 textColor={Colors[theme].textColor}>{qualitiesData.faveFood}</StyledText.Body2>
 							</View>
 						}
 						{qualitiesData.peeves &&
 							<View style={{ width: '80%', flexDirection: 'row' }}>
-								<H3 textColor={Colors[theme].textColor} style={{ marginRight: 5 }}>Peeves:</H3>
-								<Body2 textColor={Colors[theme].textColor}>{qualitiesData.peeves}</Body2>
+								<StyledText.H3 textColor={Colors[theme].textColor} style={{ marginRight: 5 }}>Peeves:</StyledText.H3>
+								<StyledText.Body2 textColor={Colors[theme].textColor}>{qualitiesData.peeves}</StyledText.Body2>
 							</View>
 						}
 						{qualitiesData.loves &&
 							<View style={{ width: '80%', flexDirection: 'row', marginBottom: 30 }}>
-								<H3 textColor={Colors[theme].textColor} style={{ marginRight: 5 }}>Loves:</H3>
-								<Body2 textColor={Colors[theme].textColor}>{qualitiesData.loves}</Body2>
+								<StyledText.H3 textColor={Colors[theme].textColor} style={{ marginRight: 5 }}>Loves:</StyledText.H3>
+								<StyledText.Body2 textColor={Colors[theme].textColor}>{qualitiesData.loves}</StyledText.Body2>
 							</View>
 						}
 					</TouchableOpacity>

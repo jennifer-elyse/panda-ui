@@ -20,9 +20,9 @@ import {
 	CounterInput,
 	DoubleCard,
 	RadioGroup,
-	ToggleButton
+	ToggleButton,
+	StyledText
 } from 'react-native-panda-ui';
-import { ButtonText } from '../components/StyledText';
 
 // Local Imports
 import {
@@ -34,7 +34,6 @@ import {
 import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import LoadingIndicator from '../components/LoadingIndicator';
-import { H1 } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
 import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
 
@@ -150,7 +149,7 @@ export default function ChoiceScreen() {
 									color={Colors[theme].buttonColor}
 									activeTextColor={Colors[theme].buttonTextColor}
 									inactiveTextColor={Colors[theme].buttonColor}
-									textElement={<ButtonText buttonTextColor={Colors[theme].buttonTextColor} />}
+									textElement={<StyledText.ButtonText buttonTextColor={Colors[theme].buttonTextColor} />}
 									options={[{ label: 'Heads', value: false, svg: require('../assets/trashpanda.svg') }, { label: 'Tails', value: true, svg: require('../assets/trashcan.svg') }]}
 								/>
 							</View>
@@ -185,7 +184,7 @@ export default function ChoiceScreen() {
 						</DoubleCard>
 					</View>
 					<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 15 }}>
-						<H1 textColor={Colors[theme].textColor}>Which is Tsuki's color?</H1>
+						<StyledText.H1 textColor={Colors[theme].textColor}>Which is Tsuki's color?</StyledText.H1>
 					</View>
 					<View style={{
 						width: 250,
@@ -223,7 +222,7 @@ export default function ChoiceScreen() {
 						</DoubleCard>
 					</View>
 					<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 15 }}>
-						<H1 textColor={Colors[theme].textColor}>Which are Kenzo's loves?</H1>
+						<StyledText.H1 textColor={Colors[theme].textColor}>Which are Kenzo's loves?</StyledText.H1>
 					</View>
 
 					<View style={{ width: 320, height: 310, padding: 10, alignItems: 'center', justifyContent: 'center' }}>
