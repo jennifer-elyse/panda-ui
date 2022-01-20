@@ -40,7 +40,7 @@ function ButtonGroup(props) {
 						buttonSeparator,
 						(index === 0 || selectedIndex === index) && styles.buttonRadiusLeft,
 						(lastIndex === index || selectedIndex === index) && styles.buttonRadiusRight,
-						selectedIndex === index && { height: 26, backgroundColor: buttonGroupSelectedBackgroundColor || 'pink' }
+						selectedIndex === index && { height: 30, backgroundColor: buttonGroupSelectedBackgroundColor || 'pink' }
 					]}
 					onPress={() => onSelect(index)}
 				>
@@ -75,11 +75,11 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		height: 30,
+		height: 34,
 		paddingHorizontal: 2
 	},
 	buttonContainer: {
-		paddingHorizontal: 15,
+		paddingHorizontal: 20,
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
