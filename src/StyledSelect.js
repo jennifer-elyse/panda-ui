@@ -31,6 +31,10 @@ const StyledSelect = props => {
 
 	const [selected, setSelected] = useState(value);
 
+	useEffect(() => {
+		setSelected(value);
+	}, [value]);
+
 	const RNPickerWrapper = {
 		fontFamily: 'DMSans-Regular',
 		borderBottomWidth: separatorColor ? 1 : 0,
