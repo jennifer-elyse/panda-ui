@@ -44,7 +44,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 	}, [theme]);
 
 	return (
-		<View style={{ height: 100, width: '95%', marginVertical: 30 }}>
+		<View style={{ height: 100, width: '95%', marginVertical: 15 }}>
 			<DoubleCard
 				backCardElevation={5}
 				cardElevation={8}

@@ -5,7 +5,8 @@ import {
 	View,
 	TouchableHighlight,
 	SafeAreaView,
-	StyleSheet
+	StyleSheet,
+	ScrollView
 } from 'react-native';
 
 // Expo imports
@@ -101,8 +102,8 @@ const DataScreen = () => {
 			flex: 1,
 			flexDirection: 'row',
 			height: 45,
-			marginVertical: 5,
-			marginHorizontal: 2.5,
+			paddingVertical: 5,
+			paddingHorizontal: 2.5,
 			alignItems: 'center',
 			justifyContent: 'center',
 			backgroundColor: highlightedColor
@@ -144,7 +145,7 @@ const DataScreen = () => {
 				characterData={characterData}
 				setLoading={setLoading}
 			/>
-			<View style={{ width: '95%', marginTop: 30, marginBottom: 15 }}>
+			<View style={{ width: '95%', marginTop: -5, marginBottom: 15 }}>
 				<DoubleCard
 					backCardElevation={5}
 					cardElevation={8}
@@ -167,24 +168,26 @@ const DataScreen = () => {
 						borderColor={Colors[theme].borderColor}
 						buttonColor={Colors[theme].buttonColor}
 						pickerBorderColor={Colors[theme].borderColor}
-						pickerTextColor={Colors[theme].borderColor}
+						pickerTextColor={Colors[theme].textColor}
+						buttonTextColor={Colors[theme].textColor}
 					/>
 				</DoubleCard>
 			</View>
-			<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 15 }}>
+			<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 10 }}>
 				<H1 textColor={Colors[theme].textColor}>Characteristics</H1>
 			</View>
-			<View style={{ height: '40%', width: '95%', marginHorizontal: 10, marginBottom: 5 }}>
+			<View style={{ height: '40%', width: '95%', borderRadius: Styles[theme].borderRadius, marginHorizontal: 10, marginBottom: 5 }}>
 				<SortHeader
 					columns={columns}
 					sortConfig={sortConfig}
 					onSortChange={setSortConfig}
 					roundCorners={true}
 					center
-					borderRadius={Styles[theme].borderRadius/10}
+					borderRadius={Styles[theme].borderRadius}
 					height={40}
 					sortIndicatorColor={Colors[theme].buttonTextColor}
 					tintColor={Colors[theme].tintColor}
+					borderColor={Colors[theme].tintColor}
 					selectedColor={Colors[theme].tabBarActiveColor}
 					textColor={Colors[theme].buttonTextColor}
 				/>
@@ -195,8 +198,8 @@ const DataScreen = () => {
 						borderLeftWidth: 1,
 						borderBottomWidth: 1,
 						borderRightWidth: 1,
-						borderBottomRightRadius: 5,
-						borderBottomLeftRadius: 5
+						borderBottomRightRadius: Styles[theme].borderRadius,
+						borderBottomLeftRadius: Styles[theme].borderRadius
 					}}
 					ref={listRef}
 					data={sortedApiData}

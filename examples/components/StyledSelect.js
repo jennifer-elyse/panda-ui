@@ -1,7 +1,8 @@
 import React from 'react';
 import {
 	StyleSheet,
-	View
+	View,
+	Platform
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -50,29 +51,23 @@ const StyledSelect = (props) => {
 		inputIOS: {
 			paddingHorizontal: 5,
 			maxWidth: 250,
-			height: 20,
-			marginLeft: 10,
-			marginBottom: 10,
+			height: 40,
+			marginLeft: 20,
 			color: placeholderColor,
-			paddingRight: 15 // to ensure the text is never behind the icon
+			paddingRight: 30 // to ensure the text is never behind the icon
 		},
 		inputAndroid: {
-			paddingHorizontal: 10,
-			maxWidth: 250,
-			height: 20,
-			// marginLeft: -10,
-			marginBottom: 12,
+			marginLeft: 20,
 			color: placeholderColor,
-			paddingRight: 15, // to ensure the text is never behind the icon
-			transform: [
-				{ scaleX: 0.8 },
-				{ scaleY: 0.8 }]
+			paddingRight: 30, // to ensure the text is never behind the icon
+			// transform: [
+			// 	{ scaleX: 0.8 },
+			// 	{ scaleY: 0.8 }]
 		}
 	});
 
 	return (
 		<View style={ meta && meta.error && meta.touched ? RNPickerWrapperFailedValidation : RNPickerWrapper }>
-			<StyledText style={{ color: placeholderColor, fontSize: 12, marginBottom: -5, marginLeft: 3 }}>{label}</StyledText>
 			<RNPickerSelect
 				{...input}
 				{...rest}
@@ -93,13 +88,13 @@ const StyledSelect = (props) => {
 				value={value}
 				onValueChange={onValueChange}
 				style={{
+					...pickerSelectStyles,
 					placeholder: {
 						color: placeholderColor
-					},
-					...pickerSelectStyles
+					}
 				}}
 				Icon={() => {
-					return <View><Icon name="caret-down" size={16} color={placeholderColor} style={{ paddingRight: 15, top: 4 }} /></View>;
+					return (Platform.OS === 'ios' && <View><Icon name="caret-down" size={16} color={placeholderColor} style={{ paddingRight: 15, top: 12 }} /></View>);
 				}}
 			/>
 		</View>

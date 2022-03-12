@@ -101,6 +101,7 @@ export default function ChoiceScreen() {
 			let response = await getCharacters();
 			setCharacterData(response.data.characters);
 			response = await getCharacterQualities();
+			// console.log('response', response.data.qualities);
 			setQualitiesData(response.data.qualities);
 			setLoading(false);
 		})();
@@ -178,7 +179,7 @@ export default function ChoiceScreen() {
 									borderRadius={Styles[theme].borderRadius}
 									color={Colors[theme].buttonColor}
 									activeTextColor={Colors[theme].buttonTextColor}
-									inactiveTextColor={Colors[theme].buttonColor}
+									inactiveTextColor={Colors[theme].buttonTextColor}
 									options={[{ label: 'No Gradient', value: false }, { label: 'Gradient', value: true }]}
 								/>
 							</View>
