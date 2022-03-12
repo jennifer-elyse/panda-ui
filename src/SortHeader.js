@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {
 	View,
 	TouchableOpacity,
-	Text
+	Text,
+	Platform
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -23,7 +24,7 @@ const SortHeader = (props) => {
 		sortIndicatorColor = '#4a1830',
 		tintColor = '#772d4f',
 		selectedColor = '#a34e76',
-		borderColor = '#772d4f',
+		borderColor = 'transparent',
 		textColor = '#fff',
 		TextComponent=Text
 	} = props;
@@ -41,7 +42,6 @@ const SortHeader = (props) => {
 		width: 0,
 		padding: 10,
 		height: height,
-		backgroundColor: tintColor,
 		justifyContent: 'center',
 		alignItems: 'center'
 	};
@@ -63,17 +63,17 @@ const SortHeader = (props) => {
 	};
 
 	const leftBorderStyle = {
-		borderLeftWidth: 0.5,
-		borderLeftStyle: 'solid',
-		borderColor: borderColor,
-		borderTopLeftRadius: borderRadius
+		borderLeftWidth: Platform.OS === 'ios' ? 0 : 0.5,
+		borderRightStyle: Platform.OS === 'ios' ? 'none' : 'solid',
+		borderTopLeftRadius: borderRadius,
+		borderColor: Platform.OS === 'ios' ? undefined : borderColor
 	};
 
 	const rightBorderStyle = {
-		borderRightWidth: 0.5,
-		borderRightStyle: 'solid',
-		borderColor: borderColor,
-		borderTopRightRadius: borderRadius
+		borderRightWidth: Platform.OS === 'ios' ? 0 : 0.5,
+		borderRightStyle: Platform.OS === 'ios' ? 'none' : 'solid',
+		borderTopRightRadius: borderRadius,
+		borderColor: Platform.OS === 'ios' ? undefined : borderColor
 	};
 
 
@@ -93,7 +93,10 @@ const SortHeader = (props) => {
 			...baseStyle,
 			flexGrow,
 			flexDirection: 'row',
-			textAlign: 'center'
+			textAlign: 'center',
+			backgroundColor: 'transparent',
+			borderTopLeftRadius: borderRadius,
+			borderTopRightRadius: borderRadius
 		};
 	}
 
@@ -124,27 +127,15 @@ const SortHeader = (props) => {
 		};
 	}
 
-	const rootStyleUnrounded = {
+	const rootStyle = {
 		flexDirection: 'row',
-		backgroundColor: textColor,
-		borderWidth: 0.5,
-		borderStyle: 'solid',
-		borderColor: tintColor
-	};
-
-	const rootStyleRounded = {
-		flexDirection: 'row',
-		backgroundColor: textColor,
+		backgroundColor: tintColor,
 		borderWidth: 0.5,
 		borderStyle: 'solid',
 		borderColor: tintColor,
 		borderTopLeftRadius: borderRadius,
 		borderTopRightRadius: borderRadius
-		// borderBottomRightRadius: 5,
-		// borderBottomLeftRadius: 5
 	};
-
-	const rootStyle = borderRadius ? rootStyleRounded : rootStyleUnrounded;
 
 	return (
 		<View style={rootStyle}>
