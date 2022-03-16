@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { View, ScrollView } from 'react-native';
 
+import Icon from 'react-native-vector-icons/FontAwesome5';
+
 import Button from './Button';
 
 
@@ -98,16 +100,15 @@ const TabGroup = (props) => {
 
 			{scrollButtons && showLeftChevron &&
 				<Button
-					icon="chevron-left"
+					iconElement={<Icon name="chevron-left" size={14} color={chevronColor} />}
 					size="small"
 					height={height}
-					width={30}
+					width={10}
 					solid={false}
 					style={{ marginLeft: 2, justifyContent: 'center' }}
-					disabledColor={chevronColor}
 					disabled
 					border={false}
-					color={chevronColor}
+					transparent
 					onPress={() => ({}) }
 					key="left-arrow"
 				/>
@@ -116,7 +117,7 @@ const TabGroup = (props) => {
 				// onScrollEndDrag={handleScroll}
 				onScroll={handleScroll}
 				horizontal={true}
-				fadingEdgeLength={150}
+				fadingEdgeLength={scrollButtons ? 150 : 0}
 				indicatorStyle="black"
 				contentContainerStyle={{ flexGrow: 1, height: height || '100%', padding: 0, alignItems: 'space-between' }}
 			>
@@ -134,7 +135,7 @@ const TabGroup = (props) => {
 							disabled={disabled}
 							border={false}
 							color={selected ? color : inactiveTextColor}
-							textColor={activeTextColor}
+							textColor={selected ? activeTextColor : inactiveTextColor}
 							style={i === 0
 								? selected ? buttonSelectedLeftStyle : buttonLeftStyle
 								: selected ? buttonSelectedNotLeftStyle : buttonNotLeftStyle}
@@ -148,16 +149,15 @@ const TabGroup = (props) => {
 
 			{scrollButtons && showRightChevron &&
 				<Button
-					icon="chevron-right"
+					iconElement={<Icon name="chevron-right" size={14} color={chevronColor} />}
 					size="small"
 					height={height}
-					width={30}
+					width={10}
 					solid={false}
 					style={{ marginRight: 2, justifyContent: 'center' }}
-					disabledColor={chevronColor}
+					transparent
 					disabled
 					border={false}
-					color={chevronColor}
 					onPress={() => ({}) }
 					key="right-arrow"
 				/>

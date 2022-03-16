@@ -66,7 +66,7 @@ const Button = (props) => {
 
 	const buttonStyleDropShadow = {
 		...buttonStyle,
-		borderWidth: 1,
+		borderWidth: borderWidth,
 		borderRadius: 2,
 		borderColor: '#ddd',
 		borderBottomWidth: 0,
