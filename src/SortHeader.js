@@ -221,7 +221,7 @@ SortHeader.propTypes = {
 	selectedColor: PropTypes.string,
 	borderColor: PropTypes.string,
 	textColor: PropTypes.string,
-	TextComponent: PropTypes.object
+	TextComponent: PropTypes.func
 };
 
 export default SortHeader;
