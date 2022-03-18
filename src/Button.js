@@ -36,6 +36,7 @@ const Button = (props) => {
 		disabledColor='lightgrey',
 		disabledGradient,
 		textColor='#fff',
+		disabledTextColor='#fff',
 		textElement,
 		iconElement
 	} = props;
@@ -109,6 +110,7 @@ const Button = (props) => {
 										fontSize={fontSize}
 										disabledColor={disabledColor}
 										textColor={textColor}
+										disabledTextColor={disabledTextColor}
 										textElement={textElement}
 										iconElement={iconElement}
 									/>
@@ -141,6 +143,7 @@ const Button = (props) => {
 								fontSize={fontSize}
 								disabledColor={disabledColor}
 								textColor={textColor}
+								disabledTextColor={disabledTextColor}
 								textElement={textElement}
 								iconElement={iconElement}
 							/>
@@ -159,6 +162,7 @@ const Button = (props) => {
 						color={color}
 						fontSize={fontSize}
 						disabledColor={disabledColor}
+						disabledTextColor={disabledTextColor}
 						textColor={textColor}
 						textElement={textElement}
 						iconElement={iconElement}
@@ -178,11 +182,12 @@ const ButtonContent = (props) => {
 		fontSize,
 		disabledColor='lightgrey',
 		textColor='#fff',
+		disabledTextColor='#fff',
 		textElement,
 		iconElement
 	} = props;
 
-	const displayColor = disabled ? disabledColor : textColor;
+	const displayColor = disabled ? disabledTextColor : textColor;
 
 	const buttonLabelStyle = {
 		color: displayColor,
@@ -264,6 +269,7 @@ Button.propTypes = {
 	style: PropTypes.object,
 	fontSize: PropTypes.number,
 	textColor: PropTypes.string,
+	disabledTextColor: PropTypes.string,
 	allowInteraction: PropTypes.bool,
 	borderRadius: PropTypes.number,
 	borderWidth: PropTypes.number,
