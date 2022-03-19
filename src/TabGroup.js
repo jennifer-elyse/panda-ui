@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { View, ScrollView } from 'react-native';
 
@@ -31,7 +31,8 @@ const TabGroup = (props) => {
 
 	const displayColor = disabled ? disabledColor : color;
 	const [showLeftChevron, setShowLeftChevron] = useState(false);
-	const [showRightChevron, setShowRightChevron] = useState(true);
+	const [showRightChevron, setShowRightChevron] = useState(false);
+	const scrollElRef = useRef();
 
 	const componentStyle = {
 		paddingHorizontal: 2.5,
@@ -73,25 +74,20 @@ const TabGroup = (props) => {
 
 	const handleScroll = (event) => {
 		const positionX = event.nativeEvent.contentOffset.x;
-		// const positionY = event.nativeEvent.contentOffset.y;
-		const width = event.nativeEvent.contentSize.width - event.nativeEvent.contentOffset.x;
-		// console.log(positionX, width);
-		if (positionX > 20) {
-			// show left chevron
-			setShowLeftChevron(true);
-		} else {
-			setShowLeftChevron(false);
-		}
+		const outerWidth = event.nativeEvent.layoutMeasurement.width;
+		const innerWidth = event.nativeEvent.contentSize.width;
+		const positionXRemaining = innerWidth - outerWidth - positionX;
 
-		if (positionX < width + 200) {
-			// show right chevron
-			setShowRightChevron(true);
-		} else {
-			setShowRightChevron(false);
-		}
-		// console.log('event', event.nativeEvent.contentSize.width);
+		setShowLeftChevron(positionX > 20);
+		setShowRightChevron(positionXRemaining > 20);
 	};
 
+	// On mount trigger a small scroll so that the left and right chevrons display correctly.
+	// This is a hacky way to do this, but we're not sure how to read the correct dimensions
+	// outside of a scroll event.
+	useEffect(() => {
+		scrollElRef.current.scrollTo({ x: 1 });
+	}, []);
 
 	return (
 		<View
@@ -114,7 +110,7 @@ const TabGroup = (props) => {
 				/>
 			}
 			<ScrollView
-				// onScrollEndDrag={handleScroll}
+				ref={scrollElRef}
 				onScroll={handleScroll}
 				horizontal={true}
 				fadingEdgeLength={scrollButtons ? 150 : 0}
@@ -189,6 +185,7 @@ TabGroup.propTypes = {
 	size: PropTypes.oneOf(['small', 'standard', 'large']),
 	color: PropTypes.string,
 	activeTextColor: PropTypes.string,
+	inactiveTextColor: PropTypes.string,
 	backgroundColor: PropTypes.string,
 	chevronColor: PropTypes.string,
 	style: PropTypes.object,
