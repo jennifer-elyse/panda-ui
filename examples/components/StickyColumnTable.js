@@ -4,7 +4,8 @@ import {
 	View,
 	ScrollView,
 	Text,
-	FlatList } from 'react-native';
+	FlatList,
+	PlatForm } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -41,6 +42,12 @@ const defaultSortConfig = {
 	direction: 'asc'
 };
 
+const ScrollerEnum = {
+	None: 'none',
+	Header: 'header',
+	StickyContent: 'sticky-content',
+	ScrollContent: 'scroll-content'
+};
 
 const StickyColummnTable = (props) => {
 	const navigation 								= useNavigation();
@@ -56,6 +63,7 @@ const StickyColummnTable = (props) => {
 	const headerHorizontalScrollView 	= useRef();
 	const contentVerticalScrollView 	= useRef();
 	const headerVerticalScrollView 		= useRef();
+	const activeScroller                = useRef(ScrollerEnum.None);
 
 
 	// On mount trigger a small scroll so that the left and right chevrons display correctly.
@@ -66,6 +74,7 @@ const StickyColummnTable = (props) => {
 	}, []);
 
 	const handleScroll_headerHorizontal = (event) => {
+		activeScroller.current = ScrollerEnum.Header;
 		const positionX = event.nativeEvent.contentOffset.x;
 		const outerWidth = event.nativeEvent.layoutMeasurement.width;
 		const innerWidth = event.nativeEvent.contentSize.width;
@@ -74,22 +83,30 @@ const StickyColummnTable = (props) => {
 		setShowLeftChevron(positionX > 20);
 		setShowRightChevron(positionXRemaining > 20);
 
-		contentHorizontalScrollView.current.scrollTo({ x: positionX, animated: false });
+		if (Platform.OS === 'ios' || activeScroller.current === ScrollerEnum.Header) {
+			contentHorizontalScrollView.current.scrollTo({ x: positionX, animated: false });
+		}
 	};
 
 	const handleScroll_contentHorizontal = (event) => {
-		const positionX = event.nativeEvent.contentOffset.x;
-		headerHorizontalScrollView.current.scrollTo({ x: positionX, animated: false });
+		if (Platform.OS === 'ios' || activeScroller.current === ScrollerEnum.ScrollContent) {
+			const positionX = event.nativeEvent.contentOffset.x;
+			headerHorizontalScrollView.current.scrollTo({ x: positionX, animated: false });
+		}
 	};
 
-	const handleScroll_headerVertical = (event) => {
-		const positionY = event.nativeEvent.contentOffset.y;
-		contentVerticalScrollView.current.scrollTo({ y: positionY, animated: false });
+	const handleScroll_stickyContent = (event) => {
+		if (Platform.OS === 'ios' || activeScroller.current === ScrollerEnum.StickyContent) {
+			const positionY = event.nativeEvent.contentOffset.y;
+			contentVerticalScrollView.current.scrollTo({ y: positionY, animated: false });
+		}
 	};
 
 	const handleScroll_contentVertical = (event) => {
-		const positionY = event.nativeEvent.contentOffset.y;
-		headerVerticalScrollView.current.scrollTo({ y: positionY, animated: false });
+		if (Platform.OS === 'ios' || activeScroller.current === ScrollerEnum.ScrollContent) {
+			const positionY = event.nativeEvent.contentOffset.y;
+			headerVerticalScrollView.current.scrollTo({ y: positionY, animated: false });
+		}
 	};
 
 	// const FlatList_Header = () => {
@@ -113,24 +130,23 @@ const StickyColummnTable = (props) => {
 	return (
 		<View style={styles.container}>
 			{ /*sticky column*/ }
-			<View>
-				<TabGroup
-					options={[{ key: 'animal', label: 'Animal', icon: null, width: 1 }]}
-					sortConfig={sortConfig}
-					onSortChange={setSortConfig}
-					center
-					borderRadius={Styles[theme].borderRadius}
+			<View key="headerColumn">
+				<Button
+					label="Animal"
+					color={Colors[theme].tintColor}
+					textColor={Colors[theme].buttonTextColor}
 					height={40}
-					sortIndicatorColor={Colors[theme].buttonTextColor}
-					activeTextColor={Colors[theme].buttonTextColor}
-					backgroundColor={Colors[theme].tintColor}
-					selectedColor={Colors[theme].tabBarActiveColor}
-					inactiveTextColor={Colors[theme].buttonTextColor}
+					width={100}
+					border={false}
+					onPress={() => ({})}
+					key="stickyAnimal"
+					gradient={[]}
 				/>
 				<ScrollView
 					contentContainerStyle={{ width: '100%', padding: 0, alignItems: 'space-between' }}
 					ref={headerVerticalScrollView}
-					onScroll={handleScroll_headerVertical}
+					onScroll={handleScroll_stickyContent}
+					onScrollBeginDrag={() => activeScroller.current = ScrollerEnum.StickyContent}
 					scrollEventThrottle={16}
 				>
 					<View>
@@ -154,11 +170,12 @@ const StickyColummnTable = (props) => {
 			</View>
 			{ /*content column*/ }
 
-			<View style={{ width: 250 }}>
+			<View key="contentColumn" style={{ width: 250 }}>
 				<ScrollView
 					ref={headerHorizontalScrollView}
 					onScroll={handleScroll_headerHorizontal}
 					scrollEventThrottle={16}
+					onScrollBeginDrag={() => activeScroller.current = ScrollerEnum.Header}
 					horizontal={true}
 					fadingEdgeLength={150}
 					contentContainerStyle={{ flexGrow: 1, height: '100%', padding: 0, alignItems: 'space-between' }}
@@ -195,7 +212,7 @@ const StickyColummnTable = (props) => {
 									// 	? selected ? buttonSelectedLeftStyle : buttonLeftStyle
 									// 	: selected ? buttonSelectedNotLeftStyle : buttonNotLeftStyle}
 									onPress={() => ({})}
-									key={option.value}
+									key={option.key}
 									gradient={[]}
 								/>
 							);
@@ -209,7 +226,7 @@ const StickyColummnTable = (props) => {
 							height={40}
 							width={10}
 							solid={false}
-							style={{ marginRight: 2, justifyContent: 'center', borderWidth: 1 }}
+							style={{ marginRight: 2, justifyContent: 'center' }}
 							transparent
 							disabled
 							border={false}
@@ -223,6 +240,7 @@ const StickyColummnTable = (props) => {
 					scrollEventThrottle={16}
 					horizontal
 					onScroll={handleScroll_contentHorizontal}
+					onScrollBeginDrag={() => activeScroller.current = ScrollerEnum.ScrollContent}
 					fadingEdgeLength={150}
 					indicatorStyle="black"
 					persistentScrollbar
@@ -230,6 +248,7 @@ const StickyColummnTable = (props) => {
 					<ScrollView
 						ref={contentVerticalScrollView}
 						onScroll={handleScroll_contentVertical}
+						onScrollBeginDrag={() => activeScroller.current = ScrollerEnum.ScrollContent}
 						scrollEventThrottle={16}
 						persistentScrollbar
 					>
