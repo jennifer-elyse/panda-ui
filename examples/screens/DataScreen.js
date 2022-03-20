@@ -22,6 +22,8 @@ import {
 	useSortedData
 } from 'react-native-panda-ui';
 
+import StickyColumnTable from '../components/StickyColumnTable';
+
 // Local Imports
 import {
 	useThemeContext,
@@ -141,6 +143,9 @@ const DataScreen = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
+			<StickyColumnTable
+				data={qualitiesData}
+			/>
 			<ThemeSelect
 				characterData={characterData}
 				setLoading={setLoading}
@@ -181,7 +186,6 @@ const DataScreen = () => {
 					columns={columns}
 					sortConfig={sortConfig}
 					onSortChange={setSortConfig}
-					roundCorners={true}
 					center
 					borderRadius={Styles[theme].borderRadius}
 					height={40}
