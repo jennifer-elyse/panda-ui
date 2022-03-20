@@ -131,6 +131,7 @@ const StickyColummnTable = (props) => {
 					contentContainerStyle={{ width: '100%', padding: 0, alignItems: 'space-between' }}
 					ref={headerVerticalScrollView}
 					onScroll={handleScroll_headerVertical}
+					scrollEventThrottle={16}
 				>
 					<View>
 						<View style={{ height: 25 }}>
