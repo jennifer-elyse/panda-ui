@@ -62,7 +62,7 @@ const StyledSelect = props => {
 			fontWeight: placeholderBold ? 'bold' : 'normal',
 			color: color || placeholderColor,
 			fontSize,
-			paddingRight: 15 // to ensure the text is never behind the icon
+			paddingRight: 25 // to ensure the text is never behind the icon
 		},
 		inputAndroid: {
 			paddingHorizontal: 10,
@@ -73,7 +73,7 @@ const StyledSelect = props => {
 			color: color || placeholderColor,
 			fontWeight: placeholderBold ? 'bold' : 'normal',
 			fontSize,
-			paddingRight: 15, // to ensure the text is never behind the icon
+			paddingRight: 25, // to ensure the text is never behind the icon
 			transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }]
 		}
 	});
