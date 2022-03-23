@@ -6,7 +6,7 @@ import {
 	Text
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
+import Layout from './constants/Layout';
 
 const SortHeader = (props) => {
 	const {
@@ -89,12 +89,12 @@ const SortHeader = (props) => {
 	 *
 	 * @return {object} Object to apply to a `style` prop.
 	 */
-	function getTextStyle(active, showBorder, flexGrow) {
+	function getTextStyle(active, showBorder, width) {
 		const baseStyle = active ? activeTextStyle : commonTextStyle;
 
 		return {
 			...baseStyle,
-			flexGrow,
+			width,
 			flexDirection: 'row',
 			textAlign: 'center'
 		};
@@ -110,7 +110,7 @@ const SortHeader = (props) => {
 	 *
 	 * @return {object} Object to apply to a `style` prop.
 	 */
-	function getViewStyle(active, flexGrow, i, length) {
+	function getViewStyle(active, width, i, length) {
 		const baseStyle = active ? activeViewStyle : commonViewStyle;
 		const leftBorderStyleObj =  i === 0  ? leftBorderStyle : undefined;
 		const rightBorderStyleObj =  i === length -1 ? rightBorderStyle : undefined;
@@ -121,7 +121,7 @@ const SortHeader = (props) => {
 			...leftBorderStyleObj,
 			...rightBorderStyleObj,
 			...middleBorderStyleObj,
-			flexGrow,
+			width,
 			flexDirection: 'row',
 			alignItems: 'center',
 			...cellContainerStyle
@@ -157,7 +157,7 @@ const SortHeader = (props) => {
 				isSorted = noSort ? false : isSorted;
 				return (
 					<TouchableOpacity
-						style={getViewStyle(isSorted, column.width, i, columns.length)}
+						style={getViewStyle(isSorted, column.width * Layout.window.width, i, columns.length)}
 						key={column.key}
 						onPress={() => {
 							!noSort  &&
@@ -178,7 +178,7 @@ const SortHeader = (props) => {
 						/>}
 
 						<TextComponent
-							style={getTextStyle(isSorted, i < columns.length - 1, column.width)}
+							style={getTextStyle(isSorted, i < columns.length - 1, column.width * Layout.window.width * 0.8)}
 							key={column.key + '1'}
 						>
 							{column.label}
@@ -190,7 +190,7 @@ const SortHeader = (props) => {
 								name="chevron-up"
 								size={12}
 								color={sortIndicatorColor}
-								style={{ marginLeft: 10 }}
+								style={{ marginLeft: 1 }}
 							/>
 							: false}
 						{ isSorted && sortConfig.direction === 'desc' ?
@@ -199,7 +199,7 @@ const SortHeader = (props) => {
 								name="chevron-down"
 								size={12}
 								color={sortIndicatorColor}
-								style={{ marginLeft: 10 }}
+								style={{ marginLeft: 1 }}
 							/>
 							: false}
 					</TouchableOpacity>
