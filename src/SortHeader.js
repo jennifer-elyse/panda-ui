@@ -32,16 +32,12 @@ const SortHeader = (props) => {
 	} = props;
 
 	const commonTextStyle = {
-		flexGrow: 1,
-		width: 0,
 		fontWeight: 'bold',
 		maxHeight: 45,
 		color: textColor
 	};
 
 	const commonViewStyle = {
-		flexGrow: 1,
-		width: 0,
 		padding: 10,
 		height: height,
 		backgroundColor: tintColor,
@@ -85,18 +81,19 @@ const SortHeader = (props) => {
 	 *
 	 * @param  {boolean} active
 	 * @param  {boolean} showBorder
-	 * @param  {number}  flexGrow
+	 * @param  {number}  width
+	 * @param  {Text}  align
 	 *
 	 * @return {object} Object to apply to a `style` prop.
 	 */
-	function getTextStyle(active, showBorder, width) {
+	function getTextStyle(active, showBorder, width, align) {
 		const baseStyle = active ? activeTextStyle : commonTextStyle;
 
 		return {
 			...baseStyle,
 			width,
 			flexDirection: 'row',
-			textAlign: 'center'
+			textAlign: align || 'center'
 		};
 	}
 
@@ -106,7 +103,7 @@ const SortHeader = (props) => {
 	 *
 	 * @param  {boolean} active
 	 * @param  {boolean} showBorder
-	 * @param  {number}  flexGrow
+	 * @param  {number}  width
 	 *
 	 * @return {object} Object to apply to a `style` prop.
 	 */
@@ -178,7 +175,7 @@ const SortHeader = (props) => {
 						/>}
 
 						<TextComponent
-							style={getTextStyle(isSorted, i < columns.length - 1, column.width * Layout.window.width * 0.8)}
+							style={getTextStyle(isSorted, i < columns.length - 1, column.width * Layout.window.width * 0.8, column.align)}
 							key={column.key + '1'}
 						>
 							{column.label}
