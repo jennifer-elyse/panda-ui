@@ -4,29 +4,14 @@ import {
 	View,
 	ScrollView,
 	Text,
-	FlatList,
-	PlatForm,
-	Dimensions
+	Dimensions,
+	Platform
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
-import StyledText from '../components/StyledText';
-import Colors from '../constants/Colors';
-import Styles from '../constants/Styles';
-import {
-	useThemeContext,
-	themeSelector
-} from '../contexts/ThemeContext';
-import { H1, Body2 } from '../components/StyledText';
 
 // Panda Imports
 import {
-	DoubleCard,
-	SearchBar,
 	SortHeader,
-	useSortedData,
-	TabGroup,
 	Button
 } from 'react-native-panda-ui';
 
@@ -38,8 +23,6 @@ const ScrollerEnum = {
 };
 
 const StickyColummnTable = (props) => {
-	const navigation 								= useNavigation();
-	const [userSession] 							= useThemeContext();
 	const [showLeftChevron, setShowLeftChevron] 	= useState(false);
 	const [showRightChevron, setShowRightChevron] 	= useState(false);
 	const {
@@ -49,7 +32,6 @@ const StickyColummnTable = (props) => {
 		stickyHeaderLabel,
 		rowHeight,
 		sortConfig,
-		defaultSortConfig,
 		borderRadius,
 		headerBackgroundColor,
 		backgroundColor,
@@ -101,7 +83,7 @@ const StickyColummnTable = (props) => {
 
 	return (
 		<View style={styles.container}>
-			{ /*sticky column*/ }
+			{ /* sticky column */ }
 			<View key="headerColumn">
 				<View style={{
 					height: headerHeight,
@@ -132,20 +114,19 @@ const StickyColummnTable = (props) => {
 					scrollEventThrottle={16}
 				>
 					<View>
-						{ 	data.map((item, i) => {
-								return (
-									<View
-										key={item.animal}
-										style={{ flexDirection: 'row', height: rowHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: backgroundColor }}>
-										<Text style={{ paddingLeft: 10, flexGrow: columns[0].width, textAlign: columns[0].textAlign, color: textColor }}>{item.animal}</Text>
-									</View>
-								)
-							})
-						}
+						{ data.map((item, i) => {
+							return (
+								<View
+									key={item.animal}
+									style={{ flexDirection: 'row', height: rowHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: backgroundColor }}>
+									<Text style={{ paddingLeft: 10, flexGrow: columns[0].width, textAlign: columns[0].textAlign, color: textColor }}>{item.animal}</Text>
+								</View>
+							);
+						})}
 					</View>
 				</ScrollView>
 			</View>
-			{ /*content column*/ }
+			{ /* content column */ }
 
 			<View key="contentColumn" style={{ flex: 1, width: Dimensions.get('window').width }}>
 				<ScrollView
@@ -184,20 +165,19 @@ const StickyColummnTable = (props) => {
 						>
 							<View
 								style={{ minWidth: Dimensions.get('screen').width * 2 }}>
-								{ 	data.map((item, i) => {
-										return (
-											<View
-												key={item.characterId}
-												style={{ flex: 1, flexDirection: 'row', height: rowHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: backgroundColor }}>
-												<Text style={{ paddingLeft: 10, flexGrow: columns[0].width, width: 0, textAlign: columns[0].textAlign, color: textColor }}>{item.name}</Text>
-												<Text style={{ paddingLeft: 10, flexGrow: columns[1].width, width: 0, textAlign: columns[1].textAlign, color: textColor }}>{item.color}</Text>
-												<Text style={{ paddingLeft: 10, flexGrow: columns[2].width, width: 0, textAlign: columns[2].textAlign, color: textColor }}>{item.faveFood}</Text>
-												<Text style={{ paddingLeft: 10, flexGrow: columns[3].width, width: 0, textAlign: columns[3].textAlign, color: textColor }}>{item.peeves}</Text>
-												<Text style={{ paddingLeft: 10, flexGrow: columns[4].width, width: 0, textAlign: columns[4].textAlign, color: textColor }}>{item.loves}</Text>
-											</View>
-										)
-									})
-								}
+								{ data.map((item, i) => {
+									return (
+										<View
+											key={item.characterId}
+											style={{ flex: 1, flexDirection: 'row', height: rowHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: backgroundColor }}>
+											<Text style={{ paddingLeft: 10, flexGrow: columns[0].width, width: 0, textAlign: columns[0].textAlign, color: textColor }}>{item.name}</Text>
+											<Text style={{ paddingLeft: 10, flexGrow: columns[1].width, width: 0, textAlign: columns[1].textAlign, color: textColor }}>{item.color}</Text>
+											<Text style={{ paddingLeft: 10, flexGrow: columns[2].width, width: 0, textAlign: columns[2].textAlign, color: textColor }}>{item.faveFood}</Text>
+											<Text style={{ paddingLeft: 10, flexGrow: columns[3].width, width: 0, textAlign: columns[3].textAlign, color: textColor }}>{item.peeves}</Text>
+											<Text style={{ paddingLeft: 10, flexGrow: columns[4].width, width: 0, textAlign: columns[4].textAlign, color: textColor }}>{item.loves}</Text>
+										</View>
+									);
+								})}
 							</View>
 						</ScrollView>
 					</View>
