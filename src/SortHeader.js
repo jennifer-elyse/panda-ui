@@ -14,7 +14,9 @@ const SortHeader = (props) => {
 		columns,
 		sortConfig,
 		onSortChange,
-		borderRadius = 50,
+		borderRadius = 0,
+		borderRadiusLeft = borderRadius,
+		borderRadiusRight = borderRadius,
 		noSort = false,
 		height,
 		// TODO: not yet implemented
@@ -23,6 +25,7 @@ const SortHeader = (props) => {
 		// ignoreFirstColumnInSort = true,
 		sortIndicatorColor = '#4a1830',
 		tintColor = '#772d4f',
+		backgroundColor = tintColor,
 		selectedColor = '#a34e76',
 		borderColor = 'transparent',
 		textColor = '#fff',
@@ -65,14 +68,14 @@ const SortHeader = (props) => {
 	const leftBorderStyle = {
 		borderLeftWidth: Platform.OS === 'ios' ? 0 : 0.5,
 		borderRightStyle: Platform.OS === 'ios' ? 'none' : 'solid',
-		borderTopLeftRadius: borderRadius,
+		borderTopLeftRadius: borderRadiusLeft,
 		borderColor: Platform.OS === 'ios' ? undefined : borderColor
 	};
 
 	const rightBorderStyle = {
 		borderRightWidth: Platform.OS === 'ios' ? 0 : 0.5,
 		borderRightStyle: Platform.OS === 'ios' ? 'none' : 'solid',
-		borderTopRightRadius: borderRadius,
+		borderTopRightRadius: borderRadiusRight,
 		borderColor: Platform.OS === 'ios' ? undefined : borderColor
 	};
 
@@ -93,10 +96,9 @@ const SortHeader = (props) => {
 			...baseStyle,
 			flexGrow,
 			flexDirection: 'row',
-			textAlign: 'center',
 			backgroundColor: 'transparent',
-			borderTopLeftRadius: borderRadius,
-			borderTopRightRadius: borderRadius
+			borderTopLeftRadius: borderRadiusLeft,
+			borderTopRightRadius: borderRadiusRight
 		};
 	}
 
@@ -129,12 +131,12 @@ const SortHeader = (props) => {
 
 	const rootStyle = {
 		flexDirection: 'row',
-		backgroundColor: tintColor,
+		backgroundColor: backgroundColor,
 		borderWidth: 0.5,
 		borderStyle: 'solid',
-		borderColor: tintColor,
-		borderTopLeftRadius: borderRadius,
-		borderTopRightRadius: borderRadius
+		borderColor: backgroundColor,
+		borderTopLeftRadius: borderRadiusLeft,
+		borderTopRightRadius: borderRadiusRight
 	};
 
 	return (
@@ -165,7 +167,7 @@ const SortHeader = (props) => {
 						/>}
 
 						<TextComponent
-							style={getTextStyle(isSorted, i < columns.length - 1, column.width)}
+							style={[getTextStyle(isSorted, i < columns.length - 1, column.width), { textAlign: columns?.textAlign ? columns.textAlign : 'left'}]}
 							key={column.key + '1'}
 						>
 							{column.label}
@@ -208,6 +210,8 @@ SortHeader.propTypes = {
 	}),
 	onSortChange: PropTypes.func.isRequired,
 	borderRadius: PropTypes.number,
+	borderRadiusLeft: PropTypes.number,
+	borderRadiusRight: PropTypes.number,
 	noSort: PropTypes.bool,
 	// solid: PropTypes.bool,
 	// center: PropTypes.bool,
@@ -218,6 +222,7 @@ SortHeader.propTypes = {
 	]),
 	sortIndicatorColor: PropTypes.string,
 	tintColor: PropTypes.string,
+	backgroundColor: PropTypes.string,
 	selectedColor: PropTypes.string,
 	borderColor: PropTypes.string,
 	textColor: PropTypes.string,
