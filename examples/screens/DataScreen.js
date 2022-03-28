@@ -43,25 +43,35 @@ const columns = [
 	{ key: 'name',		label: 'Name', 		icon: null, width: 1 },
 	{ key: 'color',		label: 'Color', 	icon: null, width: 1 }
 ];
+const stickyColumns = [
+	{ key: 'name',		label: 'Name', 		icon: null, width: 1, textAlign: 'left' },
+	{ key: 'color',		label: 'Color', 	icon: null, width: 1, textAlign: 'left' },
+	{ key: 'faveFood',	label: 'FaveFood', 	icon: null, width: 2, textAlign: 'left' },
+	{ key: 'peeves',	label: 'Peeves', 	icon: null, width: 1, textAlign: 'left' },
+	{ key: 'loves',		label: 'Loves', 	icon: null, width: 2, textAlign: 'left' }
+];
 
 const defaultSortConfig = {
-	key: columns[1].key,
+	key: columns[0].key,
 	direction: 'asc'
 };
+
 
 const DataScreen = () => {
 	const [userSession] = useThemeContext();
 	const theme = themeSelector(userSession);
 	// state hooks
 	// useState utilizes the current state and a function that updates it
-	const [highlightedCharacterId, setHighlightedCharacterId] = useState(null);
-	const [characterData, setCharacterData] 	= useState([]);
-	const [qualitiesData, setQualitiesData] 	= useState([]);
-	const [loading, setLoading] 				= useState(false);
-	const [sortConfig, setSortConfig] 			= useState(defaultSortConfig);
+	const [highlightedCharacterId, setHighlightedCharacterId] 	= useState(null);
+	const [characterData, setCharacterData] 					= useState([]);
+	const [qualitiesData, setQualitiesData] 					= useState([]);
+	const [loading, setLoading] 								= useState(false);
+	const [sortConfig, setSortConfig] 							= useState(defaultSortConfig);
+	const [stickySortConfig, setStickySortConfig] 				= useState(defaultSortConfig);
 
 	// hooks
-	const sortedApiData 				= useSortedData(qualitiesData, sortConfig);
+	const sortedApiData = useSortedData(qualitiesData, sortConfig);
+	const stickySortedApiData = useSortedData(qualitiesData, stickySortConfig);
 
 	// refs
 	const listRef = useRef();
@@ -144,7 +154,23 @@ const DataScreen = () => {
 	return (
 		<SafeAreaView style={styles.container}>
 			<StickyColumnTable
-				data={qualitiesData}
+				data={stickySortedApiData}
+				columns={stickyColumns}
+				sortConfig={stickySortConfig}
+				onSortChange={setStickySortConfig}
+				stickyHeaderLabel="Animal"
+				headerHeight={40}
+				rowHeight={50}
+				headerTextColor={Colors[theme].buttonTextColor}
+				textColor={Colors[theme].tintColor}
+				defaultSortConfig={defaultSortConfig}
+				borderRadius={Styles[theme].borderRadius}
+				headerBackgroundColor={Colors[theme].tintColor}
+				backgroundColor={Colors[theme].cardColor}
+				sortIndicatorColor={Colors[theme].buttonTextColor}
+				borderColor={Colors[theme].tintColor}
+				selectedColor={Colors[theme].tabBarActiveColor}
+				scrollArrowColor={Colors[theme].buttonTextColor}
 			/>
 			<ThemeSelect
 				characterData={characterData}
@@ -190,7 +216,7 @@ const DataScreen = () => {
 					borderRadius={Styles[theme].borderRadius}
 					height={40}
 					sortIndicatorColor={Colors[theme].buttonTextColor}
-					tintColor={Colors[theme].tintColor}
+					backgroundColor={Colors[theme].tintColor}
 					borderColor={Colors[theme].tintColor}
 					selectedColor={Colors[theme].tabBarActiveColor}
 					textColor={Colors[theme].buttonTextColor}

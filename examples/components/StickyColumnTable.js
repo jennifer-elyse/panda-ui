@@ -5,7 +5,9 @@ import {
 	ScrollView,
 	Text,
 	FlatList,
-	PlatForm } from 'react-native';
+	PlatForm,
+	Dimensions
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -28,20 +30,6 @@ import {
 	Button
 } from 'react-native-panda-ui';
 
-
-const columns = [
-	{ key: 'name',		label: 'Name', 		icon: null, width: 1 },
-	{ key: 'color',		label: 'Color', 	icon: null, width: 1 },
-	{ key: 'faveFood',	label: 'FaveFood', 	icon: null, width: 2 },
-	{ key: 'peeves',	label: 'Peeves', 	icon: null, width: 1 },
-	{ key: 'loves',		label: 'Loves', 	icon: null, width: 2 }
-];
-
-const defaultSortConfig = {
-	key: columns[1].key,
-	direction: 'asc'
-};
-
 const ScrollerEnum = {
 	None: 'none',
 	Header: 'header',
@@ -54,10 +42,24 @@ const StickyColummnTable = (props) => {
 	const [userSession] 							= useThemeContext();
 	const [showLeftChevron, setShowLeftChevron] 	= useState(false);
 	const [showRightChevron, setShowRightChevron] 	= useState(false);
-	const theme 									= themeSelector(userSession);
-	const [sortConfig, setSortConfig] 				= useState(defaultSortConfig);
 	const {
-		data
+		data,
+		columns,
+		headerHeight,
+		stickyHeaderLabel,
+		rowHeight,
+		sortConfig,
+		defaultSortConfig,
+		borderRadius,
+		headerBackgroundColor,
+		backgroundColor,
+		onSortChange,
+		sortIndicatorColor,
+		borderColor,
+		selectedColor,
+		headerTextColor,
+		textColor,
+		scrollArrowColor
 	} = props;
 	const horizontalScrollView 	        = useRef();
 	const contentVerticalScrollView 	= useRef();
@@ -97,39 +99,31 @@ const StickyColummnTable = (props) => {
 		}
 	};
 
-	// const FlatList_Header = () => {
-	// 	return (
-	// 		<TabGroup
-	// 			options={columns}
-	// 			// sortConfig={sortConfig}
-	// 			// onSortChange={setSortConfig}
-	// 			center
-	// 			borderRadius={Styles[theme].borderRadius}
-	// 			height={40}
-	// 			sortIndicatorColor={Colors[theme].buttonTextColor}
-	// 			activeTextColor={Colors[theme].buttonTextColor}
-	// 			backgroundColor={Colors[theme].tintColor}
-	// 			selectedColor={Colors[theme].tabBarActiveColor}
-	// 			inactiveTextColor={Colors[theme].buttonTextColor}
-	// 		/>
-	// 	);
-	// }
-
 	return (
 		<View style={styles.container}>
 			{ /*sticky column*/ }
 			<View key="headerColumn">
-				<Button
-					label="Animal"
-					color={Colors[theme].tintColor}
-					textColor={Colors[theme].buttonTextColor}
-					height={40}
-					width={100}
-					border={false}
-					onPress={() => ({})}
-					key="stickyAnimal"
-					gradient={[]}
-				/>
+				<View style={{
+					height: headerHeight,
+					backgroundColor: headerBackgroundColor,
+					flexDirection: 'row',
+					justifyContent: 'center',
+					alignItems: 'center' }}>
+					<Text
+						style={{
+							fontWeight: 'bold',
+							color: headerTextColor,
+							textAlign: columns[0].textAlign ? columns[0].textAlign : 'left',
+							paddingLeft: 10,
+							flexGrow: columns[0].width,
+							justifyContent: 'center',
+							alignItems: 'center'
+						}}
+						key="sticky"
+					>
+						{stickyHeaderLabel}
+					</Text>
+				</View>
 				<ScrollView
 					contentContainerStyle={{ width: '100%', padding: 0, alignItems: 'space-between' }}
 					ref={headerVerticalScrollView}
@@ -138,27 +132,22 @@ const StickyColummnTable = (props) => {
 					scrollEventThrottle={16}
 				>
 					<View>
-						<View style={{ height: 25 }}>
-							<Text>Panda</Text>
-						</View>
-						<View style={{ height: 25 }}>
-							<Text>Red Panda</Text>
-						</View>
-						<View style={{ height: 25 }}>
-							<Text>Ugly Panda</Text>
-						</View>
-						<View style={{ height: 25 }}>
-							<Text>Trash Panda</Text>
-						</View>
-						<View style={{ height: 25 }}>
-							<Text>Candy Panda</Text>
-						</View>
+						{ 	data.map((item, i) => {
+								return (
+									<View
+										key={item.animal}
+										style={{ flexDirection: 'row', height: rowHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: backgroundColor }}>
+										<Text style={{ paddingLeft: 10, flexGrow: columns[0].width, textAlign: columns[0].textAlign, color: textColor }}>{item.animal}</Text>
+									</View>
+								)
+							})
+						}
 					</View>
 				</ScrollView>
 			</View>
 			{ /*content column*/ }
 
-			<View key="contentColumn" style={{ width: 250 }}>
+			<View key="contentColumn" style={{ flex: 1, width: Dimensions.get('window').width }}>
 				<ScrollView
 					ref={horizontalScrollView}
 					scrollEventThrottle={16}
@@ -167,33 +156,24 @@ const StickyColummnTable = (props) => {
 					onScrollBeginDrag={() => activeScroller.current = ScrollerEnum.ScrollContent}
 					indicatorStyle="black"
 					persistentScrollbar
+					style={{ width: '100%' }}
 				>
 					{/* This <View> is required to create a flex column layout inside the horizontal <ScrollView> */}
-					<View>
-						<View style={{ padding: 0, alignItems: 'space-between', flexDirection: 'row' }}>
-							{columns.map((option, i) => {
-								return (
-									<Button
-										label={option.label}
-										color={Colors[theme].tintColor}
-										textColor={Colors[theme].buttonTextColor}
-										// size={size}
-										height={40}
-										// disabled={disabled}
-										width={i === 2 || i === 4 ? 200 : 100}
-										border={false}
-										// color={selected ? color : inactiveTextColor}
-										// textColor={selected ? activeTextColor : inactiveTextColor}
-										// style={i === 0
-										// 	? selected ? buttonSelectedLeftStyle : buttonLeftStyle
-										// 	: selected ? buttonSelectedNotLeftStyle : buttonNotLeftStyle}
-										onPress={() => ({})}
-										key={option.key}
-										gradient={[]}
-									/>
-								);
-							})}
-						</View>
+					<View
+						style={{ minWidth: Dimensions.get('screen').width * 2, marginTop: -1 }}>
+						<SortHeader
+							columns={columns}
+							sortConfig={sortConfig}
+							onSortChange={onSortChange}
+							borderRadiusLeft={0}
+							borderRadiusRight={borderRadius}
+							height={headerHeight}
+							backgroundColor={headerBackgroundColor}
+							sortIndicatorColor={sortIndicatorColor}
+							borderColor={borderColor}
+							selectedColor={selectedColor}
+							textColor={headerTextColor}
+						/>
 						<ScrollView
 							ref={contentVerticalScrollView}
 							onScroll={handleScroll_contentVertical}
@@ -202,27 +182,18 @@ const StickyColummnTable = (props) => {
 							persistentScrollbar
 							// stickyHeaderIndices={[0]}
 						>
-							<View>
+							<View
+								style={{ minWidth: Dimensions.get('screen').width * 2 }}>
 								{ 	data.map((item, i) => {
 										return (
 											<View
 												key={item.characterId}
-												style={{ flexDirection: 'row', width: '100%', alignItems: 'center', justifyContent: 'center' }}>
-												<View style={{ width: 100, height: 25, alignItems: 'center' }}>
-													<Text>{item.name}</Text>
-												</View>
-												<View style={{ width: 100, height: 25, alignItems: 'center' }}>
-													<Text>{item.color}</Text>
-												</View>
-												<View style={{ width: 200, height: 25, alignItems: 'center' }}>
-													<Text>{item.faveFood}</Text>
-												</View>
-												<View style={{ width: 100, height: 25, alignItems: 'center' }}>
-													<Text>{item.peeves}</Text>
-												</View>
-												<View style={{ width: 200, height: 25, alignItems: 'center' }}>
-													<Text>{item.loves}</Text>
-												</View>
+												style={{ flex: 1, flexDirection: 'row', height: rowHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: backgroundColor }}>
+												<Text style={{ paddingLeft: 10, flexGrow: columns[0].width, width: 0, textAlign: columns[0].textAlign, color: textColor }}>{item.name}</Text>
+												<Text style={{ paddingLeft: 10, flexGrow: columns[1].width, width: 0, textAlign: columns[1].textAlign, color: textColor }}>{item.color}</Text>
+												<Text style={{ paddingLeft: 10, flexGrow: columns[2].width, width: 0, textAlign: columns[2].textAlign, color: textColor }}>{item.faveFood}</Text>
+												<Text style={{ paddingLeft: 10, flexGrow: columns[3].width, width: 0, textAlign: columns[3].textAlign, color: textColor }}>{item.peeves}</Text>
+												<Text style={{ paddingLeft: 10, flexGrow: columns[4].width, width: 0, textAlign: columns[4].textAlign, color: textColor }}>{item.loves}</Text>
 											</View>
 										)
 									})
@@ -233,7 +204,7 @@ const StickyColummnTable = (props) => {
 				</ScrollView>
 				{showLeftChevron &&
 					<Button
-						iconElement={<Icon name="chevron-left" size={14} color={Colors[theme].buttonTextColor} />}
+						iconElement={<Icon name="chevron-left" size={14} color={scrollArrowColor} />}
 						size="small"
 						height={40}
 						width={10}
@@ -248,7 +219,7 @@ const StickyColummnTable = (props) => {
 				}
 				{showRightChevron &&
 					<Button
-						iconElement={<Icon name="chevron-right" size={14} color={Colors[theme].buttonTextColor} />}
+						iconElement={<Icon name="chevron-right" size={14} color={scrollArrowColor} />}
 						size="small"
 						height={40}
 						width={10}
