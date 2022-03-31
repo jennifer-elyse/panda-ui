@@ -36,8 +36,9 @@ const SortHeader = (props) => {
 		flexGrow: 1,
 		width: 0,
 		fontWeight: 'bold',
-		maxHeight: 45,
-		color: textColor
+		maxHeight: height,
+		color: textColor,
+		paddingLeft: 5
 	};
 
 	const commonViewStyle = {
@@ -94,7 +95,8 @@ const SortHeader = (props) => {
 
 		return {
 			...baseStyle,
-			flexGrow,
+			width: '100%',
+			flexWrap: 'nowrap',
 			flexDirection: 'row',
 			backgroundColor: 'transparent',
 			borderTopLeftRadius: borderRadiusLeft,
@@ -167,7 +169,7 @@ const SortHeader = (props) => {
 						/>}
 
 						<TextComponent
-							style={[getTextStyle(isSorted, i < columns.length - 1, column.width), { textAlign: columns?.textAlign ? columns.textAlign : 'left'}]}
+							style={[getTextStyle(isSorted, i < columns.length - 1, column.width), { textAlign: columns?.textAlign ? columns.textAlign : 'left' }]}
 							key={column.key + '1'}
 						>
 							{column.label}

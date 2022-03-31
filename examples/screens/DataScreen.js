@@ -51,6 +51,10 @@ const stickyColumns = [
 	{ key: 'loves',		label: 'Loves', 	icon: null, width: 2, textAlign: 'left' }
 ];
 
+const stickyColumn = {
+	key: 'animal',		label: 'Animal', 		icon: null, width: 1, textAlign: 'left'
+};
+
 const defaultSortConfig = {
 	key: columns[0].key,
 	direction: 'asc'
@@ -158,7 +162,7 @@ const DataScreen = () => {
 				columns={stickyColumns}
 				sortConfig={stickySortConfig}
 				onSortChange={setStickySortConfig}
-				stickyHeaderLabel="Animal"
+				stickyHeaderOptions={stickyColumn}
 				headerHeight={40}
 				rowHeight={50}
 				headerTextColor={Colors[theme].buttonTextColor}

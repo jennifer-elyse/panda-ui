@@ -22,14 +22,14 @@ const ScrollerEnum = {
 	ScrollContent: 'scroll-content'
 };
 
-const StickyColummnTable = (props) => {
+const StickyColumnTable = (props) => {
 	const [showLeftChevron, setShowLeftChevron] 	= useState(false);
 	const [showRightChevron, setShowRightChevron] 	= useState(false);
 	const {
 		data,
 		columns,
 		headerHeight,
-		stickyHeaderLabel,
+		stickyHeaderOptions,
 		rowHeight,
 		sortConfig,
 		borderRadius,
@@ -41,7 +41,10 @@ const StickyColummnTable = (props) => {
 		selectedColor,
 		headerTextColor,
 		textColor,
-		scrollArrowColor
+		scrollArrowColor,
+		maxHeight,
+		maxWidth,
+		width
 	} = props;
 	const horizontalScrollView 	        = useRef();
 	const contentVerticalScrollView 	= useRef();
@@ -95,15 +98,15 @@ const StickyColummnTable = (props) => {
 						style={{
 							fontWeight: 'bold',
 							color: headerTextColor,
-							textAlign: columns[0].textAlign ? columns[0].textAlign : 'left',
+							textAlign: stickyHeaderOptions.textAlign ? stickyHeaderOptions.textAlign : 'left',
 							paddingLeft: 10,
-							flexGrow: columns[0].width,
+							flexGrow: stickyHeaderOptions.width,
 							justifyContent: 'center',
 							alignItems: 'center'
 						}}
 						key="sticky"
 					>
-						{stickyHeaderLabel}
+						{stickyHeaderOptions.label}
 					</Text>
 				</View>
 				<ScrollView
@@ -112,14 +115,15 @@ const StickyColummnTable = (props) => {
 					onScroll={handleScroll_stickyContent}
 					onScrollBeginDrag={() => activeScroller.current = ScrollerEnum.StickyContent}
 					scrollEventThrottle={16}
+					style={{ maxHeight: maxHeight || Dimensions.get('screen').height / 2 }}
 				>
 					<View>
 						{ data.map((item, i) => {
 							return (
 								<View
-									key={item.animal}
+									key={i*-1}
 									style={{ flexDirection: 'row', height: rowHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: backgroundColor }}>
-									<Text style={{ paddingLeft: 10, flexGrow: columns[0].width, textAlign: columns[0].textAlign, color: textColor }}>{item.animal}</Text>
+									<Text style={{ paddingLeft: 10, flexGrow: stickyHeaderOptions.width, textAlign: stickyHeaderOptions.textAlign, color: textColor }}>{item[stickyHeaderOptions.key]}</Text>
 								</View>
 							);
 						})}
@@ -128,7 +132,7 @@ const StickyColummnTable = (props) => {
 			</View>
 			{ /* content column */ }
 
-			<View key="contentColumn" style={{ flex: 1, width: Dimensions.get('window').width }}>
+			<View key="contentColumn" style={{ flex: 1, width: maxWidth || Dimensions.get('window').width }}>
 				<ScrollView
 					ref={horizontalScrollView}
 					scrollEventThrottle={16}
@@ -161,6 +165,7 @@ const StickyColummnTable = (props) => {
 							onScrollBeginDrag={() => activeScroller.current = ScrollerEnum.ScrollContent}
 							scrollEventThrottle={16}
 							persistentScrollbar
+							style={{ maxHeight: Dimensions.get('screen').height / 2 }}
 							// stickyHeaderIndices={[0]}
 						>
 							<View
@@ -168,13 +173,15 @@ const StickyColummnTable = (props) => {
 								{ data.map((item, i) => {
 									return (
 										<View
-											key={item.characterId}
+											key={i}
 											style={{ flex: 1, flexDirection: 'row', height: rowHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: backgroundColor }}>
-											<Text style={{ paddingLeft: 10, flexGrow: columns[0].width, width: 0, textAlign: columns[0].textAlign, color: textColor }}>{item.name}</Text>
-											<Text style={{ paddingLeft: 10, flexGrow: columns[1].width, width: 0, textAlign: columns[1].textAlign, color: textColor }}>{item.color}</Text>
-											<Text style={{ paddingLeft: 10, flexGrow: columns[2].width, width: 0, textAlign: columns[2].textAlign, color: textColor }}>{item.faveFood}</Text>
-											<Text style={{ paddingLeft: 10, flexGrow: columns[3].width, width: 0, textAlign: columns[3].textAlign, color: textColor }}>{item.peeves}</Text>
-											<Text style={{ paddingLeft: 10, flexGrow: columns[4].width, width: 0, textAlign: columns[4].textAlign, color: textColor }}>{item.loves}</Text>
+											{
+												columns.map((detail, ii) => {
+													return (
+														<Text style={{ paddingLeft: 10, flexGrow: columns[ii].width, width: 0, textAlign: columns[ii].textAlign, color: textColor }}>{item[columns[ii].key]}</Text>
+													);
+												})
+											}
 										</View>
 									);
 								})}
@@ -224,4 +231,4 @@ const styles = StyleSheet.create({
 		justifyContent: 'center'
 	}
 });
-export default StickyColummnTable;
+export default StickyColumnTable;
