@@ -1,5 +1,11 @@
 import { Alert } from 'react-native';
 
+import Panda from '../assets/panda.svg';
+import RedPanda from '../assets/redpanda.svg';
+import UglyPanda from '../assets/uglypanda.svg';
+import TrashPanda from '../assets/trashpanda.svg';
+import CandyPanda from '../assets/candypanda.svg';
+
 let sessionState = null;
 // Do not use!
 // Only exported for use in Contexts, the source of truth of the session state.
@@ -90,7 +96,8 @@ export async function getCharacterQualities(characterId) {
 					peeves: 'Rainy Days',
 					loves: 'Classical Music',
 					color: 'Rose Gold',
-					svg: require('../assets/panda.svg')
+					svg: require('../assets/panda.svg'),
+					svgImage: Panda
 				},
 				{
 					characterId: '2',
@@ -101,7 +108,8 @@ export async function getCharacterQualities(characterId) {
 					peeves: 'Paparazzi',
 					loves: 'Ear scratches and Bling',
 					color: 'Red',
-					svg: require('../assets/redpanda.svg')
+					svg: require('../assets/redpanda.svg'),
+					svgImage: RedPanda
 				},
 				{
 					characterId: '3',
@@ -112,7 +120,8 @@ export async function getCharacterQualities(characterId) {
 					peeves: 'Judgy People',
 					loves: 'Books and Good Conversation',
 					color: 'Grey',
-					svg: require('../assets/uglypanda.svg')
+					svg: require('../assets/uglypanda.svg'),
+					svgImage: UglyPanda
 				},
 				{
 					characterId: '4',
@@ -123,7 +132,8 @@ export async function getCharacterQualities(characterId) {
 					peeves: 'Locks',
 					color: 'Midnight',
 					loves: 'Cardboard, Dumpsters, and Dog Doors',
-					svg: require('../assets/trashpanda.svg')
+					svg: require('../assets/trashpanda.svg'),
+					svgImage: TrashPanda
 				},
 				{
 					characterId: '5',
@@ -134,7 +144,8 @@ export async function getCharacterQualities(characterId) {
 					peeves: 'Party Poopers',
 					color: 'Hot Pink',
 					loves: 'Cuddles',
-					svg: require('../assets/candypanda.svg')
+					svg: require('../assets/candypanda.svg'),
+					svgImage: CandyPanda
 				}
 			]
 

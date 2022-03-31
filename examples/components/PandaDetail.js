@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Platform, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 
-import Image from 'react-native-remote-svg';
+import { SvgCss } from 'react-native-svg';
 
 import { H1, H3, Body2 } from '../components/StyledText';
 import Colors from '../constants/Colors';
@@ -15,13 +15,13 @@ const PandaDetail = ({ qualitiesData }) => {
 	const [userSession] = useThemeContext();
 	const theme = themeSelector(userSession);
 
-	const navigation = useNavigation();
+	// const navigation = useNavigation();
 
-	const navigateToHelp = (qualitiesData) => {
-		navigation.navigate('HomeStack', {
-			screen: 'Help'
-		});
-	};
+	// const navigateToHelp = (qualitiesData) => {
+	// 	navigation.navigate('HomeStack', {
+	// 		screen: 'Help'
+	// 	});
+	// };
 
 	return (
 		<View style={{ width: '100%', alignItems: 'center' }}>
@@ -36,12 +36,10 @@ const PandaDetail = ({ qualitiesData }) => {
 						}}
 						style={{ flexDirection: 'column', marginLeft: 5, marginVertical: 5 }}
 					>
-						{qualitiesData.svg ?
-							<Image
-								showWebviewLoader={false}
-								source={qualitiesData.svg}
+						{qualitiesData.svgImage ?
+							<SvgCss xml={qualitiesData.svgImage}
+								height="120" width="120"
 								style={{ height: Platform.OS === 'ios' ? 120 : 120, width: 250, marginBottom: 10, resizeMode: 'contain' }}
-								resizeMode="contain"
 							/>
 							:
 							<View
