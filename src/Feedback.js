@@ -25,6 +25,18 @@ import {
 	faGrin as fasGrin
 } from '@fortawesome/pro-solid-svg-icons';
 
+
+import openFrownPanda 	from './assets/images/openFrownPanda.svg';
+import _openFrownPanda 	from './assets/images/_openFrownPanda.svg';
+import frownPanda 		from './assets/images/frownPanda.svg';
+import _frownPanda 		from './assets/images/_frownPanda.svg';
+import mehPanda 		from './assets/images/mehPanda.svg';
+import _mehPanda 		from './assets/images/_mehPanda.svg';
+import smilePanda 		from './assets/images/smilePanda.svg';
+import _smilePanda 		from './assets/images/_smilePanda.svg';
+import grinPanda 		from './assets/images/grinPanda.svg';
+import _grinPanda 		from './assets/images/_grinPanda.svg';
+
 export default function Feedback({ theme='fontAwesome', rating, setRating, style, title='' }) {
 	const inputFor = {
 		textAlign: 'left',

@@ -6653,6 +6653,31 @@ react-native-panda-ui@../react-native-panda-ui-0.1.51.tgz:
     react-native-remote-svg "2.0.6"
     react-native-vector-icons "8.1.0"
 
+react-native-panda-ui@../react-native-panda-ui-0.1.52.tgz:
+  version "0.1.52"
+  resolved "../react-native-panda-ui-0.1.52.tgz#19bd003629c4986b71de0f1d8843bc66595fbed3"
+  dependencies:
+    "@expo/vector-icons" "^12.0.5"
+    "@fortawesome/fontawesome-pro" "^5.14.0"
+    "@fortawesome/fontawesome-svg-core" "^1.2.34"
+    "@fortawesome/free-brands-svg-icons" "^5.15.2"
+    "@fortawesome/free-regular-svg-icons" "^5.15.2"
+    "@fortawesome/free-solid-svg-icons" "^5.15.2"
+    "@fortawesome/pro-duotone-svg-icons" "^5.15.2"
+    "@fortawesome/pro-light-svg-icons" "^5.15.2"
+    "@fortawesome/pro-regular-svg-icons" "^5.15.2"
+    "@fortawesome/pro-solid-svg-icons" "^5.15.2"
+    "@fortawesome/react-native-fontawesome" "^0.2.6"
+    "@unimodules/core" "^7.1.2"
+    chroma "^0.0.1"
+    expo-linear-gradient "^10.0.3"
+    react-error-boundary "^3.1.3"
+    react-native-elements "3.4.2"
+    react-native-fontawesome-pro "^2.1.0"
+    react-native-picker-select "8.0.4"
+    react-native-remote-svg "2.0.6"
+    react-native-vector-icons "8.1.0"
+
 react-native-picker-select@8.0.4, react-native-picker-select@^8.0.4:
   version "8.0.4"
   resolved "https://registry.yarnpkg.com/react-native-picker-select/-/react-native-picker-select-8.0.4.tgz#3f7f1f42df69b06e7d2c10338288332a6c40fd10"
@@ -6678,7 +6703,7 @@ react-native-reanimated@~2.2.0:
     mockdate "^3.0.2"
     string-hash-64 "^1.0.3"
 
-react-native-remote-svg@2.0.6, react-native-remote-svg@^2.0.6:
+react-native-remote-svg@2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/react-native-remote-svg/-/react-native-remote-svg-2.0.6.tgz#5f8bc7cefc18f4d37cf02f8158d6b2a9f534891d"
   integrity sha512-tQbDL+gtfGgG9Evz5TOn5Odmrn/EYsmsLqVZ0Do0VMJevfLBuQRioLiwRsI/BCgOHu1oQLZIIE5p7V/lN9jLrw==
