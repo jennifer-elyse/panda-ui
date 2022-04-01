@@ -47,7 +47,6 @@ function HomeStack() {
 			}}>
 			<Stack.Screen name="HomeScreen" component={PandaHomeScreen} />
 			{/*<Stack.Screen name="Data" 	component={DataScreen} />*/}
-			<Stack.Screen name="Help" 	component={HelpScreen} />
 		</Stack.Navigator>
 	);
 }
@@ -90,10 +89,16 @@ const AppNavigator = () => {
 							/>
 						</LinearGradient>
 					) : (
-						<BottomTabBar
+
+						<MyTabBar
 							{...props}
-							style={{ backgroundColor: 'transparent', overflow: 'hidden' }}
+							backgroundColor={Colors[theme].tabBarInactiveColor}
+							style={{ overflow: 'hidden' }}
 						/>
+						// <BottomTabBar
+						// 	{...props}
+						// 	style={{ backgroundColor: 'transparent', overflow: 'hidden' }}
+						// />
 					);
 				}}
 				screenOptions={({ route }) => ({
@@ -117,9 +122,9 @@ const AppNavigator = () => {
 							iconName = 'bars';
 						} else if (route.name === 'Data') {
 							iconName = 'table';
-						} /* else if (route.name === 'OptIn') {
+						} else if (route.name === 'Help') {
 							iconName = 'optin-monster';
-						} */
+						}
 
 						return (<ProIcon
 							style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginHorizontal: 10 }}
@@ -136,12 +141,13 @@ const AppNavigator = () => {
 				<Tab.Screen name="Choices" 		component={ChoiceScreen} />
 				<Tab.Screen name="Data" 		component={DataScreen} />
 				<Tab.Screen name="Navigation" 	component={NavigationScreen} />
+				<Tab.Screen name="Help" 		component={HelpScreen} />
 			</Tab.Navigator>
 		</NavigationContainer>
 	);
 };
 
-function MyTabBar({ state, descriptors, navigation, ...props }) {
+function MyTabBar({ state, descriptors, navigation, backgroundColor='transparent', ...props }) {
 	const focusedOptions = descriptors[state.routes[state.index].key].options;
 	// console.log('descriptors', descriptors);
 	if (focusedOptions.tabBarVisible === false) {
@@ -149,7 +155,7 @@ function MyTabBar({ state, descriptors, navigation, ...props }) {
 	}
 
 	return (
-		<View style={{ flexDirection: 'row', height: 60 }}>
+		<View style={{ flexDirection: 'row', height: 60, backgroundColor }}>
 			{state.routes.map((route, index) => {
 				const { options } = descriptors[route.key];
 				{/*console.log('options', options);*/}

@@ -7,6 +7,8 @@ import {
 	Platform
 } from 'react-native';
 import PropTypes from 'prop-types';
+import { SvgCss } from 'react-native-svg';
+
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
 	faFrownOpen as farFrownOpen,
@@ -22,9 +24,6 @@ import {
 	faSmile as fasSmile,
 	faGrin as fasGrin
 } from '@fortawesome/pro-solid-svg-icons';
-
-// Third Party Imports
-import Image from 'react-native-remote-svg';
 
 export default function Feedback({ theme='fontAwesome', rating, setRating, style, title='' }) {
 	const inputFor = {
@@ -82,37 +81,33 @@ export default function Feedback({ theme='fontAwesome', rating, setRating, style
 					}
 					{theme ===  'panda' && // frown-open, frown, meh, smile, grin faFrownOpen, faFrown, faMeh, faSmile, faGrin
 						[
-							{ rating: 1, color: '#dc1414', icon: require('./assets/images/openFrownPanda.svg'), selectedIcon: require('./assets/images/_openFrownPanda.svg') },
-							{ rating: 2, color: '#fb880a', icon: require('./assets/images/frownPanda.svg'), selectedIcon: require('./assets/images/_frownPanda.svg') },
-							{ rating: 3, color: '#edc41c', icon: require('./assets/images/mehPanda.svg'), selectedIcon: require('./assets/images/_mehPanda.svg') },
-							{ rating: 4, color: '#57c529', icon: require('./assets/images/smilePanda.svg'), selectedIcon: require('./assets/images/_smilePanda.svg') },
-							{ rating: 5, color: '#2eb733', icon: require('./assets/images/grinPanda.svg'), selectedIcon: require('./assets/images/_grinPanda.svg') }
-						].map(value => (
-							<TouchableOpacity
-								onPress={() => setRating(value.rating)}
-								key={value.rating}
-								style={{ alignItems: 'center', justifyContent: 'center', maxWidth: 60, maxHeight: 45 }}
-							>
-								<Image
-									showWebviewLoader={false}
-									style={{
-										height: Platform.OS === 'ios' ? 120 : 40,
-										width: Platform.OS === 'ios' ? 250 : 50,
-										alignItems: 'center',
-										justifyContent: 'center',
-										marginHorizontal: 5,
-										marginTop: Platform.OS === 'ios' ? -8 : 0,
-										resizeMode: 'contain',
-										transform: [
-											{ scaleX: Platform.OS === 'ios' ? 0.6 : 1 },
-											{ scaleY: Platform.OS === 'ios' ? 0.6 : 1 }]
-									}}
-									source={rating === value.rating ? value.selectedIcon : value.icon}
-									resizeMode="contain"
-								/>
-								<View style={{ height: 5, width: '100%', backgroundColor: value.color, marginTop:  Platform.OS === 'ios' ? -30 : 5, alignItems: 'center', justifyContent: 'center' }} />
-							</TouchableOpacity>
-						))
+							{ rating: 1, color: '#dc1414', icon: openFrownPanda, selectedIcon: _openFrownPanda },
+							{ rating: 2, color: '#fb880a', icon: frownPanda, selectedIcon: _frownPanda },
+							{ rating: 3, color: '#edc41c', icon: mehPanda, selectedIcon: _mehPanda },
+							{ rating: 4, color: '#57c529', icon: smilePanda, selectedIcon: _smilePanda },
+							{ rating: 5, color: '#2eb733', icon: grinPanda, selectedIcon: _grinPanda }
+						].map(value => {
+							const xml = rating === value.rating ? value.selectedIcon : value.icon;
+							return (
+								<TouchableOpacity
+									onPress={() => setRating(value.rating)}
+									key={value.rating}
+									style={{ alignItems: 'center', justifyContent: 'center', maxWidth: 60, maxHeight: 45 }}
+								>
+									<SvgCss
+										style={{
+											alignItems: 'center',
+											justifyContent: 'center',
+											marginHorizontal: 5
+										}}
+										xml={xml}
+										height={Platform.OS === 'ios' ? 30 : 30}
+										width={Platform.OS === 'ios' ? 75 : 75}
+									/>
+									<View style={{ height: 5, width: '100%', backgroundColor: value.color, marginTop:  Platform.OS === 'ios' ? 10 : 5, alignItems: 'center', justifyContent: 'center' }} />
+								</TouchableOpacity>
+							);
+						})
 					}
 				</View>
 			</View>

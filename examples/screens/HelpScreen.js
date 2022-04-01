@@ -47,6 +47,35 @@ export default function HelpScreen() {
 						style={{ alignItems: 'center', height: '85%', width: '95%' }}
 					>
 						<View style={{ height: 100, width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+							<Feedback
+								rating={rating}
+								setRating={setRating}
+								title={'How happy are you with Panda UI?'}
+								theme="panda"
+							/>
+						</View>
+					</Card>
+				</Card>
+			</View>
+			<View style={{ height: 170, width: '90%', marginTop: 20 }}>
+				<Card
+					elevation={5}
+					borderRadius={50}
+					backgroundColor={Colors[theme].backCardColor}
+					style={{ alignItems: 'center', justifyContent: 'center' }}
+				>
+					<Card
+						elevation={8}
+						borderRadius={40}
+						backgroundColor={Colors[theme].cardColor}
+						style={{ alignItems: 'center', height: '85%', width: '95%' }}
+					>
+						<View style={{ height: 100, width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+							<Feedback
+								rating={rating}
+								setRating={setRating}
+								title={'How happy are you with Panda UI?'}
+							/>
 						</View>
 					</Card>
 				</Card>

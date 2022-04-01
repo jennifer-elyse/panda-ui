@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Platform, TouchableOpacity } from 'react-native';
-// import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 import { SvgCss } from 'react-native-svg';
 
@@ -15,13 +15,14 @@ const PandaDetail = ({ qualitiesData }) => {
 	const [userSession] = useThemeContext();
 	const theme = themeSelector(userSession);
 
-	// const navigation = useNavigation();
+	const navigation = useNavigation();
 
-	// const navigateToHelp = (qualitiesData) => {
-	// 	navigation.navigate('HomeStack', {
-	// 		screen: 'Help'
-	// 	});
-	// };
+	const navigateToHelp = (qualitiesData) => {
+		// navigation.navigate('HomeStack', {
+		// 	screen: 'Help'
+		// });
+		navigation.navigate('Help');
+	};
 
 	return (
 		<View style={{ width: '100%', alignItems: 'center' }}>
@@ -32,7 +33,7 @@ const PandaDetail = ({ qualitiesData }) => {
 				<View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start' }}>
 					<TouchableOpacity
 						onPress={() => {
-							// navigateToHelp(qualitiesData);
+							navigateToHelp(qualitiesData);
 						}}
 						style={{ flexDirection: 'column', marginLeft: 5, marginVertical: 5 }}
 					>

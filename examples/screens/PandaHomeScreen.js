@@ -4,15 +4,13 @@ import {
 	StyleSheet,
 	View,
 	SafeAreaView,
-	ScrollView
+	ScrollView,
+	Image
 } from 'react-native';
 
 // Expo imports
 import { StatusBar } from 'expo-status-bar';
 import Constants from 'expo-constants';
-
-// Third Party Imports
-import Image from 'react-native-remote-svg';
 
 // Local Imports
 import {
