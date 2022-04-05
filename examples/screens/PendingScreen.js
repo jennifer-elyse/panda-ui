@@ -28,17 +28,19 @@ import { getCharacters } from '../utils/apiHandler';
 const BUTTON_LABELS = [
 	{ label: 'Vanilla Icecream', value: 'vanilla_icecream' },
 	{ label: 'Strawberry Popsicle', value: 'strawberry_popsicle' },
+	{ label: 'KFC Fried Chicken', value: 'kfc_fried_chicken' },
+	{ label: 'In-n-Out Animal Style', value: 'in_and_out' },
 ]
 
 const SIDE_BAR = () => {
 	return (
 		<View style={{
 			height: 500,
-			width: 300,
+			width: 100,
 			backgroundColor: 'pink'
 		}}>
 			<StyledText.H1>Side Bar</StyledText.H1>
-			<StyledText.Body2>Sidebar options</StyledText.Body2>
+			<StyledText.Body2>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</StyledText.Body2>
 		</View>
 	);
 };
@@ -75,10 +77,12 @@ const DataScreen = () => {
 				setLoading={setLoading}
 			/>
 			<Drawer
+				width={100}
 				SideBar={SIDE_BAR}
 			>
 				<View style={{
-					width: '95%',
+					backgroundColor: 'blue',
+					width: '100%',
 					marginTop: 30,
 					marginBottom: 15,
 					alignItems: 'center',
@@ -88,6 +92,9 @@ const DataScreen = () => {
 						selectedIndex={buttonIndex}
 						selectIndex={setButtonIndex}
 					/>
+					<View style={{marginVertical: 5, backgroundColor: 'salmon', width: '100%'}}>
+					<StyledText.H1>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 |</StyledText.H1>
+					</View>
 				</View>
 			</Drawer>
 		</SafeAreaView>

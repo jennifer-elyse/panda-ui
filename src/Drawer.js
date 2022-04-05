@@ -5,14 +5,18 @@ import Button from './Button';
 
 // get screen height
 const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const DEFAULT_WIDTH = 200;
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
 	UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
 function DrawerComponent(props) {
-	const { children, SideBar, buttonBackgroundColor, buttonColor, buttonLabel, buttonPosition } = props;
+	const { children, width, SideBar, buttonBackgroundColor, buttonColor, buttonLabel, buttonPosition } = props;
 	const [menuToggle, setMenuToggle] = useState(false);
+
+	const CURRENT_WIDTH = width || DEFAULT_WIDTH;
 
 	const toggleMenu = () => {
 		LayoutAnimation.configureNext(
@@ -34,16 +38,27 @@ function DrawerComponent(props) {
 		);
 	};
 
+	// caculate width in percentage
+	const SIDEBAR_WIDTH_PERCENTAGE = `${(1 - (CURRENT_WIDTH / SCREEN_WIDTH)) * 100}%`;
+	const SIDEBAR_WIDTH_SCALE = 1 - CURRENT_WIDTH / SCREEN_WIDTH;
+
+	// console.log(`SIDEBAR_WIDTH_SCALE ${SIDEBAR_WIDTH_SCALE}`);
+
 	return (
 		<View style={styles.container}>
-			{menuToggle && <SideBar visible={menuToggle} />}
-			<View>
+			<View style={{width: menuToggle ? CURRENT_WIDTH : 0, transform: [{ scaleX: menuToggle ? 1 : 0 }]}}>
+				<SideBar visible={menuToggle} />
+			</View>
+			<View style={{width: menuToggle ? SIDEBAR_WIDTH_PERCENTAGE : '100%'}}>
 				{children}
 				{renderButton()}
 			</View>
 		</View>
 	);
 }
+
+// <View style={{width: menuToggle ? SIDEBAR_WIDTH_PERCENTAGE : '100%'}}>
+// <View style={{width: '100%', transform: [{ scaleX: menuToggle ? SIDEBAR_WIDTH_SCALE : 1 }]}}>
 
 const styles = StyleSheet.create({
 	container: {
