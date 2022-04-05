@@ -18,6 +18,7 @@ const StyledSelect = props => {
 		enableActionOnValueChange,
 		enabled = true,
 		width,
+		height = 40,
 		input,
 		rest,
 		separatorColor,
@@ -42,6 +43,7 @@ const StyledSelect = props => {
 		borderBottomColor: separatorColor,
 		overflow: 'hidden',
 		width: width,
+		height: height,
 		justifyContent: 'center',
 		alignItems: 'flex-start'
 	};
