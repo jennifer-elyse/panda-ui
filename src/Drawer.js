@@ -46,9 +46,7 @@ function DrawerComponent(props) {
 
 	return (
 		<View style={styles.container}>
-			<View style={{width: menuToggle ? CURRENT_WIDTH : 0, transform: [{ scaleX: menuToggle ? 1 : 0 }]}}>
-				<SideBar visible={menuToggle} />
-			</View>
+			{menuToggle && <SideBar visible={menuToggle} />}
 			<View style={{width: menuToggle ? SIDEBAR_WIDTH_PERCENTAGE : '100%'}}>
 				{children}
 				{renderButton()}
@@ -62,7 +60,9 @@ function DrawerComponent(props) {
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: 'row'
+		flexDirection: 'row',
+		width: '100%',
+		justifyContent: 'flex-start'
 	},
 	buttonContainer: {
 		position: 'absolute',

@@ -36,7 +36,7 @@ const SIDE_BAR = () => {
 	return (
 		<View style={{
 			height: 500,
-			width: 100,
+			width: 250,
 			backgroundColor: 'pink'
 		}}>
 			<StyledText.H1>Side Bar</StyledText.H1>
@@ -77,7 +77,7 @@ const DataScreen = () => {
 				setLoading={setLoading}
 			/>
 			<Drawer
-				width={100}
+				width={250}
 				SideBar={SIDE_BAR}
 			>
 				<View style={{
