@@ -19,7 +19,8 @@ import {
 	DoubleCard,
 	SearchBar,
 	SortHeader,
-	useSortedData
+	useSortedData,
+	ScanTextInput
 } from 'react-native-panda-ui';
 
 import StickyColumnTable from '../components/StickyColumnTable';
@@ -157,6 +158,8 @@ const DataScreen = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
+			<ScanTextInput
+				onSubmit={() => {}} />
 			<StickyColumnTable
 				data={stickySortedApiData}
 				columns={stickyColumns}
