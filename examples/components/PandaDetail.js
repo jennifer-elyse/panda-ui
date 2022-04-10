@@ -38,10 +38,12 @@ const PandaDetail = ({ qualitiesData }) => {
 						style={{ flexDirection: 'column', marginLeft: 5, marginVertical: 5 }}
 					>
 						{qualitiesData.svgImage ?
-							<SvgCss xml={qualitiesData.svgImage}
-								height="120" width="120"
-								style={{ height: Platform.OS === 'ios' ? 120 : 120, width: 250, marginBottom: 10, resizeMode: 'contain' }}
-							/>
+							<View style={{ width: '100%', alignItems: 'center' }}>
+								<SvgCss xml={qualitiesData.svgImage}
+									height="120" width="120"
+									style={{ height: Platform.OS === 'ios' ? 120 : 120, width: 250, marginBottom: 10, resizeMode: 'contain' }}
+								/>
+							</View>
 							:
 							<View
 								style={{ height: 120, width: 120 }}

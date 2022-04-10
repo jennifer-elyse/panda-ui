@@ -25,8 +25,8 @@ const ScanTextInput = (props) => {
 		clearOnSubmit=true,
 		borderRadius=4,
 		placeholderTextColor='lightgrey',
-		textElement=Text,
-		label,
+		textElement,
+		width,
 		...inputProps
 	} = props;
 
@@ -70,11 +70,27 @@ const ScanTextInput = (props) => {
 		}
 	}, [isFocused, setFocus, autoFocus]);
 
+
+	const styles = StyleSheet.create({
+		container: {
+			width: width ? width : '100%',
+			flexDirection: 'row',
+			alignItems: 'center',
+			justifyContent: 'center',
+			flexWrap: 'nowrap',
+			marginLeft: 20,
+			marginRight: 20,
+			minHeight: 10
+		},
+		keyboardIcon: {
+			padding: 12,
+			marginLeft: 8
+		}
+	});
+
 	return (
 		<View style={styles.container}>
-			{
-				label && textElement
-			}
+			{textElement}
 			<TextInput
 				style={inputStyle}
 				disableFullscreenUI
@@ -118,23 +134,6 @@ const ScanTextInput = (props) => {
 export default ScanTextInput;
 
 
-const styles = StyleSheet.create({
-	container: {
-		width: '100%',
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-		flexWrap: 'nowrap',
-		marginLeft: 20,
-		marginRight: 20,
-		minHeight: 10
-	},
-	keyboardIcon: {
-		padding: 12,
-		marginLeft: 8
-	}
-});
-
 ScanTextInput.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
 	style: PropTypes.object,
@@ -147,6 +146,5 @@ ScanTextInput.propTypes = {
 	isFocused: PropTypes.bool,
 	autoFocus: PropTypes.bool,
 	showBarCodeIcon: PropTypes.bool,
-	validate: PropTypes.bool,
-	label: PropTypes.string
+	validate: PropTypes.bool
 };

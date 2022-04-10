@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
-import Image from 'react-native-remote-svg';
+import { SvgCss } from 'react-native-svg';
 
 import warning from './utils/warning';
 
@@ -180,7 +180,6 @@ const ButtonContent = (props) => {
 		disabled,
 		size='standard',
 		fontSize,
-		disabledColor='lightgrey',
 		textColor='#fff',
 		disabledTextColor='#fff',
 		textElement,
@@ -201,18 +200,9 @@ const ButtonContent = (props) => {
 			{iconElement}
 			{svg &&
 				(
-					<Image
-						showWebviewLoader={false}
-						style={{
-							height: Platform.OS === 'ios' ? 120 : 40,
-							width: Platform.OS === 'ios' ? 250 : 50,
-							resizeMode: 'contain',
-							transform: [
-								{ scaleX: Platform.OS === 'ios' ? (size === 'small' ? 0.3 : 0.6) : 1 },
-								{ scaleY: Platform.OS === 'ios' ? (size === 'small' ? 0.3 : 0.6) : 1 }]
-						}}
-						source={svg}
-						resizeMode="contain"
+					<SvgCss
+						xml={svg}
+						height="30" width="30"
 					/>
 				)
 			}

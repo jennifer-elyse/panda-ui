@@ -37,6 +37,8 @@ import LoadingIndicator from '../components/LoadingIndicator';
 import { H1 } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
 import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
+import TrashPanda from '../assets/trashpanda.svg';
+import TrashCan from '../assets/trashcan.svg';
 
 const colorOptions =
 	[{
@@ -84,7 +86,7 @@ export default function ChoiceScreen() {
 
 	const [characterCount, setCharacterCount] 	= useState(0);
 	const [characterData, setCharacterData] 	= useState([]);
-	const [qualitiesDate, setQualitiesData] 	= useState([]);
+	const [qualitiesData, setQualitiesData] 	= useState([]);
 
 	const styles = StyleSheet.create({
 		container: {
@@ -151,8 +153,8 @@ export default function ChoiceScreen() {
 									color={Colors[theme].buttonColor}
 									activeTextColor={Colors[theme].buttonTextColor}
 									inactiveTextColor={Colors[theme].buttonColor}
-									textElement={<ButtonText buttonTextColor={Colors[theme].buttonTextColor} />}
-									options={[{ label: 'Heads', value: false, svg: require('../assets/trashpanda.svg') }, { label: 'Tails', value: true, svg: require('../assets/trashcan.svg') }]}
+									// textElement={<ButtonText buttonTextColor={Colors[theme].buttonColor} />}
+									options={[{ label: 'Heads', value: false, svg: TrashPanda }, { label: 'Tails', value: true, svg: TrashCan }]}
 								/>
 							</View>
 						</DoubleCard>
@@ -179,7 +181,7 @@ export default function ChoiceScreen() {
 									borderRadius={Styles[theme].borderRadius}
 									color={Colors[theme].buttonColor}
 									activeTextColor={Colors[theme].buttonTextColor}
-									inactiveTextColor={Colors[theme].buttonTextColor}
+									inactiveTextColor={Colors[theme].buttonColor}
 									options={[{ label: 'No Gradient', value: false }, { label: 'Gradient', value: true }]}
 								/>
 							</View>
@@ -352,7 +354,7 @@ export default function ChoiceScreen() {
 							cardColor={Colors[theme].cardColor}
 						>
 							<View style={{ height: '100%', width: '100%', flexDirection: 'row', margin: 'auto', padding: 10, flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-								{qualitiesDate.map((item, i) => {
+								{qualitiesData.map((item, i) => {
 									return (
 										<View
 											key={i}
@@ -360,7 +362,7 @@ export default function ChoiceScreen() {
 										>
 											<Chip
 												value={item.name}
-												svg={item.svg}
+												svg={item.svgImage}
 												backgroundColor={Colors[theme].backgroundColor}
 												deleteIconColor={Colors[theme].buttonColor}
 												buttonTextColor={Colors[theme].buttonTextColor}

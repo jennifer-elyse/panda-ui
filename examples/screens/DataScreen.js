@@ -34,7 +34,7 @@ import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import FlatListItemSeparator from '../components/FlatListItemSeparator';
 import LoadingIndicator from '../components/LoadingIndicator';
-import { H1, Body2 } from '../components/StyledText';
+import { H1, Body2, ButtonText } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
 import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
 
@@ -159,7 +159,9 @@ const DataScreen = () => {
 	return (
 		<SafeAreaView style={styles.container}>
 			<ScanTextInput
-				onSubmit={() => {}} />
+				onSubmit={() => {}}
+				// textElement={<ButtonText buttonTextColor={Colors[theme].buttonColor}>scan</ButtonText>}
+			/>
 			<StickyColumnTable
 				data={stickySortedApiData}
 				columns={stickyColumns}
