@@ -36,7 +36,7 @@ const SIDE_BAR = () => {
 	return (
 		<View style={{
 			height: 500,
-			width: 250,
+			width: 230,
 			backgroundColor: 'pink'
 		}}>
 			<StyledText.H1>Side Bar</StyledText.H1>
@@ -63,7 +63,7 @@ const DataScreen = () => {
 
 	const styles = StyleSheet.create({
 		container: {
-			flex: 1,
+			width: '100%',
 			marginTop: StatusBar.height,
 			backgroundColor: Colors[theme].backgroundColor,
 			alignItems: 'flex-start'
@@ -77,12 +77,13 @@ const DataScreen = () => {
 				setLoading={setLoading}
 			/>
 			<Drawer
-				width={250}
+				width={230}
 				SideBar={SIDE_BAR}
 			>
 				<View style={{
 					backgroundColor: 'blue',
 					width: '100%',
+					height: 300,
 					marginTop: 30,
 					marginBottom: 15,
 					alignItems: 'center',
@@ -93,7 +94,7 @@ const DataScreen = () => {
 						selectIndex={setButtonIndex}
 					/>
 					<View style={{marginVertical: 5, backgroundColor: 'salmon', width: '100%'}}>
-					<StyledText.H1>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 |</StyledText.H1>
+					<StyledText.H1>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 |</StyledText.H1>
 					</View>
 				</View>
 			</Drawer>

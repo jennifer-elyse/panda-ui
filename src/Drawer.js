@@ -1,27 +1,37 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, LayoutAnimation, UIManager, Platform, Dimensions } from 'react-native';
-import PropTypes from 'prop-types';
+import React, { useState, useRef } from 'react';
+import { View, StyleSheet, Animated, Dimensions } from 'react-native';
+import { withAnchorPoint } from 'react-native-anchor-point';
 import Button from './Button';
+import PropTypes from 'prop-types';
 
-// get screen height
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const DEFAULT_WIDTH = 200;
-
-if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
-	UIManager.setLayoutAnimationEnabledExperimental(true);
-}
 
 function DrawerComponent(props) {
 	const { children, width, SideBar, buttonBackgroundColor, buttonColor, buttonLabel, buttonPosition } = props;
 	const [menuToggle, setMenuToggle] = useState(false);
 
-	const CURRENT_WIDTH = width || DEFAULT_WIDTH;
+	const SIDEBAR_WIDTH = width || DEFAULT_WIDTH;
+	const MAIN_WIDTH = SCREEN_WIDTH - (width || DEFAULT_WIDTH);
+
+	const SIDEBAR_WIDTH_SCALE = 1 - SIDEBAR_WIDTH / SCREEN_WIDTH + 0.011;
+
+	const scaleValue = useRef(new Animated.Value(1)).current;
+
+	const getTransform = () => {
+		let transform = {
+			transform: [{ scaleX: scaleValue }]
+		};
+		return withAnchorPoint(transform, { x: 1, y: 0.5 }, { width: MAIN_WIDTH, height: SCREEN_HEIGHT });
+	};
 
 	const toggleMenu = () => {
-		LayoutAnimation.configureNext(
-			LayoutAnimation.create(200, LayoutAnimation.Types.linear, LayoutAnimation.Properties.opacity)
-		);
+		Animated.timing(scaleValue, {
+			toValue: menuToggle ? 1 : SIDEBAR_WIDTH_SCALE,
+			useNativeDriver: true,
+			duration: 100
+		}).start();
 		setMenuToggle(prev => !prev);
 	};
 
@@ -38,31 +48,25 @@ function DrawerComponent(props) {
 		);
 	};
 
-	// caculate width in percentage
-	const SIDEBAR_WIDTH_PERCENTAGE = `${(1 - (CURRENT_WIDTH / SCREEN_WIDTH)) * 100}%`;
-	const SIDEBAR_WIDTH_SCALE = 1 - CURRENT_WIDTH / SCREEN_WIDTH;
-
-	// console.log(`SIDEBAR_WIDTH_SCALE ${SIDEBAR_WIDTH_SCALE}`);
-
 	return (
 		<View style={styles.container}>
-			{menuToggle && <SideBar visible={menuToggle} />}
-			<View style={{width: menuToggle ? SIDEBAR_WIDTH_PERCENTAGE : '100%'}}>
+			{menuToggle && (
+				<View style={{ width: SIDEBAR_WIDTH, position: 'absolute' }}>
+					<SideBar visible={menuToggle} />
+				</View>
+			)}
+			<Animated.View style={[getTransform()]}>
 				{children}
 				{renderButton()}
-			</View>
+			</Animated.View>
 		</View>
 	);
 }
 
-// <View style={{width: menuToggle ? SIDEBAR_WIDTH_PERCENTAGE : '100%'}}>
-// <View style={{width: '100%', transform: [{ scaleX: menuToggle ? SIDEBAR_WIDTH_SCALE : 1 }]}}>
-
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
-		width: '100%',
-		justifyContent: 'flex-start'
+		width: '100%'
 	},
 	buttonContainer: {
 		position: 'absolute',
@@ -72,14 +76,12 @@ const styles = StyleSheet.create({
 
 DrawerComponent.propTypes = {
 	children: PropTypes.element.isRequired,
-	SideBar: PropTypes.oneOfType([
-		PropTypes.element,
-		PropTypes.func
-	]).isRequired,
+	SideBar: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
 	buttonBackgroundColor: PropTypes.string,
 	buttonColor: PropTypes.string,
 	buttonLabel: PropTypes.string,
 	buttonPosition: PropTypes.number,
+	width: PropTypes.number
 };
 
 export default DrawerComponent;
