@@ -78,6 +78,8 @@ const DataScreen = () => {
 			/>
 			<Drawer
 				width={230}
+				squeeze
+				screenWidth={800}
 				SideBar={SIDE_BAR}
 			>
 				<View style={{

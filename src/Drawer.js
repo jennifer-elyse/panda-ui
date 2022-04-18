@@ -4,18 +4,19 @@ import { withAnchorPoint } from 'react-native-anchor-point';
 import Button from './Button';
 import PropTypes from 'prop-types';
 
-const SCREEN_HEIGHT = Dimensions.get('window').height;
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const DEFAULT_WIDTH = 200;
+const DEVICE_SCREEN_HEIGHT = Dimensions.get('window').height;
+const DEVICE_SCREEN_WIDTH = Dimensions.get('window').width;
+const DEFAULT_SIDEBAR_WIDTH = 200;
 
 function DrawerComponent(props) {
-	const { children, squeeze, width, SideBar, buttonBackgroundColor, buttonColor, buttonLabel, buttonPosition } = props;
+	const { children, squeeze, screenWidth, width, SideBar, buttonBackgroundColor, buttonColor, buttonLabel, buttonPosition } = props;
 	const [menuToggle, setMenuToggle] = useState(false);
 
-	const SIDEBAR_WIDTH = width || DEFAULT_WIDTH;
-	const MAIN_WIDTH = SCREEN_WIDTH - (width || DEFAULT_WIDTH);
+	const SIDEBAR_WIDTH = width || DEFAULT_SIDEBAR_WIDTH;
+	const SCREEN_WIDTH = screenWidth || DEVICE_SCREEN_WIDTH;
+	const MAIN_WIDTH = screenWidth || SCREEN_WIDTH - (width || DEFAULT_SIDEBAR_WIDTH);
 
-	const SIDEBAR_WIDTH_SCALE = 1 - SIDEBAR_WIDTH / SCREEN_WIDTH; + 0.011;
+	const SIDEBAR_WIDTH_SCALE = 1 - SIDEBAR_WIDTH / SCREEN_WIDTH;
 
 	const scaleValue = useRef(new Animated.Value(1)).current;
 	const translateValue = useRef(new Animated.Value(0)).current;
@@ -25,7 +26,7 @@ function DrawerComponent(props) {
 			let transform = {
 				transform: [{ scaleX: scaleValue }]
 			};
-			return withAnchorPoint(transform, { x: 1, y: 0.5 }, { width: MAIN_WIDTH, height: SCREEN_HEIGHT });
+			return withAnchorPoint(transform, { x: 1, y: 0.5 }, { width: MAIN_WIDTH, height: DEVICE_SCREEN_HEIGHT });
 		} else {
 			return {
 				transform: [{translateX: translateValue}]
@@ -52,7 +53,7 @@ function DrawerComponent(props) {
 
 	const renderButton = () => {
 		return (
-			<View style={[styles.buttonContainer, { top: buttonPosition || SCREEN_HEIGHT / 3 }]}>
+			<View style={[styles.buttonContainer, { top: buttonPosition || DEVICE_SCREEN_HEIGHT / 3 }]}>
 				<Button
 					label={buttonLabel || '>'}
 					onPress={toggleMenu}
@@ -64,7 +65,7 @@ function DrawerComponent(props) {
 	};
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, {width: SCREEN_WIDTH}]}>
 			{menuToggle && (
 				<View style={{ width: SIDEBAR_WIDTH, position: 'absolute' }}>
 					<SideBar visible={menuToggle} />
@@ -80,8 +81,7 @@ function DrawerComponent(props) {
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: 'row',
-		width: '100%'
+		flexDirection: 'row'
 	},
 	buttonContainer: {
 		position: 'absolute',
@@ -97,6 +97,7 @@ DrawerComponent.propTypes = {
 	buttonLabel: PropTypes.string,
 	buttonPosition: PropTypes.number,
 	width: PropTypes.number,
+	screenWidth: PropTypes.number,
 	squeeze: PropTypes.bool
 };
 
