@@ -10,6 +10,7 @@ import Layout from './constants/Layout';
 
 const SortHeader = (props) => {
 	const {
+		screenWidth,
 		columns,
 		sortConfig,
 		onSortChange,
@@ -30,6 +31,9 @@ const SortHeader = (props) => {
 		cellContainerStyle,
 		headerContainerStyle
 	} = props;
+
+	// set screen width
+	const SCREEN_WIDTH = screenWidth || Layout.window.width;
 
 	const commonTextStyle = {
 		fontWeight: 'bold',
@@ -154,7 +158,7 @@ const SortHeader = (props) => {
 				isSorted = noSort ? false : isSorted;
 				return (
 					<TouchableOpacity
-						style={getViewStyle(isSorted, column.width * Layout.window.width, i, columns.length)}
+						style={getViewStyle(isSorted, column.width * SCREEN_WIDTH, i, columns.length)}
 						key={column.key}
 						onPress={() => {
 							!noSort  &&
@@ -175,7 +179,7 @@ const SortHeader = (props) => {
 						/>}
 
 						<TextComponent
-							style={getTextStyle(isSorted, i < columns.length - 1, column.width * Layout.window.width * 0.8, column.align)}
+							style={getTextStyle(isSorted, i < columns.length - 1, column.width * SCREEN_WIDTH * 0.8, column.align)}
 							key={column.key + '1'}
 						>
 							{column.label}
@@ -232,6 +236,7 @@ SortHeader.propTypes = {
 	borderColor: PropTypes.string,
 	textColor: PropTypes.string,
 	TextComponent: PropTypes.object,
+	screenWidth: PropTypes.number,
 	cellContainerStyle: PropTypes.object,
 	headerContainerStyle: PropTypes.object
 };
