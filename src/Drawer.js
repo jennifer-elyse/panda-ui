@@ -16,7 +16,7 @@ function DrawerComponent(props) {
 	const SCREEN_WIDTH = screenWidth || DEVICE_SCREEN_WIDTH;
 	const MAIN_WIDTH = screenWidth || SCREEN_WIDTH - (width || DEFAULT_SIDEBAR_WIDTH);
 
-	const SIDEBAR_WIDTH_SCALE = 1 - SIDEBAR_WIDTH / SCREEN_WIDTH;
+	const SIDEBAR_WIDTH_SCALE = 1 - SIDEBAR_WIDTH / SCREEN_WIDTH + 0.011;
 
 	const scaleValue = useRef(new Animated.Value(1)).current;
 	const translateValue = useRef(new Animated.Value(0)).current;
