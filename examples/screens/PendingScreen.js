@@ -81,7 +81,7 @@ const DataScreen = () => {
 				SideBar={SIDE_BAR}
 			>
 				<View style={{
-					backgroundColor: 'blue',
+					backgroundColor: 'lightblue',
 					width: '100%',
 					height: 300,
 					marginTop: 30,

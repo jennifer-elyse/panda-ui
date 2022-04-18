@@ -9,29 +9,44 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 const DEFAULT_WIDTH = 200;
 
 function DrawerComponent(props) {
-	const { children, width, SideBar, buttonBackgroundColor, buttonColor, buttonLabel, buttonPosition } = props;
+	const { children, squeeze, width, SideBar, buttonBackgroundColor, buttonColor, buttonLabel, buttonPosition } = props;
 	const [menuToggle, setMenuToggle] = useState(false);
 
 	const SIDEBAR_WIDTH = width || DEFAULT_WIDTH;
 	const MAIN_WIDTH = SCREEN_WIDTH - (width || DEFAULT_WIDTH);
 
-	const SIDEBAR_WIDTH_SCALE = 1 - SIDEBAR_WIDTH / SCREEN_WIDTH + 0.011;
+	const SIDEBAR_WIDTH_SCALE = 1 - SIDEBAR_WIDTH / SCREEN_WIDTH; + 0.011;
 
 	const scaleValue = useRef(new Animated.Value(1)).current;
+	const translateValue = useRef(new Animated.Value(0)).current;
 
 	const getTransform = () => {
-		let transform = {
-			transform: [{ scaleX: scaleValue }]
-		};
-		return withAnchorPoint(transform, { x: 1, y: 0.5 }, { width: MAIN_WIDTH, height: SCREEN_HEIGHT });
+		if (squeeze) {
+			let transform = {
+				transform: [{ scaleX: scaleValue }]
+			};
+			return withAnchorPoint(transform, { x: 1, y: 0.5 }, { width: MAIN_WIDTH, height: SCREEN_HEIGHT });
+		} else {
+			return {
+				transform: [{translateX: translateValue}]
+			};
+		}
 	};
 
 	const toggleMenu = () => {
-		Animated.timing(scaleValue, {
-			toValue: menuToggle ? 1 : SIDEBAR_WIDTH_SCALE,
-			useNativeDriver: true,
-			duration: 100
-		}).start();
+		if (squeeze) {
+			Animated.timing(scaleValue, {
+				toValue: menuToggle ? 1 : SIDEBAR_WIDTH_SCALE,
+				useNativeDriver: true,
+				duration: 100
+			}).start();
+		} else {
+			Animated.timing(translateValue, {
+				toValue: menuToggle ? 0 : SIDEBAR_WIDTH,
+				useNativeDriver: true,
+				duration: 100
+			}).start();
+		}
 		setMenuToggle(prev => !prev);
 	};
 
@@ -81,7 +96,8 @@ DrawerComponent.propTypes = {
 	buttonColor: PropTypes.string,
 	buttonLabel: PropTypes.string,
 	buttonPosition: PropTypes.number,
-	width: PropTypes.number
+	width: PropTypes.number,
+	squeeze: PropTypes.bool
 };
 
 export default DrawerComponent;
