@@ -13,7 +13,7 @@ const nonAsciiRegex = /[^\u0000-\u007f]+/g;
 
 const TextInput = (props, ref) => {
 	const {
-		initialValue,
+		// initialValue,
 		placeholder,
 		onPress,
 		onChangeText,
@@ -25,7 +25,7 @@ const TextInput = (props, ref) => {
 		errorBorderColor
 	} = props;
 	const [nonAsciiCharacters, setNonAsciiCharacters] = useState(undefined);
-	const [value, setValue] = useState(initialValue ? initialValue : ref ? ref : ' ');
+	const [value, setValue] = useState();
 	const [valid, setValid] = useState(true);
 
 	const inputStyle = {
@@ -82,7 +82,7 @@ const TextInput = (props, ref) => {
 					setValid((required && !!text) || (setValidated && setValidated(!nonAsciiCharacters)));
 					onChangeText(text);
 				}}
-				initialValue={initialValue}
+				// defaultValue={initialValue}
 				placeholder={placeholder}
 				onPress={onPress}
 				style={((!valid && required) || nonAsciiCharacters) ? failedValidation : inputStyle}
