@@ -6,17 +6,27 @@ import PropTypes from 'prop-types';
 
 const DEVICE_SCREEN_HEIGHT = Dimensions.get('window').height;
 const DEVICE_SCREEN_WIDTH = Dimensions.get('window').width;
-const DEFAULT_SIDEBAR_WIDTH = 200;
+const DEFAULT_SIDEBAR_WIDTH = 230;
 
 function DrawerComponent(props) {
-	const { children, squeeze, screenWidth, width, SideBar, buttonBackgroundColor, buttonColor, buttonLabel, buttonPosition } = props;
+	const {
+		children,
+		squeeze,
+		screenWidth,
+		width,
+		SideBar,
+		buttonBackgroundColor,
+		buttonColor,
+		buttonLabel,
+		buttonPosition
+	} = props;
 	const [menuToggle, setMenuToggle] = useState(false);
 
-	const SIDEBAR_WIDTH = width || DEFAULT_SIDEBAR_WIDTH;
 	const SCREEN_WIDTH = screenWidth || DEVICE_SCREEN_WIDTH;
-	const MAIN_WIDTH = screenWidth || SCREEN_WIDTH - (width || DEFAULT_SIDEBAR_WIDTH);
+	const SIDEBAR_WIDTH = width || DEFAULT_SIDEBAR_WIDTH;
+	const MAIN_WIDTH = SCREEN_WIDTH - SIDEBAR_WIDTH;
 
-	const SIDEBAR_WIDTH_SCALE = 1 - SIDEBAR_WIDTH / SCREEN_WIDTH + 0.011;
+	const MAIN_SCALED = MAIN_WIDTH / SCREEN_WIDTH;
 
 	const scaleValue = useRef(new Animated.Value(1)).current;
 	const translateValue = useRef(new Animated.Value(0)).current;
@@ -26,29 +36,27 @@ function DrawerComponent(props) {
 			let transform = {
 				transform: [{ scaleX: scaleValue }]
 			};
-			return withAnchorPoint(transform, { x: 1, y: 0.5 }, { width: MAIN_WIDTH, height: DEVICE_SCREEN_HEIGHT });
-		} else {
-			return {
-				transform: [{translateX: translateValue}]
-			};
+			return withAnchorPoint(transform, { x: 1, y: 1 }, { width: SCREEN_WIDTH, height: DEVICE_SCREEN_HEIGHT });
 		}
+		return {
+			transform: [{ translateX: translateValue }]
+		};
 	};
 
 	const toggleMenu = () => {
 		if (squeeze) {
 			Animated.timing(scaleValue, {
-				toValue: menuToggle ? 1 : SIDEBAR_WIDTH_SCALE,
+				toValue: menuToggle ? 1 : MAIN_SCALED,
 				useNativeDriver: true,
 				duration: 100
-			}).start();
+			}).start(() => setMenuToggle(prev => !prev));
 		} else {
 			Animated.timing(translateValue, {
 				toValue: menuToggle ? 0 : SIDEBAR_WIDTH,
 				useNativeDriver: true,
 				duration: 100
-			}).start();
+			}).start(() => setMenuToggle(prev => !prev));
 		}
-		setMenuToggle(prev => !prev);
 	};
 
 	const renderButton = () => {
@@ -64,14 +72,18 @@ function DrawerComponent(props) {
 		);
 	};
 
+	// console.log(
+	// 	`SCREEN_WIDTH${SCREEN_WIDTH} MAIN_WIDTH${MAIN_WIDTH} SIDEBAR_WIDTH${SIDEBAR_WIDTH} MAIN_SCALED${MAIN_SCALED}`
+	// );
+
 	return (
-		<View style={[styles.container, {width: SCREEN_WIDTH}]}>
+		<View style={[styles.container, { width: SCREEN_WIDTH }]}>
 			{menuToggle && (
 				<View style={{ width: SIDEBAR_WIDTH, position: 'absolute' }}>
 					<SideBar visible={menuToggle} />
 				</View>
 			)}
-			<Animated.View style={[getTransform()]}>
+			<Animated.View style={({ width: MAIN_WIDTH }, [getTransform()])}>
 				{children}
 				{renderButton()}
 			</Animated.View>
