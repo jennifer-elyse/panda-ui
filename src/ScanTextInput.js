@@ -24,7 +24,7 @@ const ScanTextInput = (props) => {
 		overrideValue,
 		clearOnSubmit = true,
 		borderRadius = 4,
-		placeholderTextColor = 'lightgrey',
+		placeholderTextColor = 'grey',
 		textElement,
 		width,
 		...inputProps
