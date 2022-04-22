@@ -14,18 +14,16 @@ const nonAsciiRegex = /[^\u0000-\u007f]+/g;
 const TextInput = (props, ref) => {
 	const {
 		// initialValue,
-		placeholder,
-		onPress,
 		onChangeText,
 		style,
 		setValidated,
 		required=false,
 		backgroundColor,
 		borderColor,
-		errorBorderColor
+		errorBorderColor,
+		...inputProps
 	} = props;
 	const [nonAsciiCharacters, setNonAsciiCharacters] = useState(undefined);
-	const [value, setValue] = useState();
 	const [valid, setValid] = useState(true);
 
 	const inputStyle = {
@@ -72,19 +70,16 @@ const TextInput = (props, ref) => {
 	return (
 		<View style={[styles.column, { width: '100%' }]}>
 			<OGTextInput
-				{...props}
+				{...inputProps}
 				ref={ref}
 				onChangeText={text => {
 					const nonAsciiCharacters = text.match(nonAsciiRegex);
 					setNonAsciiCharacters(nonAsciiCharacters);
 					// text = text.replace(nonAsciiRegex, '');
-					setValue(text);
 					setValid((required && !!text) || (setValidated && setValidated(!nonAsciiCharacters)));
+					// console.log(text);
 					onChangeText(text);
 				}}
-				// defaultValue={initialValue}
-				placeholder={placeholder}
-				onPress={onPress}
 				style={((!valid && required) || nonAsciiCharacters) ? failedValidation : inputStyle}
 			/>
 			{ ((!valid && required) || nonAsciiCharacters) &&

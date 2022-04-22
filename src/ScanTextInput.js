@@ -18,13 +18,13 @@ const ScanTextInput = (props) => {
 		style,
 		onSubmit,
 		isFocused,
-		autoFocus=true,
-		showBarCodeIcon=false,
-		validate=false,
+		autoFocus = true,
+		showBarCodeIcon = false,
+		validate = false,
 		overrideValue,
-		clearOnSubmit=true,
-		borderRadius=4,
-		placeholderTextColor='lightgrey',
+		clearOnSubmit = true,
+		borderRadius = 4,
+		placeholderTextColor = 'lightgrey',
 		textElement,
 		width,
 		...inputProps
@@ -70,7 +70,6 @@ const ScanTextInput = (props) => {
 		}
 	}, [isFocused, setFocus, autoFocus]);
 
-
 	const styles = StyleSheet.create({
 		container: {
 			width: width ? width : '100%',
@@ -102,7 +101,6 @@ const ScanTextInput = (props) => {
 				blurOnSubmit={false}
 				placeholderTextColor={placeholderTextColor}
 				ref={_textInput}
-				value={value}
 				onChangeText={text => setValue(text)}
 				keyboardType={showKeyboard ? inputProps.keyboardType : undefined}
 				autoFocus={showKeyboard}
@@ -115,7 +113,8 @@ const ScanTextInput = (props) => {
 				}}
 			/>
 			{
-				showBarCodeIcon && <Icon
+				showBarCodeIcon &&
+				<Icon
 					name="barcode"
 					size={20}
 					color={'grey'}
@@ -132,7 +131,6 @@ const ScanTextInput = (props) => {
 };
 
 export default ScanTextInput;
-
 
 ScanTextInput.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
