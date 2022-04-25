@@ -84,13 +84,30 @@ const StickyColumnTable = (props) => {
 		}
 	};
 
+	const styles = StyleSheet.create({
+		container: {
+			flexDirection: 'row',
+			alignItems: 'center',
+			justifyContent: 'center',
+			width: width
+
+		}
+	});
+
 	return (
 		<View style={styles.container}>
 			{ /* sticky column */ }
-			<View key="headerColumn">
+			<View key="headerColumn"
+				style={{
+					flex: stickyHeaderOptions.width && columns.length ? stickyHeaderOptions.width / columns.length : 1,
+					flexShrink: 0.5
+				}}>
 				<View style={{
 					height: headerHeight,
 					backgroundColor: headerBackgroundColor,
+					borderTopLeftRadius: borderRadius,
+					borderTopRightRadius: 0,
+					width: '100%',
 					flexDirection: 'row',
 					justifyContent: 'center',
 					alignItems: 'center' }}>
@@ -122,8 +139,14 @@ const StickyColumnTable = (props) => {
 							return (
 								<View
 									key={i*-1}
-									style={{ flexDirection: 'row', height: rowHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: backgroundColor }}>
-									<Text style={{ paddingLeft: 10, flexGrow: stickyHeaderOptions.width, textAlign: stickyHeaderOptions.textAlign, color: textColor }}>{item[stickyHeaderOptions.key]}</Text>
+									style={{
+										backgroundColor: backgroundColor,
+										flexDirection: 'row',
+										height: rowHeight,
+										alignItems: 'center',
+										justifyContent: 'center' }}
+								>
+									<Text style={{ paddingLeft: 10, width: '100%', textAlign: stickyHeaderOptions.textAlign, color: textColor }}>{item[stickyHeaderOptions.key]}</Text>
 								</View>
 							);
 						})}
@@ -131,7 +154,6 @@ const StickyColumnTable = (props) => {
 				</ScrollView>
 			</View>
 			{ /* content column */ }
-
 			<View key="contentColumn" style={{ flex: 1, width: maxWidth || Dimensions.get('window').width }}>
 				<ScrollView
 					ref={horizontalScrollView}
@@ -162,6 +184,7 @@ const StickyColumnTable = (props) => {
 						<ScrollView
 							ref={contentVerticalScrollView}
 							onScroll={handleScroll_contentVertical}
+							showsVerticalScrollIndicator={true}
 							onScrollBeginDrag={() => activeScroller.current = ScrollerEnum.ScrollContent}
 							scrollEventThrottle={16}
 							persistentScrollbar
@@ -178,7 +201,9 @@ const StickyColumnTable = (props) => {
 											{
 												columns.map((detail, ii) => {
 													return (
-														<Text style={{ paddingLeft: 10, flexGrow: columns[ii].width, width: 0, textAlign: columns[ii].textAlign, color: textColor }}>{item[columns[ii].key]}</Text>
+														<Text
+															key={ii*10}
+															style={{ paddingLeft: 10, flexGrow: columns[ii].width, width: 0, textAlign: columns[ii].textAlign, color: textColor }}>{item[columns[ii].key]}</Text>
 													);
 												})
 											}
@@ -224,11 +249,4 @@ const StickyColumnTable = (props) => {
 	);
 };
 
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center'
-	}
-});
 export default StickyColumnTable;
