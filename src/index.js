@@ -22,7 +22,9 @@ import Feedback from './Feedback';
 import RadioGroup from './RadioGroup';
 import ScanTextInput from './ScanTextInput';
 import SearchBar from './SearchBar';
+import SortColumn from './SortColumn';
 import SortHeader from './SortHeader';
+import StickyColumnTable from './StickyColumnTable';
 import TabGroup from './TabGroup';
 import ToggleButton from './ToggleButton';
 
@@ -49,7 +51,9 @@ export {
 	RadioGroup,
 	ScanTextInput,
 	SearchBar,
+	SortColumn,
 	SortHeader,
+	StickyColumnTable,
 	TabGroup,
 	ToggleButton,
 	invariant,
