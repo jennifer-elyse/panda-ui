@@ -2,10 +2,9 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {
 	View,
-	Text,
 	TouchableOpacity
 } from 'react-native';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 
@@ -19,8 +18,10 @@ import {
 	themeSelector,
 	gradientSelector
 } from '../contexts/ThemeContext';
+import { NavigationText } from '../components/StyledText';
 import PandaHomeScreen from '../screens/PandaHomeScreen';
 import DataScreen from '../screens/DataScreen';
+import StickyDataScreen from '../screens/StickyDataScreen';
 import ChoiceScreen from '../screens/ChoiceScreen';
 import NavigationScreen from '../screens/NavigationScreen';
 import HelpScreen from '../screens/HelpScreen';
@@ -30,14 +31,6 @@ import OptInScreen from '../screens/OptInScreen';
 // const generateSplashMode = false;
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
-const mainTheme = {
-	...DefaultTheme,
-	colors: {
-		...DefaultTheme.colors,
-		background: 'transparent'
-	}
-};
 
 function HomeStack() {
 	return (
@@ -83,14 +76,13 @@ const AppNavigator = () => {
 							start={[0, 0]}
 							end={[1, 1]}
 						>
-							<MyTabBar
+							<PandaUiTabBar
 								{...props}
 								style={{ backgroundColor: 'transparent', overflow: 'hidden' }}
 							/>
 						</LinearGradient>
 					) : (
-
-						<MyTabBar
+						<PandaUiTabBar
 							{...props}
 							backgroundColor={Colors[theme].tabBarInactiveColor}
 							style={{ overflow: 'hidden' }}
@@ -122,6 +114,8 @@ const AppNavigator = () => {
 							iconName = 'bars';
 						} else if (route.name === 'Data') {
 							iconName = 'table';
+						} else if (route.name === 'Sticky') {
+							iconName = 'table';
 						} else if (route.name === 'Help') {
 							iconName = 'optin-monster';
 						}
@@ -129,7 +123,7 @@ const AppNavigator = () => {
 						return (<ProIcon
 							style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginHorizontal: 10 }}
 							name={iconName}
-							size={18}
+							size={16}
 							color={styleColor} />);
 					}
 				})}
@@ -140,6 +134,7 @@ const AppNavigator = () => {
 				/>
 				<Tab.Screen name="Choices" 		component={ChoiceScreen} />
 				<Tab.Screen name="Data" 		component={DataScreen} />
+				<Tab.Screen name="Sticky" 	component={StickyDataScreen} />
 				<Tab.Screen name="Navigation" 	component={NavigationScreen} />
 				<Tab.Screen name="Help" 		component={HelpScreen} />
 			</Tab.Navigator>
@@ -147,7 +142,7 @@ const AppNavigator = () => {
 	);
 };
 
-function MyTabBar({ state, descriptors, navigation, backgroundColor='transparent', ...props }) {
+function PandaUiTabBar({ state, descriptors, navigation, backgroundColor='transparent', ...props }) {
 	const focusedOptions = descriptors[state.routes[state.index].key].options;
 	// console.log('descriptors', descriptors);
 	if (focusedOptions.tabBarVisible === false) {
@@ -204,9 +199,9 @@ function MyTabBar({ state, descriptors, navigation, backgroundColor='transparent
 								color: isFocused ? props.activeTintColor : props.inactiveTintColor,
 								size: 20
 							})}
-							<Text style={{ color: isFocused ? props.activeTintColor : props.inactiveTintColor }}>
+							<NavigationText style={{ color: isFocused ? props.activeTintColor : props.inactiveTintColor }}>
 								{label}
-							</Text>
+							</NavigationText>
 						</View>
 					</TouchableOpacity>
 				);
