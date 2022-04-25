@@ -103,7 +103,7 @@ const StickyColumnTable = (props) => {
 					flexShrink: 0.5
 				}}>
 				<View style={{
-					height: headerHeight,
+					height: Platform.OS === 'ios' ? headerHeight - 3 : headerHeight - 1,
 					backgroundColor: headerBackgroundColor,
 					borderTopLeftRadius: borderRadius,
 					borderTopRightRadius: 0,
