@@ -5,8 +5,7 @@ import {
 	View,
 	TouchableHighlight,
 	SafeAreaView,
-	StyleSheet,
-	ScrollView
+	StyleSheet
 } from 'react-native';
 
 // Expo imports
@@ -19,11 +18,8 @@ import {
 	DoubleCard,
 	SearchBar,
 	SortHeader,
-	useSortedData,
-	ScanTextInput
+	useSortedData
 } from 'react-native-panda-ui';
-
-import StickyColumnTable from '../components/StickyColumnTable';
 
 // Local Imports
 import {
@@ -34,7 +30,7 @@ import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import FlatListItemSeparator from '../components/FlatListItemSeparator';
 import LoadingIndicator from '../components/LoadingIndicator';
-import { H1, Body2, ButtonText } from '../components/StyledText';
+import { H1, Body2 } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
 import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
 
@@ -158,29 +154,6 @@ const DataScreen = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<ScanTextInput
-				onSubmit={() => {}}
-				// textElement={<ButtonText buttonTextColor={Colors[theme].buttonColor}>scan</ButtonText>}
-			/>
-			<StickyColumnTable
-				data={stickySortedApiData}
-				columns={stickyColumns}
-				sortConfig={stickySortConfig}
-				onSortChange={setStickySortConfig}
-				stickyHeaderOptions={stickyColumn}
-				headerHeight={40}
-				rowHeight={50}
-				headerTextColor={Colors[theme].buttonTextColor}
-				textColor={Colors[theme].tintColor}
-				defaultSortConfig={defaultSortConfig}
-				borderRadius={Styles[theme].borderRadius}
-				headerBackgroundColor={Colors[theme].tintColor}
-				backgroundColor={Colors[theme].cardColor}
-				sortIndicatorColor={Colors[theme].buttonTextColor}
-				borderColor={Colors[theme].tintColor}
-				selectedColor={Colors[theme].tabBarActiveColor}
-				scrollArrowColor={Colors[theme].buttonTextColor}
-			/>
 			<ThemeSelect
 				characterData={characterData}
 				setLoading={setLoading}
