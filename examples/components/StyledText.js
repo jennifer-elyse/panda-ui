@@ -113,3 +113,13 @@ export const ButtonText = ({ buttonTextColor, ...props }) => {
 	};
 	return (<Text style={textStyle}>{props.children}</Text>);
 };
+
+export const NavigationText = ({ buttonTextColor, ...props }) => {
+
+	const textStyle = {
+		color: buttonTextColor,
+		fontSize: 10,
+		...props.style
+	};
+	return (<Text style={textStyle}>{props.children}</Text>);
+};
