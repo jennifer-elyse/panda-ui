@@ -12,7 +12,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 // Panda Imports
 import {
 	SortHeader,
-	Button
+	Button,
+	SortColumn
 } from 'react-native-panda-ui';
 
 const ScrollerEnum = {
@@ -99,7 +100,7 @@ const StickyColumnTable = (props) => {
 			{ /* sticky column */ }
 			<View key="headerColumn"
 				style={{
-					flex: stickyHeaderOptions.width && columns.length ? stickyHeaderOptions.width / columns.length : 1,
+					flex: 0.5,
 					flexShrink: 0.5
 				}}>
 				<View style={{
@@ -111,20 +112,20 @@ const StickyColumnTable = (props) => {
 					flexDirection: 'row',
 					justifyContent: 'center',
 					alignItems: 'center' }}>
-					<Text
-						style={{
-							fontWeight: 'bold',
-							color: headerTextColor,
-							textAlign: stickyHeaderOptions.textAlign ? stickyHeaderOptions.textAlign : 'left',
-							paddingLeft: 10,
-							flexGrow: stickyHeaderOptions.width,
-							justifyContent: 'center',
-							alignItems: 'center'
-						}}
-						key="sticky"
-					>
-						{stickyHeaderOptions.label}
-					</Text>
+					<SortColumn
+						key="0"
+						column={stickyHeaderOptions}
+						columnCount={stickyHeaderOptions.length}
+						i={0}
+						sortConfig={sortConfig}
+						onSortChange={onSortChange}
+						borderRadiusLeft={borderRadius}
+						borderRadiusRight={0}
+						sortIndicatorColor={sortIndicatorColor}
+						borderColor={borderColor}
+						selectedColor={selectedColor}
+						textColor={headerTextColor}
+					/>
 				</View>
 				<ScrollView
 					contentContainerStyle={{ width: '100%', padding: 0, alignItems: 'space-between' }}

@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-	View,
-	TouchableOpacity,
-	Text,
-	Platform
+	View
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
+import SortColumn from './SortColumn';
 
 
 const SortHeader = (props) => {
@@ -18,125 +16,20 @@ const SortHeader = (props) => {
 		borderRadiusLeft = borderRadius,
 		borderRadiusRight = borderRadius,
 		noSort = false,
-		height,
-		// TODO: not yet implemented
-		// solid = false,
-		// center = false,
-		// ignoreFirstColumnInSort = true,
 		sortIndicatorColor = '#4a1830',
 		tintColor = '#772d4f',
 		backgroundColor = tintColor,
 		selectedColor = '#a34e76',
 		borderColor = 'transparent',
-		textColor = '#fff',
-		TextComponent=Text
+		textColor = '#fff'
 	} = props;
-
-	const commonTextStyle = {
-		flexGrow: 1,
-		width: 0,
-		fontWeight: 'bold',
-		maxHeight: height,
-		color: textColor,
-		paddingLeft: 5
-	};
-
-	const commonViewStyle = {
-		flexGrow: 1,
-		width: 0,
-		padding: 10,
-		height: height,
-		justifyContent: 'center',
-		alignItems: 'center'
-	};
-
-	const activeTextStyle = {
-		...commonTextStyle,
-		color: textColor
-	};
-
-	const activeViewStyle = {
-		...commonViewStyle,
-		backgroundColor: selectedColor
-	};
-
-	const middleBorderStyle = {
-		borderRightWidth: 0.5,
-		borderStyle: 'solid',
-		borderColor: borderColor
-	};
-
-	const leftBorderStyle = {
-		borderLeftWidth: Platform.OS === 'ios' ? 0 : 0.5,
-		borderRightStyle: Platform.OS === 'ios' ? 'none' : 'solid',
-		borderTopLeftRadius: borderRadiusLeft,
-		borderColor: Platform.OS === 'ios' ? undefined : borderColor
-	};
-
-	const rightBorderStyle = {
-		borderRightWidth: Platform.OS === 'ios' ? 0 : 0.5,
-		borderRightStyle: Platform.OS === 'ios' ? 'none' : 'solid',
-		borderTopRightRadius: borderRadiusRight,
-		borderColor: Platform.OS === 'ios' ? undefined : borderColor
-	};
-
-
-	/**
-	 * Getter for text styles.
-	 *
-	 * @param  {boolean} active
-	 * @param  {boolean} showBorder
-	 * @param  {number}  flexGrow
-	 *
-	 * @return {object} Object to apply to a `style` prop.
-	 */
-	function getTextStyle(active, showBorder, flexGrow) {
-		const baseStyle = active ? activeTextStyle : commonTextStyle;
-
-		return {
-			...baseStyle,
-			width: '100%',
-			flexWrap: 'nowrap',
-			flexDirection: 'row',
-			backgroundColor: 'transparent',
-			borderTopLeftRadius: borderRadiusLeft,
-			borderTopRightRadius: borderRadiusRight
-		};
-	}
-
-
-	/**
-	 * Getter for view styles.
-	 *
-	 * @param  {boolean} active
-	 * @param  {boolean} showBorder
-	 * @param  {number}  flexGrow
-	 *
-	 * @return {object} Object to apply to a `style` prop.
-	 */
-	function getViewStyle(active, flexGrow, i, length) {
-		const baseStyle = active ? activeViewStyle : commonViewStyle;
-		const leftBorderStyleObj =  i === 0  ? leftBorderStyle : undefined;
-		const rightBorderStyleObj =  i === length -1 ? rightBorderStyle : undefined;
-		const middleBorderStyleObj =  i > 0 && i < length - 1 ? middleBorderStyle : undefined;
-
-		return {
-			...baseStyle,
-			...leftBorderStyleObj,
-			...rightBorderStyleObj,
-			...middleBorderStyleObj,
-			flexGrow,
-			flexDirection: 'row',
-			alignItems: 'center'
-		};
-	}
 
 	const rootStyle = {
 		flexDirection: 'row',
 		backgroundColor: backgroundColor,
 		borderWidth: 0.5,
 		borderStyle: 'solid',
-		borderColor: backgroundColor,
+		borderColor: borderColor,
 		borderTopLeftRadius: borderRadiusLeft,
 		borderTopRightRadius: borderRadiusRight
 	};
@@ -144,56 +37,22 @@ const SortHeader = (props) => {
 	return (
 		<View style={rootStyle}>
 			{columns.map((column, i) => {
-				let isSorted = sortConfig.key === column.key;
-				isSorted = noSort ? false : isSorted;
 				return (
-					<TouchableOpacity
-						style={getViewStyle(isSorted, column.width, i, columns.length)}
-						key={column.key}
-						onPress={() => {
-							!noSort  &&
-							onSortChange({
-								key: column.key,
-								direction: !isSorted ? 'asc' : (
-									sortConfig.direction === 'asc' ? 'desc' : 'asc'
-								)
-							});
-						}}
-					>
-						{column.icon && <FontAwesome5
-							key={column.key}
-							name={column.icon}
-							size={20}
-							color={textColor}
-							style={{ marginLeft: 10 }}
-						/>}
-
-						<TextComponent
-							style={[getTextStyle(isSorted, i < columns.length - 1, column.width), { textAlign: columns?.textAlign ? columns.textAlign : 'left' }]}
-							key={column.key + '1'}
-						>
-							{column.label}
-						</TextComponent>
-
-						{ isSorted && sortConfig.direction === 'asc' ?
-							<FontAwesome5
-								key={column.key + '2'}
-								name="chevron-up"
-								size={12}
-								color={sortIndicatorColor}
-								style={{ marginLeft: 10 }}
-							/>
-							: false}
-						{ isSorted && sortConfig.direction === 'desc' ?
-							<FontAwesome5
-								key={column.key + '3'}
-								name="chevron-down"
-								size={12}
-								color={sortIndicatorColor}
-								style={{ marginLeft: 10 }}
-							/>
-							: false}
-					</TouchableOpacity>
+					<SortColumn
+						key={String(i)}
+						column={column}
+						columnCount={column.length}
+						i={i}
+						sortConfig={sortConfig}
+						onSortChange={onSortChange}
+						borderRadiusLeft={borderRadiusLeft}
+						borderRadiusRight={borderRadiusRight}
+						noSort={noSort}
+						sortIndicatorColor={sortIndicatorColor}
+						borderColor={borderColor}
+						selectedColor={selectedColor}
+						textColor={textColor}
+					/>
 				);
 			})}
 		</View>
@@ -227,8 +86,7 @@ SortHeader.propTypes = {
 	backgroundColor: PropTypes.string,
 	selectedColor: PropTypes.string,
 	borderColor: PropTypes.string,
-	textColor: PropTypes.string,
-	TextComponent: PropTypes.func
+	textColor: PropTypes.string
 };
 
 export default SortHeader;

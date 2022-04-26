@@ -1,5 +1,5 @@
 // React Imports
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	View,
 	SafeAreaView,
@@ -9,16 +9,13 @@ import {
 // Expo imports
 import { StatusBar } from 'expo-status-bar';
 
-import chroma from 'chroma-js';
-
 // Panda Imports
 import {
 	DoubleCard,
 	useSortedData,
-	ScanTextInput
+	ScanTextInput,
+	StickyColumnTable
 } from 'react-native-panda-ui';
-
-import StickyColumnTable from '../components/StickyColumnTable';
 
 // Local Imports
 import {
@@ -27,18 +24,11 @@ import {
 } from '../contexts/ThemeContext';
 import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
-import FlatListItemSeparator from '../components/FlatListItemSeparator';
 import LoadingIndicator from '../components/LoadingIndicator';
 import { ButtonText } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
 import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
 
-
-const columns = [
-	{ key: 'animal',	label: 'Animal', 	icon: null, width: 1 },
-	{ key: 'name',		label: 'Name', 		icon: null, width: 1 },
-	{ key: 'color',		label: 'Color', 	icon: null, width: 1 }
-];
 const stickyColumns = [
 	{ key: 'name',		label: 'Name', 		icon: null, width: 1, textAlign: 'left' },
 	{ key: 'color',		label: 'Color', 	icon: null, width: 1, textAlign: 'left' },
@@ -52,7 +42,7 @@ const stickyColumn = {
 };
 
 const defaultSortConfig = {
-	key: columns[0].key,
+	key: stickyColumn.key,
 	direction: 'asc'
 };
 
@@ -62,26 +52,13 @@ const DataScreen = () => {
 	const theme = themeSelector(userSession);
 	// state hooks
 	// useState utilizes the current state and a function that updates it
-	const [highlightedCharacterId, setHighlightedCharacterId] 	= useState(null);
 	const [characterData, setCharacterData] 					= useState([]);
 	const [qualitiesData, setQualitiesData] 					= useState([]);
 	const [loading, setLoading] 								= useState(false);
-	const [sortConfig, setSortConfig] 							= useState(defaultSortConfig);
 	const [stickySortConfig, setStickySortConfig] 				= useState(defaultSortConfig);
 
 	// hooks
-	const sortedApiData = useSortedData(qualitiesData, sortConfig);
 	const stickySortedApiData = useSortedData(qualitiesData, stickySortConfig);
-
-	// refs
-	const listRef = useRef();
-
-	// config
-	const rowHeight = 45;
-	const highlightedColor = Colors[theme].highlightColor;
-	const highlightedTextColor =
-		chroma.contrast(highlightedColor, '#fff') > 5
-			? '#fff' : '#000';
 
 	useEffect(() => {
 		(async () => {
@@ -101,46 +78,8 @@ const DataScreen = () => {
 			marginTop: StatusBar.height,
 			backgroundColor: Colors[theme].backgroundColor,
 			alignItems: 'center'
-		},
-		row: {
-			flex: 1,
-			flexDirection: 'row',
-			height: 45,
-			alignItems: 'center',
-			justifyContent: 'center',
-			backgroundColor: Colors[theme].cardColor
-		},
-		highlightedRow: {
-			flex: 1,
-			flexDirection: 'row',
-			height: 45,
-			paddingVertical: 5,
-			paddingHorizontal: 2.5,
-			alignItems: 'center',
-			justifyContent: 'center',
-			backgroundColor: highlightedColor
 		}
 	});
-
-	useEffect(() => {
-		if (highlightedCharacterId !== null) {
-			listRef.current.scrollToOffset({ offset: rowHeight * highlightedCharacterId, animated: true });
-		}
-	}, [highlightedCharacterId]);
-
-	async function findCharacterRecord(value, searchType) {
-		const character = sortedApiData.find((item) => {
-			return String(item[searchType]) === value;
-		});
-		setHighlightedCharacterId(character.characterId);
-		// for index, use sortedApiData.findIndex and setHighlightedIndex(itemIndex > -1 ? itemIndex : null);
-
-	}
-
-	const Separator = useCallback(
-		props => <FlatListItemSeparator backgroundColor={Colors[theme].cardColor} color={Colors[theme].tintColor} />,
-		[theme]
-	);
 
 	if (loading) {
 		return (

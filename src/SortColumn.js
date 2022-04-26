@@ -15,9 +15,8 @@ const SortColumn = (props) => {
 		columnCount,
 		sortConfig,
 		onSortChange,
-		borderRadius = 0,
-		borderRadiusLeft = borderRadius,
-		borderRadiusRight = borderRadius,
+		borderRadiusLeft,
+		borderRadiusRight,
 		noSort,
 		height,
 		sortIndicatorColor = '#4a1830',
@@ -191,7 +190,7 @@ SortColumn.propTypes = {
 		icon: PropTypes.node,
 		textAlign: PropTypes.node
 	}),
-	i: PropTypes.string,
+	i: PropTypes.number,
 	sortConfig: PropTypes.exact({
 		key: PropTypes.any.isRequired,
 		direction: PropTypes.oneOf(['asc', 'desc']).isRequired
