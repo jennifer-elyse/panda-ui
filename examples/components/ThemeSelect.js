@@ -78,11 +78,11 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 					</View>
 					<View style={{ justifyContent: 'center', alignItems: 'center' }}>
 						<Button
-							// label="APPLY"
-							//iconElement={<FontAwesome5 name="search" size={15} color={Colors[theme].buttonTextColor} />}
+							//label="APPLY"
+							iconElement={<FontAwesome5 name="search" size={15} color={Colors[theme].buttonTextColor} />}
 							textElement={<ButtonText buttonTextColor={Colors[theme].buttonTextColor}>APPLY</ButtonText>}
 							onPress={() => updateTheme()}
-							style={{ padding: 5 }}
+							// style={{ padding: 5 }}
 							width={110}
 							height={42}
 							borderRadius={Styles[theme].borderRadius}

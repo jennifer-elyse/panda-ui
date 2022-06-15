@@ -30,7 +30,6 @@ const StyledSelect = (props) => {
 	} = props;
 
 	const RNPickerWrapper = {
-		fontFamily: 'DMSans-Regular',
 		borderBottomWidth: separatorColor ? 1 : 0,
 		borderBottomColor: separatorColor,
 		overflow: 'hidden',
