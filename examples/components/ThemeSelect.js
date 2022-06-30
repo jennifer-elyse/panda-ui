@@ -6,11 +6,11 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 // Panda Imports
 import {
 	Button,
-	DoubleCard,
-	StyledText,
-	StyledSelect
+	DoubleCard
 } from 'react-native-panda-ui';
 
+import StyledSelect from '../components/StyledSelect';
+import { ButtonText } from '../components/StyledText';
 import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import {
@@ -44,7 +44,7 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 	}, [theme]);
 
 	return (
-		<View style={{ height: 100, width: '95%', marginVertical: 30 }}>
+		<View style={{ height: 100, width: '95%', marginVertical: 15 }}>
 			<DoubleCard
 				backCardElevation={5}
 				cardElevation={8}
@@ -78,11 +78,11 @@ const ThemeSelect = ({ characterData, setLoading, setQualitiesData }) => {
 					</View>
 					<View style={{ justifyContent: 'center', alignItems: 'center' }}>
 						<Button
-							// label="APPLY"
-							//iconElement={<FontAwesome5 name="search" size={15} color={Colors[theme].buttonTextColor} />}
-							textElement={<StyledText.ButtonText buttonTextColor={Colors[theme].buttonTextColor}>APPLY</StyledText.ButtonText>}
+							//label="APPLY"
+							iconElement={<FontAwesome5 name="search" size={15} color={Colors[theme].buttonTextColor} />}
+							textElement={<ButtonText buttonTextColor={Colors[theme].buttonTextColor}>APPLY</ButtonText>}
 							onPress={() => updateTheme()}
-							style={{ padding: 5 }}
+							// style={{ padding: 5 }}
 							width={110}
 							height={42}
 							borderRadius={Styles[theme].borderRadius}

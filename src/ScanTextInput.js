@@ -1,56 +1,67 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
-	Text,
 	View,
-	TextInput,
 	StyleSheet,
 	Keyboard,
-	Platform
+	Platform,
+	TouchableOpacity
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import PropTypes from 'prop-types';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { useIsFocused } from '@react-navigation/native';
 
-const ScanTextInput = (props) => {
+import TextInput from './TextInput';
+
+const ScanTextInput = props => {
 	const {
 		style,
 		onSubmit,
+		autoFocus = true,
+		showKeyboardIcon = true,
+		showBarCodeIcon = false,
+		validate = false,
 		overrideValue,
-		clearOnSubmit=true,
-		borderRadius=4,
-		inputTextLineColor='#2eb1bf',
-		inputColor='#ffffff',
-		placeholderTextColor='lightgrey',
+		clearOnSubmit = true,
+		borderRadius = 4,
+		placeholderTextColor = 'grey',
+		activeKeyboardIconColor = 'green',
+		inactiveKeyboardIconColor = 'white',
+		textElement,
+		width,
+		height,
 		...inputProps
 	} = props;
+
 	const [value, setValue] = useState('');
 	const [showKeyboard, setShowKeyboard] = useState(true);
-	let _textInput = useRef();
+	const [validated, setValidated] = useState(!validate);
+	const isFocused = useIsFocused();
+
+	let _textInput = useRef(null);
+
 	const inputStyle = {
 		width: '100%',
-		...style,
 		height: 50,
-		paddingLeft: 10,
-		borderBottomWidth: 1,
-		borderRadius: borderRadius,
-		borderBottomColor: inputTextLineColor,
-		backgroundColor: inputColor
+		borderWidth: 1,
+		...style,
+		borderRadius: borderRadius
 	};
 
 	const handleSubmit = () => {
-		clearOnSubmit && setValue('');
-		return onSubmit(value);
+		clearOnSubmit && validated && setValue('');
+		clearOnSubmit && validated && _textInput.current.clear();
+		return validated && onSubmit(value);
 	};
 
-	const setFocus = () => {
+	const setFocus = useCallback(() => {
 		_textInput.current.focus();
 		setShowKeyboard(true);
-	};
+	}, []);
 
 	const setBlur = () => {
 		Keyboard.dismiss();
 		setShowKeyboard(false);
 	};
-
 
 	useEffect(() => {
 		if (overrideValue) {
@@ -58,65 +69,75 @@ const ScanTextInput = (props) => {
 		}
 	}, [overrideValue]);
 
+	useEffect(() => {
+		if (isFocused && autoFocus) {
+			setFocus(true);
+		}
+	}, [isFocused, setFocus, autoFocus]);
+
+	const styles = StyleSheet.create({
+		container: {
+			width: width ? width : '100%',
+			flexDirection: 'row',
+			alignItems: 'center',
+			justifyContent: 'center',
+			flexWrap: 'nowrap',
+			marginLeft: 20,
+			marginRight: 20,
+			minHeight: 50,
+			height: height ? height : 50
+		},
+		keyboardIcon: {
+			padding: 14,
+			marginLeft: 8
+		}
+	});
 
 	return (
 		<View style={styles.container}>
+			{textElement}
 			<TextInput
 				style={inputStyle}
 				disableFullscreenUI
 				returnKeyType="go"
 				{...inputProps}
-				// onFocus={() => setShowKeyboard(true)}
-				// onBlur={() => setShowKeyboard(false)}
+				setValidated={setValidated}
+				onFocus={() => setShowKeyboard(true)}
+				onBlur={() => setShowKeyboard(false)}
 				blurOnSubmit={false}
 				placeholderTextColor={placeholderTextColor}
 				ref={_textInput}
-				value={value}
 				onChangeText={text => setValue(text)}
 				keyboardType={showKeyboard ? inputProps.keyboardType : undefined}
-				// autoFocus={showKeyboard}
-				// showSoftInputOnFocus={showKeyboard}
+				autoFocus={autoFocus}
+				autoCapitalize="none"
+				autoCompleteType="off"
+				autoCorrect={false}
+				// showSoftInputOnFocus={!autoFocus && !showKeyboard}
 				onSubmitEditing={handleSubmit}
 				onKeyPress={event => {
-					if (event.nativeEvent.key === 'Enter') {
+					if (event.nativeEvent.key === 'Enter' && validated) {
 						handleSubmit();
 					}
 				}}
 			/>
-			<Icon
-				name="barcode"
-				size={20}
-				color={'grey'}
-				style={{ position: 'absolute', right: 50 }}
-			/>
-			{
-				Platform.OS === 'ios' &&
-				<Text onPress={showKeyboard ? setBlur : setFocus} style={styles.keyboardIcon}>
-					<Icon name="keyboard" size={20} color={showKeyboard ? 'green' : 'grey'} />
-				</Text>
-			}
+			{showBarCodeIcon &&
+				<Icon
+					name="barcode"
+					size={20}
+					color={'grey'}
+					style={{ position: 'absolute', right: 50 }}
+				/>}
+			{Platform.OS === 'ios' && showKeyboardIcon && (
+				<TouchableOpacity onPress={showKeyboard ? setBlur : setFocus} style={styles.keyboardIcon}>
+					<Icon name="keyboard" size={20} color={showKeyboard ? activeKeyboardIconColor : inactiveKeyboardIconColor} />
+				</TouchableOpacity>
+			)}
 		</View>
 	);
 };
 
 export default ScanTextInput;
-
-
-const styles = StyleSheet.create({
-	container: {
-		width: '100%',
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-		flexWrap: 'nowrap',
-		marginLeft: 20,
-		marginRight: 20
-	},
-	keyboardIcon: {
-		padding: 12,
-		marginLeft: 8
-	}
-});
 
 ScanTextInput.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
@@ -124,8 +145,16 @@ ScanTextInput.propTypes = {
 	overrideValue: PropTypes.any,
 	clearOnSubmit: PropTypes.bool,
 	borderRadius: PropTypes.number,
-	inputTextLineColor: PropTypes.string.isRequired,
-	inputColor: PropTypes.string.isRequired,
-	placeholderTextColor: PropTypes.string.isRequired,
-	inputProps: PropTypes.object
+	width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	height: PropTypes.number,
+	placeholderTextColor: PropTypes.string,
+	activeKeyboardIconColor: PropTypes.string,
+	inactiveKeyboardIconColor: PropTypes.string,
+	inputProps: PropTypes.object,
+	textElement: PropTypes.object,
+	isFocused: PropTypes.bool,
+	autoFocus: PropTypes.bool,
+	showKeyboardIcon: PropTypes.bool,
+	showBarCodeIcon: PropTypes.bool,
+	validate: PropTypes.bool
 };

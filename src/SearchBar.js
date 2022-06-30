@@ -5,7 +5,7 @@ import {
 	Platform,
 	StyleSheet
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -120,7 +120,7 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 						}}
 						Icon = {() => {
 							return (
-								<Ionicons name="md-checkmark-circle" size={caretSize}  color={caretColor} />
+								<Icon name="check-circle" size={caretSize}  color={caretColor} />
 							);
 						}}
 					/>
@@ -148,7 +148,7 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 						}}
 						Icon = {() => {
 							return (
-								<Ionicons name="md-checkmark-circle" size={caretSize}  color={caretColor} />
+								<Icon name="check-circle" size={caretSize}  color={caretColor} />
 							);
 						}}
 					/>

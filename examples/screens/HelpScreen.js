@@ -10,15 +10,17 @@ import { StatusBar } from 'expo-status-bar';
 
 // Panda Imports
 import {
-	Card,
-	StyledText
+	DoubleCard,
+	Feedback
 } from 'react-native-panda-ui';
 
 import {
 	useThemeContext,
 	themeSelector
 } from '../contexts/ThemeContext';
+import Styles from '../constants/Styles';
 import Colors from '../constants/Colors';
+import { H1 } from '../components/StyledText';
 
 
 export default function HelpScreen() {
@@ -30,25 +32,46 @@ export default function HelpScreen() {
 	return (
 		<SafeAreaView style={{ flex: 1, marginTop: StatusBar.height, justifyContent: 'center', alignItems: 'center', backgroundColor: Colors[theme].backgroundColor }}>
 			<View style={[styles.header, { paddingTop: 6 }]}>
-				<StyledText.H1 textColor={Colors[theme].tintColor}>Panda UI</StyledText.H1>
+				<H1 textColor={Colors[theme].tintColor}>Panda UI</H1>
 			</View>
 			<View style={{ height: 170, width: '90%', marginTop: 20 }}>
-				<Card
-					elevation={5}
-					borderRadius={50}
-					backgroundColor={Colors[theme].backCardColor}
-					style={{ alignItems: 'center', justifyContent: 'center' }}
+				<DoubleCard
+					backCardElevation={5}
+					cardElevation={8}
+					borderRadius={Styles[theme].borderRadius}
+					padding={Styles[theme].padding}
+					backCardColor={Colors[theme].backCardColor}
+					backCardGradient={Colors[theme].backCardGradient}
+					cardColor={Colors[theme].cardColor}
 				>
-					<Card
-						elevation={8}
-						borderRadius={40}
-						backgroundColor={Colors[theme].cardColor}
-						style={{ alignItems: 'center', height: '85%', width: '95%' }}
-					>
-						<View style={{ height: 100, width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-						</View>
-					</Card>
-				</Card>
+					<View style={{ height: 100, width: '100%', overflow: 'hidden', justifyContent: 'center', alignItems: 'center' }}>
+						<Feedback
+							rating={rating}
+							setRating={setRating}
+							title={'How happy are you with Panda UI?'}
+							theme="panda"
+						/>
+					</View>
+				</DoubleCard>
+			</View>
+			<View style={{ height: 170, width: '90%', marginTop: 20 }}>
+				<DoubleCard
+					backCardElevation={5}
+					cardElevation={8}
+					borderRadius={Styles[theme].borderRadius}
+					padding={Styles[theme].padding}
+					backCardColor={Colors[theme].backCardColor}
+					backCardGradient={Colors[theme].backCardGradient}
+					cardColor={Colors[theme].cardColor}
+				>
+					<View style={{ height: 100, width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+						<Feedback
+							rating={rating}
+							setRating={setRating}
+							title={'How happy are you with Panda UI?'}
+						/>
+					</View>
+				</DoubleCard>
 			</View>
 		</SafeAreaView>
 	);

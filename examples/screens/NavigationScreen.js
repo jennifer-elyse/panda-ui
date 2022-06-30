@@ -94,7 +94,7 @@ export default function NavigationScreen() {
 								selectedValue={tab}
 								width="90%"
 								height={50}
-								textColor={Colors[theme].buttonColor}
+								activeTextColor={Colors[theme].borderColor}
 								color={Colors[theme].borderColor}
 								options={[{ label: 'AKIRA', value: '1' }, { label: 'YUKI', value: '2' }, { label: 'KENZO', value: '3' }, { label: 'TSUKI', value: '4' }, { label: 'KUMI', value: '5' }]}
 							/>

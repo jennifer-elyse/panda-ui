@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
-import Image from 'react-native-remote-svg';
+import { SvgCss } from 'react-native-svg';
 
 import warning from './utils/warning';
 
@@ -36,6 +36,7 @@ const Button = (props) => {
 		disabledColor='lightgrey',
 		disabledGradient,
 		textColor='#fff',
+		disabledTextColor='#fff',
 		textElement,
 		iconElement
 	} = props;
@@ -66,7 +67,7 @@ const Button = (props) => {
 
 	const buttonStyleDropShadow = {
 		...buttonStyle,
-		borderWidth: 1,
+		borderWidth: borderWidth,
 		borderRadius: 2,
 		borderColor: '#ddd',
 		borderBottomWidth: 0,
@@ -109,6 +110,7 @@ const Button = (props) => {
 										fontSize={fontSize}
 										disabledColor={disabledColor}
 										textColor={textColor}
+										disabledTextColor={disabledTextColor}
 										textElement={textElement}
 										iconElement={iconElement}
 									/>
@@ -141,6 +143,7 @@ const Button = (props) => {
 								fontSize={fontSize}
 								disabledColor={disabledColor}
 								textColor={textColor}
+								disabledTextColor={disabledTextColor}
 								textElement={textElement}
 								iconElement={iconElement}
 							/>
@@ -159,6 +162,7 @@ const Button = (props) => {
 						color={color}
 						fontSize={fontSize}
 						disabledColor={disabledColor}
+						disabledTextColor={disabledTextColor}
 						textColor={textColor}
 						textElement={textElement}
 						iconElement={iconElement}
@@ -176,13 +180,13 @@ const ButtonContent = (props) => {
 		disabled,
 		size='standard',
 		fontSize,
-		disabledColor='lightgrey',
 		textColor='#fff',
+		disabledTextColor='#fff',
 		textElement,
 		iconElement
 	} = props;
 
-	const displayColor = disabled ? disabledColor : textColor;
+	const displayColor = disabled ? disabledTextColor : textColor;
 
 	const buttonLabelStyle = {
 		color: displayColor,
@@ -196,18 +200,9 @@ const ButtonContent = (props) => {
 			{iconElement}
 			{svg &&
 				(
-					<Image
-						showWebviewLoader={false}
-						style={{
-							height: Platform.OS === 'ios' ? 120 : 40,
-							width: Platform.OS === 'ios' ? 250 : 50,
-							resizeMode: 'contain',
-							transform: [
-								{ scaleX: Platform.OS === 'ios' ? (size === 'small' ? 0.3 : 0.6) : 1 },
-								{ scaleY: Platform.OS === 'ios' ? (size === 'small' ? 0.3 : 0.6) : 1 }]
-						}}
-						source={svg}
-						resizeMode="contain"
+					<SvgCss
+						xml={svg}
+						height="30" width="30"
 					/>
 				)
 			}
@@ -264,6 +259,7 @@ Button.propTypes = {
 	style: PropTypes.object,
 	fontSize: PropTypes.number,
 	textColor: PropTypes.string,
+	disabledTextColor: PropTypes.string,
 	allowInteraction: PropTypes.bool,
 	borderRadius: PropTypes.number,
 	borderWidth: PropTypes.number,

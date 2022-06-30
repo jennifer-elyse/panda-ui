@@ -24,9 +24,11 @@ import Feedback from './Feedback';
 import RadioGroup from './RadioGroup';
 import ScanTextInput from './ScanTextInput';
 import SearchBar from './SearchBar';
+import SortColumn from './SortColumn';
 import SortHeader from './SortHeader';
 import * as StyledText from './StyledText';
 import StyledSelect from './StyledSelect';
+import StickyColumnTable from './StickyColumnTable';
 import TabGroup from './TabGroup';
 import ToggleButton from './ToggleButton';
 
@@ -39,6 +41,7 @@ import useCurrentTime from './hooks/useCurrentTime';
 import useDebugRender from './hooks/useDebugRender';
 import useSortedData from './hooks/useSortedData';
 import useToggle from './hooks/useToggle';
+
 
 export {
 	Button,
@@ -53,11 +56,13 @@ export {
 	RadioGroup,
 	ScanTextInput,
 	SearchBar,
+	SortColumn,
 	SortHeader,
-	TabGroup,
-	ToggleButton,
 	StyledText,
 	StyledSelect,
+	StickyColumnTable,
+	TabGroup,
+	ToggleButton,
 	invariant,
 	warning,
 	useCurrentTime,

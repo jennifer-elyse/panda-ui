@@ -2,10 +2,9 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {
 	View,
-	Text,
 	TouchableOpacity
 } from 'react-native';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 
@@ -19,9 +18,10 @@ import {
 	themeSelector,
 	gradientSelector
 } from '../contexts/ThemeContext';
+import { NavigationText } from '../components/StyledText';
 import PandaHomeScreen from '../screens/PandaHomeScreen';
 import DataScreen from '../screens/DataScreen';
-import PendingScreen from '../screens/PendingScreen';
+import StickyDataScreen from '../screens/StickyDataScreen';
 import ChoiceScreen from '../screens/ChoiceScreen';
 import NavigationScreen from '../screens/NavigationScreen';
 import HelpScreen from '../screens/HelpScreen';
@@ -32,14 +32,6 @@ import OptInScreen from '../screens/OptInScreen';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const mainTheme = {
-	...DefaultTheme,
-	colors: {
-		...DefaultTheme.colors,
-		background: 'transparent'
-	}
-};
-
 function HomeStack() {
 	return (
 		<Stack.Navigator
@@ -48,7 +40,6 @@ function HomeStack() {
 			}}>
 			<Stack.Screen name="HomeScreen" component={PandaHomeScreen} />
 			{/*<Stack.Screen name="Data" 	component={DataScreen} />*/}
-			<Stack.Screen name="Help" 	component={HelpScreen} />
 		</Stack.Navigator>
 	);
 }
@@ -85,16 +76,21 @@ const AppNavigator = () => {
 							start={[0, 0]}
 							end={[1, 1]}
 						>
-							<MyTabBar
+							<PandaUiTabBar
 								{...props}
 								style={{ backgroundColor: 'transparent', overflow: 'hidden' }}
 							/>
 						</LinearGradient>
 					) : (
-						<BottomTabBar
+						<PandaUiTabBar
 							{...props}
-							style={{ backgroundColor: 'transparent', overflow: 'hidden' }}
+							backgroundColor={Colors[theme].tabBarInactiveColor}
+							style={{ overflow: 'hidden' }}
 						/>
+						// <BottomTabBar
+						// 	{...props}
+						// 	style={{ backgroundColor: 'transparent', overflow: 'hidden' }}
+						// />
 					);
 				}}
 				screenOptions={({ route }) => ({
@@ -118,14 +114,16 @@ const AppNavigator = () => {
 							iconName = 'bars';
 						} else if (route.name === 'Data') {
 							iconName = 'table';
-						} /* else if (route.name === 'OptIn') {
+						} else if (route.name === 'Sticky') {
+							iconName = 'table';
+						} else if (route.name === 'Help') {
 							iconName = 'optin-monster';
-						} */
+						}
 
 						return (<ProIcon
 							style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginHorizontal: 10 }}
 							name={iconName}
-							size={18}
+							size={16}
 							color={styleColor} />);
 					}
 				})}
@@ -136,14 +134,15 @@ const AppNavigator = () => {
 				/>
 				<Tab.Screen name="Choices" 		component={ChoiceScreen} />
 				<Tab.Screen name="Data" 		component={DataScreen} />
-				<Tab.Screen name="Pending" component={PendingScreen} />
+				<Tab.Screen name="Sticky" 	component={StickyDataScreen} />
 				<Tab.Screen name="Navigation" 	component={NavigationScreen} />
+				<Tab.Screen name="Help" 		component={HelpScreen} />
 			</Tab.Navigator>
 		</NavigationContainer>
 	);
 };
 
-function MyTabBar({ state, descriptors, navigation, ...props }) {
+function PandaUiTabBar({ state, descriptors, navigation, backgroundColor='transparent', ...props }) {
 	const focusedOptions = descriptors[state.routes[state.index].key].options;
 	// console.log('descriptors', descriptors);
 	if (focusedOptions.tabBarVisible === false) {
@@ -151,7 +150,7 @@ function MyTabBar({ state, descriptors, navigation, ...props }) {
 	}
 
 	return (
-		<View style={{ flexDirection: 'row', height: 60 }}>
+		<View style={{ flexDirection: 'row', height: 60, backgroundColor }}>
 			{state.routes.map((route, index) => {
 				const { options } = descriptors[route.key];
 				{/*console.log('options', options);*/}
@@ -200,9 +199,9 @@ function MyTabBar({ state, descriptors, navigation, ...props }) {
 								color: isFocused ? props.activeTintColor : props.inactiveTintColor,
 								size: 20
 							})}
-							<Text style={{ color: isFocused ? props.activeTintColor : props.inactiveTintColor }}>
+							<NavigationText style={{ color: isFocused ? props.activeTintColor : props.inactiveTintColor }}>
 								{label}
-							</Text>
+							</NavigationText>
 						</View>
 					</TouchableOpacity>
 				);

@@ -1,210 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-	View,
-	TouchableOpacity,
-	Text
+	View
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Layout from './constants/Layout';
+
+import SortColumn from './SortColumn';
+
 
 const SortHeader = (props) => {
 	const {
-		screenWidth,
 		columns,
 		sortConfig,
 		onSortChange,
-		borderRadius = 50,
+		borderRadius = 0,
+		borderRadiusLeft = borderRadius,
+		borderRadiusRight = borderRadius,
 		noSort = false,
-		height,
-		// TODO: not yet implemented
-		// solid = false,
-		// center = false,
-		// ignoreFirstColumnInSort = true,
 		sortIndicatorColor = '#4a1830',
 		tintColor = '#772d4f',
+		backgroundColor = tintColor,
 		selectedColor = '#a34e76',
-		borderColor = '#772d4f',
-		textColor = '#fff',
-		textActiveColor = '#fff',
-		TextComponent=Text,
-		cellContainerStyle,
-		headerContainerStyle
+		borderColor = 'transparent',
+		textColor = '#fff'
 	} = props;
 
-	// set screen width
-	const SCREEN_WIDTH = screenWidth || Layout.window.width;
-
-	const commonTextStyle = {
-		fontWeight: 'bold',
-		maxHeight: 45,
-		color: textColor
-	};
-
-	const commonViewStyle = {
-		padding: 10,
-		height: height,
-		backgroundColor: tintColor,
-		justifyContent: 'center',
-		alignItems: 'center'
-	};
-
-	const activeTextStyle = {
-		...commonTextStyle,
-		color: textActiveColor || textColor
-	};
-
-	const activeViewStyle = {
-		...commonViewStyle,
-		backgroundColor: selectedColor
-	};
-
-	const middleBorderStyle = {
-		borderRightWidth: 0.5,
-		borderStyle: 'solid',
-		borderColor: borderColor
-	};
-
-	const leftBorderStyle = {
-		borderLeftWidth: 0.5,
-		borderLeftStyle: 'solid',
-		borderColor: borderColor,
-		borderTopLeftRadius: borderRadius
-	};
-
-	const rightBorderStyle = {
-		borderRightWidth: 0.5,
-		borderRightStyle: 'solid',
-		borderColor: borderColor,
-		borderTopRightRadius: borderRadius
-	};
-
-
-	/**
-	 * Getter for text styles.
-	 *
-	 * @param  {boolean} active
-	 * @param  {boolean} showBorder
-	 * @param  {number}  width
-	 * @param  {Text}  align
-	 *
-	 * @return {object} Object to apply to a `style` prop.
-	 */
-	function getTextStyle(active, showBorder, width, align) {
-		const baseStyle = active ? activeTextStyle : commonTextStyle;
-
-		return {
-			...baseStyle,
-			width,
-			flexDirection: 'row',
-			textAlign: align || 'center'
-		};
-	}
-
-
-	/**
-	 * Getter for view styles.
-	 *
-	 * @param  {boolean} active
-	 * @param  {boolean} showBorder
-	 * @param  {number}  width
-	 *
-	 * @return {object} Object to apply to a `style` prop.
-	 */
-	function getViewStyle(active, width, i, length) {
-		const baseStyle = active ? activeViewStyle : commonViewStyle;
-		const leftBorderStyleObj =  i === 0  ? leftBorderStyle : undefined;
-		const rightBorderStyleObj =  i === length -1 ? rightBorderStyle : undefined;
-		const middleBorderStyleObj =  i > 0 && i < length - 1 ? middleBorderStyle : undefined;
-
-		return {
-			...baseStyle,
-			...leftBorderStyleObj,
-			...rightBorderStyleObj,
-			...middleBorderStyleObj,
-			width,
-			flexDirection: 'row',
-			alignItems: 'center',
-			...cellContainerStyle
-		};
-	}
-
-	const rootStyleUnrounded = {
+	const rootStyle = {
 		flexDirection: 'row',
-		backgroundColor: textColor,
+		backgroundColor: backgroundColor,
 		borderWidth: 0.5,
 		borderStyle: 'solid',
-		borderColor: tintColor
+		borderColor: borderColor,
+		borderTopLeftRadius: borderRadiusLeft,
+		borderTopRightRadius: borderRadiusRight
 	};
-
-	const rootStyleRounded = {
-		flexDirection: 'row',
-		backgroundColor: textColor,
-		borderWidth: 0.5,
-		borderStyle: 'solid',
-		borderColor: tintColor,
-		borderTopLeftRadius: borderRadius,
-		borderTopRightRadius: borderRadius
-		// borderBottomRightRadius: 5,
-		// borderBottomLeftRadius: 5
-	};
-
-	const rootStyle = borderRadius ? rootStyleRounded : rootStyleUnrounded;
 
 	return (
-		<View style={[rootStyle, headerContainerStyle]}>
+		<View style={rootStyle}>
 			{columns.map((column, i) => {
-				const sortKey = column.sortKey ? column.sortKey : column.key;
-				let isSorted = sortConfig.key === sortKey;
-				isSorted = noSort ? false : isSorted;
 				return (
-					<TouchableOpacity
-						style={getViewStyle(isSorted, column.width * SCREEN_WIDTH, i, columns.length)}
-						key={sortKey}
-						onPress={() => {
-							!noSort  &&
-							onSortChange({
-								key: sortKey,
-								direction: !isSorted ? 'asc' : (
-									sortConfig.direction === 'asc' ? 'desc' : 'asc'
-								)
-							});
-						}}
-					>
-						{column.icon && <FontAwesome5
-							key={sortKey}
-							name={column.icon}
-							size={20}
-							color={textColor}
-							style={{ marginLeft: 10 }}
-						/>}
-
-						<TextComponent
-							style={getTextStyle(isSorted, i < columns.length - 1, column.width * SCREEN_WIDTH * 0.8, column.align)}
-							key={sortKey + '1'}
-						>
-							{column.label}
-						</TextComponent>
-
-						{ isSorted && sortConfig.direction === 'asc' ?
-							<FontAwesome5
-								key={sortKey + '2'}
-								name="chevron-up"
-								size={12}
-								color={sortIndicatorColor}
-								style={{ marginLeft: 1 }}
-							/>
-							: false}
-						{ isSorted && sortConfig.direction === 'desc' ?
-							<FontAwesome5
-								key={sortKey + '3'}
-								name="chevron-down"
-								size={12}
-								color={sortIndicatorColor}
-								style={{ marginLeft: 1 }}
-							/>
-							: false}
-					</TouchableOpacity>
+					<SortColumn
+						key={String(i)}
+						column={column}
+						columnCount={column.length}
+						i={i}
+						sortConfig={sortConfig}
+						onSortChange={onSortChange}
+						borderRadiusLeft={borderRadiusLeft}
+						borderRadiusRight={borderRadiusRight}
+						noSort={noSort}
+						sortIndicatorColor={sortIndicatorColor}
+						borderColor={borderColor}
+						selectedColor={selectedColor}
+						textColor={textColor}
+					/>
 				);
 			})}
 		</View>
@@ -223,6 +71,8 @@ SortHeader.propTypes = {
 	}),
 	onSortChange: PropTypes.func.isRequired,
 	borderRadius: PropTypes.number,
+	borderRadiusLeft: PropTypes.number,
+	borderRadiusRight: PropTypes.number,
 	noSort: PropTypes.bool,
 	// solid: PropTypes.bool,
 	// center: PropTypes.bool,
@@ -233,13 +83,10 @@ SortHeader.propTypes = {
 	]),
 	sortIndicatorColor: PropTypes.string,
 	tintColor: PropTypes.string,
+	backgroundColor: PropTypes.string,
 	selectedColor: PropTypes.string,
 	borderColor: PropTypes.string,
-	textColor: PropTypes.string,
-	TextComponent: PropTypes.object,
-	screenWidth: PropTypes.number,
-	cellContainerStyle: PropTypes.object,
-	headerContainerStyle: PropTypes.object
+	textColor: PropTypes.string
 };
 
 export default SortHeader;

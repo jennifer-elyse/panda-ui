@@ -18,8 +18,7 @@ import {
 	DoubleCard,
 	SearchBar,
 	SortHeader,
-	useSortedData,
-	StyledText
+	useSortedData
 } from 'react-native-panda-ui';
 
 // Local Imports
@@ -31,6 +30,7 @@ import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import FlatListItemSeparator from '../components/FlatListItemSeparator';
 import LoadingIndicator from '../components/LoadingIndicator';
+import { H1, Body2 } from '../components/StyledText';
 import ThemeSelect from '../components/ThemeSelect';
 import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
 
@@ -40,25 +40,39 @@ const columns = [
 	{ key: 'name',		label: 'Name', 		icon: null, width: 1 },
 	{ key: 'color',		label: 'Color', 	icon: null, width: 1 }
 ];
+const stickyColumns = [
+	{ key: 'name',		label: 'Name', 		icon: null, width: 1, textAlign: 'left' },
+	{ key: 'color',		label: 'Color', 	icon: null, width: 1, textAlign: 'left' },
+	{ key: 'faveFood',	label: 'FaveFood', 	icon: null, width: 2, textAlign: 'left' },
+	{ key: 'peeves',	label: 'Peeves', 	icon: null, width: 1, textAlign: 'left' },
+	{ key: 'loves',		label: 'Loves', 	icon: null, width: 2, textAlign: 'left' }
+];
+
+const stickyColumn = {
+	key: 'animal',		label: 'Animal', 		icon: null, width: 1, textAlign: 'left'
+};
 
 const defaultSortConfig = {
-	key: columns[1].key,
+	key: columns[0].key,
 	direction: 'asc'
 };
+
 
 const DataScreen = () => {
 	const [userSession] = useThemeContext();
 	const theme = themeSelector(userSession);
 	// state hooks
 	// useState utilizes the current state and a function that updates it
-	const [highlightedCharacterId, setHighlightedCharacterId] = useState(null);
-	const [characterData, setCharacterData] 	= useState([]);
-	const [qualitiesData, setQualitiesData] 	= useState([]);
-	const [loading, setLoading] 				= useState(false);
-	const [sortConfig, setSortConfig] 			= useState(defaultSortConfig);
+	const [highlightedCharacterId, setHighlightedCharacterId] 	= useState(null);
+	const [characterData, setCharacterData] 					= useState([]);
+	const [qualitiesData, setQualitiesData] 					= useState([]);
+	const [loading, setLoading] 								= useState(false);
+	const [sortConfig, setSortConfig] 							= useState(defaultSortConfig);
+	const [stickySortConfig, setStickySortConfig] 				= useState(defaultSortConfig);
 
 	// hooks
-	const sortedApiData 				= useSortedData(qualitiesData, sortConfig);
+	const sortedApiData = useSortedData(qualitiesData, sortConfig);
+	const stickySortedApiData = useSortedData(qualitiesData, stickySortConfig);
 
 	// refs
 	const listRef = useRef();
@@ -101,8 +115,8 @@ const DataScreen = () => {
 			flex: 1,
 			flexDirection: 'row',
 			height: 45,
-			marginVertical: 5,
-			marginHorizontal: 2.5,
+			paddingVertical: 5,
+			paddingHorizontal: 2.5,
 			alignItems: 'center',
 			justifyContent: 'center',
 			backgroundColor: highlightedColor
@@ -144,7 +158,7 @@ const DataScreen = () => {
 				characterData={characterData}
 				setLoading={setLoading}
 			/>
-			<View style={{ width: '95%', marginTop: 30, marginBottom: 15 }}>
+			<View style={{ width: '95%', marginTop: -5, marginBottom: 15 }}>
 				<DoubleCard
 					backCardElevation={5}
 					cardElevation={8}
@@ -167,24 +181,25 @@ const DataScreen = () => {
 						borderColor={Colors[theme].borderColor}
 						buttonColor={Colors[theme].buttonColor}
 						pickerBorderColor={Colors[theme].borderColor}
-						pickerTextColor={Colors[theme].borderColor}
+						pickerTextColor={Colors[theme].textColor}
+						buttonTextColor={Colors[theme].textColor}
 					/>
 				</DoubleCard>
 			</View>
-			<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 15 }}>
-				<StyledText.H1 textColor={Colors[theme].textColor}>Characteristics</StyledText.H1>
+			<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 10 }}>
+				<H1 textColor={Colors[theme].textColor}>Characteristics</H1>
 			</View>
-			<View style={{ height: '40%', width: '95%', marginHorizontal: 10, marginBottom: 5 }}>
+			<View style={{ height: '40%', width: '95%', borderRadius: Styles[theme].borderRadius, marginHorizontal: 10, marginBottom: 5 }}>
 				<SortHeader
 					columns={columns}
 					sortConfig={sortConfig}
 					onSortChange={setSortConfig}
-					roundCorners={true}
 					center
-					borderRadius={Styles[theme].borderRadius/10}
+					borderRadius={Styles[theme].borderRadius}
 					height={40}
 					sortIndicatorColor={Colors[theme].buttonTextColor}
-					tintColor={Colors[theme].tintColor}
+					backgroundColor={Colors[theme].tintColor}
+					borderColor={Colors[theme].tintColor}
 					selectedColor={Colors[theme].tabBarActiveColor}
 					textColor={Colors[theme].buttonTextColor}
 				/>
@@ -195,8 +210,8 @@ const DataScreen = () => {
 						borderLeftWidth: 1,
 						borderBottomWidth: 1,
 						borderRightWidth: 1,
-						borderBottomRightRadius: 5,
-						borderBottomLeftRadius: 5
+						borderBottomRightRadius: Styles[theme].borderRadius,
+						borderBottomLeftRadius: Styles[theme].borderRadius
 					}}
 					ref={listRef}
 					data={sortedApiData}
@@ -206,15 +221,15 @@ const DataScreen = () => {
 								style={{ flex: 1, flexDirection: 'row', height: 45, alignItems: 'center', justifyContent: 'center' }}
 								// onPress={() => { navigateToComponents(); }}
 							>
-								<StyledText.Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[0].width, textAlign: 'center' }}>
+								<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[0].width, textAlign: 'center' }}>
 									{item.animal}
-								</StyledText.Body2>
-								<StyledText.Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[1].width, textAlign: 'center' }}>
+								</Body2>
+								<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[1].width, textAlign: 'center' }}>
 									{item.name}
-								</StyledText.Body2>
-								<StyledText.Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor: Colors[theme].textColor} style={{ width: 0, flexGrow: columns[2].width, textAlign: 'center' }}>
+								</Body2>
+								<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor: Colors[theme].textColor} style={{ width: 0, flexGrow: columns[2].width, textAlign: 'center' }}>
 									{item.color}
-								</StyledText.Body2>
+								</Body2>
 							</View>
 						</TouchableHighlight>
 					)}

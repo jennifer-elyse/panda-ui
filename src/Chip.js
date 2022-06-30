@@ -7,6 +7,8 @@ import chroma from 'chroma-js';
 import { Body3 } from './StyledText';
 import Button from './Button';
 
+
+
 const Chip = (props) => {
 	const {
 		allowInteraction=true,
