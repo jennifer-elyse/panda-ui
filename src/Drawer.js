@@ -72,10 +72,6 @@ function DrawerComponent(props) {
 		);
 	};
 
-	// console.log(
-	// 	`SCREEN_WIDTH${SCREEN_WIDTH} MAIN_WIDTH${MAIN_WIDTH} SIDEBAR_WIDTH${SIDEBAR_WIDTH} MAIN_SCALED${MAIN_SCALED}`
-	// );
-
 	return (
 		<View style={[styles.container, { width: SCREEN_WIDTH }]}>
 			{menuToggle && (

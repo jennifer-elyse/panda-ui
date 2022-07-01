@@ -27,7 +27,6 @@ import SearchBar from './SearchBar';
 import SortColumn from './SortColumn';
 import SortHeader from './SortHeader';
 import * as StyledText from './StyledText';
-import StyledSelect from './StyledSelect';
 import StickyColumnTable from './StickyColumnTable';
 import TabGroup from './TabGroup';
 import ToggleButton from './ToggleButton';
@@ -59,7 +58,6 @@ export {
 	SortColumn,
 	SortHeader,
 	StyledText,
-	StyledSelect,
 	StickyColumnTable,
 	TabGroup,
 	ToggleButton,
