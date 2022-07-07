@@ -12,21 +12,26 @@
 // import Button from 'react-native-apanda-ui/Button';
 // import CheckBox from 'react-native-apanda-ui/CheckBox';
 import Button from './Button';
+import ButtonGroup from './ButtonGroup';
 import Card from './Card';
 import CheckBox from './CheckBox';
 import CheckBoxGroup from './CheckBoxGroup';
 import Chip from './Chip';
 import CounterInput from './CounterInput';
 import DoubleCard from './DoubleCard';
+import Drawer from './Drawer';
 import Feedback from './Feedback';
 import RadioGroup from './RadioGroup';
 import ScanTextInput from './ScanTextInput';
 import SearchBar from './SearchBar';
 import SortColumn from './SortColumn';
 import SortHeader from './SortHeader';
+import * as StyledText from './StyledText';
 import StickyColumnTable from './StickyColumnTable';
 import TabGroup from './TabGroup';
 import ToggleButton from './ToggleButton';
+import StyledSelect from './StyledSelect';
+import StyledTooltip from './StyledTooltip';
 
 // utils
 import invariant from './utils/invariant';
@@ -41,6 +46,7 @@ import useToggle from './hooks/useToggle';
 
 export {
 	Button,
+	ButtonGroup,
 	Card,
 	CheckBox,
 	CheckBoxGroup,
@@ -53,6 +59,9 @@ export {
 	SearchBar,
 	SortColumn,
 	SortHeader,
+	StyledText,
+	StyledSelect,
+	StyledTooltip,
 	StickyColumnTable,
 	TabGroup,
 	ToggleButton,
@@ -61,5 +70,6 @@ export {
 	useCurrentTime,
 	useDebugRender,
 	useSortedData,
-	useToggle
+	useToggle,
+	Drawer
 };
