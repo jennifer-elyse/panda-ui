@@ -1,28 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
-import PropTypes from 'prop-types';
-
-import RNPickerSelect from 'react-native-picker-select';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { StyleSheet, View, TouchableOpacity, Dimensions, Modal, TouchableWithoutFeedback } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+import Icon from '@expo/vector-icons/FontAwesome5';
 import chroma from 'chroma-js';
+import PropTypes from 'prop-types';
+import * as StyledText from './StyledText';
 
-import StyledText from './StyledText';
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const StyledSelect = props => {
 	const {
 		items,
-		label,
 		value,
-		meta,
 		onValueChange,
 		enableActionOnValueChange,
-		enabled = true,
 		width,
 		height = 40,
-		input,
-		rest,
 		separatorColor,
-		validationErrorColor = '#9c1717',
 		backgroundColor = '#fff',
 		color,
 		placeholderBold,
@@ -32,6 +26,7 @@ const StyledSelect = props => {
 	} = props;
 
 	const [selected, setSelected] = useState(value);
+	const [pickerVisible, setPickerVisible] = useState(false);
 
 	useEffect(() => {
 		setSelected(value);
@@ -52,99 +47,146 @@ const StyledSelect = props => {
 		justifyContent: 'center',
 		alignItems: 'flex-start'
 	};
-	const RNPickerWrapperFailedValidation = {
-		...RNPickerWrapper,
-		borderBottomColor: validationErrorColor
-	};
 
 	const placeholderColor = chroma.contrast(backgroundColor, '#fff') > 5 ? '#fff' : '#000';
 
-	const pickerSelectStyles = StyleSheet.create({
-		inputIOS: {
-			paddingHorizontal: 5,
-			maxWidth: 250,
-			height: 20,
-			marginLeft: 10,
-			marginBottom: 10,
-			fontWeight: placeholderBold ? 'bold' : 'normal',
-			color: color || placeholderColor,
-			fontSize,
-			paddingRight: 25 // to ensure the text is never behind the icon
-		},
-		inputAndroid: {
-			paddingHorizontal: 10,
-			maxWidth: 250,
-			height: 20,
-			// marginLeft: -10,
-			marginBottom: 12,
-			color: color || placeholderColor,
-			fontWeight: placeholderBold ? 'bold' : 'normal',
-			fontSize,
-			paddingRight: 25, // to ensure the text is never behind the icon
-			transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }]
+	// get label
+	const renderValueLabel = () => {
+		// if value is set, loop items to find label
+		if (selected) {
+			const label = items.find(item => item.value === selected);
+			if (label) {
+				return label.label;
+			}
 		}
-	});
+		return placeholder || '';
+	};
+
+	const togglePicker = () => {
+		setPickerVisible(prev => !prev);
+	};
+
+	const renderPlaceholder = () => {
+		if (placeholder) {
+			return <Picker.Item label={placeholder} value={null} />;
+		}
+		return null;
+	};
+
+	const renderItems = () => {
+		return items.map(item => {
+			return <Picker.Item key={item.value} label={item.label} value={item.value} />;
+		});
+	};
+
+	const onDone = () => {
+		onValueChange(selected);
+		setPickerVisible(false);
+	};
 
 	return (
-		<View style={meta && meta.error && meta.touched ? RNPickerWrapperFailedValidation : RNPickerWrapper}>
-			<StyledText
+		<View style={RNPickerWrapper}>
+			<TouchableOpacity
+				onPress={togglePicker}
 				style={{
-					color: placeholderColor,
-					fontSize: 12,
-					marginBottom: -5,
-					marginLeft: 3
+					// backgroundColor: 'salmon',
+					width,
+					height,
+					paddingHorizontal: 10,
+					flexDirection: 'row',
+					alignItems: 'center',
+					justifyContent: 'space-between'
 				}}
 			>
-				{label}
-			</StyledText>
-			<RNPickerSelect
-				{...input}
-				{...rest}
-				enabled={enabled}
-				items={
-					items &&
-					items.map((item, i) => {
-						return {
-							label: item.label,
-							value: item.value,
-							key: i
-						};
-					})
-				}
-				placeholder={
-					noPlaceholder
-						? {}
-						: {
-								label: placeholder || 'Select',
-								value: null
-						  }
-				}
-				placeholderTextColor={placeholderColor}
-				value={selected}
-				onValueChange={value => (enableActionOnValueChange ? performActionOnValueChange(value) : setSelected(value))}
-				onDonePress={() => onValueChange(selected)}
-				style={{
-					placeholder: {
-						color: placeholderColor
-					},
-					...pickerSelectStyles
-				}}
-				Icon={() => {
-					return (
-						<View>
-							<Icon
-								name="caret-down"
-								size={16}
-								color={color || placeholderColor}
-								style={{ paddingRight: 15, top: 4 }}
-							/>
+				<StyledText.Body1
+					style={{
+						color: color || placeholderColor,
+						fontWeight: placeholderBold ? 'bold' : 'normal',
+						fontSize
+					}}
+				>
+					{renderValueLabel()}
+				</StyledText.Body1>
+				<View>
+					<Icon name="caret-down" size={16} color={color || placeholderColor} />
+				</View>
+			</TouchableOpacity>
+			{pickerVisible && (
+				<Modal transparent visible animationType="none">
+					<TouchableWithoutFeedback onPress={onDone}>
+						<View style={styles.outerContainer}></View>
+					</TouchableWithoutFeedback>
+					<View style={styles.pickerContainer}>
+						<View style={styles.doneBarContainer}>
+							<TouchableOpacity style={styles.doneBarButton} onPress={onDone}>
+								<StyledText.Body1 style={styles.doneBarText}>Done</StyledText.Body1>
+							</TouchableOpacity>
 						</View>
-					);
-				}}
-			/>
+						<Picker
+							style={styles.pickerStyle}
+							selectedValue={selected}
+							itemStyle={styles.pickerItemStyle}
+							onValueChange={value =>
+								enableActionOnValueChange ? performActionOnValueChange(value) : setSelected(value)
+							}
+						>
+							{noPlaceholder ? null : renderPlaceholder()}
+							{renderItems()}
+						</Picker>
+					</View>
+				</Modal>
+			)}
 		</View>
 	);
 };
+
+const styles = StyleSheet.create({
+	outerContainer: {
+		flex: 1
+	},
+	container: {
+		width: 150,
+		height: 70
+	},
+	textStyle: {
+		fontSize: 20,
+		color: 'black'
+	},
+	pickerContainer: {
+		position: 'absolute',
+		bottom: 0,
+		width: SCREEN_WIDTH
+	},
+	pickerStyle: {
+		width: '100%',
+		// height: 180,
+		marginTop: 0,
+		marginBottom: 0,
+		backgroundColor: 'rgb(209, 212, 217)'
+	},
+	pickerItemStyle: {
+		paddingTop: 0,
+		paddingBottom: 0,
+		height: 160,
+		fontSize: 22
+	},
+	doneBarContainer: {
+		height: 44,
+		width: '100%',
+		backgroundColor: 'rgb(248, 248, 248)',
+		alignItems: 'flex-end',
+		paddingHorizontal: 10,
+		justifyContent: 'center',
+		borderTopWidth: 1,
+		borderTopColor: 'lightgrey'
+	},
+	doneBarText: {
+		fontSize: 20,
+		fontWeight: 'normal',
+		color: 'rgb(0, 122, 255)'
+	}
+});
+
 export default StyledSelect;
 
 StyledSelect.propTypes = {
@@ -155,6 +197,7 @@ StyledSelect.propTypes = {
 	onValueChange: PropTypes.func.isRequired,
 	enableActionOnValueChange: PropTypes.bool,
 	enabled: PropTypes.bool,
+	height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	input: PropTypes.any,
 	rest: PropTypes.any,

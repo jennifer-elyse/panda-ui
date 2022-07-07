@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
 
-
 export default function StyledText({ textColor='#424242', ...props }) {
 
 	const textStyle = {
