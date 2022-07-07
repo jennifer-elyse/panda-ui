@@ -31,6 +31,7 @@ import StickyColumnTable from './StickyColumnTable';
 import TabGroup from './TabGroup';
 import ToggleButton from './ToggleButton';
 import StyledSelect from './StyledSelect';
+import StyledTooltip from './StyledTooltip';
 
 // utils
 import invariant from './utils/invariant';
@@ -60,6 +61,7 @@ export {
 	SortHeader,
 	StyledText,
 	StyledSelect,
+	StyledTooltip,
 	StickyColumnTable,
 	TabGroup,
 	ToggleButton,
