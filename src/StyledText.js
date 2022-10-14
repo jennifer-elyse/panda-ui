@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
 
-
 export default function StyledText({ textColor='#424242', ...props }) {
 
 	const textStyle = {
@@ -10,7 +9,7 @@ export default function StyledText({ textColor='#424242', ...props }) {
 		lineHeight: 15,
 		...props.style
 	};
-	return (<Text style={textStyle}>{props.children}</Text>);
+	return (<Text numberOfLines={props.numberOfLines || 1} style={textStyle} adjustsFontSizeToFit={props.adjustsFontSizeToFit}>{props.children}</Text>);
 }
 
 export const H1 = props => {
@@ -22,7 +21,7 @@ export const H1 = props => {
 		lineHeight: 23,
 		...props.style
 	};
-	return (<Text style={textStyle}>{props.children}</Text>);
+	return (<Text numberOfLines={props.numberOfLines || 1} style={textStyle} adjustsFontSizeToFit={props.adjustsFontSizeToFit}>{props.children}</Text>);
 };
 
 export const H2 = props => {
@@ -34,7 +33,7 @@ export const H2 = props => {
 		lineHeight: 21,
 		...props.style
 	};
-	return (<Text style={textStyle}>{props.children}</Text>);
+	return (<Text numberOfLines={props.numberOfLines || 1} style={textStyle} adjustsFontSizeToFit={props.adjustsFontSizeToFit}>{props.children}</Text>);
 };
 
 export const H3 = props => {
@@ -46,7 +45,7 @@ export const H3 = props => {
 		lineHeight: 17,
 		...props.style
 	};
-	return (<Text style={textStyle}>{props.children}</Text>);
+	return (<Text numberOfLines={props.numberOfLines || 1} style={textStyle} adjustsFontSizeToFit={props.adjustsFontSizeToFit}>{props.children}</Text>);
 };
 
 export const Subtitle1 = props => {
@@ -57,7 +56,7 @@ export const Subtitle1 = props => {
 		lineHeight: 18,
 		...props.style
 	};
-	return (<Text style={textStyle}>{props.children}</Text>);
+	return (<Text numberOfLines={props.numberOfLines || 1} style={textStyle} adjustsFontSizeToFit={props.adjustsFontSizeToFit}>{props.children}</Text>);
 };
 
 export const Body1 = props => {
@@ -68,7 +67,7 @@ export const Body1 = props => {
 		lineHeight: 19,
 		...props.style
 	};
-	return (<Text style={textStyle}>{props.children}</Text>);
+	return (<Text numberOfLines={props.numberOfLines || 1} style={textStyle} adjustsFontSizeToFit={props.adjustsFontSizeToFit}>{props.children}</Text>);
 };
 
 export const Body2 = props => {
@@ -79,7 +78,7 @@ export const Body2 = props => {
 		lineHeight: 17,
 		...props.style
 	};
-	return (<Text style={textStyle}>{props.children}</Text>);
+	return (<Text numberOfLines={props.numberOfLines || 1} style={textStyle} adjustsFontSizeToFit={props.adjustsFontSizeToFit}>{props.children}</Text>);
 };
 
 export const Body3 = props => {
@@ -90,7 +89,7 @@ export const Body3 = props => {
 		lineHeight: 15,
 		...props.style
 	};
-	return (<Text style={textStyle}>{props.children}</Text>);
+	return (<Text numberOfLines={props.numberOfLines || 1} style={textStyle} adjustsFontSizeToFit={props.adjustsFontSizeToFit}>{props.children}</Text>);
 };
 
 export const TabText = ({ buttonColor, ...props }) => {
@@ -100,7 +99,7 @@ export const TabText = ({ buttonColor, ...props }) => {
 		fontSize: 14,
 		...props.style
 	};
-	return (<Text style={textStyle}>{props.children}</Text>);
+	return (<Text numberOfLines={props.numberOfLines || 1} style={textStyle} adjustsFontSizeToFit={props.adjustsFontSizeToFit}>{props.children}</Text>);
 };
 
 export const ButtonText = ({ buttonTextColor, ...props }) => {
@@ -111,5 +110,5 @@ export const ButtonText = ({ buttonTextColor, ...props }) => {
 		fontSize: 14,
 		...props.style
 	};
-	return (<Text style={textStyle}>{props.children}</Text>);
+	return (<Text numberOfLines={props.numberOfLines || 1} style={textStyle} adjustsFontSizeToFit={props.adjustsFontSizeToFit}>{props.children}</Text>);
 };

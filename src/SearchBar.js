@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import RNPickerSelect from 'react-native-picker-select';
+// import RNPickerSelect from 'react-native-picker-select';
 
 import Button from './Button';
 
@@ -96,7 +96,7 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 		>
 			<View style={{ flexDirection: 'row', containerStyle, alignItems: 'center', justifyContent: 'center' }}>
 				<View style={{ marginRight: 4 }}>
-					<RNPickerSelect
+					{/* <RNPickerSelect
 						placeholder={{
 							label: 'Search by...',
 							color: pickerTextColor,
@@ -123,10 +123,10 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 								<Icon name="check-circle" size={caretSize}  color={caretColor} />
 							);
 						}}
-					/>
+					/> */}
 				</View>
 				<View style={showSearchValues ? styles.displayStyle : styles.hiddenStyle}>
-					<RNPickerSelect
+					{/* <RNPickerSelect
 						placeholder={{
 							label: 'Select value...',
 							value: '',
@@ -151,7 +151,7 @@ const SearchBar = ({ columns, data, onSubmit, backgroundColor='#efefef',
 								<Icon name="check-circle" size={caretSize}  color={caretColor} />
 							);
 						}}
-					/>
+					/> */}
 				</View>
 				<View style={showButton ? styles.displayButtonStyle : styles.hiddenStyle}>
 					<Button
