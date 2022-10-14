@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Platform, LogBox } from 'react-native';
 import { ErrorBoundary } from 'react-error-boundary';
 
-// import { Asset } from 'expo-asset';
-import AppLoadingIndicator from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import Constants from 'expo-constants';
@@ -12,7 +11,7 @@ import { configureFontAwesomePro } from 'react-native-fontawesome-pro';
 import chroma from 'chroma-js';
 
 import Colors from './constants/Colors';
-import { ToastContextProvider } from './contexts/ToastContext';
+// import { ToastContextProvider } from './contexts/ToastContext';
 import { ThemeContextProvider } from './contexts/ThemeContext';
 import {
 	useThemeContext,
@@ -24,6 +23,9 @@ import ErrorFallback from './components/ErrorFallback';
 const errorBoundaryHandler = (error, info) => {
 	// TODO: send error
 };
+
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
 
 export default function AppWrap() {
 	return (
@@ -39,7 +41,7 @@ export default function AppWrap() {
 }
 
 function App() {
-	const [isLoadingIndicatorComplete, setLoadingComplete] = useState(false);
+	const [appIsReady, setAppIsReady] = useState(false);
 	const [userSession] = useThemeContext();
 
 	const theme = themeSelector(userSession);
@@ -62,7 +64,22 @@ function App() {
 	]);
 	// ------- END OF WARNING SUPPRESSION
 
-	configureFontAwesomePro();
+
+	useEffect(() => {
+		async function prepare() {
+			try {
+				configureFontAwesomePro();
+				// Pre-load fonts, make any API calls you need to do here
+			} catch (e) {
+				console.warn(e);
+			} finally {
+				// Tell the application to render
+				setAppIsReady(true);
+			}
+		}
+
+		prepare();
+	}, []);
 
 	const hasGradient = Colors[theme].statusBarGradient && Colors[theme].statusBarGradient.length > 1;
 	const statusBarStyle = hasGradient ? chroma.contrast(Colors[theme].statusBarGradient[0], '#fff') > 5
@@ -70,19 +87,26 @@ function App() {
 		chroma.contrast(Colors[theme].statusBarColor, '#fff') > 5
 			? 'light' : 'dark';
 
+	const onLayoutRootView = useCallback(async () => {
+		if (appIsReady) {
+			// This tells the splash screen to hide immediately! If we call this after
+			// `setAppIsReady`, then we may see a blank screen while the app is
+			// loading its initial state and rendering its first pixels. So instead,
+			// we hide the splash screen once we know the root view has already
+			// performed layout.
+			await SplashScreen.hideAsync();
+		}
+	}, [appIsReady]);
 
-	if (!isLoadingIndicatorComplete) {
-		return (
-			<AppLoadingIndicator
-				startAsync={loadResourcesAsync}
-				onError={handleLoadingIndicatorError}
-				onFinish={() => handleFinishLoadingIndicator(setLoadingComplete)}
-			/>
-		);
+	if (!appIsReady) {
+		return null;
 	}
 
 	return (
-		<View style={container}>
+		<View
+			style={container}
+			onLayout={onLayoutRootView}
+		>
 			{ hasGradient ?
 				(
 					<LinearGradient
@@ -110,29 +134,7 @@ function App() {
 					</View>
 				)
 			}
-			<ToastContextProvider>
-				<AppNavigator />
-			</ToastContextProvider>
+			<AppNavigator />
 		</View>
 	);
-}
-
-async function loadResourcesAsync() {
-	// await Promise.all([
-	// 	Asset.loadAsync([
-	// 		require('./assets/images/panda.svg'),
-	// 		require('./assets/images/redpanda.svg')
-	// 	])
-	// ]);
-	return true;
-}
-
-function handleLoadingIndicatorError(error) {
-	// In this case, you might want to report the error to your error reporting
-	// service, for example Sentry
-	console.warn(error);
-}
-
-function handleFinishLoadingIndicator(setLoadingComplete) {
-	setLoadingComplete(true);
 }
