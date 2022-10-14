@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Platform, LogBox } from 'react-native';
+import { View, Platform, LogBox, Image } from 'react-native';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import * as SplashScreen from 'expo-splash-screen';
@@ -19,6 +19,7 @@ import {
 } from './contexts/ThemeContext';
 import AppNavigator from './navigation/AppNavigator';
 import ErrorFallback from './components/ErrorFallback';
+import ThemeSelect from './components/ThemeSelect';
 
 const errorBoundaryHandler = (error, info) => {
 	// TODO: send error
@@ -60,7 +61,8 @@ function App() {
 		'Warning: componentWillUpdate is deprecated',
 		'Warning: componentWillUnmount is deprecated',
 		'Warning: componentWillReceiveProps is deprecated',
-		'Warning: componentWillReceiveProps has been renamed'
+		'Warning: componentWillReceiveProps has been renamed',
+		`EventEmitter.removeListener('url', ...): Method has been deprecated`
 	]);
 	// ------- END OF WARNING SUPPRESSION
 
@@ -109,29 +111,48 @@ function App() {
 		>
 			{ hasGradient ?
 				(
-					<LinearGradient
-						colors={Colors[theme].statusBarGradient}
-						start={[0, 0]}
-						end={[1, 1]}
-						style={{
-							width: '100%',
-							height: Constants.statusBarHeight
-						}}
-					>
-						<StatusBar
-							translucent={true}
-							backgroundColor={'transparent'}
-							style={statusBarStyle}
-						/>
-					</LinearGradient>
+					<>
+						<LinearGradient
+							colors={Colors[theme].statusBarGradient}
+							start={[0, 0]}
+							end={[1, 1]}
+							style={{
+								width: '100%',
+								height: Constants.statusBarHeight
+							}}
+						>
+							<StatusBar
+								translucent={true}
+								backgroundColor={'transparent'}
+								style={statusBarStyle}
+							/>
+						</LinearGradient>
+						<View style={{ marginHorizontal: 10, marginTop: 30, alignItems: 'center' }}>
+							<Image
+								source={require('./assets/panda-ui-logo.png')}
+								style={{ height: 150, resizeMode: 'contain' }}
+							/>
+							<ThemeSelect />
+						</View>
+					</>
 				) : (
-					<View style={{ height: Platform.OS === 'ios' ? 40 : 0, backgroundColor: Colors[theme].statusBarColor }}>
-						<StatusBar
-							translucent={false}
-							backgroundColor={Colors[theme].statusBarColor}
-							style={statusBarStyle}
-						/>
-					</View>
+					<>
+						<View style={{ height: Platform.OS === 'ios' ? 40 : 0, backgroundColor: Colors[theme].statusBarColor }}>
+							<StatusBar
+								translucent={false}
+								backgroundColor={Colors[theme].statusBarColor}
+								style={statusBarStyle}
+							/>
+						</View>
+						<View style={{ marginHorizontal: 10, marginTop: 30, alignItems: 'center' }}>
+							<Image
+								source={require('./assets/panda-ui-logo.png')}
+								style={{ height: 150, resizeMode: 'contain' }}
+							/>
+							<ThemeSelect />
+							<View style={{ marginBottom: 30 }} />
+						</View>
+					</>
 				)
 			}
 			<AppNavigator />

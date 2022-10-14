@@ -10,9 +10,6 @@ import {
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-// Expo imports
-import { StatusBar } from 'expo-status-bar';
-
 // Panda Imports
 import {
 	CheckBoxGroup,
@@ -22,7 +19,6 @@ import {
 	RadioGroup,
 	ToggleButton
 } from 'react-native-panda-ui';
-import { ButtonText } from '../components/StyledText';
 
 // Local Imports
 import {
@@ -35,8 +31,7 @@ import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import LoadingIndicator from '../components/LoadingIndicator';
 import { H1 } from '../components/StyledText';
-import ThemeSelect from '../components/ThemeSelect';
-import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
+import { getCharacterQualities } from '../utils/apiHandler';
 import TrashPanda from '../assets/trashpanda.svg';
 import TrashCan from '../assets/trashcan.svg';
 
@@ -85,13 +80,11 @@ export default function ChoiceScreen() {
 	const [loading, setLoading] 				= useState(false);
 
 	const [characterCount, setCharacterCount] 	= useState(0);
-	const [characterData, setCharacterData] 	= useState([]);
 	const [qualitiesData, setQualitiesData] 	= useState([]);
 
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
-			marginTop: StatusBar.height,
 			backgroundColor: Colors[theme].backgroundColor,
 			alignItems: 'center'
 		}
@@ -100,9 +93,7 @@ export default function ChoiceScreen() {
 	useEffect(() => {
 		(async () => {
 			setLoading(true);
-			let response = await getCharacters();
-			setCharacterData(response.data.characters);
-			response = await getCharacterQualities();
+			const response = await getCharacterQualities();
 			// console.log('response', response.data.qualities);
 			setQualitiesData(response.data.qualities);
 			setLoading(false);
@@ -124,13 +115,9 @@ export default function ChoiceScreen() {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<ThemeSelect
-				characterData={characterData}
-				setLoading={setLoading}
-			/>
 			<ScrollView style={{ width: '100%' }}>
 				<View style={{ alignItems: 'center' }}>
-					<View style={{ width: '90%', marginTop: 30 }}>
+					<View style={{ width: '90%' }}>
 						<DoubleCard
 							backCardElevation={5}
 							cardElevation={8}

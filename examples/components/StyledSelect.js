@@ -78,10 +78,6 @@ const StyledSelect = (props) => {
 						key: i
 					};})
 				}
-				placeholder={{
-					label: 'Select',
-					value: null
-				}}
 				placeholderTextColor={placeholderColor}
 				selectedValue={selectedValue}
 				value={value}

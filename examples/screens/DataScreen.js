@@ -40,17 +40,6 @@ const columns = [
 	{ key: 'name',		label: 'Name', 		icon: null, width: 1 },
 	{ key: 'color',		label: 'Color', 	icon: null, width: 1 }
 ];
-const stickyColumns = [
-	{ key: 'name',		label: 'Name', 		icon: null, width: 1, textAlign: 'left' },
-	{ key: 'color',		label: 'Color', 	icon: null, width: 1, textAlign: 'left' },
-	{ key: 'faveFood',	label: 'FaveFood', 	icon: null, width: 2, textAlign: 'left' },
-	{ key: 'peeves',	label: 'Peeves', 	icon: null, width: 1, textAlign: 'left' },
-	{ key: 'loves',		label: 'Loves', 	icon: null, width: 2, textAlign: 'left' }
-];
-
-const stickyColumn = {
-	key: 'animal',		label: 'Animal', 		icon: null, width: 1, textAlign: 'left'
-};
 
 const defaultSortConfig = {
 	key: columns[0].key,
@@ -68,11 +57,9 @@ const DataScreen = () => {
 	const [qualitiesData, setQualitiesData] 					= useState([]);
 	const [loading, setLoading] 								= useState(false);
 	const [sortConfig, setSortConfig] 							= useState(defaultSortConfig);
-	const [stickySortConfig, setStickySortConfig] 				= useState(defaultSortConfig);
 
 	// hooks
 	const sortedApiData = useSortedData(qualitiesData, sortConfig);
-	const stickySortedApiData = useSortedData(qualitiesData, stickySortConfig);
 
 	// refs
 	const listRef = useRef();
@@ -154,11 +141,7 @@ const DataScreen = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<ThemeSelect
-				characterData={characterData}
-				setLoading={setLoading}
-			/>
-			<View style={{ width: '95%', marginTop: -5, marginBottom: 15 }}>
+			<View style={{ width: '95%', marginBottom: 15 }}>
 				<DoubleCard
 					backCardElevation={5}
 					cardElevation={8}
