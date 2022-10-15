@@ -17,6 +17,7 @@ import Colors from '../constants/Colors';
 import LoadingIndicator from '../components/LoadingIndicator';
 import PandaDetail from '../components/PandaDetail';
 import { getCharacterQualities } from '../utils/apiHandler';
+import Layout from '../constants/Layout';
 
 const PandaHomeScreen = () => {
 
@@ -60,7 +61,7 @@ const PandaHomeScreen = () => {
 								/>
 							) : (
 								<>
-									<View style={{ height: 30 }} />
+									<View style={{ height: Layout.screen.width > 360 ? 30 : 0 }} />
 									<PandaDetail
 										qualitiesData={qualitiesData}
 									/>

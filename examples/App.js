@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Platform, LogBox, Image } from 'react-native';
+import { View, Platform, LogBox, Image, Alert } from 'react-native';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import * as SplashScreen from 'expo-splash-screen';
@@ -20,6 +20,7 @@ import {
 import AppNavigator from './navigation/AppNavigator';
 import ErrorFallback from './components/ErrorFallback';
 import ThemeSelect from './components/ThemeSelect';
+import Layout from './constants/Layout';
 
 const errorBoundaryHandler = (error, info) => {
 	// TODO: send error
@@ -46,13 +47,11 @@ function App() {
 	const [userSession] = useThemeContext();
 
 	const theme = themeSelector(userSession);
-
 	const container = {
 		flex: 1,
 		height: '100%',
 		backgroundColor: Colors[theme].backgroundColor
 	};
-
 
 	// @TODO: This is to hide a Warning caused by NativeBase after upgrading to RN 0.62
 	LogBox.ignoreLogs([
@@ -127,7 +126,7 @@ function App() {
 								style={statusBarStyle}
 							/>
 						</LinearGradient>
-						<View style={{ marginHorizontal: 10, marginTop: 30, alignItems: 'center' }}>
+						<View style={{ marginHorizontal: 10, marginTop: Layout.screen.width > 360 ? 30 : 0, alignItems: 'center' }}>
 							<Image
 								source={require('./assets/panda-ui-logo.png')}
 								style={{ height: 150, resizeMode: 'contain' }}
@@ -144,13 +143,13 @@ function App() {
 								style={statusBarStyle}
 							/>
 						</View>
-						<View style={{ marginHorizontal: 10, marginTop: 30, alignItems: 'center' }}>
+						<View style={{ marginHorizontal: 10, marginTop: Layout.screen.width > 360 ? 30 : 0, alignItems: 'center' }}>
 							<Image
 								source={require('./assets/panda-ui-logo.png')}
 								style={{ height: 150, resizeMode: 'contain' }}
 							/>
 							<ThemeSelect />
-							<View style={{ marginBottom: 30 }} />
+							<View style={{ marginBottom: Layout.screen.width > 360 ? 30 : 0 }} />
 						</View>
 					</>
 				)

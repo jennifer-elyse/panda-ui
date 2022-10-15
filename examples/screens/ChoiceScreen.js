@@ -262,7 +262,7 @@ export default function ChoiceScreen() {
 									value={characterCount}
 									onChange={handleCountChange}
 									cardColor={Colors[theme].cardColor}
-									backCardColor={Colors[theme].backCardColor}
+									backCardColor={'white'}
 									incrementBackgroundColor={Colors[theme].incrementBackgroundColor}
 									decrementBackgroundColor={Colors[theme].decrementBackgroundColor}
 									incrementTextColor={Colors[theme].textColor}
@@ -270,7 +270,6 @@ export default function ChoiceScreen() {
 									counterColor={Colors[theme].textColor}
 									variationNumberOfCards={2}
 									borderRadius={Styles[theme].borderRadius}
-									backCardGradient={Colors[theme].backCardGradient}
 									size="large"
 								/>
 							</View>

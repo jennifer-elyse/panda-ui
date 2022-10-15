@@ -86,7 +86,6 @@ const DataScreen = () => {
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
-			marginTop: StatusBar.height,
 			backgroundColor: Colors[theme].backgroundColor,
 			alignItems: 'center'
 		},
@@ -169,10 +168,7 @@ const DataScreen = () => {
 					/>
 				</DoubleCard>
 			</View>
-			<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 10 }}>
-				<H1 textColor={Colors[theme].textColor}>Characteristics</H1>
-			</View>
-			<View style={{ height: '40%', width: '95%', borderRadius: Styles[theme].borderRadius, marginHorizontal: 10, marginBottom: 5 }}>
+			<View style={{ height: '60%', width: '95%', borderRadius: Styles[theme].borderRadius, marginHorizontal: 10, marginBottom: 5 }}>
 				<SortHeader
 					columns={columns}
 					sortConfig={sortConfig}
@@ -186,39 +182,41 @@ const DataScreen = () => {
 					selectedColor={Colors[theme].tabBarActiveColor}
 					textColor={Colors[theme].buttonTextColor}
 				/>
-				<FlatList
-					ItemSeparatorComponent={Separator}
-					style={{
-						borderColor: Colors[theme].tintColor,
-						borderLeftWidth: 1,
-						borderBottomWidth: 1,
-						borderRightWidth: 1,
-						borderBottomRightRadius: Styles[theme].borderRadius,
-						borderBottomLeftRadius: Styles[theme].borderRadius
-					}}
-					ref={listRef}
-					data={sortedApiData}
-					renderItem={({ item, index, separators }) => (
-						<TouchableHighlight style={highlightedCharacterId === item.characterId ? styles.highlightedRow : styles.row}>
-							<View
-								style={{ flex: 1, flexDirection: 'row', height: 45, alignItems: 'center', justifyContent: 'center' }}
-								// onPress={() => { navigateToComponents(); }}
-							>
-								<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[0].width, textAlign: 'center' }}>
-									{item.animal}
-								</Body2>
-								<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[1].width, textAlign: 'center' }}>
-									{item.name}
-								</Body2>
-								<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor: Colors[theme].textColor} style={{ width: 0, flexGrow: columns[2].width, textAlign: 'center' }}>
-									{item.color}
-								</Body2>
-							</View>
-						</TouchableHighlight>
-					)}
-					keyExtractor={(item, index) => String(index)}
-					height={'100%'}
-				/>
+				<SafeAreaView style={{flex: 1}}>
+					<FlatList
+						ItemSeparatorComponent={Separator}
+						style={{
+							borderColor: Colors[theme].tintColor,
+							borderLeftWidth: 1,
+							borderBottomWidth: 1,
+							borderRightWidth: 1,
+							borderBottomRightRadius: Styles[theme].borderRadius,
+							borderBottomLeftRadius: Styles[theme].borderRadius
+						}}
+						ref={listRef}
+						data={sortedApiData}
+						renderItem={({ item, index, separators }) => (
+							<TouchableHighlight style={highlightedCharacterId === item.characterId ? styles.highlightedRow : styles.row}>
+								<View
+									style={{ flex: 1, flexDirection: 'row', height: 45, alignItems: 'center', justifyContent: 'center' }}
+									// onPress={() => { navigateToComponents(); }}
+								>
+									<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[0].width, textAlign: 'center' }}>
+										{item.animal}
+									</Body2>
+									<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor : Colors[theme].textColor} style={{ width: 0, flexGrow: columns[1].width, textAlign: 'center' }}>
+										{item.name}
+									</Body2>
+									<Body2 textColor={highlightedCharacterId === item.characterId ? highlightedTextColor: Colors[theme].textColor} style={{ width: 0, flexGrow: columns[2].width, textAlign: 'center' }}>
+										{item.color}
+									</Body2>
+								</View>
+							</TouchableHighlight>
+						)}
+						keyExtractor={(item, index) => String(index)}
+						height={'100%'}
+					/>
+				</SafeAreaView>
 			</View>
 		</SafeAreaView>
 	);

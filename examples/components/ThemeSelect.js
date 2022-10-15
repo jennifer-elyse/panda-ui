@@ -20,6 +20,7 @@ import {
 	characterSelector
 } from '../contexts/ThemeContext';
 import { getCharacters } from '../utils/apiHandler';
+import Layout from '../constants/Layout';
 
 const ThemeSelect = () => {
 	const [userSession, dispatch] = useThemeContext();
@@ -41,7 +42,7 @@ const ThemeSelect = () => {
 	}, [character, theme]);
 
 	return (
-		<View style={{ height: 100, width: '95%', marginVertical: 15 }}>
+		<View style={{ height: 100, width: '95%', marginVertical: Layout.screen.width > 360 ? 15 : 5 }}>
 			<DoubleCard
 				backCardElevation={5}
 				cardElevation={8}
