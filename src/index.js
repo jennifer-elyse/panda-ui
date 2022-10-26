@@ -26,6 +26,7 @@ import ScanTextInput from './ScanTextInput';
 import SearchBar from './SearchBar';
 import SortColumn from './SortColumn';
 import SortHeader from './SortHeader';
+import SortHeaderFlex from './SortHeaderFlex';
 import * as StyledText from './StyledText';
 import StickyColumnTable from './StickyColumnTable';
 import TabGroup from './TabGroup';
@@ -59,6 +60,7 @@ export {
 	SearchBar,
 	SortColumn,
 	SortHeader,
+	SortHeaderFlex,
 	StyledText,
 	StyledSelect,
 	StyledTooltip,

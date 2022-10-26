@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import SortColumn from './SortColumn';
-import SortHeader from './SortHeader';
+import SortColumnFlex from './SortColumnFlex';
+import SortHeaderFlex from './SortHeaderFlex';
 import Button from './Button';
 
 const ScrollerEnum = {
@@ -109,7 +109,7 @@ const StickyColumnTable = (props) => {
 					flexDirection: 'row',
 					justifyContent: 'center',
 					alignItems: 'center' }}>
-					<SortColumn
+					<SortColumnFlex
 						key="0"
 						column={stickyHeaderOptions}
 						columnCount={stickyHeaderOptions.length}
@@ -122,6 +122,7 @@ const StickyColumnTable = (props) => {
 						borderColor={borderColor}
 						selectedColor={selectedColor}
 						textColor={headerTextColor}
+						screenWidth={Dimensions.get('screen').width}
 					/>
 				</View>
 				<ScrollView
@@ -166,7 +167,7 @@ const StickyColumnTable = (props) => {
 					{/* This <View> is required to create a flex column layout inside the horizontal <ScrollView> */}
 					<View
 						style={{ minWidth: Dimensions.get('screen').width * 2, marginTop: -1 }}>
-						<SortHeader
+						<SortHeaderFlex
 							columns={columns}
 							sortConfig={sortConfig}
 							onSortChange={onSortChange}
