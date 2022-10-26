@@ -8,16 +8,13 @@ import {
 	StyleSheet
 } from 'react-native';
 
-// Expo imports
-import { StatusBar } from 'expo-status-bar';
-
 import chroma from 'chroma-js';
 
 // Panda Imports
 import {
 	DoubleCard,
-	SearchBar,
-	SortHeader,
+	// SearchBar,
+	SortHeaderFlex,
 	useSortedData
 } from 'react-native-panda-ui';
 
@@ -30,9 +27,8 @@ import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import FlatListItemSeparator from '../components/FlatListItemSeparator';
 import LoadingIndicator from '../components/LoadingIndicator';
-import { H1, Body2 } from '../components/StyledText';
-import ThemeSelect from '../components/ThemeSelect';
-import { getCharacters, getCharacterQualities } from '../utils/apiHandler';
+import { Body2 } from '../components/StyledText';
+import { getCharacterQualities } from '../utils/apiHandler';
 
 
 const columns = [
@@ -53,7 +49,6 @@ const DataScreen = () => {
 	// state hooks
 	// useState utilizes the current state and a function that updates it
 	const [highlightedCharacterId, setHighlightedCharacterId] 	= useState(null);
-	const [characterData, setCharacterData] 					= useState([]);
 	const [qualitiesData, setQualitiesData] 					= useState([]);
 	const [loading, setLoading] 								= useState(false);
 	const [sortConfig, setSortConfig] 							= useState(defaultSortConfig);
@@ -74,10 +69,7 @@ const DataScreen = () => {
 	useEffect(() => {
 		(async () => {
 			setLoading(true);
-			let response = await getCharacters();
-			setCharacterData(response.data.characters);
-			response = await getCharacterQualities();
-			// console.log('response', response.data.qualities);
+			const response = await getCharacterQualities();
 			setQualitiesData(response.data.qualities);
 			setLoading(false);
 		})();
@@ -140,36 +132,37 @@ const DataScreen = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<View style={{ width: '95%', marginBottom: 15 }}>
-				<DoubleCard
-					backCardElevation={5}
-					cardElevation={8}
-					borderRadius={Styles[theme].borderRadius}
-					padding={Styles[theme].padding}
-					backCardColor={Colors[theme].backCardColor}
-					backCardGradient={Colors[theme].backCardGradient}
-					cardColor={Colors[theme].cardColor}
-				>
-					<SearchBar
-						columns={[
-							{ label: 'Animal', value: 'animal', key: 1 },
-							{ label: 'Name', value: 'name', key: 2 },
-							{ label: 'Color', value: 'color', key: 3 }
-						]}
-						data={sortedApiData}
-						borderRadius={Styles[theme].borderRadius}
-						onSubmit={findCharacterRecord}
-						backgroundColor={Colors[theme].cardColor}
-						borderColor={Colors[theme].borderColor}
-						buttonColor={Colors[theme].buttonColor}
-						pickerBorderColor={Colors[theme].borderColor}
-						pickerTextColor={Colors[theme].textColor}
-						buttonTextColor={Colors[theme].textColor}
-					/>
-				</DoubleCard>
-			</View>
+			{// <View style={{ width: '95%', marginBottom: 15 }}>
+			// 	<DoubleCard
+			// 		backCardElevation={5}
+			// 		cardElevation={8}
+			// 		borderRadius={Styles[theme].borderRadius}
+			// 		padding={Styles[theme].padding}
+			// 		backCardColor={Colors[theme].backCardColor}
+			// 		backCardGradient={Colors[theme].backCardGradient}
+			// 		cardColor={Colors[theme].cardColor}
+			// 	>
+			// 		<SearchBar
+			// 			columns={[
+			// 				{ label: 'Animal', value: 'animal', key: 1 },
+			// 				{ label: 'Name', value: 'name', key: 2 },
+			// 				{ label: 'Color', value: 'color', key: 3 }
+			// 			]}
+			// 			data={sortedApiData}
+			// 			borderRadius={Styles[theme].borderRadius}
+			// 			onSubmit={findCharacterRecord}
+			// 			backgroundColor={Colors[theme].cardColor}
+			// 			borderColor={Colors[theme].borderColor}
+			// 			buttonColor={Colors[theme].buttonColor}
+			// 			pickerBorderColor={Colors[theme].borderColor}
+			// 			pickerTextColor={Colors[theme].textColor}
+			// 			buttonTextColor={Colors[theme].textColor}
+			// 		/>
+			// 	</DoubleCard>
+			// </View>
+			}
 			<View style={{ height: '60%', width: '95%', borderRadius: Styles[theme].borderRadius, marginHorizontal: 10, marginBottom: 5 }}>
-				<SortHeader
+				<SortHeaderFlex
 					columns={columns}
 					sortConfig={sortConfig}
 					onSortChange={setSortConfig}
@@ -182,7 +175,7 @@ const DataScreen = () => {
 					selectedColor={Colors[theme].tabBarActiveColor}
 					textColor={Colors[theme].buttonTextColor}
 				/>
-				<SafeAreaView style={{flex: 1}}>
+				<SafeAreaView style={{ flex: 1 }}>
 					<FlatList
 						ItemSeparatorComponent={Separator}
 						style={{

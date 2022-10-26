@@ -5571,60 +5571,20 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-lodash._reinterpolate@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
-  integrity sha512-xYHt68QRoYGjeeM/XOE1uJtvXQAgvszfBhjV4yvsQH0u2i9I6cI6c6/eG4Hh3UAOVn0y/xAXwmTzEay49Q//HA==
-
 lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
-
-lodash.frompairs@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/lodash.frompairs/-/lodash.frompairs-4.0.1.tgz#bc4e5207fa2757c136e573614e9664506b2b1bd2"
-  integrity sha512-dvqe2I+cO5MzXCMhUnfYFa9MD+/760yx2aTAN1lqEcEkf896TxgrX373igVdqSJj6tQd0jnSLE1UMuKufqqxFw==
 
 lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
   integrity sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==
 
-lodash.isstring@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/lodash.isstring/-/lodash.isstring-4.0.1.tgz#d527dfb5456eca7cc9bb95d5daeaf88ba54a5451"
-  integrity sha512-0wJxfxH1wgO3GrbuP+dTTk7op+6L41QCXbGINEmD+ny/G/eCqGzxyCsh7159S+mgDDcoarnBw6PC1PS5+wUGgw==
-
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
-
-lodash.omit@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.omit/-/lodash.omit-4.5.0.tgz#6eb19ae5a1ee1dd9df0b969e66ce0b7fa30b5e60"
-  integrity sha512-XeqSp49hNGmlkj2EJlfrQFIzQ6lXdNro9sddtQzcJY8QaoC2GO0DT7xaIokHeyM+mIT0mPMlPvkYzg2xCuHdZg==
-
-lodash.pick@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
-  integrity sha512-hXt6Ul/5yWjfklSGvLQl8vM//l3FtyHZeuelpzK6mm99pNvN9yTDruNZPEJZD1oWrqo+izBmB7oUfWgcCX7s4Q==
-
-lodash.template@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.template/-/lodash.template-4.5.0.tgz#f976195cf3f347d0d5f52483569fe8031ccce8ab"
-  integrity sha512-84vYFxIkmidUiFxidA/KjjH9pAycqW+h980j7Fuz5qxRtO9pgB7MDFTdys1N7A5mcucRiDyEq4fusljItR1T/A==
-  dependencies:
-    lodash._reinterpolate "^3.0.0"
-    lodash.templatesettings "^4.0.0"
-
-lodash.templatesettings@^4.0.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/lodash.templatesettings/-/lodash.templatesettings-4.2.0.tgz#e481310f049d3cf6d47e912ad09313b154f0fb33"
-  integrity sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==
-  dependencies:
-    lodash._reinterpolate "^3.0.0"
 
 lodash.throttle@^4.1.1:
   version "4.1.1"
@@ -6938,6 +6898,11 @@ react-localization@^1.0.17:
   dependencies:
     localized-strings "^0.2.0"
 
+react-native-anchor-point@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-anchor-point/-/react-native-anchor-point-1.0.6.tgz#87226a4079cda6c3914c7d3d6b0a341503f02414"
+  integrity sha512-gQWkXwEnTmqBSqCwBqWIzZWY3AxfuThcszbukJcvU9PvJgmKYANaFBKlCIfeyQ47DxzxmLX/3NiRtxwUZf+YKA==
+
 react-native-codegen@^0.69.2:
   version "0.69.2"
   resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.69.2.tgz#e33ac3b1486de59ddae687b731ddbfcef8af0e4e"
@@ -6955,7 +6920,7 @@ react-native-easy-toast@^2.0.0:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-elements@3.4.2, react-native-elements@^3.4.2:
+react-native-elements@^3.4.2:
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-3.4.2.tgz#66602be9c5e0e0a2a831913adec80ff6518d1ee2"
   integrity sha512-m0eAWOn7JuR1wNTNY0WHuaqst4LI/gFE4N5Bbyfsc4DiryWsMST7aAg5w/Gos4IexWIzhLKCIkPxthND1m/8Xg==
@@ -6997,19 +6962,23 @@ react-native-iphone-x-helper@^1.3.0:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
 
-react-native-panda-ui@../react-native-panda-ui-0.1.81.tgz:
-  version "0.1.81"
-  resolved "../react-native-panda-ui-0.1.81.tgz#687c0810c7ed3c8511c0c901e79713f91930a7be"
+react-native-panda-ui@../react-native-panda-ui-0.1.107.tgz:
+  version "0.1.107"
+  resolved "../react-native-panda-ui-0.1.107.tgz#99d6f320b7fa8e842338b01cf165811183981919"
   dependencies:
     chroma "^0.0.1"
     react-error-boundary "^3.1.3"
-    react-native-elements "3.4.2"
-    react-native-picker-select "8.0.4"
-    react-native-safe-area-context "^4.3.1"
-    react-native-svg "^12.3.0"
-    react-native-vector-icons "8.1.0"
+    react-native-anchor-point "^1.0.6"
 
-react-native-picker-select@8.0.4, react-native-picker-select@^8.0.4:
+react-native-panda-ui@../react-native-panda-ui-0.1.108.tgz:
+  version "0.1.108"
+  resolved "../react-native-panda-ui-0.1.108.tgz#d0044ecbe3a3c513e7eaf887334b73d110165aaf"
+  dependencies:
+    chroma "^0.0.1"
+    react-error-boundary "^3.1.3"
+    react-native-anchor-point "^1.0.6"
+
+react-native-picker-select@^8.0.4:
   version "8.0.4"
   resolved "https://registry.yarnpkg.com/react-native-picker-select/-/react-native-picker-select-8.0.4.tgz#3f7f1f42df69b06e7d2c10338288332a6c40fd10"
   integrity sha512-orBjPIwBkV5oipyVw263YNMI56f6Kj3p/ejabZoCYYNSG3AiLVVhC2RqsxMgDA7IayyURAW+AlV+mDJyVqLBkg==
@@ -7024,11 +6993,12 @@ react-native-ratings@8.0.4:
   dependencies:
     lodash "^4.17.15"
 
-react-native-reanimated@^2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.11.0.tgz#415ef668440d1b7d8b2b36a20342b1035432dd80"
-  integrity sha512-/QnujrXSNyXasv7v8K3eu5Z4XGRYMPRa0+x0RjNr6Z5/KEuPHwrg1Xm7UZ2YSm6jCF2b1BW6ceqP/1d626gvhQ==
+react-native-reanimated@~2.9.1:
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.9.1.tgz#d9a932e312c13c05b4f919e43ebbf76d996e0bc1"
+  integrity sha512-309SIhDBwY4F1n6e5Mr5D1uPZm2ESIcmZsGXHUu8hpKX4oIOlZj2MilTk+kHhi05LjChoJkcpfkstotCJmPRPg==
   dependencies:
+    "@babel/plugin-proposal-export-namespace-from" "^7.17.12"
     "@babel/plugin-transform-object-assign" "^7.16.7"
     "@babel/preset-typescript" "^7.16.7"
     "@types/invariant" "^2.2.35"
@@ -7037,7 +7007,7 @@ react-native-reanimated@^2.11.0:
     setimmediate "^1.0.5"
     string-hash-64 "^1.0.3"
 
-react-native-safe-area-context@4.3.1, react-native-safe-area-context@^4.3.1:
+react-native-safe-area-context@4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-4.3.1.tgz#5cf97b25b395e0d09bc1f828920cd7da0d792ade"
   integrity sha512-cEr7fknJCToTrSyDCVNg0GRdRMhyLeQa2NZwVCuzEQcWedOw/59ExomjmzCE4rxrKXs6OJbyfNtFRNyewDaHuA==
@@ -7064,27 +7034,13 @@ react-native-svg-transformer@^1.0.0:
     "@svgr/plugin-svgo" "^6.1.2"
     path-dirname "^1.0.2"
 
-react-native-svg@12.3.0, react-native-svg@^12.3.0:
+react-native-svg@12.3.0:
   version "12.3.0"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-12.3.0.tgz#40f657c5d1ee366df23f3ec8dae76fd276b86248"
   integrity sha512-ESG1g1j7/WLD7X3XRFTQHVv0r6DpbHNNcdusngAODIxG88wpTWUZkhcM3A2HJTb+BbXTFDamHv7FwtRKWQ/ALg==
   dependencies:
     css-select "^4.2.1"
     css-tree "^1.0.0-alpha.39"
-
-react-native-vector-icons@8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-8.1.0.tgz#e8ee2b17bc4d9f636da1c6f67feee8e2a850c3d8"
-  integrity sha512-sHIdBB6Y0dHaot2fMXgy5J/hhCn5YuyN7SKDNFgPzL8KA1oF2/v7mgYMavnK7LIIs2dJoGnDANKf61dsU+TZlg==
-  dependencies:
-    lodash.frompairs "^4.0.1"
-    lodash.isequal "^4.5.0"
-    lodash.isstring "^4.0.1"
-    lodash.omit "^4.5.0"
-    lodash.pick "^4.4.0"
-    lodash.template "^4.5.0"
-    prop-types "^15.7.2"
-    yargs "^16.1.1"
 
 react-native-vector-icons@^9.1.0:
   version "9.1.0"

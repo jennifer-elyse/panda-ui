@@ -247,6 +247,34 @@ export default function ChoiceScreen() {
 							/>
 						</DoubleCard>
 					</View>
+					<View style={{ height: 200, width: '85%', marginTop: 20, marginBottom: 35 }}>
+						<DoubleCard
+							backCardElevation={5}
+							cardElevation={8}
+							borderRadius={Styles[theme].borderRadius}
+							padding={Styles[theme].padding}
+							backCardColor={Colors[theme].backCardColor}
+							backCardGradient={Colors[theme].backCardGradient}
+							cardColor={Colors[theme].cardColor}
+						>
+							<View style={{ alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+								<CounterInput
+									value={characterCount}
+									onChange={handleCountChange}
+									cardColor={Colors[theme].cardColor}
+									backCardColor={'white'}
+									incrementBackgroundColor={Colors[theme].incrementBackgroundColor}
+									decrementBackgroundColor={Colors[theme].decrementBackgroundColor}
+									incrementTextColor={Colors[theme].textColor}
+									decrementTextColor={Colors[theme].textColor}
+									counterColor={Colors[theme].textColor}
+									variationNumberOfCards={2}
+									borderRadius={Styles[theme].borderRadius}
+									size="xlarge"
+								/>
+							</View>
+						</DoubleCard>
+					</View>
 					<View style={{ height: 150, width: '85%', marginTop: 20, marginBottom: 35 }}>
 						<DoubleCard
 							backCardElevation={5}
