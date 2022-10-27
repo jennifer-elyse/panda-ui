@@ -262,15 +262,15 @@ export default function ChoiceScreen() {
 									value={characterCount}
 									onChange={handleCountChange}
 									cardColor={Colors[theme].cardColor}
-									backCardColor={'white'}
-									incrementBackgroundColor={Colors[theme].incrementBackgroundColor}
-									decrementBackgroundColor={Colors[theme].decrementBackgroundColor}
+									plusBackCardColor={Colors[theme].incrementBackgroundColor}
+									minusBackCardColor={Colors[theme].decrementBackgroundColor}
 									incrementTextColor={Colors[theme].textColor}
 									decrementTextColor={Colors[theme].textColor}
 									counterColor={Colors[theme].textColor}
 									variationNumberOfCards={2}
 									borderRadius={Styles[theme].borderRadius}
 									size="xlarge"
+									contailerStyle={{ width: '100%' }}
 								/>
 							</View>
 						</DoubleCard>
