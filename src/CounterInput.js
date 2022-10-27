@@ -13,10 +13,10 @@ const inputSizes = {
 };
 
 const sizes = {
-	small:    { size: 35, width: 70, margin: 2.5, icon: 11, font: 36, lineHeight: 40, horizontalPadding:  0 },
-	standard: { size: 40, width: 100, margin: 3.5, icon: 16, font: 46, lineHeight: 52, horizontalPadding:  0 },
-	large:    { size: 50, width: 120, margin: 4.5, icon: 21, font: 56, lineHeight: 64, horizontalPadding:  5 },
-	xlarge:   { size: 60, width: 200, margin: 5.5, icon: 30, font: 66, lineHeight: 76, horizontalPadding: 10 }
+	small:    { size: 35, width:  70, margin: 2.5, icon: 11, font: 36, lineHeight: 40, horizontalPadding: 0 },
+	standard: { size: 40, width: 100, margin: 3.5, icon: 16, font: 46, lineHeight: 52, horizontalPadding: 0 },
+	large:    { size: 50, width: 120, margin: 4.5, icon: 21, font: 56, lineHeight: 64, horizontalPadding: 5 },
+	xlarge:   { size: 60, width: 200, margin: 5.5, icon: 30, font: 66, lineHeight: 76, horizontalPadding: 5 }
 };
 
 const CounterInput = (props) => {

@@ -10,15 +10,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronUp } from '@fortawesome/pro-solid-svg-icons';
 import { faChevronDown } from '@fortawesome/pro-solid-svg-icons';
 
-import Layout from './constants/Layout';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 
 const SortColumnFlex = (props) => {
 	const {
-		screenWidth,
 		column,
 		i,
-		columnCount = 1,
+		columnCount=1,
 		sortConfig,
 		onSortChange,
 		borderRadiusLeft,
@@ -39,7 +38,8 @@ const SortColumnFlex = (props) => {
 		fontWeight: 'bold',
 		maxHeight: height,
 		color: textColor,
-		paddingLeft: 5
+		paddingLeft: borderRadiusLeft > 0 && column.textAlign === 'left' ? 10 : 5,
+		paddingRight: borderRadiusRight > 0 && column.textAlign === 'right' ? 10 : 5
 	};
 
 	const commonViewStyle = {
@@ -130,7 +130,7 @@ const SortColumnFlex = (props) => {
 			...rightBorderStyleObj,
 			...middleBorderStyleObj,
 			...cellContainerStyle,
-			flexGrow: flexGrow ? flexGrow / columnCount : 0,
+			flexGrow,
 			flexDirection: 'row',
 			alignItems: 'center',
 			textAlign: column?.textAlign || 'center'
@@ -154,14 +154,13 @@ const SortColumnFlex = (props) => {
 				});
 			}}
 		>
-			{	// column.icon && <FontAwesomeIcon
-			// 	key={sortKey}
-			// 	name={column.icon}
-			// 	size={20}
-			// 	color={textColor}
-			// 	style={{ marginLeft: 1 }}
-			// />
-			}
+			{column.icon && <FontAwesome5
+				key={column.key}
+				name={column.icon}
+				size={20}
+				color={textColor}
+				style={{ marginLeft: 10 }}
+			/>}
 
 			<Text
 				style={[
@@ -199,6 +198,7 @@ SortColumnFlex.propTypes = {
 	column: PropTypes.shape({
 		key: PropTypes.any.isRequired,
 		// Node can be string, React element, or anything renderable.
+		sortKey: PropTypes.node,
 		label: PropTypes.node,
 		width: PropTypes.node.isRequired,
 		icon: PropTypes.node,

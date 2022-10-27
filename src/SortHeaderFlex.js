@@ -4,7 +4,7 @@ import {
 	View
 } from 'react-native';
 
-import SortColumn from './SortColumn';
+import SortColumnFlex from './SortColumnFlex';
 import Layout from './constants/Layout';
 
 const SortHeaderFlex = (props) => {
@@ -43,10 +43,10 @@ const SortHeaderFlex = (props) => {
 		<View style={[rootStyle, headerContainerStyle]}>
 			{columns.map((column, i) => {
 				return (
-					<SortColumn
+					<SortColumnFlex
 						key={String(i)}
 						column={column}
-						columnCount={column.length}
+						columnCount={columns.length}
 						i={i}
 						sortConfig={sortConfig}
 						onSortChange={onSortChange}

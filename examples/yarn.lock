@@ -6962,17 +6962,17 @@ react-native-iphone-x-helper@^1.3.0:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
 
-react-native-panda-ui@../react-native-panda-ui-0.1.107.tgz:
-  version "0.1.107"
-  resolved "../react-native-panda-ui-0.1.107.tgz#99d6f320b7fa8e842338b01cf165811183981919"
+react-native-panda-ui@../react-native-panda-ui-0.1.129.tgz:
+  version "0.1.129"
+  resolved "../react-native-panda-ui-0.1.129.tgz#2941782e84ca0d10c5ad0ccfdea76cedc48002b5"
   dependencies:
     chroma "^0.0.1"
     react-error-boundary "^3.1.3"
     react-native-anchor-point "^1.0.6"
 
-react-native-panda-ui@../react-native-panda-ui-0.1.108.tgz:
-  version "0.1.108"
-  resolved "../react-native-panda-ui-0.1.108.tgz#d0044ecbe3a3c513e7eaf887334b73d110165aaf"
+react-native-panda-ui@../react-native-panda-ui-0.2.0.tgz:
+  version "0.2.0"
+  resolved "../react-native-panda-ui-0.2.0.tgz#b3e957a859b5e2eb02e01c171b902a44474f17eb"
   dependencies:
     chroma "^0.0.1"
     react-error-boundary "^3.1.3"
