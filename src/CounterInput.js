@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, View } from 'react-native';
+import { TextInput, View } from 'react-native';
 import ProIcon from 'react-native-vector-icons/FontAwesome5';
 
 import Card from './Card';
@@ -13,27 +13,28 @@ const inputSizes = {
 };
 
 const sizes = {
-	small: { size: 35, margin: 2.5, icon: 11, font: 36 },
-	standard: { size: 40, margin: 3.5, icon: 16, font: 46 },
-	large: { size: 50, margin: 4.5, icon: 21, font: 56 },
-	xlarge: { size: 60, margin: 5.5, icon: 30, font: 66 }
+	small:    { size: 35, width: 70, margin: 2.5, icon: 11, font: 36, lineHeight: 40, horizontalPadding:  0 },
+	standard: { size: 40, width: 100, margin: 3.5, icon: 16, font: 46, lineHeight: 52, horizontalPadding:  0 },
+	large:    { size: 50, width: 120, margin: 4.5, icon: 21, font: 56, lineHeight: 64, horizontalPadding:  5 },
+	xlarge:   { size: 60, width: 200, margin: 5.5, icon: 30, font: 66, lineHeight: 76, horizontalPadding: 10 }
 };
 
 const CounterInput = (props) => {
 	const {
 		value,
 		onChange,
-		renderLabel,
 		counterColor='#000',
 		containerStyle,
 		backCardColor,
+		minusBackCardColor=backCardColor,
+		plusBackCardColor=backCardColor,
 		backCardGradient,
 		incrementBackgroundColor='#fff',
 		decrementBackgroundColor='#fff',
 		incrementTextColor='#000',
 		decrementTextColor='#000',
 		variationNumberOfCards=1,
-		cardPadding=10,
+		cardPadding=5,
 		size='standard',
 		borderRadius=50
 	} = props;
@@ -43,39 +44,25 @@ const CounterInput = (props) => {
 	const container  = {
 		flexDirection: 'row',
 		alignItems: 'center',
-		padding: cardPadding / 2,
+		padding: cardPadding,
 		...containerStyle
 	};
 
-	const backCardDimensionSize = size === inputSizes.large ? sizes.large.size
-		: size === inputSizes.standard ? sizes.standard.size
-			: size === inputSizes.xlarge ? sizes.xlarge.size
-				: sizes.small.size;
-
-	const cardDimensionSize = size === inputSizes.large ? sizes.large.size - cardPadding
-		: size === inputSizes.standard ? sizes.standard.size - cardPadding
-			: size === inputSizes.xlarge ? sizes.xlarge.size
-				: sizes.small.size - cardPadding;
-
-	const margin = size === inputSizes.large ? sizes.large.margin
-		: size === inputSizes.standard ? sizes.standard.margin
-			: size === inputSizes.small ? sizes.small.margin
-				: sizes.xlarge.margin;
-
-	const iconSize = size === inputSizes.large ? sizes.large.icon
-		: size === inputSizes.standard ? sizes.standard.icon
-			: size === inputSizes.xlarge ? sizes.xlarge.icon
-				: sizes.small.icon;
+	const backCardDimensionSize = sizes[size].size;
+	const cardDimensionSize = sizes[size].size - (2 * cardPadding);
+	const margin = sizes[size].margin;
+	const iconSize = sizes[size].icon;
+	const horizontalPadding = sizes[size].horizontalPadding;
+	const componentWidth = sizes[size].width;
 
 	const labelStyle = {
 		color: counterColor,
-		// paddingHorizontal: size === inputSizes.large ? sizes.large.size : size === inputSizes.standard ? sizes.standard.size : sizes.small.size,
-		fontSize: size === inputSizes.large ? sizes.large.font
-			: size === inputSizes.standard ? sizes.standard.font
-				: size === inputSizes.xlarge ? sizes.xlarge.font
-					: sizes.small.font,
+		paddingHorizontal: horizontalPadding,
+		fontSize: sizes[size].font,
+		lineHeight: sizes[size].lineHeight,
 		width: '100%',
-		textAlign: 'center'
+		textAlign: 'center',
+		border: 0
 	};
 
 	return (
@@ -83,7 +70,7 @@ const CounterInput = (props) => {
 			{ variationNumberOfCards === 2 ?
 				(
 					<Card
-						backgroundColor={backCardColor}
+						backgroundColor={minusBackCardColor || backCardColor}
 						elevation={5}
 						height={backCardDimensionSize}
 						width={backCardDimensionSize}
@@ -92,12 +79,12 @@ const CounterInput = (props) => {
 						gradient={backCardGradient && backCardGradient.length > 1 ? backCardGradient : []}
 					>
 						<Card
-							backgroundColor={incrementBackgroundColor}
+							backgroundColor={decrementBackgroundColor}
 							elevation={8}
 							height={cardDimensionSize}
 							width={cardDimensionSize}
-							style={{ alignItems: 'center', justifyContent: 'center', marginBottom: cardPadding / 2 }}
-							borderRadius={borderRadius}
+							style={{ alignItems: 'center', justifyContent: 'center', marginBottom: cardPadding }}
+							borderRadius={Math.max(0, borderRadius - cardPadding)}
 							onPress={decrement}
 						>
 							<View
@@ -122,7 +109,7 @@ const CounterInput = (props) => {
 					</Card>
 				) : (
 					<Card
-						backgroundColor={backCardColor}
+						backgroundColor={minusBackCardColor || backCardColor}
 						elevation={5}
 						height={cardDimensionSize}
 						width={cardDimensionSize}
@@ -155,17 +142,29 @@ const CounterInput = (props) => {
 				style={{
 					alignItems: 'center',
 					justifyContent: 'center',
-					width: size === inputSizes.large ? 120 : size === inputSizes.standard ? 100 : 70,
+					width: componentWidth,
 					margin: 'auto',
 					textAlign: 'center'
 				}}
 			>
-				<Text style={labelStyle}>{renderLabel ? renderLabel(value) : value}</Text>
+
+				<TextInput
+					style={labelStyle}
+					value={String(value || 0)}
+					returnKeyType="go"
+					onChangeText={text => {
+						onChange(Number(text));
+					}}
+					keyboardType="numeric"
+					autoCapitalize="none"
+					autoCompleteType="off"
+					autoCorrect={false}
+				/>
 			</View>
 			{ variationNumberOfCards === 2 ?
 				(
 					<Card
-						backgroundColor={backCardColor}
+						backgroundColor={plusBackCardColor || backCardColor}
 						gradient={backCardGradient && backCardGradient.length > 1 ? backCardGradient : []}
 						elevation={5}
 						height={backCardDimensionSize}
@@ -179,8 +178,8 @@ const CounterInput = (props) => {
 							elevation={8}
 							height={cardDimensionSize}
 							width={cardDimensionSize}
-							style={{ alignItems: 'center', justifyContent: 'center', marginBottom: cardPadding / 2 }}
-							borderRadius={borderRadius}
+							style={{ alignItems: 'center', justifyContent: 'center', marginBottom: cardPadding }}
+							borderRadius={Math.max(0, borderRadius - cardPadding)}
 							onPress={increment}
 						>
 							<View
@@ -205,7 +204,7 @@ const CounterInput = (props) => {
 					</Card>
 				) : (
 					<Card
-						backgroundColor={backCardColor}
+						backgroundColor={plusBackCardColor || backCardColor}
 						elevation={5}
 						height={cardDimensionSize}
 						width={cardDimensionSize}
@@ -240,11 +239,12 @@ const CounterInput = (props) => {
 CounterInput.propTypes = {
 	value: PropTypes.number.isRequired,
 	onChange: PropTypes.func.isRequired,
-	renderLabel: PropTypes.func,
 	counterColor: PropTypes.string,
 	textColor: PropTypes.string,
 	backCardColor: PropTypes.string,
 	backCardGradient: PropTypes.array,
+	plusBackCardColor: PropTypes.string,
+	minusBackCardColor: PropTypes.string,
 	incrementBackgroundColor: PropTypes.string,
 	decrementBackgroundColor: PropTypes.string,
 	incrementTextColor: PropTypes.string,
