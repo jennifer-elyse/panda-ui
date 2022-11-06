@@ -5,7 +5,8 @@ import {
 	View,
 	TouchableHighlight,
 	SafeAreaView,
-	StyleSheet
+	StyleSheet,
+	Platform
 } from 'react-native';
 
 import chroma from 'chroma-js';
@@ -13,7 +14,7 @@ import chroma from 'chroma-js';
 // Panda Imports
 import {
 	DoubleCard,
-	// SearchBar,
+	SearchBar,
 	SortHeaderFlex,
 	useSortedData
 } from 'react-native-panda-ui';
@@ -132,35 +133,34 @@ const DataScreen = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			{// <View style={{ width: '95%', marginBottom: 15 }}>
-			// 	<DoubleCard
-			// 		backCardElevation={5}
-			// 		cardElevation={8}
-			// 		borderRadius={Styles[theme].borderRadius}
-			// 		padding={Styles[theme].padding}
-			// 		backCardColor={Colors[theme].backCardColor}
-			// 		backCardGradient={Colors[theme].backCardGradient}
-			// 		cardColor={Colors[theme].cardColor}
-			// 	>
-			// 		<SearchBar
-			// 			columns={[
-			// 				{ label: 'Animal', value: 'animal', key: 1 },
-			// 				{ label: 'Name', value: 'name', key: 2 },
-			// 				{ label: 'Color', value: 'color', key: 3 }
-			// 			]}
-			// 			data={sortedApiData}
-			// 			borderRadius={Styles[theme].borderRadius}
-			// 			onSubmit={findCharacterRecord}
-			// 			backgroundColor={Colors[theme].cardColor}
-			// 			borderColor={Colors[theme].borderColor}
-			// 			buttonColor={Colors[theme].buttonColor}
-			// 			pickerBorderColor={Colors[theme].borderColor}
-			// 			pickerTextColor={Colors[theme].textColor}
-			// 			buttonTextColor={Colors[theme].textColor}
-			// 		/>
-			// 	</DoubleCard>
-			// </View>
-			}
+			<View style={{ width: '95%', marginBottom: 15 }}>
+				<DoubleCard
+					backCardElevation={5}
+					cardElevation={8}
+					borderRadius={Styles[theme].borderRadius}
+					padding={Styles[theme].padding}
+					backCardColor={Colors[theme].backCardColor}
+					backCardGradient={Colors[theme].backCardGradient}
+					cardColor={Colors[theme].cardColor}
+				>
+					<SearchBar
+						columns={[
+							{ label: 'Animal', value: 'animal', key: 1 },
+							{ label: 'Name', value: 'name', key: 2 },
+							{ label: 'Color', value: 'color', key: 3 }
+						]}
+						data={sortedApiData}
+						borderRadius={Styles[theme].borderRadius}
+						onSubmit={findCharacterRecord}
+						backgroundColor={Colors[theme].cardColor}
+						borderColor={Colors[theme].borderColor}
+						buttonColor={Colors[theme].buttonColor}
+						pickerBorderColor={Colors[theme].borderColor}
+						pickerTextColor={Colors[theme].textColor}
+						buttonTextColor={Colors[theme].textColor}
+					/>
+				</DoubleCard>
+			</View>
 			<View style={{ height: '60%', width: '95%', borderRadius: Styles[theme].borderRadius, marginHorizontal: 10, marginBottom: 5 }}>
 				<SortHeaderFlex
 					columns={columns}

@@ -6,11 +6,11 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 // Panda Imports
 import {
 	Button,
-	DoubleCard
+	DoubleCard,
+	Picker
 } from 'react-native-panda-ui';
 
 import { ButtonText } from './StyledText';
-import Picker from './Picker';
 import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import {

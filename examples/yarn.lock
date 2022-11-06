@@ -6761,9 +6761,22 @@ react-native-iphone-x-helper@^1.3.0:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
 
-react-native-panda-ui@../react-native-panda-ui-0.2.1.tgz:
-  version "0.2.1"
-  resolved "../react-native-panda-ui-0.2.1.tgz#8454852662edec7e54403e727574ab4c5ea1db48"
+react-native-panda-ui@../react-native-panda-ui-0.2.2.tgz:
+  version "0.2.2"
+  resolved "../react-native-panda-ui-0.2.2.tgz#1a0b9f9749bb2e336104d6597452f74957852e06"
+  dependencies:
+    "@react-native-picker/picker" "2.1.0"
+    chroma "^0.0.1"
+    prop-types "15.7.2"
+    react-error-boundary "^3.1.3"
+    react-native-anchor-point "^1.0.6"
+    react-native-elements "3.4.2"
+    react-native-svg "^12.3.0"
+    react-native-vector-icons "8.1.0"
+
+react-native-panda-ui@../react-native-panda-ui-0.2.20.tgz:
+  version "0.2.20"
+  resolved "../react-native-panda-ui-0.2.20.tgz#a6969756d4aac6bb8fefb27a3382a3e5d9dd3e88"
   dependencies:
     "@react-native-picker/picker" "2.1.0"
     chroma "^0.0.1"
