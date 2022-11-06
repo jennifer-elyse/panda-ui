@@ -13,6 +13,7 @@ import SortColumnFlex from './SortColumnFlex';
 import SortHeaderFlex from './SortHeaderFlex';
 import Button from './Button';
 
+// const PADDING = 10;
 const ScrollerEnum = {
 	None: 'none',
 	Header: 'header',
@@ -102,21 +103,22 @@ const StickyColumnTable = (props) => {
 				}}>
 				<View style={{
 					height: Platform.OS === 'ios' ? headerHeight - 3 : headerHeight - 1,
-					backgroundColor: headerBackgroundColor,
-					borderTopLeftRadius: borderRadius,
-					borderTopRightRadius: 0,
 					width: '100%',
 					flexDirection: 'row',
-					justifyContent: 'center',
-					alignItems: 'center' }}>
+					backgroundColor: 'transparent',
+					borderWidth: 0,
+					borderTopLeftRadius: borderRadius,
+					borderTopRightRadius: 0
+				}}>
 					<SortColumnFlex
 						key="0"
 						column={stickyHeaderOptions}
-						columnCount={stickyHeaderOptions.length}
+						columnCount={0}
 						i={0}
 						sortConfig={sortConfig}
 						onSortChange={onSortChange}
 						borderRadiusLeft={borderRadius}
+						backgroundColor={headerBackgroundColor}
 						borderRadiusRight={0}
 						sortIndicatorColor={sortIndicatorColor}
 						borderColor={borderColor}

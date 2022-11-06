@@ -24,6 +24,7 @@ const SortColumnFlex = (props) => {
 		borderRadiusRight,
 		noSort,
 		height,
+		backgroundColor = 'transparent',
 		sortIndicatorColor = '#4a1830',
 		selectedColor = '#a34e76',
 		textColor = '#fff',
@@ -46,7 +47,8 @@ const SortColumnFlex = (props) => {
 		height: height,
 		justifyContent: 'center',
 		alignItems: 'center',
-		overflow: 'hidden'
+		overflow: 'hidden',
+		backgroundColor: backgroundColor
 	};
 
 	const activeTextStyle = {
@@ -227,7 +229,7 @@ SortColumnFlex.propTypes = {
 		PropTypes.number
 	]),
 	sortIndicatorColor: PropTypes.string,
-	tintColor: PropTypes.string,
+	backgroundColor: PropTypes.string,
 	columnCount: PropTypes.number,
 	selectedColor: PropTypes.string,
 	textColor: PropTypes.string,
