@@ -32,11 +32,11 @@ const PandaHomeScreen = () => {
 	useEffect(() => {
 		(async () => {
 			setLoading(true);
-			const response = character.id  > 0 && await getCharacterQualities(character.id);
-			setQualitiesData && setQualitiesData(response);
+			const response = character.id > 0 && await getCharacterQualities(character.id);
+			setQualitiesData(response);
 			setLoading(false);
 		})();
-	}, [character]);
+	}, [character, theme]);
 
 	const styles = StyleSheet.create({
 		container: {

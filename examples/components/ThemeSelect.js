@@ -9,8 +9,8 @@ import {
 	DoubleCard
 } from 'react-native-panda-ui';
 
-import StyledSelect from '../components/StyledSelect';
-import { ButtonText } from '../components/StyledText';
+import { ButtonText } from './StyledText';
+import Picker from './Picker';
 import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 import {
@@ -36,10 +36,9 @@ const ThemeSelect = () => {
 	useEffect(() => {
 		(async () => {
 			const charData = await getCharacters();
-			// console.log(charData.data.characters);
 			setCharacterData(charData.data.characters);
 		})();
-	}, [character, theme]);
+	}, []);
 
 	return (
 		<View style={{ height: 100, width: '95%', marginVertical: Layout.screen.width > 360 ? 15 : 5 }}>
@@ -54,9 +53,10 @@ const ThemeSelect = () => {
 			>
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
 					<View style={{ borderWidth: Styles[theme].accentBorderWidth, borderColor: Colors[theme].borderColor, borderRadius: Styles[theme].borderRadius, marginRight: 8, width: '60%' }}>
-						<StyledSelect
+						<Picker
+							placeholderBold
 							onValueChange={(itemValue, itemIndex) => {
-								dispatch({ type: 'SET_THEME', payload: { id: characterData[itemIndex -1]?.id, animal: characterData[itemIndex -1]?.animal, theme: itemValue } });
+								itemIndex && dispatch({ type: 'SET_THEME', payload: { id: characterData[itemIndex]?.id, animal: characterData[itemIndex]?.animal, theme: itemValue } });
 							}}
 							items={
 								characterData.map((c, i) => {
@@ -67,6 +67,7 @@ const ThemeSelect = () => {
 									};
 								})
 							}
+							width="100%"
 							selectedValue={baseTheme}
 							value={character.theme}
 							validationErrorColor={Colors[theme].validationError}
